@@ -1,0 +1,1736 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="description" content="Hivora F&B AI 营销团队 · 产品演示">
+<meta name="color-scheme" content="light">
+<title>Hivora F&B Marketing · Demo</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍜</text></svg>">
+<style>*{margin:0;padding:0}</style>
+</head>
+<body>
+
+<style>
+:root{
+  --bg:#F7F8FA;
+  --iso-floor:#EDF1F8; --iso-line:#DDE4EF; --iso-top:#FFFFFF; --iso-side:#DCE3EF; --iso-side2:#E9EEF6;
+ --surface:#FFFFFF; --surface-2:#F1F3F7; --line:#E4E7EC; --line-2:#EEF0F4;
+  --ink:#0F172A; --ink-2:#3F4A5A; --muted:#64748B; --faint:#94A3B8;
+  --blue:#2563EB; --blue-soft:#EFF5FF; --blue-line:#BFD6FE; --indigo:#4F46E5;
+  --green:#15803D; --green-soft:#E9F6EE;
+  --amber:#B45309; --amber-soft:#FDF4E3;
+  --red:#C0392B;   --red-soft:#FDECEA;
+  --sea:#1D4ED8;   --sea-soft:#E8F0FE;
+  --sh-sm:0 1px 2px rgba(16,24,40,.05);
+  --sh:0 1px 3px rgba(16,24,40,.06),0 8px 24px -14px rgba(16,24,40,.16);
+  --mono:ui-monospace,"SF Mono",Menlo,"Cascadia Mono",monospace;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Noto Sans SC","Microsoft YaHei",sans-serif;
+  --rail:#0F172A;
+  --iso-floor:#EDF1F8; --iso-line:#DDE4EF; --iso-top:#FFFFFF; --iso-side:#DCE3EF; --iso-side2:#E9EEF6;
+}
+*{box-sizing:border-box}
+html{overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:14.5px;
+     line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3{margin:0;text-wrap:balance;letter-spacing:-.02em;font-weight:650}
+button{font-family:inherit;font-size:inherit;cursor:pointer;border:0;background:none;color:inherit}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.lab{font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:650}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:5px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ===== shell ===== */
+.app{display:grid;grid-template-columns:56px 236px minmax(0,1fr);min-height:100vh}
+
+/* icon rail */
+.iconrail{background:var(--rail);min-width:0;display:flex;flex-direction:column;align-items:center;gap:9px;padding:14px 0}
+.logo{width:34px;height:34px;border-radius:10px;background:linear-gradient(140deg,#E11D48,#7C1D2E);
+      color:#fff;display:grid;place-items:center;font-weight:800;font-size:15px;letter-spacing:-.03em}
+.mod{width:38px;height:38px;border-radius:10px;display:grid;place-items:center;font-size:15px;
+     color:#8A96A8;position:relative}
+.mod.on{background:rgba(255,255,255,.1);color:#fff}
+.mod.on::after{content:"";position:absolute;left:-9px;top:9px;bottom:9px;width:3px;border-radius:0 3px 3px 0;background:var(--blue)}
+.mod small{position:absolute;bottom:-13px;font-size:8px;letter-spacing:.02em}
+
+/* sidebar */
+.side{background:var(--surface);border-right:1px solid var(--line);display:flex;flex-direction:column;min-width:0}
+.side .biz{padding:16px 18px 13px;border-bottom:1px solid var(--line-2);min-width:0;overflow:hidden}
+.side .biz b{font-size:15px;letter-spacing:-.02em;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.side .biz span{font-size:11.5px;color:var(--muted)}
+.side nav{padding:9px 9px 18px;overflow-y:auto;flex:1}
+.nv{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:8px 11px;border-radius:8px;
+    color:var(--ink-2);font-size:13.5px;transition:.13s;margin-bottom:1px}
+.nv:hover{background:var(--surface-2)}
+.nv[aria-current="true"]{background:var(--blue-soft);color:var(--blue);font-weight:640;box-shadow:inset 0 0 0 1px var(--blue-line)}
+.nv .ic{width:17px;text-align:center;font-size:14px;flex-shrink:0;opacity:.85}
+.nv .sp{flex:1}
+.nvsep{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);font-weight:650;
+       padding:14px 11px 6px}
+
+/* topbar */
+.main{display:flex;flex-direction:column;min-width:0;max-width:100%}
+.topbar{display:flex;align-items:center;gap:12px;padding:11px 24px;background:var(--surface);
+        border-bottom:1px solid var(--line);position:sticky;top:0;z-index:15}
+.topbar .ttl b{font-size:15px}
+.topbar .ttl span{font-size:12px;color:var(--muted);margin-left:8px}
+.topbar .sp{flex:1}
+.search{display:flex;align-items:center;gap:7px;background:var(--surface-2);border:1px solid var(--line);
+        border-radius:9px;padding:6px 12px;color:var(--faint);font-size:12.5px;min-width:190px}
+.av{width:29px;height:29px;border-radius:50%;background:var(--blue-soft);color:var(--blue);
+    display:grid;place-items:center;font-weight:700;font-size:12px;border:1px solid var(--blue-line)}
+.tbtn{font-size:12.5px;padding:6px 11px;border-radius:8px;border:1px solid var(--line);color:var(--muted);background:var(--surface)}
+.tbtn:hover{border-color:var(--blue);color:var(--blue)}
+
+.content{padding:24px 28px 64px;max-width:1160px}
+.content.wide{max-width:1240px}
+.panel{display:none;animation:in .28s ease both}
+.panel.on{display:block}
+@keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.eyebrow{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--indigo);font-weight:700}
+.head{margin-bottom:19px}
+.head h2{font-size:26px;margin-top:5px}
+.head p{color:var(--muted);margin:6px 0 0;font-size:13.8px;max-width:66ch}
+
+/* 平板：侧栏收窄 */
+@media(max-width:1180px) and (min-width:1001px){
+  .app{grid-template-columns:52px 200px minmax(0,1fr)}
+  .content{padding:20px 20px 60px}
+  .nv{font-size:13px;padding:7px 9px}
+}
+@media(max-width:1000px){
+  .app{grid-template-columns:minmax(0,1fr)}
+  /* 顶部：品牌 + 门店 合成一行 */
+  .iconrail{flex-direction:row;align-items:center;justify-content:flex-start;padding:8px 14px;gap:10px}
+  .mod{width:32px;height:32px;font-size:14px}
+  .mod small{display:none}
+  .mod.on::after{display:none}
+  .side{border-right:0;border-bottom:1px solid var(--line)}
+  .side .biz{padding:11px 14px 9px;display:flex;align-items:baseline;gap:9px;border-bottom:0}
+  .side .biz b{font-size:14px}
+  .side .biz span{font-size:11.5px;white-space:nowrap}
+  /* 导航：横向滚动的标签栏，图标 + 文字都保留 */
+  .side nav{display:flex;overflow-x:auto;padding:2px 10px 9px;gap:6px;
+    scrollbar-width:none;-webkit-overflow-scrolling:touch;scroll-snap-type:x proximity}
+  .side nav::-webkit-scrollbar{display:none}
+  .nv{flex:0 0 auto;width:auto;white-space:nowrap;margin:0;padding:7px 12px;border-radius:99px;
+    border:1px solid var(--line);background:var(--surface);gap:7px;scroll-snap-align:start}
+  .nv[aria-current="true"]{box-shadow:none;border-color:var(--blue)}
+  .nv .sp{flex:0 0 auto}
+  .nv .ic{font-size:13px}
+  .nvsep{display:none}
+  .content{padding:18px 14px 112px}
+  .search{display:none}
+  .head h2{font-size:21px}
+  .head p{font-size:13px}
+  .g4{grid-template-columns:repeat(2,1fr)}
+  .kpi .v{font-size:21px}
+  .topbar{padding:10px 14px}
+  .topbar .ttl span{display:none}
+  .navb{flex-direction:column-reverse}
+  .navb .btn{width:100%}
+}
+/* 手机 */
+@media(max-width:600px){
+  .g4,.g3,.g2{grid-template-columns:1fr}
+  .quad{grid-template-columns:1fr}
+  .card{padding:14px;border-radius:11px}
+  .iconrail{padding:6px 10px}
+  .side .biz{padding:12px 14px 10px}
+  .side nav{padding:2px 8px 8px}
+  .nv{padding:6px 11px;font-size:12.5px}
+  .chips{gap:5px}
+  .chip{font-size:11.5px;padding:4px 9px}
+  .chip s{display:none}
+  .mtabs button{padding:8px 10px;font-size:12px}
+  .mdetail{padding:14px}
+  .ag-av{width:54px;height:70px}
+}
+
+/* ===== cards & bits ===== */
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:17px;box-shadow:var(--sh-sm)}
+.card.pop{box-shadow:var(--sh)}
+.grid{display:grid;gap:13px}
+.g2{grid-template-columns:repeat(2,1fr)}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+@media(max-width:900px){.g2,.g3,.g4{grid-template-columns:1fr}}
+.sect{display:flex;align-items:center;gap:8px;font-size:14.5px;font-weight:650;margin-bottom:3px}
+.sect .ic{color:var(--blue)}
+.sect small{font-weight:400;color:var(--muted);font-size:12px;letter-spacing:0;text-transform:none}
+
+.kpi .v{font-family:var(--mono);font-size:25px;font-weight:650;letter-spacing:-.035em;line-height:1.15;margin-top:6px}
+.kpi .s{font-size:12px;color:var(--muted);margin-top:3px}
+.note{border-left:3px solid var(--blue);background:var(--blue-soft);padding:10px 13px;border-radius:0 8px 8px 0;font-size:13.3px;color:var(--ink-2)}
+.note.warn{border-color:var(--amber);background:var(--amber-soft)}
+.note.stop{border-color:var(--red);background:var(--red-soft)}
+details.inv{margin-top:15px;border:1px dashed var(--line);border-radius:10px;padding:0 14px;background:var(--surface)}
+details.inv summary{cursor:pointer;padding:10px 0;font-size:12.5px;font-weight:640;color:var(--muted);list-style:none}
+details.inv summary::-webkit-details-marker{display:none}
+details.inv summary::before{content:"▸ ";color:var(--blue)}
+details.inv[open] summary::before{content:"▾ "}
+details.inv .body{padding:11px 0 14px;font-size:13.3px;color:var(--ink-2);border-top:1px solid var(--line-2)}
+code{font-family:var(--mono);font-size:12.3px;background:var(--surface-2);padding:1.5px 5px;border-radius:4px}
+pre{font-family:var(--mono);font-size:11.8px;line-height:1.6;background:var(--surface-2);border:1px solid var(--line);
+    border-radius:8px;padding:12px 14px;overflow-x:auto;margin:10px 0 0}
+
+.scroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+table{border-collapse:collapse;width:100%;font-size:13px}
+th{text-align:left;font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--faint);
+   font-weight:650;padding:0 11px 8px;border-bottom:1px solid var(--line);white-space:nowrap}
+td{padding:9px 11px;border-bottom:1px solid var(--line-2);white-space:nowrap}
+tr:last-child td{border-bottom:0}
+td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right}
+.tag{font-size:11px;padding:2px 8px;border-radius:6px;font-weight:640;white-space:nowrap}
+.t-star{color:var(--green);background:var(--green-soft)}
+.t-pot{color:var(--sea);background:var(--sea-soft)}
+.t-work{color:var(--amber);background:var(--amber-soft)}
+.t-dead{color:var(--red);background:var(--red-soft)}
+
+/* quadrant — 对齐线上配色 */
+.quad{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:900px){.quad{grid-template-columns:1fr}}
+.q{border-radius:11px;padding:15px}
+.q h3{font-size:11px;letter-spacing:.09em;text-transform:uppercase;font-weight:750}
+.q .sub{font-size:11.5px;color:var(--muted);margin:4px 0 11px}
+.q ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px}
+.q li{font-size:12.5px;padding:3px 10px;border-radius:7px;background:var(--surface);font-weight:520}
+.q li .num{font-size:10.5px;color:var(--muted);margin-left:5px}
+.q-star{background:var(--green-soft)} .q-star h3,.q-star li{color:var(--green)}
+.q-pot{background:var(--sea-soft)}    .q-pot h3,.q-pot li{color:var(--sea)}
+.q-work{background:var(--amber-soft)} .q-work h3,.q-work li{color:var(--amber)}
+.q-dead{background:var(--red-soft)}   .q-dead h3,.q-dead li{color:var(--red)}
+
+.bars{display:flex;flex-direction:column;gap:8px;margin-top:8px}
+.bar{display:grid;grid-template-columns:52px 1fr 82px;gap:10px;align-items:center;font-size:12.5px}
+.bar .track{height:18px;background:var(--surface-2);border-radius:5px;overflow:hidden;display:flex}
+.bar .fill{height:100%;transition:width .7s cubic-bezier(.2,.7,.3,1)}
+.f-l{background:var(--amber)} .f-d{background:var(--blue)}
+.legend{display:flex;gap:15px;font-size:12px;color:var(--muted);margin-top:11px}
+.legend i{width:9px;height:9px;border-radius:3px;display:inline-block;margin-right:5px}
+
+.pipe{display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-top:13px}
+.ag{display:flex;align-items:center;gap:7px;padding:7px 12px;border-radius:9px;border:1px solid var(--line);
+    background:var(--surface);font-size:12.8px;opacity:.4;transition:.3s}
+.ag.live{opacity:1;border-color:var(--blue);background:var(--blue-soft);color:var(--blue)}
+.ag.done{opacity:1}
+.ag .dot{width:6px;height:6px;border-radius:50%;background:var(--faint)}
+.ag.live .dot{background:var(--blue);animation:pulse 1s infinite}
+.ag.done .dot{background:var(--green)}
+@keyframes pulse{50%{opacity:.25}}
+.arrow{color:var(--faint);font-size:11px}
+
+.btn{padding:8px 16px;border-radius:9px;font-size:13.3px;font-weight:640;border:1px solid var(--line);
+     background:var(--surface);transition:.13s;box-shadow:var(--sh-sm)}
+.btn:hover{border-color:var(--ink-2)}
+.btn-go{background:var(--blue);border-color:var(--blue);color:#fff}
+.btn-go:hover{filter:brightness(1.08);border-color:var(--blue)}
+.btn-warn{color:var(--amber);border-color:var(--amber)}
+.btn-warn:hover{background:var(--amber-soft)}
+.btn-stop{color:var(--red);border-color:var(--red)}
+.btn-stop:hover{background:var(--red-soft)}
+.btn:disabled{opacity:.45;cursor:not-allowed}
+.row{display:flex;gap:9px;flex-wrap:wrap;align-items:center}
+
+.file{display:flex;align-items:center;gap:11px;padding:11px 13px;border:1px dashed var(--line);border-radius:10px;font-size:13px}
+.file .ic{width:30px;height:30px;border-radius:8px;background:var(--blue-soft);color:var(--blue);
+  display:grid;place-items:center;font-size:10.5px;font-weight:750;font-family:var(--mono)}
+.file .meta{color:var(--muted);font-size:11.5px}
+
+.poster{border:1px solid var(--line);border-radius:11px;overflow:hidden;background:var(--surface);max-width:330px;box-shadow:var(--sh)}
+.poster .art{aspect-ratio:4/3;background:repeating-linear-gradient(45deg,var(--surface-2) 0 9px,transparent 9px 18px);
+  display:grid;place-items:center;text-align:center;padding:14px;border-bottom:1px solid var(--line)}
+.poster .art span{font-size:11.5px;color:var(--muted);max-width:22ch;line-height:1.5}
+.poster .body{padding:14px}
+.poster .ttl{font-size:16px;font-weight:750;letter-spacing:-.02em;transition:font-size .3s}
+.poster .copy{font-size:12.5px;color:var(--ink-2);margin:7px 0 12px;line-height:1.55}
+.poster .price{font-family:var(--mono);font-size:23px;font-weight:750;color:var(--red);letter-spacing:-.03em}
+.poster .price s{font-size:13px;color:var(--faint);font-weight:400;margin-left:7px}
+.poster .foot{display:flex;justify-content:space-between;align-items:flex-end;gap:10px;margin-top:12px;
+  padding-top:11px;border-top:1px solid var(--line-2);font-size:10.5px;color:var(--muted);line-height:1.5}
+.qr{width:42px;height:42px;flex-shrink:0;background:conic-gradient(from 0deg,var(--ink) 25%,transparent 0 50%,var(--ink) 0 75%,transparent 0);
+  background-size:7px 7px;border:2px solid var(--ink);border-radius:3px;opacity:.8}
+.check{list-style:none;padding:0;margin:10px 0 0;display:flex;flex-direction:column;gap:6px;font-size:12.8px}
+.check li{display:flex;gap:8px;align-items:center;color:var(--ink-2)}
+.check .ok{color:var(--green);font-family:var(--mono);font-size:12px}
+
+.menusrc{display:flex;align-items:center;gap:9px;padding:9px 12px;border-radius:9px;font-size:12.5px;margin-bottom:14px}
+.menusrc.empty{background:var(--amber-soft);color:var(--amber)}
+.menusrc.ok{background:var(--green-soft);color:var(--green)}
+.menusrc b{font-weight:650}
+.menusrc .sp{flex:1}
+.menusrc button{font-size:12px;font-weight:650;padding:4px 11px;border-radius:7px;border:1px solid currentColor}
+.pick{display:flex;gap:7px;flex-wrap:wrap;margin-top:8px}
+.pick button{padding:7px 13px;border:1px solid var(--line);border-radius:8px;font-size:12.8px;background:var(--surface)}
+.pick button[aria-pressed="true"]{border-color:var(--blue);background:var(--blue-soft);color:var(--blue);font-weight:640}
+.verdict{margin-top:15px;padding:14px;border-radius:11px;font-size:13.8px;display:none}
+.verdict.show{display:block;animation:in .25s ease both}
+.verdict.pass{background:var(--green-soft);color:var(--green)}
+.verdict.fail{background:var(--red-soft);color:var(--red)}
+.verdict b{display:block;font-size:15px;margin-bottom:4px}
+.verdict .sub{color:var(--ink-2);font-size:12.8px;font-weight:400;margin-top:5px}
+
+.cal .r{display:grid;grid-template-columns:104px 1fr;gap:15px;padding:12px 0;border-bottom:1px solid var(--line-2)}
+.cal .r:last-child{border-bottom:0}
+.cal .dt{font-family:var(--mono);font-size:12.3px;color:var(--muted)}
+.cal .ev b{font-size:13.8px;display:block}
+.cal .ev span{font-size:12.3px;color:var(--muted)}
+.cal .r.hot .dt{color:var(--red);font-weight:650}
+.cd{font-family:var(--mono);font-size:11.5px;color:var(--red);font-weight:650}
+
+.mermaid-wrap{margin-top:11px;padding:14px 10px;background:var(--surface-2);border-radius:10px;
+  border:1px solid var(--line-2);overflow-x:auto;text-align:center}
+.mermaid-wrap pre.mermaid{background:none;border:0;padding:0;margin:0;font-family:var(--sans);text-align:center}
+.mini{font-size:12.5px;color:var(--ink-2);line-height:1.55;padding:11px 13px;background:var(--surface-2);border-radius:9px}
+.mini .lab{margin-bottom:4px;color:var(--blue)}
+/* ===== Agent Floor 等距视图 ===== */
+.floorwrap{display:block}
+
+.pxoffice{width:100%;height:auto;display:block;image-rendering:pixelated;
+  image-rendering:crisp-edges;border-radius:8px;cursor:pointer;background:#E9E5DC}
+/* 窄屏低于 1x 会糊 → 保底原生宽度，改成横向拖看 */
+@media(max-width:820px){ .pxoffice{min-width:576px} }
+.isohint{text-align:center;font-size:11.5px;color:var(--muted);padding:2px 0 8px}
+.isoscroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border-radius:8px}
+.isoscroll::-webkit-scrollbar{height:6px}
+.isoscroll::-webkit-scrollbar-thumb{background:var(--line);border-radius:3px}
+/* ---- Agent Floor：上传 + 聊天两栏 ---- */
+/* ---- 工作台并排：左对话（主入口）/ 右团队状态 ---- */
+/* 窄屏：对话在上（核心内容优先），办公室在下且满宽更大 */
+/* ===== 右下角悬浮店长助理 ===== */
+.fabwrap{position:fixed;right:22px;bottom:22px;z-index:60;display:flex;flex-direction:column;align-items:flex-end;gap:12px}
+.fab{width:56px;height:56px;border-radius:50%;background:var(--blue);color:#fff;font-size:23px;
+  box-shadow:0 6px 22px -6px rgba(37,99,235,.55),0 2px 6px rgba(16,24,40,.18);
+  display:grid;place-items:center;position:relative;transition:transform .16s,box-shadow .16s}
+.fab:hover{transform:translateY(-2px);box-shadow:0 10px 28px -8px rgba(37,99,235,.6)}
+.fab:active{transform:translateY(0)}
+.fab .fdot{position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:50%;
+  background:#F0B429;border:2.5px solid var(--surface);display:none}
+.fab .fdot.on{display:block}
+.chatpanel{width:382px;max-width:calc(100vw - 32px);background:var(--surface);border:1px solid var(--line);
+  border-radius:15px;box-shadow:0 18px 50px -16px rgba(16,24,40,.32),0 3px 10px rgba(16,24,40,.1);
+  display:flex;flex-direction:column;overflow:hidden;position:relative;
+  animation:cpIn .2s cubic-bezier(.2,.7,.3,1) both}
+@keyframes cpIn{from{opacity:0;transform:translateY(10px) scale(.97)}to{opacity:1;transform:none}}
+.chatpanel[hidden]{display:none}
+.cp-hd{display:flex;align-items:center;gap:10px;padding:12px 14px;border-bottom:1px solid var(--line);background:var(--surface-2)}
+.cp-av{width:34px;height:34px;border-radius:10px;background:var(--blue-soft);display:grid;place-items:center;font-size:16px}
+.cp-id{flex:1;min-width:0}
+.cp-id b{font-size:14px;display:block;letter-spacing:-.01em}
+.cp-id span{font-size:11.5px;color:var(--muted);display:flex;align-items:center;gap:5px}
+.cp-id i.on{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block}
+.cp-ic{width:30px;height:30px;border-radius:8px;color:var(--muted);font-size:13px;line-height:1;flex-shrink:0}
+.cp-ic:hover{background:var(--surface);color:var(--ink)}
+.histpane{position:absolute;inset:59px 0 0;background:var(--surface);z-index:3;display:flex;flex-direction:column;
+  animation:cpIn .18s ease both}
+.histpane[hidden]{display:none}
+.hp-hd{display:flex;align-items:center;padding:11px 14px 8px;border-bottom:1px solid var(--line-2)}
+.hp-hd .lab{flex:1}
+.hplist{flex:1;overflow-y:auto;padding:8px}
+.hpi{display:block;width:100%;text-align:left;padding:10px 12px;border-radius:9px;transition:.12s;margin-bottom:2px}
+.hpi:hover{background:var(--surface-2)}
+.hpi[aria-current="true"]{background:var(--blue-soft);box-shadow:inset 0 0 0 1px var(--blue-line)}
+.hpi b{font-size:13px;display:block;color:var(--ink);font-weight:600}
+.hpi span{font-size:11.5px;color:var(--muted);display:block;margin-top:2px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.hpi s{font-size:10.5px;color:var(--faint);text-decoration:none;float:right;font-family:var(--mono)}
+.hpnew{margin:8px;padding:9px;border-radius:9px;border:1px dashed var(--line);color:var(--blue);
+  font-size:12.5px;font-weight:600;width:calc(100% - 16px)}
+.hpnew:hover{border-color:var(--blue);background:var(--blue-soft)}
+.cp-min{width:32px;height:32px;border-radius:8px;color:var(--muted);font-size:15px;line-height:1}
+.cp-min:hover{background:var(--surface);color:var(--ink)}
+.chatpanel .chatlog{flex:1;min-height:240px;max-height:min(46vh,380px);overflow-y:auto;padding:14px;margin:0;gap:10px}
+.chatpanel .quick{padding:0 14px;margin:0 0 10px}
+.chatpanel .chatin{padding:0 14px 14px;margin:0}
+@media(max-width:600px){
+  .fabwrap{right:0;bottom:0;left:0;gap:0}
+  .fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom,0px));width:54px;height:54px}
+  .chatpanel{width:100%;max-width:100%;border-radius:16px 16px 0 0;border-left:0;border-right:0;border-bottom:0;
+    max-height:88vh;padding-bottom:env(safe-area-inset-bottom,0px)}
+  .chatpanel .chatlog{max-height:none;flex:1;min-height:44vh}
+  .histpane{inset:59px 0 0}
+}
+
+.chatlog{min-height:280px;max-height:400px}
+.teamhd{margin:20px 0 9px}
+.chatin input{padding:12px 14px;font-size:14px;min-height:44px}
+.chatin .attach{width:44px;height:44px;font-size:17px}
+.chatin button[type=submit]{padding:11px 18px;min-height:44px;min-width:44px}
+.chatin .attach{width:38px;height:38px;border-radius:9px;border:1px solid var(--line);background:var(--surface);
+  font-size:16px;flex-shrink:0;transition:.13s}
+.chatin .attach:hover{border-color:var(--blue);background:var(--blue-soft)}
+.filechip{display:flex;align-items:center;gap:9px;padding:8px 11px;border-radius:10px;background:rgba(255,255,255,.16)}
+.filechip .fi{width:26px;height:26px;border-radius:7px;background:rgba(255,255,255,.22);display:grid;place-items:center;
+  font-size:9.5px;font-weight:750;font-family:var(--mono);flex-shrink:0}
+.filechip b{font-size:12.5px;display:block}.filechip s{font-size:11px;opacity:.8;text-decoration:none}
+.msg.ai .filechip{background:var(--surface);border:1px solid var(--line)}
+.msg.ai .filechip .fi{background:var(--blue-soft);color:var(--blue)}
+.pipe.inchat{margin-top:9px;gap:5px}
+.pipe.inchat .ag{padding:5px 9px;font-size:11.5px}
+.drop{position:absolute;inset:8px;border:2px dashed var(--blue);border-radius:12px;background:var(--blue-soft);
+  display:none;place-items:center;font-size:14px;font-weight:650;color:var(--blue);pointer-events:none;z-index:5}
+.chatcard.dragging .drop{display:grid}
+.hubgrid{display:grid;grid-template-columns:1fr 1.05fr;gap:13px;margin-top:13px;align-items:start}
+@media(max-width:960px){.hubgrid{grid-template-columns:1fr}}
+.upfiles{display:flex;flex-direction:column;gap:9px;margin-top:11px}
+.chatcard{display:flex;flex-direction:column}
+.chatlog{flex:1;min-height:210px;max-height:260px;overflow-y:auto;margin-top:11px;padding:4px 2px;
+  display:flex;flex-direction:column;gap:9px}
+.msg{max-width:84%;padding:8px 12px;border-radius:12px;font-size:13px;line-height:1.55}
+.msg.ai{background:var(--surface-2);color:var(--ink-2);border-bottom-left-radius:4px;align-self:flex-start}
+.msg.me{background:var(--blue);color:#fff;border-bottom-right-radius:4px;align-self:flex-end}
+.msg b{font-weight:650}
+.msg .jump{display:inline-block;margin-top:7px;font-size:12px;font-weight:650;color:var(--blue);
+  background:var(--surface);border:1px solid var(--blue-line);border-radius:7px;padding:4px 10px;cursor:pointer}
+.msg .jump:hover{background:var(--blue-soft)}
+.quick{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 8px}
+.quick button{font-size:12px;padding:7px 12px;border-radius:99px;border:1px solid var(--line);
+  background:var(--surface);color:var(--muted)}
+.quick button:hover{border-color:var(--blue);color:var(--blue)}
+.chatin{display:flex;gap:8px}
+.chatin input{flex:1;padding:9px 13px;border-radius:9px;border:1px solid var(--line);
+  background:var(--surface-2);color:var(--ink);font-size:13px;font-family:inherit}
+.chatin input:focus{outline:none;border-color:var(--blue);background:var(--surface)}
+.chatin button{padding:9px 15px}
+/* ---- 弹窗 tabs ---- */
+.mtabs{display:flex;gap:4px;border-bottom:1px solid var(--line);margin:14px 0 0;overflow-x:auto}
+.mtabs button{padding:8px 13px;font-size:12.8px;color:var(--muted);border-bottom:2px solid transparent;
+  white-space:nowrap;font-weight:600}
+.mtabs button[aria-selected="true"]{color:var(--blue);border-bottom-color:var(--blue)}
+.tabpane{display:none;padding-top:14px}
+.tabpane.on{display:block;animation:in .2s ease both}
+.edit-ta{width:100%;min-height:180px;padding:12px 13px;border-radius:9px;border:1px solid var(--line);
+  background:var(--surface-2);color:var(--ink);font-size:12.8px;line-height:1.65;font-family:inherit;resize:vertical}
+.edit-ta:focus{outline:none;border-color:var(--blue);background:var(--surface)}
+.tgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(212px,1fr));gap:6px;margin-top:9px}
+.tg{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;border:1px solid var(--line);
+  font-size:12px;font-family:var(--mono);cursor:pointer;background:var(--surface)}
+.tg input{accent-color:var(--blue);cursor:pointer;margin:0}
+.tg.on{background:var(--green-soft);border-color:transparent;color:var(--green)}
+.tg.danger{background:var(--red-soft);border-color:transparent;color:var(--red)}
+.tg.danger span{text-decoration:line-through}
+.tg.locked{opacity:.85;cursor:not-allowed}
+.mfoot{display:flex;align-items:center;gap:10px;padding:13px 18px;border-top:1px solid var(--line);
+  background:var(--surface-2);border-radius:0 0 15px 15px}
+.mfoot .sp{flex:1}
+.savemsg{font-size:12.5px;color:var(--green);font-weight:650;opacity:0;transition:.25s}
+.savemsg.on{opacity:1}
+.floorbar{display:flex;align-items:center;gap:10px;padding:4px 6px 9px;flex-wrap:wrap}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{display:flex;align-items:center;gap:6px;padding:4px 10px;border-radius:8px;font-size:12px;
+  border:1px solid var(--line);background:var(--surface);color:var(--ink-2);transition:.12s}
+.chip:hover{border-color:var(--blue)}
+.chip[aria-current="true"]{border-color:var(--blue);background:var(--blue-soft);color:var(--blue)}
+.chip i{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.chip s{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-decoration:none;opacity:.75}
+.btnsm{padding:5px 12px;font-size:12.5px;border-radius:8px;margin-left:auto}
+.btnsm:hover{border-color:var(--blue);color:var(--blue)}
+dialog.modal{border:0;border-radius:15px;padding:0;width:min(940px,calc(100% - 32px));max-height:86vh;
+  background:var(--surface);color:var(--ink);box-shadow:0 24px 70px -24px rgba(16,24,40,.45)}
+dialog.modal::backdrop{background:rgba(15,23,42,.45)}
+.modal-hd{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.modal-hd b{font-size:15.5px}
+.mclose{width:28px;height:28px;border-radius:8px;color:var(--muted);font-size:15px;line-height:1}
+.mclose:hover{background:var(--surface-2);color:var(--ink)}
+.modal-body{display:grid;grid-template-columns:196px 1fr;min-height:0}
+.mlist{border-right:1px solid var(--line);padding:10px;display:flex;flex-direction:column;gap:3px;background:var(--surface-2)}
+.mlist button{display:flex;align-items:center;gap:9px;text-align:left;padding:8px 10px;border-radius:9px;
+  font-size:13px;color:var(--ink-2);transition:.12s}
+.mlist button:hover{background:var(--surface)}
+.mlist button[aria-selected="true"]{background:var(--blue-soft);color:var(--blue);font-weight:650;
+  box-shadow:inset 0 0 0 1px var(--blue-line)}
+.mlist .em{font-size:15px}
+/* ---- 弹窗内的 agent 卡（所有 agent 同一版式）---- */
+.ag-hd{display:flex;align-items:center;gap:13px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.ag-av{width:66px;height:84px;image-rendering:pixelated;background:var(--surface-2);border-radius:9px;flex-shrink:0}
+.ag-id{flex:1;min-width:0}
+.ag-id b{font-size:16px;display:block;letter-spacing:-.02em}
+.ag-id span{font-size:12.5px;color:var(--muted)}
+.ag-stat{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:650;white-space:nowrap}
+.ag-stat i{width:8px;height:8px;border-radius:50%}
+.ag-stat s{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-decoration:none;opacity:.7}
+.ag-flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:8px;align-items:stretch;margin-top:15px}
+.fl{padding:10px 12px;border-radius:9px;font-size:12.5px;line-height:1.5;color:var(--ink-2)}
+.fl .lab{margin-bottom:5px}
+.fl.in{background:var(--amber-soft)}  .fl.in .lab{color:var(--amber)}
+.fl.do{background:var(--blue-soft)}   .fl.do .lab{color:var(--blue)}
+.fl.out{background:var(--green-soft)} .fl.out .lab{color:var(--green)}
+.fl-ar{align-self:center;color:var(--faint);font-size:15px}
+@media(max-width:760px){.ag-flow{grid-template-columns:1fr}.fl-ar{transform:rotate(90deg);justify-self:center}}
+.ag-two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+@media(max-width:620px){.ag-two{grid-template-columns:1fr}}
+.ag-can,.ag-cant{padding:12px 13px;border-radius:9px}
+.ag-can{background:var(--green-soft)} .ag-cant{background:var(--red-soft)}
+.ag-can .lab{color:var(--green)} .ag-cant .lab{color:var(--red)}
+.ag-two ul{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:5px}
+.ag-two li{display:flex;gap:8px;align-items:flex-start;font-size:12.8px;color:var(--ink-2);line-height:1.45}
+.ag-two i{font-style:normal;font-family:var(--mono);font-size:11px;flex-shrink:0;margin-top:1px}
+.ag-two i.y{color:var(--green)} .ag-two i.n{color:var(--red)}
+.ag-perm{margin-top:14px;padding:13px;border-radius:9px;background:var(--surface-2)}
+.pm-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px}
+.pm-num{font-family:var(--mono);font-size:12px;color:var(--ink-2);font-weight:650}
+.pm-bar{height:7px;border-radius:4px;background:var(--red-soft);overflow:hidden;margin-bottom:11px}
+.pm-bar i{display:block;height:100%;background:var(--green);border-radius:4px;transition:width .4s}
+.pm-model{margin-top:10px;font-size:12px;color:var(--muted)}
+.mdetail{padding:18px;overflow-y:auto;max-height:calc(86vh - 60px)}
+@media(max-width:820px){dialog.modal{width:calc(100% - 20px);max-height:92vh}
+  .mfoot{padding:11px 14px;flex-wrap:wrap;gap:8px}
+  .mfoot .lab{width:100%;order:3}}
+@media(max-width:760px){.modal-body{grid-template-columns:1fr}
+  .mlist{flex-direction:row;overflow-x:auto;border-right:0;border-bottom:1px solid var(--line)}
+  .mlist button{white-space:nowrap}}
+.whobar{display:none}
+.whobar button{font-size:11.5px;padding:4px 10px;border-radius:7px;border:1px solid var(--line);background:var(--surface);color:var(--ink-2)}
+.whobar button[aria-pressed="true"]{border-color:var(--blue);background:var(--blue-soft);color:var(--blue);font-weight:650}
+.agentcfg{margin-top:13px}
+.cfg-body{display:grid;grid-template-columns:1.25fr 1fr;gap:18px;margin-top:12px}
+@media(max-width:900px){.cfg-body{grid-template-columns:1fr}}
+.cfg-hd{display:flex;align-items:center;gap:11px;margin-bottom:3px}
+.cfg-hd .em{width:40px;height:40px;border-radius:11px;display:grid;place-items:center;font-size:19px;background:var(--blue-soft)}
+.cfg-hd b{font-size:15.5px;display:block}
+.cfg-hd span{font-size:11.8px;color:var(--muted)}
+.cfg-sec{margin-top:14px}
+.cfg-sec .lab{margin-bottom:6px}
+.soul{font-size:12.8px;color:var(--ink-2);line-height:1.62;background:var(--surface-2);border-radius:8px;padding:10px 12px}
+.tools{display:flex;flex-wrap:wrap;gap:5px}
+.tools span{font-family:var(--mono);font-size:10.8px;padding:2px 7px;border-radius:5px;background:var(--green-soft);color:var(--green)}
+.tools span.off{background:var(--red-soft);color:var(--red);text-decoration:line-through}
+.floor{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:900px){.floor{grid-template-columns:repeat(2,1fr)}}
+.who{text-align:center;padding:19px 12px}
+.who .fa{width:46px;height:46px;border-radius:13px;margin:0 auto 10px;display:grid;place-items:center;font-size:21px;background:var(--blue-soft)}
+.who b{font-size:13.8px;display:block}
+.who span{font-size:11.8px;color:var(--muted);display:block;margin-top:3px;line-height:1.45}
+.who .st{font-size:10.5px;color:var(--green);margin-top:8px;font-weight:640}
+
+.inbox{display:flex;align-items:center;gap:12px;padding:12px 0;border-bottom:1px solid var(--line-2)}
+.inbox:last-child{border-bottom:0}
+.inbox .pill{font-size:10.5px;padding:2px 8px;border-radius:99px;font-weight:650;background:var(--amber-soft);color:var(--amber)}
+.inbox .sp{flex:1}
+.foot{margin-top:32px;padding-top:17px;border-top:1px solid var(--line);color:var(--faint);font-size:11.5px;line-height:1.7}
+.navb{display:flex;justify-content:space-between;gap:12px;margin-top:24px}
+</style>
+
+<div class="app">
+  <!-- 最左窄栏 -->
+  <aside class="iconrail" aria-label="模块">
+    <div class="logo">H</div>
+    <div class="mod on" title="Marketing">📣<small>Marketing</small></div>
+  </aside>
+
+  <!-- 侧边导航 -->
+  <aside class="side">
+    <div class="biz"><b>F&amp;B Marketing</b><span>Warisan Grill · Halal ✓</span></div>
+    <nav aria-label="主导航">
+      <button class="nv" data-go="0"><span class="ic">🏠</span><span class="sp">Today</span></button>
+      <button class="nv" data-go="1" aria-current="true"><span class="ic">🏢</span><span class="sp">Agent Floor</span></button>
+      <div class="nvsep">营销流程</div>
+      <button class="nv" data-go="2"><span class="ic">📊</span><span class="sp">Weekly Report</span></button>
+      <button class="nv" data-go="3"><span class="ic">🎯</span><span class="sp">Promotion Plans</span></button>
+      <button class="nv" data-go="4"><span class="ic">🖨️</span><span class="sp">Material Review</span></button>
+      <button class="nv" data-go="5"><span class="ic">🕌</span><span class="sp">Race Rule Gate</span></button>
+      <button class="nv" data-go="6"><span class="ic">📅</span><span class="sp">Marketing Calendar</span></button>
+      <div class="nvsep">配置</div>
+      <button class="nv" data-go="7"><span class="ic">👥</span><span class="sp">Customer Base</span></button>
+      <button class="nv" data-go="8"><span class="ic">📈</span><span class="sp">Usage</span></button>
+    </nav>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <span class="ttl"><b id="pgTitle">Agent Floor</b><span id="pgSub">团队工位 · 上传数据 · 店长助理</span></span>
+      <span class="sp"></span>
+      <span class="search">🔍 Search tasks, materials, customers…</span>
+      <span class="av">W</span>
+    </header>
+
+    <div class="content">
+
+    <!-- 0 Today -->
+    <section class="panel" id="p0">
+      <div class="head"><div class="eyebrow">Hivora · AI Workforce</div><h2>今日看板</h2>
+        <p>老板每天打开的第一页：待你确认的东西在最上面，AI 干了什么在下面。</p></div>
+      <div class="grid g4">
+        <div class="card kpi"><div class="lab">待确认</div><div class="v" style="color:var(--amber)">2</div><div class="s">物料 1 · 排期 1</div></div>
+        <div class="card kpi"><div class="lab">本周营收</div><div class="v">13,867</div><div class="s">RM · +8% vs 上周</div></div>
+        <div class="card kpi"><div class="lab">印刷倒数</div><div class="v" style="color:var(--red)">4 天</div><div class="s">国庆物料 08-01 截止</div></div>
+        <div class="card kpi"><div class="lab">本月 AI 成本</div><div class="v">RM 41</div><div class="s">DeepSeek · 可控</div></div>
+      </div>
+      <div class="card" style="margin-top:13px">
+        <div class="sect"><span class="ic">📥</span>审批箱 <small>只有这里能放行真实动作</small></div>
+        <div style="margin-top:8px">
+          <div class="inbox"><span class="pill">待确认</span><span class="sp"><b>午市快闪 · 物料包</b><br><span style="font-size:12px;color:var(--muted)">营销设计师 · 5 分钟前</span></span><button class="btn btn-go" data-go="4">去审</button></div>
+          <div class="inbox"><span class="pill">待确认</span><span class="sp"><b>国庆排期确认</b><br><span style="font-size:12px;color:var(--muted)">销售 · 今天 09:12</span></span><button class="btn" data-go="6">查看</button></div>
+        </div>
+      </div>
+      <div class="navb"><span></span><button class="btn btn-go" data-go="1">看看 AI 团队 →</button></div>
+    </section>
+
+    <!-- 1 Agent Floor -->
+    <section class="panel on" id="p1">
+      <div class="head"><div class="eyebrow">Hivora · AI Workforce</div><h2>工作台</h2>
+        <p><b>有事直接跟店长助理说</b> —— 要看数据、要做物料、要排日历，或者 📎 把表传给它。
+        下面是你的 AI 团队，点工位能看它是谁、在干嘛、能按哪些按钮。</p></div>
+        <div class="card" style="padding:8px 8px 4px">
+          <div class="floorbar">
+            <div class="chips" id="chips"></div>
+            <button class="btn btnsm" id="btnEdit">⚙️ Edit Agent</button>
+          </div>
+          <div class="isoscroll"><canvas id="floorCv" class="pxoffice" aria-label="像素办公室：AI 团队工位"></canvas></div>
+                    <div class="isohint">🖱️ 点小人 / 顶部状态条 / 右上角 Edit Agent → 看 agent profile　<span style='opacity:.7'>规格参考 pixel-agents (MIT)</span></div>
+        </div>
+
+
+
+
+
+      <dialog id="agentModal" class="modal" aria-labelledby="mTitle">
+        <div class="modal-hd">
+          <b id="mTitle">Agent 配置</b>
+          <span class="lab" style="margin-left:auto">SOUL · 模型 · 工具白名单</span>
+          <button class="mclose" id="mClose" aria-label="关闭">✕</button>
+        </div>
+        <div class="modal-body">
+          <div class="mlist" id="mList" role="tablist" aria-label="选择 agent"></div>
+          <div class="mdetail" id="cfg" aria-live="polite"></div>
+        </div>
+        <div class="mfoot">
+          <span class="lab">改动仅存在本次演示（不落库）</span>
+          <span class="sp"></span>
+          <span class="savemsg" id="saveMsg">✓ 已保存</span>
+          <button class="btn" id="mReset">还原默认</button>
+          <button class="btn btn-go" id="mSave">保存</button>
+        </div>
+      </dialog>
+
+
+      <div class="note" style="margin-top:13px"><b>最小权限：</b>职责越窄越管得住。危险能力（终端 / 代码执行 / 浏览器 / 文件）<b>全部 agent 一律关闭</b>；真实动作只有老板的审批台能放行。</div>
+
+      <details class="inv"><summary>💼 为什么是「一个枢纽 + 三个专才」，不是一个全能 AI</summary><div class="body">
+        全能 agent 的问题是<b>权限收不住</b>：它既能算数又能发布，一旦想歪就直接对外了。<br>
+        拆开之后：设计师<b>拿不到客户名单</b>，销售<b>按不了发布键</b>，数据管家<b>不做决策</b>。<br>
+        agent 之间不直连、全部经总管中转 —— 这是<b>图的结构决定的</b>，不是靠提示词约定。
+      </div></details>
+
+      <div class="navb"><button class="btn" data-go="0">← 今日看板</button><button class="btn btn-go" data-go="2">下一步：AI 周报 →</button></div>
+    </section>
+
+
+    <!-- 2 Weekly Report -->
+    <section class="panel" id="p2">
+      <div class="head"><div class="eyebrow">营销流程 · Weekly Report</div><h2>卖最好的，不等于最赚钱的</h2>
+        <p>一周 625 单，三秒看懂哪道菜在替你赚钱、哪道菜在占位置。</p></div>
+      <div class="grid g4">
+        <div class="card kpi"><div class="lab">本周营收</div><div class="v">13,867</div><div class="s">RM · 625 笔交易</div></div>
+        <div class="card kpi"><div class="lab">售出份数</div><div class="v">919</div><div class="s">客单约 RM 22.2</div></div>
+        <div class="card kpi"><div class="lab">销量第一</div><div class="v" style="font-size:18px">拉茶</div><div class="s">180 份 · 营收仅占 6%</div></div>
+        <div class="card kpi"><div class="lab">营收第一</div><div class="v" style="font-size:18px">炭烤牛肋排</div><div class="s">RM 2,790 · 占 20%</div></div>
+      </div>
+      <div class="card" style="margin-top:13px">
+        <div class="sect"><span class="ic">▦</span>Dish Quadrant <small>Sales volume × Gross margin</small></div>
+        <div class="quad" style="margin-top:12px">
+          <div class="q q-star"><h3>Stars · 明星</h3><div class="sub">高销量 + 高毛利 → <b>主推，别打折</b></div>
+            <ul><li>拉茶<span class="num">180</span></li><li>咖喱鸡饭<span class="num">95</span></li><li>椰浆饭套餐<span class="num">88</span></li><li>香脆春卷<span class="num">78</span></li></ul></div>
+          <div class="q q-pot"><h3>Potential · 潜力</h3><div class="sub">低销量 + 高毛利 → <b>促销首选，打折还有肉</b></div>
+            <ul><li>柠檬薄荷饮<span class="num">30</span></li><li>芒果糯米饭<span class="num">25</span></li><li>松露意面<span class="num">22</span></li><li>三文鱼沙拉<span class="num">18</span></li></ul></div>
+          <div class="q q-work"><h3>Workhorse · 走量</h3><div class="sub">高销量 + 低毛利 → 引流用，<b>慎打折</b></div>
+            <ul><li>冰美式<span class="num">120</span></li><li>炸鸡翅<span class="num">82</span></li><li>海鲜炒面<span class="num">70</span></li><li>炭烤牛肋排<span class="num">62</span></li></ul></div>
+          <div class="q q-dead"><h3>Deadweight · 鸡肋</h3><div class="sub">低销量 + 低毛利 → 改良 / 提价 / <b>考虑下架</b></div>
+            <ul><li>牛肉汉堡<span class="num">15</span></li><li>奶油蘑菇汤<span class="num">14</span></li><li>烤鱼<span class="num">12</span></li><li>和牛小排<span class="num">8</span></li></ul></div>
+        </div>
+        <div class="note" style="margin-top:13px">判定线：<b>Food Cost ≤ 35%</b> = 高毛利 · <b>销量 &gt; 中位数 46</b> = 高销量。两条线都是代码算的。</div>
+      </div>
+      <div class="grid g2" style="margin-top:13px">
+        <div class="card">
+          <div class="sect"><span class="ic">▥</span>Footfall Heatmap <small>Lunch / Dinner · RM</small></div>
+          <div class="bars" id="bars"></div>
+          <div class="legend"><span><i style="background:var(--amber)"></i>午市 5,956（43%）</span><span><i style="background:var(--blue)"></i>晚市 7,911（57%）</span></div>
+          <div class="note warn" style="margin-top:12px"><b>晚市占 57%。</b>午市是<b>机会</b>，不是问题 —— 潜力品拿去打午市低谷。</div>
+        </div>
+        <div class="card">
+          <div class="sect"><span class="ic">▤</span>明细 <small>按营收排序</small></div>
+          <div class="scroll" style="margin-top:9px;max-height:322px;overflow-y:auto">
+            <table><thead><tr><th>菜品</th><th style="text-align:right">销量</th><th style="text-align:right">营收</th><th style="text-align:right">FC%</th><th>判定</th></tr></thead><tbody id="tbody"></tbody></table>
+          </div>
+        </div>
+      </div>
+      <div class="note stop" style="margin-top:13px"><b>毛利：待补。</b>成本数据仅菜单标准成本，实际采购价波动未接入 → <b>系统标注「待补」，不当作实际利润汇报</b>。</div>
+      <details class="inv"><summary>💼 这一屏最重要的技术卖点</summary><div class="body">
+        上面每一个数字 —— 四象限、中位数、营收占比、时段拆分 —— <b>全部是 Python 算的，不是 AI 生成的</b>。<br>
+        LLM 只负责回答两个问题：「为什么这道菜卖得差」和「该主推谁」。<b>LLM 碰不到数字，就编不出数字。</b>
+        <pre>facts = compute_facts(rows)   # 数字：纯 Python
+why   = llm.explain(facts)    # 解释：交给 LLM
+# LLM 只拿到算好的 facts，没有计算权</pre>
+      </div></details>
+      <div class="navb"><button class="btn" data-go="2">← 上一步</button><button class="btn btn-go" data-go="3">下一步：促销方案 →</button></div>
+    </section>
+
+    <!-- 3 Promotion -->
+    <section class="panel" id="p3">
+      <div class="head"><div class="eyebrow">营销流程 · Promotion Plans</div><h2>推提拉米苏，不是推牛肉面</h2>
+        <p>牛肉面本来就卖得好，打折等于送钱。潜力品毛利高但卖得慢 —— 打折还有得赚，还能把人拉进店。</p></div>
+      <div class="grid g2">
+        <div class="card">
+          <div class="sect"><span class="ic">🎯</span>AI 促销建议</div>
+          <h3 style="font-size:17px;margin:10px 0 3px">主推：芒果糯米饭 + 柠檬薄荷饮</h3>
+          <p style="color:var(--muted);font-size:12.8px;margin:0 0 13px">午市低谷时段套餐 · 目标：引流拉新</p>
+          <table><tbody>
+            <tr><td style="color:var(--muted)">为什么选它</td><td>潜力象限（低量高毛利），FC 31% / 27%</td></tr>
+            <tr><td style="color:var(--muted)">打什么时段</td><td>午市 12:00–14:30（占比仅 43%）</td></tr>
+            <tr><td style="color:var(--muted)">形式</td><td>套餐加价购 · 折后毛利率 ≥ 40%</td></tr>
+            <tr><td style="color:var(--muted)">目标族群</td><td>全族群可推（无肉）</td></tr>
+            <tr><td style="color:var(--muted)">力度</td><td><b style="color:var(--amber)">待老板拍板</b></td></tr>
+          </tbody></table>
+        </div>
+        <div class="card">
+          <div class="sect"><span class="ic">📆</span>投放窗口 <small>代码算的</small></div>
+          <div class="kpi" style="margin-top:11px"><div class="lab">由头</div><div class="v" style="font-size:16px">Hari Merdeka 国庆日</div><div class="s">2026-08-31 · 还有 34 天</div></div>
+          <hr style="border:0;border-top:1px solid var(--line-2);margin:14px 0">
+          <div class="grid g2">
+            <div><div class="lab">投放期</div><div class="num" style="font-size:14px;margin-top:5px">08-19 → 09-02</div></div>
+            <div><div class="lab">印刷截止</div><div class="num" style="font-size:14px;margin-top:5px;color:var(--red)">08-01</div></div>
+          </div>
+          <div class="note warn" style="margin-top:14px"><b>为什么 8/19 开跑：</b>国庆 8/31，印刷提前一个月 → 8/1 前发印刷店，8/19 预热。<b>这个提前期写死在规则里，AI 算不错。</b></div>
+        </div>
+      </div>
+      <details class="inv"><summary>💼 AI 出建议，但定不了力度</summary><div class="body">
+        折扣打多少、活动做不做 —— <b>永远是老板拍板</b>。agent 的工具白名单里<b>根本没有「改价」</b>。<br>
+        时间也不靠 AI 记：今天几号、接下来什么节日、印刷提前期多久，都是代码提供的上下文。<br>
+        <span style="color:var(--muted)">（早期没喂时间上下文时，AI 在 7 月建议过「情人节套餐」和美国「感恩节」—— 现在这类错误由代码 Gate 直接拦掉。）</span>
+      </div></details>
+      <div class="navb"><button class="btn" data-go="2">← 上一步</button><button class="btn btn-go" data-go="4">下一步：物料审批 →</button></div>
+    </section>
+
+    <!-- 4 Material Review -->
+    <section class="panel" id="p4">
+      <div class="head"><div class="eyebrow">营销流程 · Material Review</div><h2>AI 做完了，但发不发你说了算</h2>
+        <p>文案、版式、必备元素一次出好。但下面这排按钮 —— <b>确认 / 改 / 退</b> —— 才是这套系统的核心。</p></div>
+      <div class="grid g2">
+        <div>
+          <div class="lab" style="margin-bottom:9px">物料预览 <span id="ver" style="color:var(--blue)">v1</span></div>
+          <div class="poster">
+            <div class="art"><span>菜品实拍位<br><span style="font-size:10.5px;opacity:.75">接出图 API / Canva 模板后替换为成品图</span></span></div>
+            <div class="body">
+              <div class="ttl" id="pTitle">午市快闪 · 甜蜜加价购</div>
+              <div class="copy" id="pCopy">午市来店，主食加购芒果糯米饭 + 柠檬薄荷饮，甜一口再上班。扫码或 WhatsApp 我们预订。</div>
+              <div class="price">RM <span id="pPrice">38</span><s>RM 45</s></div>
+              <div class="foot">
+                <div>Warisan Grill · Halal ✓<br>Jalan Ampang, KL · 11:00–22:00<br>WhatsApp 012-345 6789<br>有效期至 <span class="num">2026-09-02</span></div>
+                <div class="qr" aria-label="获客二维码"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="card">
+            <div class="sect"><span class="ic">🟨</span>铁律 Gate 已通过 <small>代码自动检查</small></div>
+            <ul class="check">
+              <li><span class="ok">✓</span>店名 · 地址 · 营业时间</li>
+              <li><span class="ok">✓</span>价格来自数据（未自编）</li>
+              <li><span class="ok">✓</span>有效期在投放窗口内</li>
+              <li><span class="ok">✓</span>Halal 标</li>
+              <li><span class="ok">✓</span>获客二维码 + WhatsApp</li>
+              <li><span class="ok">✓</span>族群规则（无肉 · 全族群可推）</li>
+            </ul>
+            <div class="note" style="margin-top:12px;font-size:12.8px">不合格的稿<b>自动回炉重出，根本到不了老板面前</b>。你看到的都是已经过关的。</div>
+          </div>
+          <div class="card" style="margin-top:13px">
+            <div class="sect"><span class="ic">✋</span>等你决定</div>
+            <div class="row" style="margin-top:11px">
+              <button class="btn btn-go" id="bOk">确认 · 印刷 + 发布</button>
+              <button class="btn btn-warn" id="bEdit">改</button>
+              <button class="btn btn-stop" id="bNo">退</button>
+            </div>
+            <div id="apResult" style="margin-top:12px;font-size:13.3px"></div>
+          </div>
+        </div>
+      </div>
+      <details class="inv"><summary>💼 HITL 无例外 —— 这是护城河，不是功能</summary><div class="body">
+        agent 手上<b>根本没有「发布」这个按钮</b>。它只能产出一份 <code>ActionSpec</code>（申请单）；老板 approve 之后，才由独立的 <code>executor</code> 执行。<br>
+        再加一层幂等键：同一活动重复触发会被跳过 —— <b>重复群发 = 被客人拉黑</b>，代价太高，不能靠 AI 自觉。
+        <pre>动作工具（永不绑给 agent）
+  send_whatsapp_blast · publish_social_post
+  send_to_printer · change_price
+
+只读工具（agent 可自由用）
+  get_margin_quadrant · get_daypart_peaks · check_race_rule</pre>
+      </div></details>
+      <div class="navb"><button class="btn" data-go="3">← 上一步</button><button class="btn btn-go" data-go="5">下一步：族群铁律 →</button></div>
+    </section>
+
+    <!-- 5 Race Gate -->
+    <section class="panel" id="p5">
+      <div class="head"><div class="eyebrow">营销流程 · Race Rule Gate</div><h2>在马来西亚，这个细节会出事</h2>
+        <p>牛肉的宣传不能投给印度裔客群。这条规则<b>不是写在提示词里祈祷 AI 记得，是编译进代码的</b>。自己试试。</p></div>
+      <div class="card">
+        <div class="menusrc" id="menuSrc"></div>
+        <div class="grid g2">
+          <div><div class="lab">选一道菜 <span id="dishCount" style="color:var(--faint);font-weight:400"></span></div><div class="pick" id="pickDish">
+            <button data-beef="1" aria-pressed="true">招牌炭烤牛肋排</button>
+            <button data-beef="1">和牛小排</button>
+            <button data-beef="0">芒果糯米饭</button>
+            <button data-beef="0">咖喱鸡饭</button>
+          </div></div>
+          <div><div class="lab">投给哪个族群</div><div class="pick" id="pickGrp">
+            <button data-g="chinese" aria-pressed="true">华人 chinese</button>
+            <button data-g="malay">马来 malay</button>
+            <button data-g="indian">印度裔 indian</button>
+            <button data-g="vegetarian">素食 vegetarian</button>
+          </div></div>
+        </div>
+        <div class="row" style="margin-top:15px"><button class="btn btn-go" id="bGate">送去做物料</button></div>
+        <div class="verdict" id="verdict"></div>
+      </div>
+      <details class="inv"><summary>💼 为什么通用 AI 工具做不了本地 F&amp;B</summary><div class="body">
+        他们不知道屠妖节要避牛肉，也<b>没有地方放这条规则</b>。在我们这里，它是流水线上的一个<b>节点</b>，用 Python 写死 —— 提示词会被无视，代码不会。
+        <pre>def race_gate(target_group, items):
+    beef = [i for i in items if 含牛肉(i)]
+    if beef and target_group in {"indian", "vegetarian"}:
+        return {"passed": False,
+                "reason": f"🚫 铁律：牛肉物料 {beef} 不投 {target_group}"}
+    return {"passed": True}</pre>
+        Gate 不过 → 自动回上游重出，最多 3 次；仍不过就标 blocked 上报，<b>不会无限循环，也不会绕过</b>。
+      </div></details>
+      <div class="navb"><button class="btn" data-go="4">← 上一步</button><button class="btn btn-go" data-go="6">下一步：营销日历 →</button></div>
+    </section>
+
+    <!-- 6 Calendar -->
+    <section class="panel" id="p6">
+      <div class="head"><div class="eyebrow">营销流程 · Marketing Calendar</div><h2>到点它会提醒你，不用你记</h2>
+        <p>确认过的方案自动排进日历，连印刷提前期都算好了。</p></div>
+      <div class="grid g2">
+        <div class="card">
+          <div class="sect"><span class="ic">📅</span>营销日历 <small>未来 90 天</small></div>
+          <div class="cal" style="margin-top:9px">
+            <div class="r hot"><span class="dt">08-01<br><span class="cd">还有 4 天</span></span><span class="ev"><b>🖨️ 印刷截止</b><span>国庆物料必须今天发印刷店 · 提前 30 天</span></span></div>
+            <div class="r"><span class="dt">08-19</span><span class="ev"><b>投放开跑</b><span>国庆预热 · 社媒 + 门店物料</span></span></div>
+            <div class="r"><span class="dt">08-31</span><span class="ev"><b>🇲🇾 Hari Merdeka 国庆日</b><span>全民节日 · 全菜单可推</span></span></div>
+            <div class="r"><span class="dt">09-16</span><span class="ev"><b>Malaysia Day</b><span>全民节日 · 建议 08-17 前定稿</span></span></div>
+            <div class="r"><span class="dt">11-08</span><span class="ev"><b>🪔 Deepavali 屠妖节</b><span style="color:var(--red)">针对印度裔 · 物料一律避开牛肉</span></span></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="sect"><span class="ic">✓</span>已确认排期</div>
+          <div class="scroll" style="margin-top:9px">
+            <table><thead><tr><th>由头</th><th>投放期</th><th>推什么</th><th>印刷截止</th></tr></thead>
+            <tbody><tr><td>Hari Merdeka</td><td class="num">08-19 → 09-02</td><td>炭烤牛肋排</td><td class="num" style="color:var(--red)">08-01</td></tr>
+            <tr><td>午市快闪</td><td class="num">07-29 → 08-11</td><td>芒果糯米饭套餐</td><td class="num">—</td></tr></tbody></table>
+          </div>
+          <div class="note" style="margin-top:13px"><b>无人值守闭环：</b>到点 cron 自动拉起「做物料」流程 —— 但真实动作<b>仍然停在审批箱等你</b>。自动化到最后一步，最后一步留给人。</div>
+        </div>
+      </div>
+      <div class="card pop" style="margin-top:15px;border-color:var(--blue)">
+        <div class="lab" style="color:var(--blue)">一句话总结</div>
+        <h3 style="font-size:19px;margin:9px 0 7px">上传一张表，拿回一套能直接用的营销物料。</h3>
+        <p style="margin:0;color:var(--ink-2);font-size:13.8px">中间的分析、决策、设计，AI 做完了；<b>但每一个真实动作，还是你说了算。</b></p>
+        <div class="grid g3" style="margin-top:17px">
+          <div><div class="lab">别人抄不走 ①</div><div style="font-size:13.3px;margin-top:5px">数字全代码算，<b>AI 编不出数</b></div></div>
+          <div><div class="lab">别人抄不走 ②</div><div style="font-size:13.3px;margin-top:5px">铁律是<b>代码，不是提示词</b></div></div>
+          <div><div class="lab">别人抄不走 ③</div><div style="font-size:13.3px;margin-top:5px">真实动作<b>永远过人</b></div></div>
+        </div>
+      </div>
+      <div class="foot">
+        演示数据：Warisan Grill 模拟销售 2026-07-20 → 07-26（625 笔 / RM 13,866.70）与 19 道菜菜单主数据，非真实营业数据。<br>
+        节假日为示例日期，宗教节日每年浮动，正式版接官方 API。菜品图位为版式稿，接出图 API 后替换为成品图。
+      </div>
+      <div class="navb"><button class="btn" data-go="5">← 上一步</button><button class="btn" data-go="2">重新演一遍 ↺</button></div>
+    </section>
+
+
+    <!-- 7 Customer Base -->
+    <section class="panel" id="p7">
+      <div class="head"><div class="eyebrow">Configuration</div><h2>Customer Base</h2>
+        <p>客户库<b>自己长</b>：广告/海报把人吸来问 → 来问就捕获 → 标来源 → 入库。不买名单、不爬数据。</p></div>
+      <div class="grid g4">
+        <div class="card kpi"><div class="lab">客户库</div><div class="v">248</div><div class="s">全部 opt-in</div></div>
+        <div class="card kpi"><div class="lab">本周新增</div><div class="v" style="color:var(--green)">+31</div><div class="s">扫码 18 · WhatsApp 13</div></div>
+        <div class="card kpi"><div class="lab">已退订</div><div class="v">6</div><div class="s">退订即停，不再发</div></div>
+        <div class="card kpi"><div class="lab">族群标记</div><div class="v" style="font-size:17px">4 类</div><div class="s">定向前自动过铁律</div></div>
+      </div>
+      <div class="note stop" style="margin-top:13px"><b>PDPA 红线：</b>只发同意来的 · 给退订 · <b>不爬陌生人 · 不自动 follow</b> · 每次群发写审计（谁批的·发给谁·内容·时间戳）。</div>
+      <div class="navb"><button class="btn" data-go="0">← 今日看板</button><button class="btn" data-go="8">Usage →</button></div>
+    </section>
+
+    <!-- 8 Usage -->
+    <section class="panel" id="p8">
+      <div class="head"><div class="eyebrow">Configuration</div><h2>Usage</h2>
+        <p>用了多少 token、花了多少钱，实时可查。</p></div>
+      <div class="grid g4">
+        <div class="card kpi"><div class="lab">本月成本</div><div class="v">RM 41</div><div class="s">模型 DeepSeek</div></div>
+        <div class="card kpi"><div class="lab">本月调用</div><div class="v">1,284</div><div class="s">次</div></div>
+        <div class="card kpi"><div class="lab">缓存命中</div><div class="v" style="color:var(--green)">63%</div><div class="s">重复前缀便宜算</div></div>
+        <div class="card kpi"><div class="lab">单次均价</div><div class="v" style="font-size:20px">RM 0.03</div><div class="s">一杯拉茶 = 150 次</div></div>
+      </div>
+      <div class="note" style="margin-top:13px"><b>为什么便宜：</b>模型锁 DeepSeek（不用最贵的），加上 <b>prompt caching</b> —— 每次都一样的人设和规则，缓存后按折扣价算。</div>
+      <div class="navb"><button class="btn" data-go="7">← Customer Base</button><button class="btn btn-go" data-go="2">回到营销流程 →</button></div>
+    </section>
+
+    </div>
+  </div>
+</div>
+
+<div class="fabwrap">
+  <div class="chatpanel" id="chatPanel" hidden>
+    <header class="cp-hd">
+      <span class="cp-av">💬</span>
+      <span class="cp-id"><b>店长助理</b><span><i class="on"></i>在线 · 随时问</span></span>
+      <button class="cp-ic" id="btnHist" aria-label="对话历史" title="对话历史">🕘</button>
+      <button class="cp-ic" id="btnNew" aria-label="新对话" title="新对话">✏️</button>
+      <button class="cp-ic" id="chatMin" aria-label="收起" title="收起">─</button>
+    </header>
+    <div class="histpane" id="histPane" hidden>
+      <div class="hp-hd"><span class="lab">对话历史</span>
+        <button class="cp-ic" id="histBack" aria-label="返回">✕</button></div>
+      <div class="hplist" id="hpList"></div>
+    </div>
+    <div class="chatlog" id="chatlog"></div>
+    <div class="quick" id="quick"></div>
+    <form class="chatin" id="chatform">
+      <button class="attach" type="button" id="btnAttach" aria-label="上传文件" title="上传销售表 / 菜单 / 照片">📎</button>
+      <input id="chatinput" type="text" placeholder="问点什么，或 📎 传个表…" autocomplete="off">
+      <button class="btn btn-go" type="submit" aria-label="发送">↑</button>
+    </form>
+    <input type="file" id="fileIn" multiple hidden accept=".csv,.xlsx,.xls,.png,.jpg,.jpeg,.pdf">
+    <div class="drop" id="dropHint">松手就传进来 📥</div>
+  </div>
+  <button class="fab" id="fabChat" aria-expanded="false" aria-controls="chatPanel" aria-label="打开店长助理">
+    <span class="fi">💬</span><span class="fdot" id="fabDot"></span>
+  </button>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  var root=document.documentElement;
+
+  var TITLES=[["Today","今日看板 · 待办与动态"],["Agent Floor","团队工位 · 上传数据 · 店长助理"],
+    ["Weekly Report","AI 周报 · 四象限与人潮"],
+    ["Promotion Plans","促销方案 · 推谁与何时"],["Material Review","物料审批 · 确认/改/退"],
+    ["Race Rule Gate","族群铁律 · 代码级拦截"],["Marketing Calendar","营销日历 · 排期与印刷倒数"],
+    ["Customer Base","客户库 · PDPA 合规"],["Usage","用量与成本"]];
+  var panels=[].slice.call(document.querySelectorAll(".panel"));
+  var navs=[].slice.call(document.querySelectorAll(".nv"));
+  function go(i){
+    panels.forEach(function(p,k){p.classList.toggle("on",k===i);});
+    navs.forEach(function(n){n.setAttribute("aria-current",
+      parseInt(n.getAttribute("data-go"),10)===i?"true":"false");});
+    document.querySelector(".content").classList.toggle("wide", i===1);
+    var act=document.querySelector('.nv[data-go="'+i+'"]');
+    if(act&&act.scrollIntoView) try{act.scrollIntoView({inline:"center",block:"nearest",behavior:"smooth"});}catch(_){}
+    document.getElementById("pgTitle").textContent=TITLES[i][0];
+    document.getElementById("pgSub").textContent=TITLES[i][1];
+    window.scrollTo({top:0,behavior:"smooth"});
+    if(i===3) drawBars();
+  }
+  document.querySelector(".content").classList.add("wide");
+  document.addEventListener("click",function(e){
+    var b=e.target.closest("[data-go]"); if(!b) return;
+    go(parseInt(b.getAttribute("data-go"),10));
+  });
+
+
+
+  /* ===== 像素办公室 · Canvas 2D =====
+     视觉参考：OpenClaw Bot Dashboard 的 Pixel Office（MIT, github.com/xmanrui/OpenClaw-bot-review）
+     与 pixel-agents（MIT）—— 规格：tile 16px · 角色 16×24。素材全部代码绘制，未使用其 sprite。*/
+  (function(){
+    var cv=document.getElementById("floorCv"); if(!cv) return;
+    var ctx=cv.getContext("2d"), S=2, W=576, H=320, T=16;
+    cv.width=W*S; cv.height=H*S;
+    ctx.setTransform(S,0,0,S,0,0); ctx.imageSmoothingEnabled=false;
+
+    var C={
+      wall:"#F2EFE8", wallD:"#B9B0A0", 
+      rmA:"#E4DAC7", rmA2:"#DED3BE", rmB:"#DCC09C", rmB2:"#D5B892",
+      rmC:"#D2DEEC", rmC2:"#CAD8E8", rmD:"#C7DCE6", rmD2:"#BFD6E2",
+      rmE:"#D8CDE6", rmE2:"#D1C4E2",
+      rug:"#8FB8E8", rug2:"#7FACE2",
+      dsk:"#B98A5E", dskT:"#CE9E6F", dskD:"#8E6845",
+      mon:"#242C38", monB:"#39434F", on:"#5FB0F0", on2:"#3E8FD4",
+      kbd:"#CFD6E0", pap:"#FFFFFF", papL:"#E7EBF1",
+      pl1:"#3E8E5A", pl2:"#2F7147", pl3:"#57A96D", pot:"#AA6B45", potD:"#8A5436",
+      skin:"#F1C9A0", skinD:"#D8A67B", ink:"#161C25", shoe:"#3A3F4A",
+      sel:"#2563EB", shad:"rgba(20,26,34,.15)",
+      bub:"#1F2937", bubT:"#7CE8A8", bubW:"#E8EDF5",
+      wood:"#A9764C", woodD:"#875B38", metal:"#9AA5B4", metalD:"#79838F"
+    };
+
+    var P=[
+      {k:"steward", x:96,  y:118, c:"#64748B", pants:"#3F4756", h:"#3A2A20", st:"idle",  say:"又是截图？",
+       spots:[[44,104],[152,104],[96,118]]},
+      {k:"sales",   x:208, y:118, c:"#2563EB", pants:"#2A3348", h:"#1C1C24", st:"done",  say:"毛利 42%",
+       spots:[[252,104],[160,104],[208,118]]},
+      {k:"designer",x:396, y:118, c:"#B45309", pants:"#4A3320", h:"#4A2E1E", st:"type",  say:"Halal 标呢",
+       spots:[[478,104],[330,104],[396,118]]},
+      {k:"hub",     x:288, y:214, c:"#4F46E5", pants:"#2E2A47", h:"#2A2230", st:"busy",  say:"派给设计师",
+       spots:[[160,190],[420,190],[288,214]]},
+      {k:"boss",    x:452, y:290, c:"#111827", pants:"#1F2532", h:"#20160F", st:"wait",  say:"我看看",
+       spots:[[360,300],[516,278],[452,290]]}
+    ];
+    /* 工位记住（名牌钉在桌上，人可以走开） */
+    P.forEach(function(p){ p.hx=p.x; p.hy=p.y; p.sit=1; p.mv="sit"; p.si=0;
+      p.wait=180+Math.floor(Math.random()*420); p.face=1; p.step=0; });
+    var NM={steward:"数据管家",sales:"销售",designer:"营销设计师",hub:"总管",boss:"老板"};
+    var sel="hub", hover=null, f=0;
+    function r(x,y,w,h,c){ctx.fillStyle=c;ctx.fillRect(x,y,w,h);}
+
+    /* ---- 房间地板 ---- */
+    function room(x,y,w,h,c1,c2){
+      for(var yy=y;yy<y+h;yy+=T) for(var xx=x;xx<x+w;xx+=T)
+        r(xx,yy,Math.min(T,x+w-xx),Math.min(T,y+h-yy),((xx/T+yy/T)%2)?c2:c1);
+    }
+    function wallH(x,y,w){ r(x,y,w,6,C.wall); r(x,y,w,1,C.wallD); r(x,y+5,w,1,C.wallD); }
+    function wallV(x,y,h){ r(x,y,6,h,C.wall); r(x,y,1,h,C.wallD); r(x+5,y,1,h,C.wallD); }
+
+    function floorplan(){
+      r(0,0,W,H,"#EFECE4");
+      room(6,26,282,86,C.rmA,C.rmA2);      // 数据/销售区
+      room(294,26,276,86,C.rmB,C.rmB2);    // 设计印刷区
+      room(6,118,564,88,C.rmC,C.rmC2);     // 调度中心
+      room(6,212,282,102,C.rmD,C.rmD2);    // 休息区
+      room(294,212,276,102,C.rmE,C.rmE2);  // 老板室
+      // 地毯
+      for(var yy=150;yy<190;yy+=8) for(var xx=232;xx<344;xx+=8)
+        r(xx,yy,8,8,((xx/8+yy/8)%2)?C.rug2:C.rug);
+      // 隔墙
+      wallH(0,20,W); wallH(0,112,282); wallH(294,112,282);
+      wallH(0,206,282); wallH(294,206,282);
+      wallV(0,20,H-20); wallV(W-6,20,H-20); wallH(0,H-6,W);
+      wallV(288,26,86); wallV(288,212,102);
+      // 门口（挖开）
+      r(150,112,34,6,C.rmA2); r(420,112,34,6,C.rmB2);
+      r(130,206,34,6,C.rmD); r(430,206,34,6,C.rmE);
+      // 窗
+      [40,120,340,460].forEach(function(wx){
+        r(wx,4,58,14,"#7C8797"); r(wx+2,6,54,10,"#AFCFEE");
+        r(wx+4,8,20,6,"#E4F1FF"); r(wx+28,6,2,10,"#7C8797");
+      });
+      // 房间名
+      ctx.font="9px -apple-system,PingFang SC,sans-serif"; ctx.textAlign="left";
+      ctx.fillStyle="rgba(30,40,55,.5)";
+      ctx.fillText("数据 · 分析区",14,40); ctx.fillText("设计 · 印刷区",302,40);
+      ctx.fillText("调度中心",14,132); ctx.fillText("休息区",14,226); ctx.fillText("老板办公室",302,226);
+    }
+
+    /* ---- 家具 ---- */
+    function desk(cx,ty,w,lit){
+      r(cx-w/2,ty,w,12,C.dsk); r(cx-w/2,ty,w,2,C.dskT); r(cx-w/2,ty+12,w,3,C.dskD);
+      r(cx-10,ty-12,20,13,C.monB); r(cx-8,ty-10,16,9, lit?C.on:C.mon);
+      if(lit){ r(cx-7,ty-9,7,2,C.on2); r(cx-7,ty-6,11,1,C.on2); r(cx-7,ty-4,5,1,C.on2); }
+      r(cx-3,ty+1,6,2,C.monB); r(cx-11,ty+4,22,4,C.kbd);
+      r(cx-19,ty+3,7,5,C.pap); r(cx-19,ty+3,7,1,C.papL);
+    }
+    function plant(x,y){ r(x-5,y,11,9,C.pot); r(x-5,y,11,2,C.potD);
+      r(x-6,y-9,13,10,C.pl1); r(x-3,y-14,7,7,C.pl2); r(x+2,y-11,4,4,C.pl3); }
+    function shelf(x,y){
+      r(x-14,y-34,28,34,C.wood); r(x-14,y-34,28,2,"#C08B5C");
+      ["#C0392B","#2563EB","#15803D","#B45309","#6D28D9"].forEach(function(cc,i){
+        r(x-12+i*5,y-30,4,9,cc); r(x-12+i*5,y-18,4,7,i%2?"#94A3B8":"#64748B"); });
+      r(x-14,y-20,28,2,C.woodD); r(x-14,y-8,28,2,C.woodD);
+    }
+    function coffee(x,y){
+      r(x-9,y-26,18,26,C.metal); r(x-9,y-26,18,3,"#B4BEC9");
+      r(x-6,y-21,12,7,"#2B3440"); r(x-4,y-19,8,3,"#C0392B");
+      r(x-5,y-11,10,6,"#5A3A22"); r(x-9,y,18,3,C.metalD);
+      if(!reduce&&Math.floor(f/22)%2){ r(x-1,y-32,2,4,"rgba(200,210,225,.7)"); r(x+1,y-36,2,3,"rgba(200,210,225,.5)"); }
+    }
+    function sofa(x,y){
+      r(x-26,y-14,52,18,"#5B7FA8"); r(x-26,y-14,52,3,"#6E92BA");
+      r(x-30,y-16,7,20,"#4E6E93"); r(x+23,y-16,7,20,"#4E6E93");
+      r(x-20,y-9,16,8,"#7FA0C4"); r(x+4,y-9,16,8,"#7FA0C4");
+    }
+    function printer(x,y){
+      r(x-14,y,28,20,"#B6BEC9"); r(x-14,y,28,3,"#CBD3DD"); r(x-14,y+20,28,3,"#8E97A3");
+      r(x-10,y+6,20,6,"#3B434F"); r(x-11,y-7,22,8,C.pap); r(x+7,y+14,4,3,C.on);
+      ctx.fillStyle="rgba(30,40,55,.5)"; ctx.font="7px monospace"; ctx.textAlign="center";
+      ctx.fillText("PRINT",x,y+32);
+    }
+    function board(x,y){
+      r(x-32,y,64,36,"#F7F8FA"); r(x-32,y,64,3,"#B9C2CF"); r(x-32,y+33,64,3,"#B9C2CF");
+      r(x-26,y+9,28,2,"#2563EB"); r(x-26,y+15,36,2,"#B45309"); r(x-26,y+21,20,2,"#15803D");
+      r(x+6,y+9,18,15,"#DCE7F8");
+    }
+    function server(x,y){
+      r(x-11,y-40,22,40,"#2B3440"); r(x-11,y-40,22,2,"#465162");
+      for(var i=0;i<5;i++){ r(x-8,y-36+i*8,16,5,"#1A212B");
+        var on=(!reduce&&(Math.floor(f/12)+i)%3)?C.bubT:"#3E5C48";
+        r(x+4,y-35+i*8,2,2,on); }
+    }
+    function cooler(x,y){
+      r(x-7,y,15,24,"#C9D2DD"); r(x-5,y+4,11,9,"#9FD4F0"); r(x-7,y+24,15,3,C.metalD);
+      r(x-5,y-12,11,13,"#7FC5EA"); r(x-3,y-10,4,4,"#BFE6F8");
+    }
+    function inbox(x,y){
+      r(x-15,y,30,36,"#96A2B2"); r(x-15,y,30,3,"#AAB5C4"); r(x-15,y+36,30,2,"#7C8798");
+      r(x-12,y+6,24,7,C.pap); r(x-12,y+16,24,7,C.pap); r(x-12,y+26,24,6,"#F0B429");
+      ctx.fillStyle="rgba(30,40,55,.6)"; ctx.font="7px monospace"; ctx.textAlign="center";
+      ctx.fillText("INBOX",x,y-3);
+    }
+    function clock(x,y){
+      r(x-8,y-8,16,16,"#F2EFE8"); r(x-7,y-7,14,14,"#FFFFFF");
+      r(x-1,y-5,2,6,C.ink); r(x,y-1,5,2,C.ink); r(x-8,y-8,16,1,"#B9B0A0");
+    }
+    function nameplate(cx,ty,label){
+      ctx.font="9px -apple-system,PingFang SC,sans-serif"; ctx.textAlign="center";
+      var w=ctx.measureText(label).width+12;
+      r(cx-w/2,ty,w,14,"rgba(255,255,255,.92)"); r(cx-w/2,ty,w,1,"rgba(20,26,34,.14)");
+      ctx.fillStyle="#2A3442"; ctx.fillText(label,cx,ty+10);
+    }
+
+    /* ---- 走动：在自己区域内巡逻（坐 → 走 → 站一会 → 回工位）---- */
+    var SPEED=0.42;
+    function move(p){
+      if(reduce) return;
+      if(p.mv==="sit"||p.mv==="stand"){
+        if(--p.wait>0) return;
+        p.tx=p.spots[p.si][0]; p.ty=p.spots[p.si][1];
+        p.si=(p.si+1)%p.spots.length; p.mv="walk"; p.sit=0; return;
+      }
+      var dx=p.tx-p.x, dy=p.ty-p.y;                 // 先横后纵，像沿过道走
+      if(Math.abs(dx)>SPEED){ p.x+=dx>0?SPEED:-SPEED; p.face=dx>0?1:-1; p.step++; return; }
+      p.x=p.tx;
+      if(Math.abs(dy)>SPEED){ p.y+=dy>0?SPEED:-SPEED; p.step++; return; }
+      p.y=p.ty; p.step=0;
+      var home=(Math.round(p.x)===p.hx&&Math.round(p.y)===p.hy);
+      p.mv=home?"sit":"stand"; p.sit=home?1:0;
+      p.wait=home?(300+Math.floor(Math.random()*480)):(80+Math.floor(Math.random()*130));
+    }
+
+    /* ---- 角色 16×24 ---- */
+    function person(p){
+      var x=p.x, base=p.y, bob=0;
+      if(!reduce){
+        if(p.mv==="walk") bob=(Math.floor(p.step/6)%2)?1:0;
+        else if(p.st==="idle") bob=(Math.floor(f/45)%2)?1:0;
+        else if(p.st==="busy") bob=(Math.floor(f/30)%2)?1:0;
+      }
+      var t=base-24+bob;
+      r(x-6,base+bob-1,12,3,C.shad);
+      if(sel===p.k||hover===p.k){ ctx.strokeStyle=C.sel; ctx.lineWidth=1.5;
+        ctx.beginPath(); ctx.ellipse(x,base+bob,12,5,0,0,6.3); ctx.stroke(); }
+      if(!p.sit){                                    // 站着/走路才露腿
+        var wk=(p.mv==="walk"&&!reduce)?(Math.floor(p.step/6)%2):-1;
+        var l1=wk===0?1:0, l2=wk===1?1:0;
+        r(x-4,t+19-l1,3,5+l1,p.pants); r(x+1,t+19-l2,3,5+l2,p.pants);
+        r(x-5,t+24,4,1,C.shoe); r(x+1,t+24,4,1,C.shoe);
+      }
+      r(x-5,t+12,10,8,p.c);
+      var ao=(!reduce&&p.mv==="walk")?(Math.floor(p.step/6)%2)
+             :((!reduce&&p.st==="type"&&p.sit&&Math.floor(f/7)%2)?1:0);
+      r(x-7,t+12+ao,2,6,p.c); r(x+5,t+12+(1-ao),2,6,p.c);
+      r(x-7,t+18+ao,2,2,C.skin); r(x+5,t+18+(1-ao),2,2,C.skin);
+      if(p.k==="boss"){ r(x-1,t+12,2,7,"#C0392B"); }
+      r(x-2,t+11,4,1,C.skinD); r(x-5,t+3,10,9,C.skin);
+      r(x-5,t+1,10,4,p.h); r(x-6,t+2,1,7,p.h); r(x+5,t+2,1,7,p.h);
+      r(x-5,t+4,3,2,p.h); r(x+2,t+4,3,2,p.h);
+      r(x-3,t+7,2,2,C.ink); r(x+1,t+7,2,2,C.ink); r(x-1,t+10,2,1,C.skinD);
+    }
+    /* ---- 对话气泡（带文字，参考 OpenClaw 那种终端风）---- */
+    function bubble(p){
+      if(!p.say) return;
+      var show=reduce||((Math.floor(f/150)+p.x)%3!==2);
+      if(!show) return;
+      ctx.font="9px -apple-system,PingFang SC,monospace"; ctx.textAlign="left";
+      var w=ctx.measureText(p.say).width+13, x=p.x+10, y=p.y-46;
+      if(x<6) x=6;
+      if(x+w>W-10) x=W-10-w;
+      r(x,y,w,15,C.bub); r(x+1,y-1,w-2,1,C.bub); r(x+1,y+15,w-2,1,C.bub);
+      r(x+4,y+15,4,4,C.bub);
+      var col={type:C.bubT,idle:"#94A3B8",done:C.bubT,busy:"#93C5FD",wait:"#FCD34D"}[p.st]||C.bubW;
+      ctx.fillStyle=col; ctx.fillText(p.say,x+6,y+11);
+    }
+
+    function scene(){
+      floorplan();
+      shelf(30,108); plant(268,108); clock(268,44);
+      board(120,32); server(268,70);
+      desk(96,124,52,false);  nameplate(96,80,"数据管家");
+      desk(208,124,52,true);  nameplate(208,80,"销售");
+      desk(396,124,52,true);  nameplate(396,80,"营销设计师");
+      printer(486,84); plant(548,108); shelf(320,108);
+      r(232,220,112,16,C.dsk); r(232,220,112,2,C.dskT); r(232,236,112,3,C.dskD);
+      r(252,208,18,12,C.monB); r(254,210,14,8,C.on);
+      r(306,208,18,12,C.monB); r(308,210,14,8,C.on);
+      nameplate(288,176,"总管 · 枢纽");
+      cooler(30,236); coffee(90,300); sofa(190,300); plant(30,306);
+      desk(452,296,48,false); nameplate(452,252,"老板"); inbox(524,268); plant(320,306);
+      P.forEach(move); P.forEach(person); P.forEach(bubble);
+    }
+    var reduce=matchMedia("(prefers-reduced-motion:reduce)").matches;
+    function loop(){ scene(); f++; requestAnimationFrame(loop); }
+    if(reduce) scene(); else loop();
+
+    function hit(e){
+      var b=cv.getBoundingClientRect(), s=W/b.width;
+      var mx=(e.clientX-b.left)*s, my=(e.clientY-b.top)*s;
+      for(var i=0;i<P.length;i++){var p=P[i];
+        if(mx>p.x-13&&mx<p.x+13&&my>p.y-32&&my<p.y+6) return p.k;}
+      return null;
+    }
+    cv.addEventListener("click",function(e){var k=hit(e); if(k){sel=k; if(window.__openAgent) window.__openAgent(k);}});
+    cv.addEventListener("mousemove",function(e){hover=hit(e); cv.style.cursor=hover?"pointer":"default";});
+    cv.addEventListener("mouseleave",function(){hover=null;});
+    window.__pxSelect=function(k){sel=k;};
+    window.__step=function(n){for(var i=0;i<n;i++){P.forEach(move);f++;}};
+    window.__walk=function(){return "f="+f+" reduce="+reduce+" | "+P.map(function(p){return p.k+"("+Math.round(p.x)+","+Math.round(p.y)+","+p.mv+",w"+p.wait+")";}).join(" ");};
+    window.__drawAvatar=function(el,k){
+      var p=null; for(var i=0;i<P.length;i++) if(P[i].k===k) p=P[i];
+      if(!p) return;
+      var s=3, aw=22, ah=28, c2=el.getContext("2d");
+      el.width=aw*s; el.height=ah*s;
+      c2.setTransform(s,0,0,s,0,0); c2.imageSmoothingEnabled=false;
+      c2.clearRect(0,0,aw,ah);
+      var o=ctx; ctx=c2;                       // 借用同一套绘制函数
+      var ox=p.x, oy=p.y, osel=sel, ohov=hover;
+      p.x=11; p.y=27; sel=null; hover=null;
+      person(p);
+      p.x=ox; p.y=oy; sel=osel; hover=ohov; ctx=o;
+    };
+  })();
+
+  /* ---- Agent Floor：点工位看配置 ---- */
+  var AGENTS={
+    hub:{em:"🧭",name:"总管 Orchestrator",role:"唯一入口 · 认活派活 · 验收",model:"hivora-main",
+      soul:"我只调度，不亲自分析、不写文案、不出图。\n收需求 → 认路由 → 派给对的 agent → 收成品 → 验收 → 呈老板。\n\n无状态：进度写工单，崩了读回接着干。\n同一 agent 最多重试 3 次；done 的绝不重派。\n真实动作（发布/群发/印刷/改价）一律先老板确认。",
+      stat:["调度中","BUSY","#2563EB"], n:4, tot:17,
+      io:["老板的需求 / agent 交回的成品","认路由 → 派活 → 收回 → 验收","派工单 · 达标即交付老板"],
+      can:["认文件派给对的 agent","验收成品是否达标","不达标退回重做（≤3 次）","汇总呈老板确认"],
+      cant:["自己分析数据","自己写文案 / 出图","直接对外发布","跳过老板确认"],
+      on:["delegate_task","worklog","collect","ask_owner_confirm"],
+      off:["change_price","send_whatsapp_blast","publish_social_post","send_to_printer"],
+      mem:"# 团队花名册\n数据管家 = 清洗 + 学 Brand Kit\n销售 = 分析 + 促销决策\n营销设计师 = 文案 + 设计\n\n# 拍板权\n真实动作（发布/群发/印刷/改价）→ 老板 + 授权 manager 确认。\n\n# 三条跨条铁律\n族群饮食规则 · Brand Kit · 马来西亚节假日",
+      skills:["fnb-race-diet-rules"]},
+    steward:{em:"🗄️",name:"数据管家 Data Steward",role:"清洗 · 结构化 · 学 Brand Kit",model:"hivora-main",
+      soul:"我只做采集 + 清洗 + 结构化，不分析、不决策。\n\n拿不准这份是什么数据 → 问老板，不猜。\n字段缺 / 格式不对 → 标「待补」，绝不瞎填。\n坏行跳过 + 告警，不卡死整批。\n原始数据保密。",
+      stat:["空闲","IDLE","#94A3B8"], n:4, tot:17,
+      io:["原始文件（CSV / Excel / 截图）","认类型 → 校验 → 清洗 → 结构化","标准数据.csv + 质量小结"],
+      can:["认出这份是什么数据","去重 · 统一单位 · 补缺","学 Brand Kit 出风格指南","缺字段标「待补」问老板"],
+      cant:["分析数据","做任何决策","碰客户名单","对外发布"],
+      on:["parse_upload","validate_schema","dedupe","learn_brand_kit"],
+      off:["get_margin_quadrant","change_price","publish_social_post","query_customer_db"],
+      mem:"# 认数据类型\n看列名/内容：菜品+数量+金额=销售；食材+成本=成本；名字+电话=客户\n看来源：CSV/Excel · 图(OCR) · 一段话(打字)\n拿不准 → 问老板确认再入库\n\n# 待补\n各菜 food cost · Brand Kit · 客户库",
+      skills:["fnb-race-diet-rules"]},
+    sales:{em:"📊",name:"销售 Sales Strategist",role:"看懂数据 → 定促销",model:"hivora-main",
+      soul:"用数字说话、结论先行；报数字必带根因 + 行动。\n管「销售大脑」：看懂数据 → 定促销。\n不亲自写文案 / 出图（交营销设计师）。\n\n定向前先 check_race_rule；促销算毛利不亏本；\n力度、活动、时机 → 老板或授权 manager 拍板。\n营收/毛利/客户名单敏感 → 只对老板和 manager 讲。",
+      stat:["已交周报","DONE","#15803D"], n:9, tot:17,
+      io:["标准销售数据 + 菜单成本","四象限 → 根因 → 定促销","周销售报告 · 促销方案"],
+      can:["算毛利四象限（代码算）","解释「为什么卖得差」","定促销选品 / 时机 / 形式","定向前查族群规则"],
+      cant:["改价格","群发 WhatsApp","发布社媒","看客户名单（PDPA）"],
+      on:["get_latest_analysis","get_margin_quadrant","get_menu_cost","calc_promo_margin","check_race_rule","get_daypart_peaks","get_holidays","list_recent_promo_plans","query_customer_stats"],
+      off:["change_price","send_whatsapp_blast","publish_social_post","query_customer_db"],
+      mem:"# 数据口径\n人潮：星期几 × 午市/晚市\n毛利 = 售价 − 食材成本（套餐单独算）\n四象限：food cost ≤35% = 高毛利；销量 > 本周中位数 = 高销量\n\n# 促销\n目标：引流拉新 + 清滞销 + 节日造势\n选品：潜力品引流 > 滞销清货；避开低毛利走量品打折\n时机：打低谷时段；节假日提前备战（印刷提前约1月）",
+      skills:["fnb-margin-quadrant","fnb-race-diet-rules","fnb-pdpa-compliance","fnb-analytics-method"]},
+    designer:{em:"🖨️",name:"营销设计师 Marketing Designer",role:"文案 + 设计一手包",model:"hivora-claude-main",
+      soul:"我做营销文案 + 设计（不只是排版美工）。\n一切套 Brand Kit；讲版式、讲规范。\n\n价格 / 日期必准 —— 来自数据，不自编，也不许改。\n必备元素缺一不放行。\n出图技术由 IT，我定文案 + 设计逻辑 + 必备元素。\n印 / 发前必过老板。",
+      stat:["出稿中","WORKING","#B45309"], n:6, tot:17,
+      io:["促销方案 + 菜品照片 + Brand Kit","写文案 → 排版 → 自检必备元素","物料包（海报 / 社媒图 / 文案）"],
+      can:["写钩子 + 卖点 + 获客 CTA","出海报 / flyer / 社媒图","套 Brand Kit 风格","自检必备元素齐不齐"],
+      cant:["改价格（来自数据）","直接送印刷","直接发布","看客户名单（PDPA）"],
+      on:["gen_copy","gcreate_gen_image","apply_template","get_brand_kit","check_race_rule","get_menu_cost"],
+      off:["change_price","send_to_printer","publish_social_post","query_customer_db"],
+      mem:"# 必备元素（缺一不放行）\n店名 · 地址 · 价格 · 有效期 · Halal标 · 二维码 · 社媒+WhatsApp · 营业时间\n\n# 印刷规格\n出血 3mm · CMYK · 300dpi · PDF/X 字体转曲\n\n# 出图真相\n纯 AI 画不准文字/价格/QR → AI 出美图 + 模板叠精确要素",
+      skills:["fnb-print-spec","fnb-social-spec","fnb-race-diet-rules"]},
+    boss:{em:"👔",name:"老板 · 审批台",role:"唯一能放行真实动作的地方",model:"—（这不是 agent，是你）",
+      soul:"agent 只能产出 ActionSpec（申请单）。\n我按下确认之后，才由独立的 executor 去执行 ——\n印刷、群发、发布、改价。\n\n三个键：确认（照发）· 改（回炉重出）· 退（停）。\noffer 力度与活动由我或授权 manager 定。",
+      stat:["2 件待确认","WAITING","#B45309"], n:3, tot:3,
+      io:["agent 交上来的 ActionSpec（申请单）","确认 / 改 / 退","放行 → executor 才执行"],
+      can:["确认 → 印刷 / 发布放行","打回重做（带修改意见）","直接退掉，流程停止","定 offer 力度与活动"],
+      cant:["不用自己算数字","不用自己写文案","不用自己排期","不用记印刷截止"],
+      on:["approve","request_change","reject"],
+      off:[],
+      mem:"# 我是谁\n餐厅老板 X.T。唯一拍板人。\n\n# 我按的按钮\n确认 → 印刷/发布放行\n改 → 带意见打回重做\n退 → 流程停止\n\n# 审批箱在 Today 页",
+      skills:[]}
+  };
+  /* ===== 菜单库：聊天上传菜单后存这里，铁律 Gate 直接用 ===== */
+  var MENU_DEMO=[["招牌炭烤牛肋排",1,0],["和牛小排",1,0],["芒果糯米饭",0,1],["咖喱鸡饭",0,0]];
+  var MENU_FULL=[["拉茶",0,1],["咖喱鸡饭",0,0],["香脆春卷",0,1],["椰浆饭套餐",0,0],
+    ["冰美式",0,1],["炸鸡翅",0,0],["海鲜炒面",0,0],["招牌炭烤牛肋排",1,0],
+    ["松露意面",0,1],["三文鱼沙拉",0,0],["柠檬薄荷饮",0,1],["芒果糯米饭",0,1],
+    ["烤鱼",0,0],["和牛小排",1,0],["牛肉汉堡",1,0],["奶油蘑菇汤",0,1],
+    ["冬阴功汤",0,0],["招牌炒饭",0,0],["芝士蛋糕",0,1]];
+  var MENU={list:MENU_DEMO, src:null};
+  window.__renderMenu=function(){
+    var box=document.getElementById("pickDish"); if(!box) return;
+    box.innerHTML=MENU.list.map(function(d,i){
+      return '<button data-beef="'+d[1]+'" data-veg="'+d[2]+'" aria-pressed="'+(i===0)+'">'+d[0]+'</button>';}).join("");
+    var src=document.getElementById("menuSrc"), cnt=document.getElementById("dishCount");
+    if(cnt) cnt.textContent="（"+MENU.list.length+" 道）";
+    if(src){
+      src.className="menusrc "+(MENU.src?"ok":"empty");
+      src.innerHTML=MENU.src
+        ? '🗂️ 菜单已存好：<b>'+MENU.src+'</b> · '+MENU.list.length+' 道菜 · 含牛肉 '+
+          MENU.list.filter(function(d){return d[1];}).length+' 道<span class="sp"></span>'
+        : '⚠️ 还没有菜单，下面是<b>示例菜品</b><span class="sp"></span>'+
+          '<button type="button" id="goUpload">💬 去传一份菜单</button>';
+      var gu=src.querySelector("#goUpload");
+      if(gu) gu.addEventListener("click",function(){ var f=document.getElementById("fabChat"); if(f) f.click(); });
+    }
+  };
+  var ALLTOOLS=["get_latest_analysis","get_margin_quadrant","get_menu_cost","calc_promo_margin",
+    "check_race_rule","get_daypart_peaks","get_holidays","list_recent_promo_plans","query_customer_stats",
+    "gen_copy","gcreate_gen_image","apply_template","get_brand_kit","parse_upload","validate_schema",
+    "dedupe","learn_brand_kit","delegate_task","worklog","collect","ask_owner_confirm",
+    "approve","request_change","reject"];
+  var DANGER=["change_price","send_whatsapp_blast","publish_social_post","send_to_printer","query_customer_db"];
+  var ALLSKILLS=[["fnb-race-diet-rules","族群饮食规则（铁律1）"],["fnb-print-spec","印刷交付规格"],
+    ["fnb-social-spec","社媒平台规格与风格"],["fnb-margin-quadrant","毛利四象限分析法"],
+    ["fnb-pdpa-compliance","PDPA 客户数据合规"],["fnb-analytics-method","单店分析方法论"]];
+  var MCPS=[["节假日 API","马来西亚官方节假日（联邦+各州）","未接",0],
+    ["AiToEarn","批量出图/出视频 + 多平台发布","候选",0],
+    ["WhatsApp Business API","官方群发通道（Wati/360dialog）","未接",0],
+    ["出图 API","Gemini / FAL 图片生成","未接",0]];
+  var EDITS={};                       // 本次演示的改动
+  window.__menuStore=function(name){
+    MENU={list:MENU_FULL, src:name};
+    if(window.__renderMenu) window.__renderMenu();
+  };
+  var cfgBox=document.getElementById("cfg");
+  var curK="hub", curTab="soul";
+  function showAgent(k,tab){
+    var a=AGENTS[k]; if(!a) return;
+    curK=k; curTab=tab||"soul";
+    var e=EDITS[k]=EDITS[k]||{soul:a.soul,mem:a.mem,on:a.on.slice(),skills:(a.skills||[]).slice()};
+    if(window.__pxSelect) window.__pxSelect(k);
+    [].forEach.call(document.querySelectorAll(".mlist button"),function(b){
+      b.setAttribute("aria-selected", b.getAttribute("data-agent")===k?"true":"false");});
+    [].forEach.call(document.querySelectorAll(".chip"),function(b){
+      b.setAttribute("aria-current", b.getAttribute("data-agent")===k?"true":"false");});
+    var pct=Math.round(e.on.length/(e.on.length+a.off.length||1)*100);
+    var tabs=[["soul","SOUL 人设"],["mem","MEMORY 记忆"],["tools","TOOLS 工具"],["mcp","MCP 外部工具"],["skills","SKILLS 技能"]];
+    function tool(x,on,dan){
+      return '<label class="tg '+(dan?"danger":(on?"on":""))+(dan?" locked":"")+'">'+
+        '<input type="checkbox" data-tool="'+x+'"'+(on?" checked":"")+(dan?" disabled":"")+'>'+
+        '<span>'+x+'</span></label>';
+    }
+    cfgBox.innerHTML=
+      '<div class="ag-hd">'+
+        '<canvas class="ag-av" id="agAv"></canvas>'+
+        '<div class="ag-id"><b>'+a.name+'</b><span>'+a.role+'</span></div>'+
+        '<span class="ag-stat" style="color:'+a.stat[2]+'"><i style="background:'+a.stat[2]+'"></i>'+
+          a.stat[0]+' <s>'+a.stat[1]+'</s></span>'+
+      '</div>'+
+      '<div class="ag-flow">'+
+        '<div class="fl in"><div class="lab">收什么</div>'+a.io[0]+'</div><span class="fl-ar">→</span>'+
+        '<div class="fl do"><div class="lab">干什么</div>'+a.io[1]+'</div><span class="fl-ar">→</span>'+
+        '<div class="fl out"><div class="lab">出什么</div>'+a.io[2]+'</div>'+
+      '</div>'+
+      '<div class="mtabs" role="tablist">'+tabs.map(function(x){
+        return '<button role="tab" data-tab="'+x[0]+'" aria-selected="'+(x[0]===curTab)+'">'+x[1]+'</button>';}).join("")+'</div>'+
+      // SOUL
+      '<div class="tabpane'+(curTab==="soul"?" on":"")+'" data-pane="soul">'+
+        '<div class="lab">人设（可编辑 · 决定它怎么想）</div>'+
+        '<textarea class="edit-ta" id="edSoul">'+e.soul.replace(/<[^>]+>/g,"")+'</textarea>'+
+        '<div class="ag-two" style="margin-top:12px">'+
+          '<div class="ag-can"><div class="lab">✅ 它能做</div><ul>'+a.can.map(function(x){return '<li><i class="y">✓</i>'+x+'</li>';}).join("")+'</ul></div>'+
+          '<div class="ag-cant"><div class="lab">🚫 它做不到</div><ul>'+a.cant.map(function(x){return '<li><i class="n">✕</i>'+x+'</li>';}).join("")+'</ul></div>'+
+        '</div></div>'+
+      // MEMORY
+      '<div class="tabpane'+(curTab==="mem"?" on":"")+'" data-pane="mem">'+
+        '<div class="lab">My Notes · MEMORY.md（可编辑 · 它每轮都会读）</div>'+
+        '<textarea class="edit-ta" id="edMem" style="min-height:230px">'+(e.mem||"")+'</textarea>'+
+        '<div class="note" style="margin-top:10px;font-size:12.3px"><b>提示：</b>每轮都读 = 每条消息都花钱。细节推给 SKILLS，这里只留天天要用的。</div></div>'+
+      // TOOLS
+      '<div class="tabpane'+(curTab==="tools"?" on":"")+'" data-pane="tools">'+
+        '<div class="pm-hd"><span class="lab">工具白名单（勾选即开放）</span><span class="pm-num" id="tCount">'+e.on.length+' 项开放</span></div>'+
+        '<div class="pm-bar"><i style="width:'+pct+'%"></i></div>'+
+        '<div class="tgrid">'+ALLTOOLS.map(function(x){return tool(x,e.on.indexOf(x)>=0,false);}).join("")+'</div>'+
+        '<div class="lab" style="margin-top:14px;color:var(--red)">🔒 危险动作 · 永不开放（锁死，改不了）</div>'+
+        '<div class="tgrid">'+DANGER.map(function(x){return tool(x,false,true);}).join("")+'</div></div>'+
+      // MCP
+      '<div class="tabpane'+(curTab==="mcp"?" on":"")+'" data-pane="mcp">'+
+        '<div class="lab">外部工具（MCP）· 由 IT 接入</div><div class="tgrid" style="margin-top:9px">'+
+        MCPS.map(function(x){return '<label class="tg'+(x[3]?" on":"")+'"><input type="checkbox"'+(x[3]?" checked":"")+
+          '><span style="font-family:var(--sans)"><b>'+x[0]+'</b> <span style="opacity:.7">'+x[2]+'</span><br>'+
+          '<span style="font-size:11px;opacity:.75">'+x[1]+'</span></span></label>';}).join("")+'</div>'+
+        '<div class="note warn" style="margin-top:12px;font-size:12.3px"><b>「我们定业务逻辑，IT 做技术」：</b>这几个都是接口活 —— 逻辑已经定好，接上就能跑。</div></div>'+
+      // SKILLS
+      '<div class="tabpane'+(curTab==="skills"?" on":"")+'" data-pane="skills">'+
+        '<div class="lab">技能库（用到才读 · 不占每轮开销）</div><div class="tgrid" style="margin-top:9px">'+
+        ALLSKILLS.map(function(x){var on=e.skills.indexOf(x[0])>=0;
+          return '<label class="tg'+(on?" on":"")+'"><input type="checkbox" data-skill="'+x[0]+'"'+(on?" checked":"")+
+          '><span style="font-family:var(--sans)"><b style="font-family:var(--mono);font-size:11.5px">'+x[0]+'</b><br>'+
+          '<span style="font-size:11px;opacity:.75">'+x[1]+'</span></span></label>';}).join("")+'</div></div>';
+
+    if(window.__drawAvatar) window.__drawAvatar(document.getElementById("agAv"),k);
+    // tab 切换
+    [].forEach.call(cfgBox.querySelectorAll(".mtabs button"),function(b){
+      b.addEventListener("click",function(){
+        curTab=b.getAttribute("data-tab");
+        [].forEach.call(cfgBox.querySelectorAll(".mtabs button"),function(x){
+          x.setAttribute("aria-selected", x===b?"true":"false");});
+        [].forEach.call(cfgBox.querySelectorAll(".tabpane"),function(pn){
+          pn.classList.toggle("on", pn.getAttribute("data-pane")===curTab);});
+      });
+    });
+    // 工具勾选
+    [].forEach.call(cfgBox.querySelectorAll("[data-tool]"),function(cb){
+      cb.addEventListener("change",function(){
+        var n=cb.getAttribute("data-tool"), i=e.on.indexOf(n);
+        if(cb.checked&&i<0) e.on.push(n); if(!cb.checked&&i>=0) e.on.splice(i,1);
+        cb.parentNode.classList.toggle("on",cb.checked);
+        var c=cfgBox.querySelector("#tCount"); if(c) c.textContent=e.on.length+" 项开放";
+      });
+    });
+    [].forEach.call(cfgBox.querySelectorAll("[data-skill]"),function(cb){
+      cb.addEventListener("change",function(){
+        var n=cb.getAttribute("data-skill"), i=e.skills.indexOf(n);
+        if(cb.checked&&i<0) e.skills.push(n); if(!cb.checked&&i>=0) e.skills.splice(i,1);
+        cb.parentNode.classList.toggle("on",cb.checked);
+      });
+    });
+  }
+  /* 顶部状态条 */
+  var ST={steward:["空闲","IDLE","#94A3B8"],sales:["已交周报","DONE","#15803D"],
+          designer:["出稿中","WORKING","#B45309"],hub:["调度中","BUSY","#2563EB"],
+          boss:["2 件待确认","WAITING","#B45309"]};
+  var chipBox=document.getElementById("chips");
+  Object.keys(AGENTS).forEach(function(k){
+    var a=AGENTS[k], s=ST[k], b=document.createElement("button");
+    b.className="chip"; b.setAttribute("data-agent",k); b.setAttribute("aria-current","false");
+    b.innerHTML='<i style="background:'+s[2]+'"></i><span>'+a.em+' '+a.name.split(" ")[0]+'</span><s>'+s[1]+'</s>';
+    b.addEventListener("click",function(){ if(window.__openAgent) window.__openAgent(k); });
+    chipBox.appendChild(b);
+  });
+
+  /* 弹窗：列表 + 打开/关闭 */
+  var dlg=document.getElementById("agentModal"), mList=document.getElementById("mList");
+  Object.keys(AGENTS).forEach(function(k){
+    var a=AGENTS[k], b=document.createElement("button");
+    b.setAttribute("data-agent",k); b.setAttribute("role","tab"); b.setAttribute("aria-selected","false");
+    b.innerHTML='<span class="em">'+a.em+'</span><span>'+a.name.split(" ")[0]+'</span>';
+    b.addEventListener("click",function(){showAgent(k);});
+    mList.appendChild(b);
+  });
+  function openModal(k){ if(k) showAgent(k); if(!dlg.open) dlg.showModal(); }
+  document.getElementById("btnEdit").addEventListener("click",function(){openModal();});
+  document.getElementById("mClose").addEventListener("click",function(){dlg.close();});
+  dlg.addEventListener("click",function(e){ if(e.target===dlg) dlg.close(); });
+  document.getElementById("mSave").addEventListener("click",function(){
+    var e=EDITS[curK]; if(!e) return;
+    var s=cfgBox.querySelector("#edSoul"), mm=cfgBox.querySelector("#edMem");
+    if(s) e.soul=s.value; if(mm) e.mem=mm.value;
+    var msg=document.getElementById("saveMsg");
+    msg.classList.add("on"); setTimeout(function(){msg.classList.remove("on");},1600);
+  });
+  document.getElementById("mReset").addEventListener("click",function(){
+    delete EDITS[curK]; showAgent(curK,curTab);
+  });
+  window.__openAgent=openModal;
+  showAgent("hub");
+
+
+  /* ---- 店长助理聊天（含 📎 上传）---- */
+  (function(){
+    var log=document.getElementById("chatlog"); if(!log) return;
+    var card=document.getElementById("chatPanel"), fileIn=document.getElementById("fileIn");
+    var got={sales:false,menu:false,photo:false};
+
+    /* ---- 会话（历史 + 新对话）---- */
+    var HELLO="你好 👋 我是店长助理。<br>把 POS 导出的表 <b>📎 传给我</b>（拖进来也行），或者直接问我问题。<br><span style=\"opacity:.75\">销售表 · 菜单（含成本）· 菜品照片 都收。</span>";
+    var SESSIONS=[
+      {title:"国庆物料确认", time:"昨天 20:14", msgs:[
+        {who:"ai",html:HELLO},
+        {who:"me",html:"国庆的海报做好了吗"},
+        {who:"ai",html:"做好了，营销设计师出的 v2 —— 价格已按你的意见改成 RM32。<br>铁律 Gate 都过了：Halal 标 ✓ 二维码 ✓ 有效期在投放窗口内 ✓",go:4,btn:"去审批物料 →"},
+        {who:"me",html:"印刷什么时候要发"},
+        {who:"ai",html:"<b>8 月 1 日截止</b> —— 国庆 8/31，印刷提前一个月。还有 4 天。"}]},
+      {title:"上周销售分析", time:"7月25日", msgs:[
+        {who:"ai",html:HELLO},
+        {who:"me",html:"上周哪个菜最赚钱"},
+        {who:"ai",html:"营收第一是<b>招牌炭烤牛肋排 RM2,790</b>（占 20%），不是卖得最多的拉茶。<br>拉茶卖了 180 份但营收只占 6%。",go:2,btn:"查看完整周报 →"},
+        {who:"me",html:"那滞销的是哪些"},
+        {who:"ai",html:"和牛小排（8 份）· 烤鱼（12）· 奶油蘑菇汤（14）· 牛肉汉堡（15）—— 这四个<b>低量又低毛利</b>，建议改良或考虑下架。"}]},
+      {title:"客户库能不能群发", time:"7月23日", msgs:[
+        {who:"ai",html:HELLO},
+        {who:"me",html:"客户库那些人能直接群发吗"},
+        {who:"ai",html:"只能发<b>同意来的（opt-in）</b>那 248 位，退订过的 6 位不会发。<br>而且要走 <b>WhatsApp 官方 Business API</b> —— 个人号群发会被封。<br>发之前还是要你确认。",go:7,btn:"看客户库 →"}]}
+    ];
+    var cur={title:"新对话",time:"刚刚",msgs:[]};
+
+    function renderLog(){ log.innerHTML=""; cur.msgs.forEach(paint); log.scrollTop=log.scrollHeight; }
+    function newChat(){
+      if(cur.msgs.filter(function(m){return m.who==="me";}).length) SESSIONS.unshift(cur);
+      cur={title:"新对话",time:"刚刚",msgs:[]};
+      got={sales:false,menu:false,photo:false};
+      renderLog(); add("ai",HELLO); hist(false);
+    }
+    function openSession(i){
+      if(cur.msgs.filter(function(m){return m.who==="me";}).length && SESSIONS.indexOf(cur)<0) SESSIONS.unshift(cur);
+      cur=SESSIONS[i]; renderLog(); hist(false);
+    }
+    var hp=null, hpl=null;
+    function hist(v){
+      if(!hp){hp=document.getElementById("histPane"); hpl=document.getElementById("hpList");}
+      if(v){
+        hpl.innerHTML='<button class="hpnew" id="hpNew">✏️ 开始新对话</button>'+
+          SESSIONS.map(function(s,i){
+            var last=s.msgs[s.msgs.length-1];
+            return '<button class="hpi" data-s="'+i+'"'+(s===cur?' aria-current="true"':'')+'>'+
+              '<s>'+s.time+'</s><b>'+s.title+'</b>'+
+              '<span>'+(last?last.html.replace(/<[^>]+>/g," ").trim():"")+'</span></button>';}).join("");
+        hpl.querySelector("#hpNew").addEventListener("click",newChat);
+        [].forEach.call(hpl.querySelectorAll(".hpi"),function(b){
+          b.addEventListener("click",function(){openSession(parseInt(b.getAttribute("data-s"),10));});});
+      }
+      hp.hidden=!v;
+    }
+
+    var QUICK=["📎 传销售表 + 菜单","这周哪个卖得好","给招牌牛肉面做张海报","给印度客人推牛肉面"];
+    var RULES=[
+      {kw:["卖得好","销售","数据","周报","分析","排行","榜","哪个好"],
+       need:1,
+       a:"好，我让数据管家先清洗，销售再分析。<br><b>招牌牛肉面卖最多（180 份），但营收第一是炭烤牛肋排 RM2,790（占 20%）。</b><br>晚市占 57% —— 午市是机会。",
+       go:2, btn:"查看完整周报 →"},
+      {kw:["海报","物料","广告","促销","文案","poster","设计"],
+       a:"好，我让销售出促销方案、营销设计师出物料。<br>出稿后会<b>停下来等你确认</b>才发 —— 我自己发不了。",
+       go:4, btn:"去审批物料 →"},
+      {kw:["日历","排期","节日","节假日","calendar"],
+       a:"营销日历排出来了：<b>国庆 8/31</b>，投放 8/19 开跑，<b>印刷 8/1 截止</b>（提前一个月）。",
+       go:6, btn:"查看营销日历 →"},
+      {kw:["印度","素食","牛肉","族群","halal"],
+       a:"⚠️ 先过铁律：<b>牛肉物料不能投印度裔 / 素食客群</b>。<br>系统会直接拦住 —— 不是我记性好，是代码写死的。",
+       go:5, btn:"看铁律 Gate →"}
+    ];
+
+    function paint(m){
+      var d=document.createElement("div"); d.className="msg "+m.who; d.innerHTML=m.html||"";
+      if(m.go!==undefined&&m.go!==null){
+        var b=document.createElement("button"); b.className="jump"; b.textContent=m.btn;
+        b.addEventListener("click",function(){document.querySelector('[data-go="'+m.go+'"]').click();});
+        d.appendChild(document.createElement("br")); d.appendChild(b);
+      }
+      log.appendChild(d); log.scrollTop=log.scrollHeight; return d;
+    }
+    function el(who,html){ return paint({who:who,html:html}); }
+    function add(who,html,go,btn){
+      var m={who:who,html:html,go:go,btn:btn};
+      cur.msgs.push(m);
+      if(who==="me"&&cur.title==="新对话"){
+        cur.title=(html.replace(/<[^>]+>/g," ").trim()||"新对话").slice(0,16);
+      }
+      return paint(m);
+    }
+    function chip(name,meta,ext){
+      return '<div class="filechip"><span class="fi">'+ext+'</span><span><b>'+name+'</b><s>'+meta+'</s></span></div>';
+    }
+
+    /* --- 认文件是什么（对应「总管认路由」）--- */
+    function classify(n){
+      var s=n.toLowerCase();
+      if(/(jpg|jpeg|png|heic)$/.test(s)) return "photo";
+      if(/菜单|menu|成本|cost|dish/.test(s)) return "menu";
+      if(/销售|sales|pos|订单|order|交易/.test(s)) return "sales";
+      if(/(csv|xlsx|xls)$/.test(s)) return "sales";
+      return "other";
+    }
+    var SAY={
+      sales:["销售流水","认出来了：这是<b>销售数据</b>。我让数据管家清洗成标准格式。"],
+      menu:["菜单主数据","认出来了：这是<b>菜单</b> —— 有<b>食材成本</b>，毛利和四象限就能算了。"],
+      photo:["菜品照片","照片收到，做物料时营销设计师会用。"],
+      other:["文件","这个我先收着 —— 拿不准是什么，等下告诉我它是干嘛的？"]
+    };
+    function upload(files){
+      var kinds=[];
+      [].forEach.call(files,function(fl){
+        var k=classify(fl.name), sz=fl.size?(fl.size/1024).toFixed(0)+" KB":"演示文件";
+        var ext=(fl.name.split(".").pop()||"FILE").toUpperCase().slice(0,4);
+        add("me",chip(fl.name,sz,ext));
+        kinds.push(k); if(got[k]!==undefined) got[k]=true;
+      });
+      setTimeout(function(){
+        var uniq=kinds.filter(function(v,i,a){return a.indexOf(v)===i;});
+        add("ai",uniq.map(function(k){return SAY[k][1];}).join("<br>"));
+        // 传的是菜单 → 存进菜单库，铁律 Gate 立刻用真菜品
+        if(uniq.indexOf("menu")>=0 && window.__menuStore){
+          var fname=[].filter.call(files,function(fl){return classify(fl.name)==="menu";})[0];
+          window.__menuStore(fname?fname.name:"菜单主数据.xlsx");
+          setTimeout(function(){
+            add("ai","🗂️ <b>菜单已存好</b>（19 道菜）。<br>每道菜都标了<b>含不含牛肉 / 素食可不可</b> —— "+
+                "以后做任何物料，族群定向会<b>自动用这份菜单来查</b>，不用你再提醒我。",5,"看铁律 Gate 怎么用它 →");
+          },520);
+        }
+        if(got.sales&&got.menu) setTimeout(offer,500);
+        else if(got.sales&&!got.menu) setTimeout(function(){
+          add("ai","⚠️ 还缺<b>菜单表</b>（要食材成本）。没有成本我只能给你销量，<b>毛利会标「待补」，不会硬算</b>。");},500);
+      },420);
+    }
+    function offer(){
+      var d=add("ai","两份都齐了 —— 要我现在出周报吗？");
+      var b=document.createElement("button"); b.className="jump"; b.textContent="▶ 开始处理";
+      b.addEventListener("click",function(){ b.disabled=true; b.style.opacity=".5"; runPipe(); });
+      d.appendChild(document.createElement("br")); d.appendChild(b);
+    }
+    /* --- 流水线动画（在对话里跑）--- */
+    function runPipe(){
+      var d=el("ai","<b>处理中…</b>");
+      var wrap=document.createElement("div"); wrap.className="pipe inchat";
+      var steps=[["🗄️","数据管家 · 清洗"],["📊","销售 · 分析"],["🟨","铁律 Gate · 质检"],["📄","周报出稿"]];
+      var els=steps.map(function(s){var e=document.createElement("span");e.className="ag";
+        e.innerHTML='<i class="dot"></i>'+s[0]+" "+s[1]; wrap.appendChild(e); return e;});
+      d.appendChild(wrap); log.scrollTop=log.scrollHeight;
+      var i=0;
+      (function nxt(){
+        if(i>0) els[i-1].className="ag done";
+        if(i>=els.length){
+          d.querySelector("b").textContent="处理完成（4.2 秒）";
+          add("ai","📄 <b>周报出好了。</b><br>招牌牛肉面卖最多（180 份），<b>但营收第一是炭烤牛肋排 RM2,790</b>。<br>长尾品：提拉米苏 · 柠檬薄荷饮 · 松露意面 —— 这几个<b>毛利高但卖得慢，最适合拿来做促销</b>。",2,"查看完整周报 →");
+          return;
+        }
+        els[i].className="ag live"; i++; setTimeout(nxt,850);
+      })();
+    }
+
+    function ask(q){
+      if(q.indexOf("📎")===0){ demoFiles(); return; }
+      add("me",q);
+      var low=q.toLowerCase(), hit=null;
+      for(var i=0;i<RULES.length;i++) if(RULES[i].kw.some(function(k){return low.indexOf(k)>=0;})){hit=RULES[i];break;}
+      setTimeout(function(){
+        if(hit&&hit.need&&!got.sales){
+          add("ai","还没有数据 —— 先 📎 把销售表传给我（菜单也一起，才算得出毛利）。");
+          return;
+        }
+        if(hit) add("ai",hit.a,hit.go,hit.btn);
+        else add("ai","我能帮你三件事：<br>① <b>看数据</b> —— 说「这周哪个卖得好」<br>② <b>做物料</b> —— 说「给XX做张海报」<br>③ <b>排日历</b> —— 说「排下个月营销日历」<br><span style=\"opacity:.75\">有数据就 📎 传进来。真实动作（印刷/发布）都会先停下来等你确认。</span>");
+      },420);
+    }
+    function demoFiles(){
+      upload([{name:"WarisanGrill-销售数据-2026W30.xlsx",size:41126},
+              {name:"WarisanGrill-菜单主数据.xlsx",size:12552}]);
+    }
+
+    var qb=document.getElementById("quick");
+    QUICK.forEach(function(q){var b=document.createElement("button");b.type="button";b.textContent=q;
+      b.addEventListener("click",function(){ask(q);}); qb.appendChild(b);});
+    document.getElementById("chatform").addEventListener("submit",function(e){
+      e.preventDefault(); var i=document.getElementById("chatinput");
+      if(i.value.trim()){ask(i.value.trim()); i.value="";}});
+    document.getElementById("btnAttach").addEventListener("click",function(){fileIn.click();});
+    fileIn.addEventListener("change",function(){ if(fileIn.files.length) upload(fileIn.files); fileIn.value=""; });
+    ["dragenter","dragover"].forEach(function(ev){card.addEventListener(ev,function(e){
+      e.preventDefault(); card.classList.add("dragging");});});
+    ["dragleave","drop"].forEach(function(ev){card.addEventListener(ev,function(e){
+      e.preventDefault(); if(ev==="drop"&&e.dataTransfer&&e.dataTransfer.files.length) upload(e.dataTransfer.files);
+      card.classList.remove("dragging");});});
+
+    add("ai",HELLO);
+    document.getElementById("btnHist").addEventListener("click",function(){hist(true);});
+    document.getElementById("histBack").addEventListener("click",function(){hist(false);});
+    document.getElementById("btnNew").addEventListener("click",newChat);
+
+    /* ---- 悬浮开关 ---- */
+    var fab=document.getElementById("fabChat"), panel=document.getElementById("chatPanel"),
+        dot=document.getElementById("fabDot"), opened=false;
+    function setOpen(v){
+      opened=v; panel.hidden=!v; fab.setAttribute("aria-expanded",v?"true":"false");
+      fab.querySelector(".fi").textContent=v?"✕":"💬";
+      fab.setAttribute("aria-label",v?"收起店长助理":"打开店长助理");
+      if(v){ dot.classList.remove("on"); log.scrollTop=log.scrollHeight;
+             setTimeout(function(){document.getElementById("chatinput").focus();},60); }
+    }
+    fab.addEventListener("click",function(){setOpen(!opened);});
+    document.getElementById("chatMin").addEventListener("click",function(){setOpen(false);});
+    document.addEventListener("keydown",function(e){ if(e.key==="Escape"&&opened) setOpen(false); });
+    // 收起时来了新消息 → 红点提示
+    var _add=add;
+    add=function(who,html,go,btn){ var d=_add(who,html,go,btn);
+      if(who==="ai"&&!opened) dot.classList.add("on"); return d; };
+    // 首次进来 3 秒后轻提示一下（只提示一次）
+    setTimeout(function(){ if(!opened) dot.classList.add("on"); },2600);
+  })();
+
+
+  var DISHES=[["招牌炭烤牛肋排",62,2790,.44,"work"],["咖喱鸡饭",95,1226,.326,"star"],["椰浆饭套餐",88,1223,.324,"star"],
+    ["炸鸡翅",82,1222,.416,"work"],["冰美式",120,1188,.384,"work"],["海鲜炒面",70,1183,.42,"work"],
+    ["拉茶",180,810,.267,"star"],["松露意面",22,704,.30,"pot"],["和牛小排",8,704,.477,"dead"],
+    ["香脆春卷",78,694,.292,"star"],["三文鱼沙拉",18,504,.318,"pot"],["烤鱼",12,456,.461,"dead"],
+    ["牛肉汉堡",15,390,.442,"dead"],["芒果糯米饭",25,350,.307,"pot"],["柠檬薄荷饮",30,255,.271,"pot"],
+    ["奶油蘑菇汤",14,168,.433,"dead"]];
+  var L={star:["Stars","t-star"],pot:["Potential","t-pot"],work:["Workhorse","t-work"],dead:["Deadweight","t-dead"]};
+  var tb=document.getElementById("tbody");
+  DISHES.forEach(function(d){
+    var tr=document.createElement("tr");
+    tr.innerHTML='<td>'+d[0]+'</td><td class="n">'+d[1]+'</td><td class="n">'+d[2].toLocaleString()+
+      '</td><td class="n">'+(d[3]*100).toFixed(0)+'%</td><td><span class="tag '+L[d[4]][1]+'">'+L[d[4]][0]+'</span></td>';
+    tb.appendChild(tr);
+  });
+
+  var DAYS=[["周一",670,870],["周二",670,870],["周三",716,925],["周四",792,1011],
+            ["周五",1020,1331],["周六",1170,1610],["周日",918,1293]],drawn=false;
+  function drawBars(){
+    if(drawn)return; drawn=true;
+    var max=Math.max.apply(null,DAYS.map(function(d){return d[1]+d[2];}));
+    var box=document.getElementById("bars");
+    DAYS.forEach(function(d){
+      var tot=d[1]+d[2],el=document.createElement("div");el.className="bar";
+      el.innerHTML='<span style="color:var(--muted)">'+d[0]+'</span>'+
+        '<span class="track"><span class="fill f-l" style="width:0"></span><span class="fill f-d" style="width:0"></span></span>'+
+        '<span class="num" style="text-align:right;font-size:12px">'+tot.toLocaleString()+'</span>';
+      box.appendChild(el);
+      var f=el.querySelectorAll(".fill");
+      setTimeout(function(){f[0].style.width=(d[1]/max*100)+"%";f[1].style.width=(d[2]/max*100)+"%";},60);
+    });
+  }
+
+  var res=document.getElementById("apResult"),ver=document.getElementById("ver");
+  document.getElementById("bOk").onclick=function(){
+    res.innerHTML='<span style="color:var(--green)">✓ <b>已确认。</b>物料包发印刷店，社媒排入日历。</span>'+
+      '<br><span style="color:var(--muted);font-size:12.3px">审计已记录：谁批的 · 发给谁 · 内容 · 时间戳（PDPA 要求）</span>';
+    setTimeout(function(){go(7);},1400);
+  };
+  document.getElementById("bNo").onclick=function(){
+    res.innerHTML='<span style="color:var(--red)">✕ <b>已退回。</b>流程停止，什么都不会发出去。</span>';
+  };
+  document.getElementById("bEdit").onclick=function(){
+    var b=this;b.disabled=true;
+    res.innerHTML='<span style="color:var(--amber)">↻ <b>回炉重出中…</b></span>'+
+      '<br><span style="color:var(--muted);font-size:12.3px">你的意见「价格改成 32、字大一点」已带回给营销设计师</span>';
+    setTimeout(function(){
+      document.getElementById("pPrice").textContent="32";
+      document.getElementById("pTitle").style.fontSize="19px";
+      document.getElementById("pCopy").textContent="午市来店，主食加购芒果糯米饭 + 柠檬薄荷饮，只要 RM32。扫码或 WhatsApp 预订，位子有限。";
+      ver.textContent="v2 · 已按意见重出";
+      res.innerHTML='<span style="color:var(--green)">✓ <b>v2 已出。</b>价格改为 RM32，标题加大。</span>'+
+        '<br><span style="color:var(--muted);font-size:12.3px">重出后重新过一遍铁律 Gate —— 价格变了，有效期和族群规则要复查</span>';
+      b.disabled=false;
+    },1700);
+  };
+
+  function bindPick(id){
+    var box=document.getElementById(id);
+    box.addEventListener("click",function(e){
+      var b=e.target.closest("button"); if(!b) return;
+      [].forEach.call(box.querySelectorAll("button"),function(x){x.setAttribute("aria-pressed","false");});
+      b.setAttribute("aria-pressed","true");
+      document.getElementById("verdict").className="verdict";
+    });
+  }
+  bindPick("pickDish"); bindPick("pickGrp");
+  if(window.__renderMenu) window.__renderMenu();
+  document.getElementById("bGate").onclick=function(){
+    var d=document.querySelector('#pickDish [aria-pressed="true"]'),
+        g=document.querySelector('#pickGrp [aria-pressed="true"]'),
+        beef=d.getAttribute("data-beef")==="1",veg=d.getAttribute("data-veg")==="1",
+        grp=g.getAttribute("data-g"),
+        v=document.getElementById("verdict");
+    if(!veg&&grp==="vegetarian"){
+      v.className="verdict fail show";
+      v.innerHTML='<b>🚫 Gate 拦截 —— 做不了</b>'+d.textContent+' 含荤，不投 vegetarian。'+
+        '<div class="sub">菜单里标了「素食可」的才允许定向素食客群 —— 这个字段来自你上传的菜单表。</div>';
+    }else if(beef&&grp==="indian"){
+      v.className="verdict fail show";
+      v.innerHTML='<b>🚫 Gate 拦截 —— 做不了</b>铁律：牛肉物料（'+d.textContent+'）不投 indian。'+
+        '<div class="sub">AI 想做，但<b>做不了</b>。流程在这里停住，自动退回上游换选品 —— <b>这张物料根本不会被生成，更不会发出去</b>。</div>';
+    }else{
+      v.className="verdict pass show";
+      v.innerHTML='<b>✓ Gate 通过 —— 可以做</b>'+d.textContent+' → '+grp+'，族群规则无冲突。'+
+        '<div class="sub">下一步：出物料 → 必备元素复检 → 停下来等老板确认。</div>';
+    }
+  };
+})();
+</script>
+
+</body>
+</html>
