@@ -261,6 +261,14 @@ td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right}
 .check li{display:flex;gap:8px;align-items:center;color:var(--ink-2)}
 .check .ok{color:var(--green);font-family:var(--mono);font-size:12px}
 
+.ed{cursor:text}
+.ed:hover{background:var(--blue-soft);border-radius:4px}
+.edin{width:100%;min-width:64px;padding:3px 6px;border:1px solid var(--blue);border-radius:5px;
+  font:inherit;font-family:inherit;background:var(--surface);color:var(--ink)}
+.tgl{padding:0;border-radius:5px}
+.tgl:hover .tag{filter:brightness(.92);box-shadow:0 0 0 1px var(--line)}
+.del{width:24px;height:24px;border-radius:6px;color:var(--faint);font-size:12px}
+.del:hover{background:var(--red-soft);color:var(--red)}
 .menusrc{display:flex;align-items:center;gap:9px;padding:9px 12px;border-radius:9px;font-size:12.5px;margin-bottom:14px}
 .menusrc.empty{background:var(--amber-soft);color:var(--amber)}
 .menusrc.ok{background:var(--green-soft);color:var(--green)}
@@ -277,25 +285,38 @@ td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right}
 .verdict b{display:block;font-size:15px;margin-bottom:4px}
 .verdict .sub{color:var(--ink-2);font-size:12.8px;font-weight:400;margin-top:5px}
 
-/* ---- 月历 ---- */
-.calnav{width:26px;height:26px;border-radius:7px;border:1px solid var(--line);font-size:14px;color:var(--muted)}
+/* ---- 月历（Apple 风）---- */
+.mcalcard{padding:16px 18px 14px}
+.mcal-top{display:flex;align-items:center;gap:7px;margin-bottom:12px}
+.mcal-title{font-size:22px;letter-spacing:-.02em;font-weight:700}
+.mcal-title small{font-weight:500;color:var(--muted);font-size:15px;margin-left:5px}
+.calnav{height:28px;min-width:28px;padding:0 9px;border-radius:8px;border:1px solid var(--line);
+  font-size:14px;color:var(--muted);background:var(--surface)}
 .calnav:hover{border-color:var(--blue);color:var(--blue)}
-.mcal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:11px}
-.mcal .wd{font-size:10.5px;letter-spacing:.06em;color:var(--faint);text-align:center;font-weight:650;padding:2px 0}
-.mday{min-height:62px;border:1px solid var(--line-2);border-radius:8px;padding:4px 5px;font-size:11px;background:var(--surface)}
-.mday.out{opacity:.35;background:var(--surface-2)}
-.mday.today{border-color:var(--blue);box-shadow:inset 0 0 0 1px var(--blue)}
-.mday .d{font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-bottom:3px}
-.mday.today .d{color:var(--blue);font-weight:700}
-.mev{display:block;font-size:10px;line-height:1.35;padding:1.5px 5px;border-radius:5px;margin-bottom:2px;
-  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600}
-.mev.red{background:var(--red-soft);color:var(--red)}
-.mev.blue{background:var(--blue-soft);color:var(--blue)}
-.mev.green{background:var(--green-soft);color:var(--green)}
-.mev.amber{background:var(--amber-soft);color:var(--amber)}
-.callegend{display:flex;gap:13px;margin-top:10px;font-size:11.5px;color:var(--muted);flex-wrap:wrap}
+.caltoday{font-size:12.5px;font-weight:650}
+.mcal-wd{display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:2px}
+.mcal-wd span{font-size:11px;letter-spacing:.05em;color:var(--faint);text-align:right;
+  font-weight:650;padding:0 8px 5px}
+.mcal{display:grid;grid-template-columns:repeat(7,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.mday{min-height:86px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
+  padding:4px 5px;font-size:11px;background:var(--surface);display:flex;flex-direction:column;gap:2px}
+.mday.out{background:var(--surface-2)}
+.mday.out .d,.mday.out .mev{opacity:.45}
+.mday .d{font-family:var(--mono);font-size:12px;color:var(--ink-2);text-align:right;
+  padding:1px 3px 2px;line-height:1.4}
+.mday .d .mm{font-size:10px;color:var(--faint);margin-right:2px}
+.mday.today .d b{display:inline-grid;place-items:center;min-width:21px;height:21px;padding:0 3px;
+  border-radius:99px;background:var(--red);color:#fff;font-weight:700}
+.mev{display:block;font-size:10.5px;line-height:1.4;padding:2px 6px;border-radius:5px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600;text-align:left}
+.mev.red{background:var(--red-soft);color:var(--red);border-left:3px solid var(--red)}
+.mev.blue{background:var(--blue-soft);color:var(--blue);border-left:3px solid var(--blue)}
+.mev.green{background:var(--green-soft);color:var(--green);border-left:3px solid var(--green)}
+.mev.amber{background:var(--amber-soft);color:var(--amber);border-left:3px solid var(--amber)}
+.callegend{display:flex;gap:14px;margin-top:11px;font-size:11.5px;color:var(--muted);flex-wrap:wrap}
 .callegend i{width:9px;height:9px;border-radius:3px;display:inline-block;margin-right:4px}
-@media(max-width:600px){.mday{min-height:52px;padding:3px 3px}.mev{font-size:9px;padding:1px 3px}}
+@media(max-width:600px){.mday{min-height:64px;padding:2px 3px}.mev{font-size:9px;padding:1px 4px;border-left-width:2px}
+  .mcal-title{font-size:18px}}
 .cal .r{display:grid;grid-template-columns:104px 1fr;gap:15px;padding:12px 0;border-bottom:1px solid var(--line-2)}
 .cal .r:last-child{border-bottom:0}
 .cal .dt{font-family:var(--mono);font-size:12.3px;color:var(--muted)}
@@ -794,10 +815,14 @@ why   = llm.explain(facts)    # 解释：交给 LLM
         <div class="sect"><span class="ic">🍽️</span>菜单总表 <small>售价 · Food Cost · 族群字段 · 投放中的广告</small></div>
         <div class="scroll" style="margin-top:10px;max-height:340px;overflow-y:auto">
           <table><thead><tr><th>菜品</th><th>类别</th><th style="text-align:right">售价 RM</th>
-            <th style="text-align:right">FC%</th><th>牛肉</th><th>素食</th><th>投放中</th><th>状态</th></tr></thead>
+            <th style="text-align:right">FC%</th><th>牛肉</th><th>素食</th><th>投放中</th><th>状态</th><th></th></tr></thead>
             <tbody id="menuBody"></tbody></table>
         </div>
-        <div class="note" style="margin-top:11px;font-size:12.5px"><b>📣 投放中</b>一列来自营销日历的已确认排期 —— 菜单、广告、日历是<b>同一份数据</b>，不用两头维护。</div>
+        <div class="row" style="margin-top:11px">
+          <button class="btn" id="addDish" type="button">＋ 添加菜品</button>
+          <span style="font-size:12px;color:var(--muted)">✏️ 点<b>名称 / 售价</b>直接改 · 点<b>牛肉 / 素食 / 状态</b>切换 —— 改完族群规则立刻按新菜单执行</span>
+        </div>
+        <div class="note" style="margin-top:11px;font-size:12.5px"><b>📣 投放中</b>一列来自营销日历的已确认排期 —— 菜单、广告、日历是<b>同一份数据</b>，不用两头维护。改动仅存在本次演示。</div>
       </div>
       <div class="card">
         <div class="menusrc" id="menuSrc"></div>
@@ -837,20 +862,20 @@ why   = llm.explain(facts)    # 解释：交给 LLM
       <div class="head"><div class="eyebrow">营销流程 · Marketing Calendar</div><h2>到点它会提醒你，不用你记</h2>
         <p>确认过的方案自动排进日历，连印刷提前期都算好了。</p></div>
       <div class="grid g2">
-        <div class="card">
-          <div class="sect"><span class="ic">📅</span>营销日历
-            <small>月视图 · 节日与投放都在格子里</small>
-            <span style="margin-left:auto;display:flex;gap:5px;align-items:center">
-              <button class="calnav" id="calPrev" aria-label="上个月">‹</button>
-              <b id="calTitle" style="font-size:13.5px;min-width:96px;text-align:center"></b>
-              <button class="calnav" id="calNext" aria-label="下个月">›</button>
-            </span></div>
+        <div class="card mcalcard">
+          <div class="mcal-top">
+            <b class="mcal-title" id="calTitle"></b>
+            <span class="sp" style="flex:1"></span>
+            <button class="calnav" id="calPrev" aria-label="上个月">‹</button>
+            <button class="calnav caltoday" id="calToday">今天</button>
+            <button class="calnav" id="calNext" aria-label="下个月">›</button>
+          </div>
+          <div class="mcal-wd"><span>一</span><span>二</span><span>三</span><span>四</span><span>五</span><span>六</span><span>日</span></div>
           <div class="mcal" id="mcal"></div>
           <div class="callegend">
-            <span><i style="background:var(--red)"></i>截止/红线</span>
+            <span><i style="background:var(--red)"></i>截止 / 红线</span>
             <span><i style="background:var(--blue)"></i>投放</span>
             <span><i style="background:var(--green)"></i>节日</span>
-            <span class="today-hint">◻ 今天</span>
           </div>
         </div>
         <div class="card">
@@ -1325,20 +1350,56 @@ why   = llm.explain(facts)    # 解释：交给 LLM
       var gu=src.querySelector("#goUpload");
       if(gu) gu.addEventListener("click",function(){ var f=document.getElementById("fabChat"); if(f) f.click(); });
     }
-    /* 菜单总表 */
+    /* 菜单总表（可编辑） */
     var tb=document.getElementById("menuBody");
     if(tb){
-      tb.innerHTML=MENU.list.map(function(d){
+      tb.innerHTML=MENU.list.map(function(d,i){
         var fc=d[3]/d[2], camp=CAMP[d[0]];
-        return '<tr'+(d[6]!=="在售"?' style="opacity:.55"':'')+'>'+
-          '<td>'+d[0]+'</td><td>'+d[1]+'</td>'+
-          '<td class="n">'+d[2].toFixed(2)+'</td>'+
+        return '<tr'+(d[6]==="已停售"?' style="opacity:.55"':'')+' data-i="'+i+'">'+
+          '<td class="ed" data-f="name" title="点击修改名称">'+d[0]+'</td><td>'+d[1]+'</td>'+
+          '<td class="n ed" data-f="price" title="点击修改售价">'+d[2].toFixed(2)+'</td>'+
           '<td class="n">'+(fc*100).toFixed(0)+'%</td>'+
-          '<td>'+(d[4]?'<span class="tag t-dead">含牛肉</span>':'—')+'</td>'+
-          '<td>'+(d[5]?'<span class="tag t-star">素食可</span>':'—')+'</td>'+
+          '<td><button class="tgl" data-f="beef">'+(d[4]?'<span class="tag t-dead">含牛肉</span>':'<span class="tag" style="color:var(--faint)">—</span>')+'</button></td>'+
+          '<td><button class="tgl" data-f="veg">'+(d[5]?'<span class="tag t-star">素食可</span>':'<span class="tag" style="color:var(--faint)">—</span>')+'</button></td>'+
           '<td>'+(camp?'<span class="tag t-pot" title="'+camp[1]+'">📣 '+camp[0]+'</span>':'—')+'</td>'+
-          '<td>'+d[6]+'</td></tr>';
+          '<td><button class="tgl" data-f="st"><span class="tag" style="color:var(--ink-2)">'+d[6]+'</span></button></td>'+
+          '<td><button class="del" data-f="del" aria-label="删除" title="删除">✕</button></td></tr>';
       }).join("");
+      if(!tb.__bound){ tb.__bound=1;
+        tb.addEventListener("click",function(e){
+          var cell=e.target.closest("[data-f]"); if(!cell) return;
+          var tr=e.target.closest("tr"); if(!tr) return;
+          var i=parseInt(tr.getAttribute("data-i"),10), d=MENU.list[i], f=cell.getAttribute("data-f");
+          if(f==="del"){ MENU.list.splice(i,1); window.__renderMenu(); return; }
+          if(f==="beef"){ d[4]=d[4]?0:1; window.__renderMenu(); return; }
+          if(f==="veg"){ d[5]=d[5]?0:1; window.__renderMenu(); return; }
+          if(f==="st"){ var S=["在售","新品·未开卖","已停售"]; d[6]=S[(S.indexOf(d[6])+1)%3]; window.__renderMenu(); return; }
+          if(cell.querySelector("input")) return;
+          var old=(f==="price")?d[2].toFixed(2):d[0];
+          cell.innerHTML='<input class="edin" value="'+old+'">';
+          var inp=cell.querySelector("input"); inp.focus(); inp.select();
+          function commit(){
+            var v=inp.value.trim();
+            if(f==="price"){ var n=parseFloat(v); if(!isNaN(n)&&n>0) d[2]=n; }
+            else if(v){ if(CAMP[d[0]]&&!CAMP[v]) CAMP[v]=CAMP[d[0]]; d[0]=v; }
+            window.__renderMenu();
+          }
+          inp.addEventListener("blur",commit);
+          inp.addEventListener("keydown",function(ev){
+            if(ev.key==="Enter"){ev.preventDefault();inp.blur();}
+            if(ev.key==="Escape"){inp.value=old;inp.blur();}
+          });
+        });
+      }
+      var ad=document.getElementById("addDish");
+      if(ad&&!ad.__bound){ ad.__bound=1;
+        ad.addEventListener("click",function(){
+          MENU.list.push(["新菜品","主食",10.0,3.5,0,0,"在售"]);
+          window.__renderMenu();
+          var last=tb.querySelector('tr[data-i="'+(MENU.list.length-1)+'"] .ed');
+          if(last) last.click();
+        });
+      }
     }
   };
   var ALLTOOLS=["get_latest_analysis","get_margin_quadrant","get_menu_cost","calc_promo_margin",
@@ -1495,7 +1556,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
 
 
 
-  /* ---- 营销日历 · 月视图 ---- */
+  /* ---- 营销日历 · 月视图（Apple 风：满 6 行 42 格）---- */
   (function(){
     var box=document.getElementById("mcal"); if(!box) return;
     var TODAY={y:2026,m:7,d:28};
@@ -1507,29 +1568,31 @@ why   = llm.explain(facts)    # 解释：交给 LLM
       "2026-08-31":[["🇲🇾 Merdeka 国庆","green"]],
       "2026-09-02":[["国庆投放 结束","blue"]],
       "2026-09-16":[["Malaysia Day","green"]],
-      "2026-09-17":[["建议 08-17 前定稿","amber"]],
+      "2026-08-17":[["Malaysia Day 定稿截止","amber"]],
       "2026-10-08":[["🖨️ 屠妖节印刷截止","red"]],
       "2026-11-08":[["🪔 Deepavali 屠妖节","green"],["物料避开牛肉","red"]]
     };
-    var y=2026, m=7;                      // 从 7 月开始（含今天）
+    var y=TODAY.y, m=TODAY.m;
     function pad(n){return (n<10?"0":"")+n;}
     function render(){
-      document.getElementById("calTitle").textContent=y+" 年 "+m+" 月";
-      var h='["一","二","三","四","五","六","日"]';
-      var html=["一","二","三","四","五","六","日"].map(function(w){return '<span class="wd">'+w+'</span>';}).join("");
+      document.getElementById("calTitle").innerHTML=m+" 月 <small>"+y+"</small>";
       var first=new Date(y,m-1,1), start=(first.getDay()+6)%7;   // 周一起
-      var days=new Date(y,m,0).getDate();
-      for(var i=0;i<start;i++) html+='<span class="mday out"></span>';
-      for(var d=1;d<=days;d++){
-        var key=y+"-"+pad(m)+"-"+pad(d);
-        var cls="mday"+((y===TODAY.y&&m===TODAY.m&&d===TODAY.d)?" today":"");
+      var cells="";
+      for(var i=0;i<42;i++){
+        var dt=new Date(y,m-1,1-start+i);
+        var yy=dt.getFullYear(), mm=dt.getMonth()+1, dd=dt.getDate();
+        var key=yy+"-"+pad(mm)+"-"+pad(dd);
+        var out=(mm!==m);
+        var isToday=(yy===TODAY.y&&mm===TODAY.m&&dd===TODAY.d);
+        var lab=(dd===1?'<span class="mm">'+mm+'月</span>':'')+(isToday?'<b>'+dd+'</b>':dd);
         var evs=(EV[key]||[]).map(function(e){return '<span class="mev '+e[1]+'" title="'+e[0]+'">'+e[0]+'</span>';}).join("");
-        html+='<span class="'+cls+'"><span class="d">'+d+'</span>'+evs+'</span>';
+        cells+='<span class="mday'+(out?" out":"")+(isToday?" today":"")+'"><span class="d">'+lab+'</span>'+evs+'</span>';
       }
-      box.innerHTML=html;
+      box.innerHTML=cells;
     }
     document.getElementById("calPrev").addEventListener("click",function(){ m--; if(m<1){m=12;y--;} render(); });
     document.getElementById("calNext").addEventListener("click",function(){ m++; if(m>12){m=1;y++;} render(); });
+    document.getElementById("calToday").addEventListener("click",function(){ y=TODAY.y; m=TODAY.m; render(); });
     render();
   })();
 
