@@ -285,6 +285,8 @@ td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right}
 .verdict b{display:block;font-size:15px;margin-bottom:4px}
 .verdict .sub{color:var(--ink-2);font-size:12.8px;font-weight:400;margin-top:5px}
 
+.calgrid{display:grid;grid-template-columns:minmax(0,7fr) minmax(0,3fr);gap:13px;align-items:start}
+@media(max-width:960px){.calgrid{grid-template-columns:1fr}}
 /* ---- 月历（Apple 风）---- */
 .mcalcard{padding:16px 18px 14px}
 .mcal-top{display:flex;align-items:center;gap:7px;margin-bottom:12px}
@@ -294,10 +296,10 @@ td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right}
   font-size:14px;color:var(--muted);background:var(--surface)}
 .calnav:hover{border-color:var(--blue);color:var(--blue)}
 .caltoday{font-size:12.5px;font-weight:650}
-.mcal-wd{display:grid;grid-template-columns:repeat(7,1fr);margin-bottom:2px}
+.mcal-wd{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));margin-bottom:2px}
 .mcal-wd span{font-size:11px;letter-spacing:.05em;color:var(--faint);text-align:right;
   font-weight:650;padding:0 8px 5px}
-.mcal{display:grid;grid-template-columns:repeat(7,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line)}
+.mcal{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));border-top:1px solid var(--line);border-left:1px solid var(--line)}
 .mday{min-height:86px;border-right:1px solid var(--line);border-bottom:1px solid var(--line);
   padding:4px 5px;font-size:11px;background:var(--surface);display:flex;flex-direction:column;gap:2px}
 .mday.out{background:var(--surface-2)}
@@ -861,7 +863,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
     <section class="panel" id="p6">
       <div class="head"><div class="eyebrow">营销流程 · Marketing Calendar</div><h2>到点它会提醒你，不用你记</h2>
         <p>确认过的方案自动排进日历，连印刷提前期都算好了。</p></div>
-      <div class="grid g2">
+      <div class="calgrid">
         <div class="card mcalcard">
           <div class="mcal-top">
             <b class="mcal-title" id="calTitle"></b>
@@ -1560,18 +1562,37 @@ why   = llm.explain(facts)    # 解释：交给 LLM
   (function(){
     var box=document.getElementById("mcal"); if(!box) return;
     var TODAY={y:2026,m:7,d:28};
+    /* 马来西亚 2026 主要节日（宗教节日为约定日期，正式版由 IT 接官方 API） */
+    var HOLIDAYS={
+      "2026-01-01":"元旦 New Year",
+      "2026-02-17":"🧧 农历新年",
+      "2026-02-18":"🧧 农历新年 第二天",
+      "2026-03-20":"🌙 开斋节 Hari Raya（约）",
+      "2026-03-21":"🌙 开斋节 第二天（约）",
+      "2026-05-01":"劳动节 Labour Day",
+      "2026-05-27":"🌙 哈芝节 Hari Raya Haji（约）",
+      "2026-05-31":"卫塞节 Wesak（约）",
+      "2026-06-01":"最高元首诞辰",
+      "2026-06-16":"回历新年 Awal Muharram（约）",
+      "2026-08-25":"先知诞辰 Maulidur Rasul（约）",
+      "2026-08-31":"🇲🇾 Merdeka 国庆",
+      "2026-09-16":"Malaysia Day",
+      "2026-11-08":"🪔 Deepavali 屠妖节（约）",
+      "2026-12-25":"🎄 圣诞节 Christmas"
+    };
     var EV={
       "2026-07-29":[["午市快闪 开跑","blue"]],
       "2026-08-01":[["🖨️ 印刷截止","red"]],
       "2026-08-11":[["午市快闪 结束","blue"]],
       "2026-08-19":[["国庆投放 开跑","blue"]],
-      "2026-08-31":[["🇲🇾 Merdeka 国庆","green"]],
       "2026-09-02":[["国庆投放 结束","blue"]],
-      "2026-09-16":[["Malaysia Day","green"]],
       "2026-08-17":[["Malaysia Day 定稿截止","amber"]],
       "2026-10-08":[["🖨️ 屠妖节印刷截止","red"]],
-      "2026-11-08":[["🪔 Deepavali 屠妖节","green"],["物料避开牛肉","red"]]
+      "2026-11-08":[["物料避开牛肉","red"]]
     };
+    Object.keys(HOLIDAYS).forEach(function(k){
+      EV[k]=(EV[k]||[]); EV[k].unshift([HOLIDAYS[k],"green"]);
+    });
     var y=TODAY.y, m=TODAY.m;
     function pad(n){return (n<10?"0":"")+n;}
     function render(){
