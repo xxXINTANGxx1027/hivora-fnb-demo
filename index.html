@@ -277,6 +277,25 @@ td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;text-align:right}
 .verdict b{display:block;font-size:15px;margin-bottom:4px}
 .verdict .sub{color:var(--ink-2);font-size:12.8px;font-weight:400;margin-top:5px}
 
+/* ---- 月历 ---- */
+.calnav{width:26px;height:26px;border-radius:7px;border:1px solid var(--line);font-size:14px;color:var(--muted)}
+.calnav:hover{border-color:var(--blue);color:var(--blue)}
+.mcal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin-top:11px}
+.mcal .wd{font-size:10.5px;letter-spacing:.06em;color:var(--faint);text-align:center;font-weight:650;padding:2px 0}
+.mday{min-height:62px;border:1px solid var(--line-2);border-radius:8px;padding:4px 5px;font-size:11px;background:var(--surface)}
+.mday.out{opacity:.35;background:var(--surface-2)}
+.mday.today{border-color:var(--blue);box-shadow:inset 0 0 0 1px var(--blue)}
+.mday .d{font-family:var(--mono);font-size:10.5px;color:var(--muted);margin-bottom:3px}
+.mday.today .d{color:var(--blue);font-weight:700}
+.mev{display:block;font-size:10px;line-height:1.35;padding:1.5px 5px;border-radius:5px;margin-bottom:2px;
+  white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-weight:600}
+.mev.red{background:var(--red-soft);color:var(--red)}
+.mev.blue{background:var(--blue-soft);color:var(--blue)}
+.mev.green{background:var(--green-soft);color:var(--green)}
+.mev.amber{background:var(--amber-soft);color:var(--amber)}
+.callegend{display:flex;gap:13px;margin-top:10px;font-size:11.5px;color:var(--muted);flex-wrap:wrap}
+.callegend i{width:9px;height:9px;border-radius:3px;display:inline-block;margin-right:4px}
+@media(max-width:600px){.mday{min-height:52px;padding:3px 3px}.mev{font-size:9px;padding:1px 3px}}
 .cal .r{display:grid;grid-template-columns:104px 1fr;gap:15px;padding:12px 0;border-bottom:1px solid var(--line-2)}
 .cal .r:last-child{border-bottom:0}
 .cal .dt{font-family:var(--mono);font-size:12.3px;color:var(--muted)}
@@ -772,6 +791,15 @@ why   = llm.explain(facts)    # 解释：交给 LLM
       <div class="head"><div class="eyebrow">营销流程 · Menu</div><h2>菜单</h2>
         <p>从聊天里 📎 传菜单，AI 就存到这里 —— 每道菜标好<b>含不含牛肉、素食可不可</b>。<br>族群铁律（Race Rule）就靠这些字段执行：<b>选一道菜试试能投给谁</b>。</p></div>
       <div class="card">
+        <div class="sect"><span class="ic">🍽️</span>菜单总表 <small>售价 · Food Cost · 族群字段 · 投放中的广告</small></div>
+        <div class="scroll" style="margin-top:10px;max-height:340px;overflow-y:auto">
+          <table><thead><tr><th>菜品</th><th>类别</th><th style="text-align:right">售价 RM</th>
+            <th style="text-align:right">FC%</th><th>牛肉</th><th>素食</th><th>投放中</th><th>状态</th></tr></thead>
+            <tbody id="menuBody"></tbody></table>
+        </div>
+        <div class="note" style="margin-top:11px;font-size:12.5px"><b>📣 投放中</b>一列来自营销日历的已确认排期 —— 菜单、广告、日历是<b>同一份数据</b>，不用两头维护。</div>
+      </div>
+      <div class="card">
         <div class="menusrc" id="menuSrc"></div>
         <div class="sect" style="margin:2px 0 10px"><span class="ic">🕌</span>族群规则测试 <small>Race Rule · 代码写死，不靠提示词</small></div>
         <div class="grid g2">
@@ -810,13 +838,19 @@ why   = llm.explain(facts)    # 解释：交给 LLM
         <p>确认过的方案自动排进日历，连印刷提前期都算好了。</p></div>
       <div class="grid g2">
         <div class="card">
-          <div class="sect"><span class="ic">📅</span>营销日历 <small>未来 90 天</small></div>
-          <div class="cal" style="margin-top:9px">
-            <div class="r hot"><span class="dt">08-01<br><span class="cd">还有 4 天</span></span><span class="ev"><b>🖨️ 印刷截止</b><span>国庆物料必须今天发印刷店 · 提前 30 天</span></span></div>
-            <div class="r"><span class="dt">08-19</span><span class="ev"><b>投放开跑</b><span>国庆预热 · 社媒 + 门店物料</span></span></div>
-            <div class="r"><span class="dt">08-31</span><span class="ev"><b>🇲🇾 Hari Merdeka 国庆日</b><span>全民节日 · 全菜单可推</span></span></div>
-            <div class="r"><span class="dt">09-16</span><span class="ev"><b>Malaysia Day</b><span>全民节日 · 建议 08-17 前定稿</span></span></div>
-            <div class="r"><span class="dt">11-08</span><span class="ev"><b>🪔 Deepavali 屠妖节</b><span style="color:var(--red)">针对印度裔 · 物料一律避开牛肉</span></span></div>
+          <div class="sect"><span class="ic">📅</span>营销日历
+            <small>月视图 · 节日与投放都在格子里</small>
+            <span style="margin-left:auto;display:flex;gap:5px;align-items:center">
+              <button class="calnav" id="calPrev" aria-label="上个月">‹</button>
+              <b id="calTitle" style="font-size:13.5px;min-width:96px;text-align:center"></b>
+              <button class="calnav" id="calNext" aria-label="下个月">›</button>
+            </span></div>
+          <div class="mcal" id="mcal"></div>
+          <div class="callegend">
+            <span><i style="background:var(--red)"></i>截止/红线</span>
+            <span><i style="background:var(--blue)"></i>投放</span>
+            <span><i style="background:var(--green)"></i>节日</span>
+            <span class="today-hint">◻ 今天</span>
           </div>
         </div>
         <div class="card">
@@ -1252,28 +1286,59 @@ why   = llm.explain(facts)    # 解释：交给 LLM
       skills:[]}
   };
   /* ===== 菜单库：聊天上传菜单后存这里，铁律 Gate 直接用 ===== */
-  var MENU_DEMO=[["招牌炭烤牛肋排",1,0],["和牛小排",1,0],["芒果糯米饭",0,1],["咖喱鸡饭",0,0]];
-  var MENU_FULL=[["拉茶",0,1],["咖喱鸡饭",0,0],["香脆春卷",0,1],["椰浆饭套餐",0,0],
-    ["冰美式",0,1],["炸鸡翅",0,0],["海鲜炒面",0,0],["招牌炭烤牛肋排",1,0],
-    ["松露意面",0,1],["三文鱼沙拉",0,0],["柠檬薄荷饮",0,1],["芒果糯米饭",0,1],
-    ["烤鱼",0,0],["和牛小排",1,0],["牛肉汉堡",1,0],["奶油蘑菇汤",0,1],
-    ["冬阴功汤",0,0],["招牌炒饭",0,0],["芝士蛋糕",0,1]];
+  var MENU_DEMO=[
+    ["招牌炭烤牛肋排","主食",45.0,19.8,1,0,"在售"],["和牛小排","主食",88.0,42.0,1,0,"在售"],
+    ["芒果糯米饭","甜品",14.0,4.3,0,1,"在售"],["咖喱鸡饭","主食",12.9,4.2,0,0,"在售"]];
+  var MENU_FULL=[
+    ["拉茶","饮料",4.5,1.2,0,1,"在售"],["咖喱鸡饭","主食",12.9,4.2,0,0,"在售"],
+    ["香脆春卷","小食",8.9,2.6,0,1,"在售"],["椰浆饭套餐","主食",13.9,4.5,0,0,"在售"],
+    ["冰美式","饮料",9.9,3.8,0,1,"在售"],["炸鸡翅","小食",14.9,6.2,0,0,"在售"],
+    ["海鲜炒面","主食",16.9,7.1,0,0,"在售"],["招牌炭烤牛肋排","主食",45.0,19.8,1,0,"在售"],
+    ["松露意面","主食",32.0,9.6,0,1,"在售"],["三文鱼沙拉","沙拉",28.0,8.9,0,0,"在售"],
+    ["柠檬薄荷饮","饮料",8.5,2.3,0,1,"在售"],["芒果糯米饭","甜品",14.0,4.3,0,1,"在售"],
+    ["烤鱼","海鲜",38.0,17.5,0,0,"在售"],["和牛小排","主食",88.0,42.0,1,0,"在售"],
+    ["牛肉汉堡","主食",26.0,11.5,1,0,"在售"],["奶油蘑菇汤","汤品",12.0,5.2,0,1,"在售"],
+    ["冬阴功汤","汤品",15.0,5.6,0,0,"新品·未开卖"],["招牌炒饭","主食",14.9,5.0,0,0,"新品·未开卖"],
+    ["芝士蛋糕","甜品",16.0,7.8,0,1,"已停售"]];
+  /* 投放中的广告（哪道菜正在被哪个活动推） */
+  var CAMP={"招牌炭烤牛肋排":["国庆 Merdeka","08-19 → 09-02"],
+            "芒果糯米饭":["午市快闪","07-29 → 08-11"],
+            "柠檬薄荷饮":["午市快闪","07-29 → 08-11"]};
   var MENU={list:MENU_DEMO, src:null};
   window.__renderMenu=function(){
-    var box=document.getElementById("pickDish"); if(!box) return;
-    box.innerHTML=MENU.list.map(function(d,i){
-      return '<button data-beef="'+d[1]+'" data-veg="'+d[2]+'" aria-pressed="'+(i===0)+'">'+d[0]+'</button>';}).join("");
-    var src=document.getElementById("menuSrc"), cnt=document.getElementById("dishCount");
-    if(cnt) cnt.textContent="（"+MENU.list.length+" 道）";
+    var box=document.getElementById("pickDish");
+    if(box){
+      box.innerHTML=MENU.list.filter(function(d){return d[6]==="在售";}).slice(0,8).map(function(d,i){
+        return '<button data-beef="'+d[4]+'" data-veg="'+d[5]+'" aria-pressed="'+(i===0)+'">'+d[0]+'</button>';}).join("");
+    }
+    var cnt=document.getElementById("dishCount");
+    if(cnt) cnt.textContent="";
+    var src=document.getElementById("menuSrc");
     if(src){
       src.className="menusrc "+(MENU.src?"ok":"empty");
       src.innerHTML=MENU.src
-        ? '🗂️ 菜单已存好：<b>'+MENU.src+'</b> · '+MENU.list.length+' 道菜 · 含牛肉 '+
-          MENU.list.filter(function(d){return d[1];}).length+' 道<span class="sp"></span>'
-        : '⚠️ 还没有菜单，下面是<b>示例菜品</b><span class="sp"></span>'+
-          '<button type="button" id="goUpload">💬 去传一份菜单</button>';
+        ? '🗂️ 菜单来源：<b>'+MENU.src+'</b> · '+MENU.list.length+' 道菜 · 含牛肉 '+
+          MENU.list.filter(function(d){return d[4];}).length+' 道 · 投放中 '+
+          MENU.list.filter(function(d){return CAMP[d[0]];}).length+' 道<span class="sp"></span>'
+        : '⚠️ 还没有菜单，下面是<b>示例菜品</b> —— 从聊天里 📎 传一份就会存到这里<span class="sp"></span>'+
+          '<button type="button" id="goUpload">💬 去传菜单</button>';
       var gu=src.querySelector("#goUpload");
       if(gu) gu.addEventListener("click",function(){ var f=document.getElementById("fabChat"); if(f) f.click(); });
+    }
+    /* 菜单总表 */
+    var tb=document.getElementById("menuBody");
+    if(tb){
+      tb.innerHTML=MENU.list.map(function(d){
+        var fc=d[3]/d[2], camp=CAMP[d[0]];
+        return '<tr'+(d[6]!=="在售"?' style="opacity:.55"':'')+'>'+
+          '<td>'+d[0]+'</td><td>'+d[1]+'</td>'+
+          '<td class="n">'+d[2].toFixed(2)+'</td>'+
+          '<td class="n">'+(fc*100).toFixed(0)+'%</td>'+
+          '<td>'+(d[4]?'<span class="tag t-dead">含牛肉</span>':'—')+'</td>'+
+          '<td>'+(d[5]?'<span class="tag t-star">素食可</span>':'—')+'</td>'+
+          '<td>'+(camp?'<span class="tag t-pot" title="'+camp[1]+'">📣 '+camp[0]+'</span>':'—')+'</td>'+
+          '<td>'+d[6]+'</td></tr>';
+      }).join("");
     }
   };
   var ALLTOOLS=["get_latest_analysis","get_margin_quadrant","get_menu_cost","calc_promo_margin",
@@ -1428,6 +1493,45 @@ why   = llm.explain(facts)    # 解释：交给 LLM
   window.__openAgent=openModal;
   showAgent("hub");
 
+
+
+  /* ---- 营销日历 · 月视图 ---- */
+  (function(){
+    var box=document.getElementById("mcal"); if(!box) return;
+    var TODAY={y:2026,m:7,d:28};
+    var EV={
+      "2026-07-29":[["午市快闪 开跑","blue"]],
+      "2026-08-01":[["🖨️ 印刷截止","red"]],
+      "2026-08-11":[["午市快闪 结束","blue"]],
+      "2026-08-19":[["国庆投放 开跑","blue"]],
+      "2026-08-31":[["🇲🇾 Merdeka 国庆","green"]],
+      "2026-09-02":[["国庆投放 结束","blue"]],
+      "2026-09-16":[["Malaysia Day","green"]],
+      "2026-09-17":[["建议 08-17 前定稿","amber"]],
+      "2026-10-08":[["🖨️ 屠妖节印刷截止","red"]],
+      "2026-11-08":[["🪔 Deepavali 屠妖节","green"],["物料避开牛肉","red"]]
+    };
+    var y=2026, m=7;                      // 从 7 月开始（含今天）
+    function pad(n){return (n<10?"0":"")+n;}
+    function render(){
+      document.getElementById("calTitle").textContent=y+" 年 "+m+" 月";
+      var h='["一","二","三","四","五","六","日"]';
+      var html=["一","二","三","四","五","六","日"].map(function(w){return '<span class="wd">'+w+'</span>';}).join("");
+      var first=new Date(y,m-1,1), start=(first.getDay()+6)%7;   // 周一起
+      var days=new Date(y,m,0).getDate();
+      for(var i=0;i<start;i++) html+='<span class="mday out"></span>';
+      for(var d=1;d<=days;d++){
+        var key=y+"-"+pad(m)+"-"+pad(d);
+        var cls="mday"+((y===TODAY.y&&m===TODAY.m&&d===TODAY.d)?" today":"");
+        var evs=(EV[key]||[]).map(function(e){return '<span class="mev '+e[1]+'" title="'+e[0]+'">'+e[0]+'</span>';}).join("");
+        html+='<span class="'+cls+'"><span class="d">'+d+'</span>'+evs+'</span>';
+      }
+      box.innerHTML=html;
+    }
+    document.getElementById("calPrev").addEventListener("click",function(){ m--; if(m<1){m=12;y--;} render(); });
+    document.getElementById("calNext").addEventListener("click",function(){ m++; if(m>12){m=1;y++;} render(); });
+    render();
+  })();
 
   /* ---- 店长助理聊天（含 📎 上传）---- */
   (function(){
