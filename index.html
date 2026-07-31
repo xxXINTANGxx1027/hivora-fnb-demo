@@ -71,8 +71,10 @@ button{font-family:inherit;font-size:inherit;cursor:pointer;border:0;background:
 
 /* topbar */
 .main{display:flex;flex-direction:column;min-width:0;max-width:100%}
-.topbar{display:flex;align-items:center;gap:12px;padding:11px 24px;background:var(--surface);
+.topbar{display:flex;align-items:center;gap:12px;padding:11px 0;background:var(--surface);
         border-bottom:1px solid var(--line);position:sticky;top:0;z-index:15}
+.topbar>*{flex-shrink:0}
+.tbin{display:flex;align-items:center;gap:12px;width:100%;max-width:1280px;margin-inline:auto;padding:0 28px}
 .topbar .ttl b{font-size:15px}
 .topbar .ttl span{font-size:12px;color:var(--muted);margin-left:8px}
 .topbar .sp{flex:1}
@@ -83,8 +85,8 @@ button{font-family:inherit;font-size:inherit;cursor:pointer;border:0;background:
 .tbtn{font-size:12.5px;padding:6px 11px;border-radius:8px;border:1px solid var(--line);color:var(--muted);background:var(--surface)}
 .tbtn:hover{border-color:var(--blue);color:var(--blue)}
 
-.content{padding:24px 28px 64px;max-width:1160px}
-.content.wide{max-width:1240px}
+.content{padding:24px 28px 64px;max-width:1160px;margin-inline:auto;width:100%}
+.content.wide{max-width:1280px}
 .panel{display:none;animation:in .28s ease both}
 .panel.on{display:block}
 @keyframes in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
@@ -94,6 +96,8 @@ button{font-family:inherit;font-size:inherit;cursor:pointer;border:0;background:
 .head h2{font-size:26px;margin-top:5px}
 .head p{color:var(--muted);margin:6px 0 0;font-size:13.8px;max-width:66ch}
 
+/* 超宽屏：内容再宽一点，办公室看得更清 */
+@media(min-width:1700px){ .content{max-width:1320px} .content.wide{max-width:1480px} }
 /* 平板：侧栏收窄 */
 @media(max-width:1180px) and (min-width:1001px){
   .app{grid-template-columns:52px 200px minmax(0,1fr)}
@@ -122,6 +126,7 @@ button{font-family:inherit;font-size:inherit;cursor:pointer;border:0;background:
   .nv .ic{font-size:13px}
   .nvsep{display:none}
   .content{padding:18px 14px 112px}
+  .tbin{padding:0 14px}
   .search{display:none}
   .head h2{font-size:21px}
   .head p{font-size:13px}
@@ -530,7 +535,7 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
       <button class="nv" data-go="2"><span class="ic">📊</span><span class="sp">Weekly Report</span></button>
       <button class="nv" data-go="3"><span class="ic">🎯</span><span class="sp">Promotion Plans</span></button>
       <button class="nv" data-go="4"><span class="ic">🖨️</span><span class="sp">Material Review</span></button>
-      <button class="nv" data-go="5"><span class="ic">🕌</span><span class="sp">Race Rule Gate</span></button>
+      <button class="nv" data-go="5"><span class="ic">🍽️</span><span class="sp">Menu</span></button>
       <button class="nv" data-go="6"><span class="ic">📅</span><span class="sp">Marketing Calendar</span></button>
       <div class="nvsep">配置</div>
       <button class="nv" data-go="7"><span class="ic">👥</span><span class="sp">Customer Base</span></button>
@@ -540,10 +545,12 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
 
   <div class="main">
     <header class="topbar">
-      <span class="ttl"><b id="pgTitle">Agent Floor</b><span id="pgSub">团队工位 · 上传数据 · 店长助理</span></span>
-      <span class="sp"></span>
-      <span class="search">🔍 Search tasks, materials, customers…</span>
-      <span class="av">W</span>
+      <div class="tbin">
+        <span class="ttl"><b id="pgTitle">Agent Floor</b><span id="pgSub">团队工位 · 上传数据 · 店长助理</span></span>
+        <span class="sp"></span>
+        <span class="search">🔍 Search tasks, materials, customers…</span>
+        <span class="av">W</span>
+      </div>
     </header>
 
     <div class="content">
@@ -762,10 +769,11 @@ why   = llm.explain(facts)    # 解释：交给 LLM
 
     <!-- 5 Race Gate -->
     <section class="panel" id="p5">
-      <div class="head"><div class="eyebrow">营销流程 · Race Rule Gate</div><h2>在马来西亚，这个细节会出事</h2>
-        <p>牛肉的宣传不能投给印度裔客群。这条规则<b>不是写在提示词里祈祷 AI 记得，是编译进代码的</b>。自己试试。</p></div>
+      <div class="head"><div class="eyebrow">营销流程 · Menu</div><h2>菜单</h2>
+        <p>从聊天里 📎 传菜单，AI 就存到这里 —— 每道菜标好<b>含不含牛肉、素食可不可</b>。<br>族群铁律（Race Rule）就靠这些字段执行：<b>选一道菜试试能投给谁</b>。</p></div>
       <div class="card">
         <div class="menusrc" id="menuSrc"></div>
+        <div class="sect" style="margin:2px 0 10px"><span class="ic">🕌</span>族群规则测试 <small>Race Rule · 代码写死，不靠提示词</small></div>
         <div class="grid g2">
           <div><div class="lab">选一道菜 <span id="dishCount" style="color:var(--faint);font-weight:400"></span></div><div class="pick" id="pickDish">
             <button data-beef="1" aria-pressed="true">招牌炭烤牛肋排</button>
@@ -908,7 +916,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
   var TITLES=[["Today","今日看板 · 待办与动态"],["Agent Floor","团队工位 · 上传数据 · 店长助理"],
     ["Weekly Report","AI 周报 · 四象限与人潮"],
     ["Promotion Plans","促销方案 · 推谁与何时"],["Material Review","物料审批 · 确认/改/退"],
-    ["Race Rule Gate","族群铁律 · 代码级拦截"],["Marketing Calendar","营销日历 · 排期与印刷倒数"],
+    ["Menu","菜单 · 族群规则在这里生效"],["Marketing Calendar","营销日历 · 排期与印刷倒数"],
     ["Customer Base","客户库 · PDPA 合规"],["Usage","用量与成本"]];
   var panels=[].slice.call(document.querySelectorAll(".panel"));
   var navs=[].slice.call(document.querySelectorAll(".nv"));
@@ -1491,7 +1499,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
        go:6, btn:"查看营销日历 →"},
       {kw:["印度","素食","牛肉","族群","halal"],
        a:"⚠️ 先过铁律：<b>牛肉物料不能投印度裔 / 素食客群</b>。<br>系统会直接拦住 —— 不是我记性好，是代码写死的。",
-       go:5, btn:"看铁律 Gate →"}
+       go:5, btn:"看菜单 →"}
     ];
 
     function paint(m){
@@ -1548,7 +1556,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
           window.__menuStore(fname?fname.name:"菜单主数据.xlsx");
           setTimeout(function(){
             add("ai","🗂️ <b>菜单已存好</b>（19 道菜）。<br>每道菜都标了<b>含不含牛肉 / 素食可不可</b> —— "+
-                "以后做任何物料，族群定向会<b>自动用这份菜单来查</b>，不用你再提醒我。",5,"看铁律 Gate 怎么用它 →");
+                "以后做任何物料，族群定向会<b>自动用这份菜单来查</b>，不用你再提醒我。",5,"去看菜单 →");
           },520);
         }
         if(got.sales&&got.menu) setTimeout(offer,500);
