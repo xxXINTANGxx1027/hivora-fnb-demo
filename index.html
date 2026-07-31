@@ -628,7 +628,7 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
             <button class="btn btnsm" id="btnEdit">⚙️ Edit Agent</button>
           </div>
           <div class="isoscroll"><canvas id="floorCv" class="pxoffice" aria-label="像素办公室：AI 团队工位"></canvas></div>
-                    <div class="isohint">🖱️ 点小人 / 顶部状态条 / 右上角 Edit Agent → 看 agent profile　<span style='opacity:.7'>规格参考 pixel-agents (MIT)</span></div>
+                    <div class="isohint">🖱️ 点小人看 profile · 有活的坐在工位干，空闲的才会到处逛　<span style='opacity:.7'>规格参考 pixel-agents (MIT)</span></div>
         </div>
 
 
@@ -1150,14 +1150,22 @@ why   = llm.explain(facts)    # 解释：交给 LLM
 
     /* ---- 走动：在自己区域内巡逻（坐 → 走 → 站一会 → 回工位）---- */
     var SPEED=0.42;
+    /* 规则：有活的（busy/type/wait）坐在工位干活；空闲的（idle/done）才起来闲逛 */
     function move(p){
       if(reduce) return;
-      if(p.mv==="sit"||p.mv==="stand"){
+      var canRoam=(p.st==="idle"||p.st==="done");
+      if(!canRoam){
+        // 有活：不在工位就走回去，到了就坐下干活
+        if(Math.round(p.x)===p.hx&&Math.round(p.y)===p.hy){
+          p.x=p.hx; p.y=p.hy; p.sit=1; p.mv="sit"; p.step=0; return;
+        }
+        p.tx=p.hx; p.ty=p.hy; p.mv="walk"; p.sit=0;
+      }else if(p.mv==="sit"||p.mv==="stand"){
         if(--p.wait>0) return;
         p.tx=p.spots[p.si][0]; p.ty=p.spots[p.si][1];
         p.si=(p.si+1)%p.spots.length; p.mv="walk"; p.sit=0; return;
       }
-      var dx=p.tx-p.x, dy=p.ty-p.y;                 // 先横后纵，像沿过道走
+      var dx=p.tx-p.x, dy=p.ty-p.y;
       if(Math.abs(dx)>SPEED){ p.x+=dx>0?SPEED:-SPEED; p.face=dx>0?1:-1; p.step++; return; }
       p.x=p.tx;
       if(Math.abs(dy)>SPEED){ p.y+=dy>0?SPEED:-SPEED; p.step++; return; }
