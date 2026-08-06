@@ -11,7 +11,7 @@
 <style>*{margin:0;padding:0}</style>
 </head>
 <body>
-
+<title>Hivora F&B Marketing · Demo</title>
 <style>
 :root{
   --bg:#F7F8FA;
@@ -576,8 +576,8 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
       <div class="nvsep">营销流程</div>
       <button class="nv" data-go="2"><span class="ic">📊</span><span class="sp">Weekly Report</span></button>
       <button class="nv" data-go="3"><span class="ic">🎯</span><span class="sp">Promotion Plans</span></button>
-      <button class="nv" data-go="4"><span class="ic">🖨️</span><span class="sp">Material Review</span></button>
-      <button class="nv" data-go="5"><span class="ic">🍽️</span><span class="sp">Menu</span></button>
+      <button class="nv" data-go="4"><span class="ic">🖨️</span><span class="sp">Approvals</span></button>
+      <button class="nv" data-go="5"><span class="ic">🍽️</span><span class="sp">Asset Library</span></button>
       <button class="nv" data-go="6"><span class="ic">📅</span><span class="sp">Marketing Calendar</span></button>
       <div class="nvsep">配置</div>
       <button class="nv" data-go="7"><span class="ic">👥</span><span class="sp">Customer Base</span></button>
@@ -605,7 +605,7 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
         <div class="card kpi"><div class="lab">待确认</div><div class="v" style="color:var(--amber)">2</div><div class="s">物料 1 · 排期 1</div></div>
         <div class="card kpi"><div class="lab">本周营收</div><div class="v">13,867</div><div class="s">RM · +8% vs 上周</div></div>
         <div class="card kpi"><div class="lab">印刷倒数</div><div class="v" style="color:var(--red)">4 天</div><div class="s">国庆物料 08-01 截止</div></div>
-        <div class="card kpi"><div class="lab">本月 AI 成本</div><div class="v">RM 41</div><div class="s">DeepSeek · 可控</div></div>
+        <div class="card kpi"><div class="lab">今日 AI 花费</div><div class="v" style="font-size:21px">RM 3.10</div><div class="s">本月累计 RM 41 · DeepSeek</div></div>
       </div>
       <div class="card" style="margin-top:13px">
         <div class="sect"><span class="ic">📥</span>审批箱 <small>只有这里能放行真实动作</small></div>
@@ -654,6 +654,24 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
         </div>
       </dialog>
 
+
+      <div class="card" style="margin-top:13px">
+        <div class="sect"><span class="ic">🏢</span>部门 <small>现在只开营销部，其余为路线图</small></div>
+        <div style="margin-top:8px">
+          <div class="inbox"><span class="pill" style="background:var(--blue);color:#fff">01</span>
+            <span class="sp"><b>Marketing 营销部</b> <span style="font-size:12px;color:var(--muted)">· 已上线</span><br>
+            <span style="font-size:12px;color:var(--muted)">总管 · 数据管家 · 销售 · 营销设计师 &nbsp;—&nbsp; 4 agents</span></span>
+            <span style="font-size:12px;color:var(--green)">▶ 你在这里</span></div>
+          <div class="inbox" style="opacity:.62"><span class="pill">02</span>
+            <span class="sp"><b>HR &amp; Scheduling 人事排班</b> <span style="font-size:12px;color:var(--muted)">· 路线图</span><br>
+            <span style="font-size:12px;color:var(--muted)">按人潮热力排班 · 工时成本</span></span>
+            <span style="font-size:12px;color:var(--muted)">未开</span></div>
+          <div class="inbox" style="opacity:.62"><span class="pill">03</span>
+            <span class="sp"><b>Economic Insights 经济洞察</b> <span style="font-size:12px;color:var(--muted)">· 路线图</span><br>
+            <span style="font-size:12px;color:var(--muted)">食材涨价预警 · 竞品价位</span></span>
+            <span style="font-size:12px;color:var(--muted)">未开</span></div>
+        </div>
+      </div>
 
       <div class="note" style="margin-top:13px"><b>最小权限：</b>职责越窄越管得住。危险能力（终端 / 代码执行 / 浏览器 / 文件）<b>全部 agent 一律关闭</b>；真实动作只有老板的审批台能放行。</div>
 
@@ -754,10 +772,23 @@ why   = llm.explain(facts)    # 解释：交给 LLM
 
     <!-- 4 Material Review -->
     <section class="panel" id="p4">
-      <div class="head"><div class="eyebrow">营销流程 · Material Review</div><h2>AI 做完了，但发不发你说了算</h2>
+      <div class="head"><div class="eyebrow">营销流程 · APPROVALS</div><h2>AI 做完了，但发不发你说了算</h2>
         <p>文案、版式、必备元素一次出好。但下面这排按钮 —— <b>确认 / 改 / 退</b> —— 才是这套系统的核心。</p></div>
       <div class="grid g2">
         <div>
+          <div class="card" style="margin-bottom:11px">
+            <div class="row" style="justify-content:space-between;align-items:flex-start">
+              <div><b style="font-size:15px">午市快闪 · 甜蜜加价购</b><br>
+                <span style="font-size:12px;color:var(--muted)">2026-08-07 · AI plan</span></div>
+              <span class="pill" style="background:var(--amber);color:#fff">待确认</span>
+            </div>
+            <div class="grid g2" style="margin-top:11px;gap:9px">
+              <div><div class="lab">TIMING</div><div style="font-size:13px">下周三午市（2026-08-12）</div></div>
+              <div><div class="lab">FORMAT</div><div style="font-size:13px">加价购 · 折后 RM38</div></div>
+              <div><div class="lab">MARGIN</div><div style="font-size:19px;font-family:var(--mono);color:var(--green)">61%</div></div>
+              <div><div class="lab">TARGET GROUP</div><div style="font-size:13px">华人 · 马来 <span style="color:var(--muted)">（无牛肉，全族群可）</span></div></div>
+            </div>
+          </div>
           <div class="lab" style="margin-bottom:9px">物料预览 <span id="ver" style="color:var(--blue)">v1</span></div>
           <div class="poster">
             <div class="art"><span>菜品实拍位<br><span style="font-size:10.5px;opacity:.75">接出图 API / Canva 模板后替换为成品图</span></span></div>
@@ -811,8 +842,13 @@ why   = llm.explain(facts)    # 解释：交给 LLM
 
     <!-- 5 Race Gate -->
     <section class="panel" id="p5">
-      <div class="head"><div class="eyebrow">营销流程 · Menu</div><h2>菜单</h2>
-        <p>从聊天里 📎 传菜单，AI 就存到这里 —— 每道菜标好<b>含不含牛肉、素食可不可</b>。<br>族群铁律（Race Rule）就靠这些字段执行：<b>选一道菜试试能投给谁</b>。</p></div>
+      <div class="head"><div class="eyebrow">营销流程 · ASSET LIBRARY</div><h2>素材库</h2>
+        <p>存放并浏览餐厅的 <b>菜单 · 菜品照 · 品牌素材</b>。从聊天里 📎 传菜单，AI 就存到这里 —— 每道菜标好<b>含不含牛肉、素食可不可</b>。<br>族群铁律（Race Rule）就靠这些字段执行：<b>选一道菜试试能投给谁</b>。</p></div>
+      <div class="row" style="gap:7px;margin-bottom:11px">
+        <span class="pill" style="background:var(--blue);color:#fff">🍽️ 菜单</span>
+        <span class="pill">📷 菜品照 <b>12</b></span>
+        <span class="pill">🎨 品牌素材 <b>5</b></span>
+      </div>
       <div class="card">
         <div class="sect"><span class="ic">🍽️</span>菜单总表 <small>售价 · Food Cost · 族群字段 · 投放中的广告</small></div>
         <div class="scroll" style="margin-top:10px;max-height:340px;overflow-y:auto">
@@ -957,7 +993,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
   <div class="chatpanel" id="chatPanel" hidden>
     <header class="cp-hd">
       <span class="cp-av">💬</span>
-      <span class="cp-id"><b>店长助理</b><span><i class="on"></i>在线 · 随时问</span></span>
+      <span class="cp-id"><b>店长助理</b><span><i class="on"></i>在线 · 只读数据，动作等你批</span></span>
       <button class="cp-ic" id="btnHist" aria-label="对话历史" title="对话历史">🕘</button>
       <button class="cp-ic" id="btnNew" aria-label="新对话" title="新对话">✏️</button>
       <button class="cp-ic" id="chatMin" aria-label="收起" title="收起">─</button>
@@ -989,7 +1025,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
 
   var TITLES=[["Today","今日看板 · 待办与动态"],["Agent Floor","团队工位 · 上传数据 · 店长助理"],
     ["Weekly Report","AI 周报 · 四象限与人潮"],
-    ["Promotion Plans","促销方案 · 推谁与何时"],["Material Review","物料审批 · 确认/改/退"],
+    ["Promotion Plans","促销方案 · 推谁与何时"],["Approvals","审批箱 · 确认 / 改 / 退"],
     ["Menu","菜单 · 族群规则在这里生效"],["Marketing Calendar","营销日历 · 排期与印刷倒数"],
     ["Customer Base","客户库 · PDPA 合规"],["Usage","用量与成本"]];
   var panels=[].slice.call(document.querySelectorAll(".panel"));
