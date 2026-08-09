@@ -11,7 +11,7 @@
 <style>*{margin:0;padding:0}</style>
 </head>
 <body>
-<!-- build 2026-08-09 v3 · UI 对齐 agent.hivorai.ai -->
+<!-- build 2026-08-09 v3.1 · 历史侧栏 + Brand Kit 会话 -->
 <title>Hivora F&B Marketing · Demo</title>
 <style>
 :root{
@@ -599,6 +599,21 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
 .ag-meta span{font-family:var(--mono);font-size:10.5px;padding:2px 8px;border-radius:99px;
   background:var(--blue-soft);color:var(--blue)}
 .ag-meta span.cost{background:#F3F0FF;color:#6D5BD0}
+
+
+/* 历史 = 并排侧栏（宽屏）；窄屏仍覆盖 */
+.chatpanel.hist{width:596px;display:grid;grid-template-columns:200px minmax(0,1fr);
+  grid-template-rows:auto minmax(0,1fr) auto auto}
+.chatpanel.hist .cp-hd{grid-column:1/-1}
+.chatpanel.hist .histpane{position:static;inset:auto;z-index:auto;grid-column:1;grid-row:2/span 3;
+  border-right:1px solid var(--line);animation:none;background:var(--surface-2)}
+.chatpanel.hist .chatlog{grid-column:2;grid-row:2}
+.chatpanel.hist .quick{grid-column:2;grid-row:3}
+.chatpanel.hist .chatin{grid-column:2;grid-row:4}
+@media(max-width:640px){
+  .chatpanel.hist{display:flex;width:100%;grid-template-columns:none}
+  .chatpanel.hist .histpane{position:absolute;inset:59px 0 0;border-right:0;z-index:3;background:var(--surface)}
+}
 
 </style>
 
@@ -1802,6 +1817,12 @@ why   = llm.explain(facts)    # 解释：交给 LLM
         {who:"ai",html:"做好了，营销设计师出的 v2 —— 价格已按你的意见改成 RM32。<br>铁律 Gate 都过了：Halal 标 ✓ 二维码 ✓ 有效期在投放窗口内 ✓",go:4,btn:"去审批物料 →"},
         {who:"me",html:"印刷什么时候要发"},
         {who:"ai",html:"<b>8 月 1 日截止</b> —— 国庆 8/31，印刷提前一个月。还有 4 天。"}]},
+      {title:"品牌素材上传 · Brand Kit", time:"7月22日", msgs:[
+        {who:"ai",html:HELLO},
+        {who:"me",html:"📎 warisan-logo.png · 品牌色.pdf · 菜品照 ×12"},
+        {who:"ai",html:"收到！数据管家已归档到<b>素材库</b>：<br>· Logo（透明底）✓<br>· 品牌色 主 #B4451F / 辅 #1F2937 ✓<br>· 菜品照 12 张，已按菜名对上菜单 ✓<br>之后所有海报、社媒图<b>自动套你的 Brand Kit</b>，不用每次交代。",go:5,btn:"去素材库看看 →"},
+        {who:"me",html:"字体用什么"},
+        {who:"ai",html:"标题 Poppins SemiBold，正文 Noto Sans（中文思源黑体）—— 从你传的旧菜单上学的。要换随时说。"}]},
       {title:"上周销售分析", time:"7月25日", msgs:[
         {who:"ai",html:HELLO},
         {who:"me",html:"上周哪个菜最赚钱"},
@@ -1824,7 +1845,8 @@ why   = llm.explain(facts)    # 解释：交给 LLM
     }
     function openSession(i){
       if(cur.msgs.filter(function(m){return m.who==="me";}).length && SESSIONS.indexOf(cur)<0) SESSIONS.unshift(cur);
-      cur=SESSIONS[i]; renderLog(); hist(false);
+      cur=SESSIONS[i]; renderLog();
+      if(window.innerWidth>640){ hist(true); } else { hist(false); }
     }
     var hp=null, hpl=null;
     function hist(v){
@@ -1841,6 +1863,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
           b.addEventListener("click",function(){openSession(parseInt(b.getAttribute("data-s"),10));});});
       }
       hp.hidden=!v;
+      document.getElementById("chatPanel").classList.toggle("hist", v && window.innerWidth>640);
     }
 
     var QUICK=["📎 传销售表 + 菜单","这周哪个卖得好","给招牌牛肉面做张海报","给印度客人推牛肉面"];
