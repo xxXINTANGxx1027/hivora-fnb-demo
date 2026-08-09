@@ -11,7 +11,7 @@
 <style>*{margin:0;padding:0}</style>
 </head>
 <body>
-<!-- build 2026-08-09 v3.7 · 向导活化 + Library 三合一可上传 -->
+<!-- build 2026-08-09 v3.8 · 方案卡一体化（material 装进 promotion 里）-->
 <title>Hivora F&B Marketing · Demo</title>
 <style>
 :root{
@@ -914,95 +914,84 @@ why   = llm.explain(facts)    # 解释：交给 LLM
       <div class="head" style="position:relative"><div class="eyebrow">营销流程 · Promotion Plans</div><h2>推提拉米苏，不是推牛肉面</h2>
         <p>牛肉面本来就卖得好，打折等于送钱。潜力品毛利高但卖得慢 —— 打折还有得赚，还能把人拉进店。</p>
         <button class="btn btn-go pnew-btn" id="promoAdd">＋ 新建促销</button></div>
-      <div class="grid g2">
-        <div class="card">
-          <div class="sect"><span class="ic">🎯</span>AI 促销建议</div>
-          <h3 style="font-size:17px;margin:10px 0 3px">主推：芒果糯米饭 + 柠檬薄荷饮</h3>
-          <p style="color:var(--muted);font-size:12.8px;margin:0 0 13px">午市低谷时段套餐 · 目标：引流拉新</p>
+      <div class="card">
+        <div class="row" style="justify-content:space-between;align-items:flex-start">
+          <div><b style="font-size:16px">午市快闪 · 甜蜜加价购</b><br>
+            <span style="font-size:12.3px;color:var(--muted)">2026-08-07 · AI plan · 主推 芒果糯米饭 + 柠檬薄荷饮（午市低谷套餐 · 引流拉新）</span></div>
+          <span class="pill" style="background:var(--amber);color:#fff">待确认</span>
+        </div>
+        <div class="grid g2" style="margin-top:12px;gap:9px">
+          <div><div class="lab">TIMING</div><div style="font-size:13px">下周三午市（2026-08-12）· 午市 12:00–14:30 占比仅 43%</div></div>
+          <div><div class="lab">FORMAT</div><div style="font-size:13px">套餐加价购 · 折后 RM38（原价 RM45）</div></div>
+          <div><div class="lab">MARGIN</div><div style="font-size:19px;font-family:var(--mono);color:var(--green)">61%</div></div>
+          <div><div class="lab">TARGET GROUP</div><div style="font-size:13px">华人 · 马来 <span style="color:var(--muted)">（无牛肉，全族群可）</span></div></div>
+        </div>
+        <details class="inv" style="margin-top:11px"><summary>🤖 AI 为什么这么定</summary><div class="body">
           <table><tbody>
             <tr><td style="color:var(--muted)">为什么选它</td><td>潜力象限（低量高毛利），FC 31% / 27%</td></tr>
-            <tr><td style="color:var(--muted)">打什么时段</td><td>午市 12:00–14:30（占比仅 43%）</td></tr>
-            <tr><td style="color:var(--muted)">形式</td><td>套餐加价购 · 折后毛利率 ≥ 40%</td></tr>
-            <tr><td style="color:var(--muted)">目标族群</td><td>全族群可推（无肉）</td></tr>
-            <tr><td style="color:var(--muted)">力度</td><td><b style="color:var(--amber)">待老板拍板</b></td></tr>
+            <tr><td style="color:var(--muted)">打什么时段</td><td>午市 12:00–14:30（占比仅 43%）—— 打低谷不打高峰</td></tr>
+            <tr><td style="color:var(--muted)">形式</td><td>套餐加价购 · 折后毛利率 ≥ 40% 保险线</td></tr>
+            <tr><td style="color:var(--muted)">目标族群</td><td>全族群可推（无肉）· check_race_rule 已过</td></tr>
+            <tr><td style="color:var(--muted)">力度</td><td><b style="color:var(--amber)">待老板拍板</b> —— agent 工具白名单里没有「改价」</td></tr>
           </tbody></table>
-        </div>
-        <div class="card">
-          <div class="sect"><span class="ic">📆</span>投放窗口 <small>代码算的</small></div>
-          <div class="kpi" style="margin-top:11px"><div class="lab">由头</div><div class="v" style="font-size:16px">Hari Merdeka 国庆日</div><div class="s">2026-08-31 · 还有 34 天</div></div>
-          <hr style="border:0;border-top:1px solid var(--line-2);margin:14px 0">
-          <div class="grid g2">
-            <div><div class="lab">投放期</div><div class="num" style="font-size:14px;margin-top:5px">08-19 → 09-02</div></div>
-            <div><div class="lab">印刷截止</div><div class="num" style="font-size:14px;margin-top:5px;color:var(--red)">08-01</div></div>
+        </div></details>
+        <details class="inv"><summary>📆 投放窗口（代码算的）</summary><div class="body">
+          由头 <b>Hari Merdeka 国庆日</b>（2026-08-31 · 还有 34 天）<br>
+          投放期 <span class="num">08-19 → 09-02</span> · 印刷截止 <b class="num" style="color:var(--red)">08-01</b><br>
+          <span style="color:var(--muted)"><b>为什么 8/19 开跑：</b>国庆 8/31，印刷提前一个月 → 8/1 前发印刷店，8/19 预热。这个提前期写死在规则里，AI 算不错。</span>
+        </div></details>
+
+        <div class="sect" style="margin-top:16px;border-top:1px solid var(--line-2);padding-top:14px"><span class="ic">🖨️</span>物料 · Material <small>就在方案里 · 确认 / 改 / 退 是这套系统的核心</small><span class="sp" style="flex:1"></span><span class="lab">物料预览 <span id="ver" style="color:var(--blue)">v1</span></span></div>
+        <div class="grid g2" style="margin-top:11px">
+          <div>
+            <div class="poster">
+              <div class="art"><span>菜品实拍位<br><span style="font-size:10.5px;opacity:.75">接出图 API / Canva 模板后替换为成品图</span></span></div>
+              <div class="body">
+                <div class="ttl" id="pTitle">午市快闪 · 甜蜜加价购</div>
+                <div class="copy" id="pCopy">午市来店，主食加购芒果糯米饭 + 柠檬薄荷饮，甜一口再上班。扫码或 WhatsApp 我们预订。</div>
+                <div class="price">RM <span id="pPrice">38</span><s>RM 45</s></div>
+                <div class="foot">
+                  <div>Warisan Grill · Halal ✓<br>Jalan Ampang, KL · 11:00–22:00<br>WhatsApp 012-345 6789<br>有效期至 <span class="num">2026-09-02</span></div>
+                  <div class="qr" aria-label="获客二维码"></div>
+                </div>
+              </div>
+            </div>
+            <div class="row" style="gap:7px;margin-top:10px">
+              <button class="btn" id="btnDl" type="button">⬇ 下载 PNG</button>
+              <button class="btn" id="btnRegen" type="button">🔄 重新生成</button>
+              <span id="dlMsg" style="font-size:12px;color:var(--green);align-self:center"></span>
+            </div>
           </div>
-          <div class="note warn" style="margin-top:14px"><b>为什么 8/19 开跑：</b>国庆 8/31，印刷提前一个月 → 8/1 前发印刷店，8/19 预热。<b>这个提前期写死在规则里，AI 算不错。</b></div>
+          <div>
+            <div class="card" style="background:var(--surface-2)">
+              <div class="sect"><span class="ic">🟨</span>铁律 Gate 已通过 <small>代码自动检查</small></div>
+              <ul class="check">
+                <li><span class="ok">✓</span>店名 · 地址 · 营业时间</li>
+                <li><span class="ok">✓</span>价格来自数据（未自编）</li>
+                <li><span class="ok">✓</span>有效期在投放窗口内</li>
+                <li><span class="ok">✓</span>Halal 标</li>
+                <li><span class="ok">✓</span>获客二维码 + WhatsApp</li>
+                <li><span class="ok">✓</span>族群规则（无肉 · 全族群可推）</li>
+              </ul>
+              <div class="note" style="margin-top:12px;font-size:12.8px">不合格的稿<b>自动回炉重出，根本到不了老板面前</b>。你看到的都是已经过关的。</div>
+            </div>
+            <div class="card" style="margin-top:13px">
+              <div class="sect"><span class="ic">✋</span>等你决定</div>
+              <div class="row" style="margin-top:11px">
+                <button class="btn btn-go" id="bOk">✓ 确认 · 印刷 + 发布</button>
+                <button class="btn btn-warn" id="bEdit">✎ 改</button>
+                <button class="btn btn-stop" id="bNo">✕ 退</button>
+              </div>
+              <div id="apResult" style="margin-top:12px;font-size:13.3px"></div>
+            </div>
+          </div>
         </div>
       </div>
-      <details class="inv"><summary>💼 AI 出建议，但定不了力度</summary><div class="body">
+      <details class="inv" style="margin-top:13px"><summary>💼 AI 出建议，但定不了力度</summary><div class="body">
         折扣打多少、活动做不做 —— <b>永远是老板拍板</b>。agent 的工具白名单里<b>根本没有「改价」</b>。<br>
         时间也不靠 AI 记：今天几号、接下来什么节日、印刷提前期多久，都是代码提供的上下文。<br>
         <span style="color:var(--muted)">（早期没喂时间上下文时，AI 在 7 月建议过「情人节套餐」和美国「感恩节」—— 现在这类错误由代码 Gate 直接拦掉。）</span>
       </div></details>
-      <div class="sect" style="margin-top:20px;font-size:15px"><span class="ic">🖨️</span>物料审批 · Material Review <small>方案批完，物料就在下面 —— 一页搞定</small></div>
-      <p style="font-size:13px;color:var(--muted);margin:4px 0 10px">文案、版式、必备元素一次出好。但下面这排按钮 —— <b>确认 / 改 / 退</b> —— 才是这套系统的核心。</p>
-      <div class="grid g2">
-        <div>
-          <div class="card" style="margin-bottom:11px">
-            <div class="row" style="justify-content:space-between;align-items:flex-start">
-              <div><b style="font-size:15px">午市快闪 · 甜蜜加价购</b><br>
-                <span style="font-size:12px;color:var(--muted)">2026-08-07 · AI plan</span></div>
-              <span class="pill" style="background:var(--amber);color:#fff">待确认</span>
-            </div>
-            <div class="grid g2" style="margin-top:11px;gap:9px">
-              <div><div class="lab">TIMING</div><div style="font-size:13px">下周三午市（2026-08-12）</div></div>
-              <div><div class="lab">FORMAT</div><div style="font-size:13px">加价购 · 折后 RM38</div></div>
-              <div><div class="lab">MARGIN</div><div style="font-size:19px;font-family:var(--mono);color:var(--green)">61%</div></div>
-              <div><div class="lab">TARGET GROUP</div><div style="font-size:13px">华人 · 马来 <span style="color:var(--muted)">（无牛肉，全族群可）</span></div></div>
-            </div>
-          </div>
-          <div class="lab" style="margin-bottom:9px">物料预览 <span id="ver" style="color:var(--blue)">v1</span></div>
-          <div class="poster">
-            <div class="art"><span>菜品实拍位<br><span style="font-size:10.5px;opacity:.75">接出图 API / Canva 模板后替换为成品图</span></span></div>
-            <div class="body">
-              <div class="ttl" id="pTitle">午市快闪 · 甜蜜加价购</div>
-              <div class="copy" id="pCopy">午市来店，主食加购芒果糯米饭 + 柠檬薄荷饮，甜一口再上班。扫码或 WhatsApp 我们预订。</div>
-              <div class="price">RM <span id="pPrice">38</span><s>RM 45</s></div>
-              <div class="foot">
-                <div>Warisan Grill · Halal ✓<br>Jalan Ampang, KL · 11:00–22:00<br>WhatsApp 012-345 6789<br>有效期至 <span class="num">2026-09-02</span></div>
-                <div class="qr" aria-label="获客二维码"></div>
-              </div>
-            </div>
-          </div>
-          <div class="row" style="gap:7px;margin-top:10px">
-            <button class="btn" id="btnDl" type="button">⬇ 下载 PNG</button>
-            <button class="btn" id="btnRegen" type="button">🔄 重新生成</button>
-            <span id="dlMsg" style="font-size:12px;color:var(--green);align-self:center"></span>
-          </div>
-        </div>
-        <div>
-          <div class="card">
-            <div class="sect"><span class="ic">🟨</span>铁律 Gate 已通过 <small>代码自动检查</small></div>
-            <ul class="check">
-              <li><span class="ok">✓</span>店名 · 地址 · 营业时间</li>
-              <li><span class="ok">✓</span>价格来自数据（未自编）</li>
-              <li><span class="ok">✓</span>有效期在投放窗口内</li>
-              <li><span class="ok">✓</span>Halal 标</li>
-              <li><span class="ok">✓</span>获客二维码 + WhatsApp</li>
-              <li><span class="ok">✓</span>族群规则（无肉 · 全族群可推）</li>
-            </ul>
-            <div class="note" style="margin-top:12px;font-size:12.8px">不合格的稿<b>自动回炉重出，根本到不了老板面前</b>。你看到的都是已经过关的。</div>
-          </div>
-          <div class="card" style="margin-top:13px">
-            <div class="sect"><span class="ic">✋</span>等你决定</div>
-            <div class="row" style="margin-top:11px">
-              <button class="btn btn-go" id="bOk">✓ 确认 · 印刷 + 发布</button>
-              <button class="btn btn-warn" id="bEdit">✎ 改</button>
-              <button class="btn btn-stop" id="bNo">✕ 退</button>
-            </div>
-            <div id="apResult" style="margin-top:12px;font-size:13.3px"></div>
-          </div>
-        </div>
-      </div>
       <details class="inv"><summary>💼 HITL 无例外 —— 这是护城河，不是功能</summary><div class="body">
         agent 手上<b>根本没有「发布」这个按钮</b>。它只能产出一份 <code>ActionSpec</code>（申请单）；老板 approve 之后，才由独立的 <code>executor</code> 执行。<br>
         再加一层幂等键：同一活动重复触发会被跳过 —— <b>重复群发 = 被客人拉黑</b>，代价太高，不能靠 AI 自觉。
