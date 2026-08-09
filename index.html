@@ -11,7 +11,7 @@
 <style>*{margin:0;padding:0}</style>
 </head>
 <body>
-<!-- build 2026-08-09 v3.9 · 方案全列表：每条 promotion 都带 poster -->
+<!-- build 2026-08-09 v4.0 · Promotion 手风琴：收起一行/展开见全部，每条必有图 -->
 <title>Hivora F&B Marketing · Demo</title>
 <style>
 :root{
@@ -716,6 +716,52 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
 .st-pending{background:#FEF3C7;color:#B45309}.st-approved{background:#D1FAE5;color:#047857}
 .st-rejected{background:#FEE2E2;color:#B91C1C}.st-draft{background:var(--surface-2);color:var(--muted)}
 
+
+/* master-detail：左列表右详情 */
+.mdwrap{display:grid;grid-template-columns:264px minmax(0,1fr);gap:13px;align-items:start}
+@media(max-width:900px){.mdwrap{grid-template-columns:1fr}.plannav{display:flex;overflow-x:auto;gap:8px}.plannav .pni{min-width:200px}}
+.plannav{padding:10px}
+.pni{display:block;width:100%;text-align:left;padding:11px 12px;border-radius:10px;cursor:pointer;border:1px solid transparent;margin-bottom:4px;background:none}
+.pni:hover{background:var(--surface-2)}
+.pni[aria-current="true"]{background:var(--blue-soft);border-color:var(--blue-line)}
+.pni b{font-size:13px;display:block;line-height:1.35}
+.pni .pni-sub{font-size:11.3px;color:var(--muted);display:flex;justify-content:space-between;margin-top:3px;gap:6px}
+.pni .st-pill{font-size:10px;padding:2px 8px}
+
+
+/* Promotion 手风琴：收起一行，展开见全部 */
+.pacc{border:1px solid var(--line);border-radius:13px;background:var(--surface);margin-bottom:10px;overflow:hidden}
+.pacc-hd{display:flex;align-items:center;gap:12px;padding:13px 16px;cursor:pointer;user-select:none}
+.pacc-hd:hover{background:var(--surface-2)}
+.pacc-hd .pa-thumb{width:44px;height:44px;border-radius:10px;flex-shrink:0;display:grid;place-items:center;font-size:22px;
+  background:linear-gradient(135deg,var(--blue-soft),#F4EEE4);border:1px solid var(--line)}
+.pacc-hd .pa-t{flex:1;min-width:0}
+.pacc-hd .pa-t b{font-size:13.8px;display:block}
+.pacc-hd .pa-t span{font-size:11.8px;color:var(--muted)}
+.pacc-hd .pa-m{font-family:var(--mono);font-size:12.5px;color:var(--green);flex-shrink:0}
+.pacc-hd .chev{color:var(--muted);transition:.18s;flex-shrink:0}
+.pacc.open .chev{transform:rotate(90deg)}
+.pacc-body{display:none;border-top:1px solid var(--line-2);padding:15px 16px}
+.pacc.open .pacc-body{display:block}
+.pa-grid{display:grid;grid-template-columns:190px minmax(0,1fr);gap:16px;align-items:start}
+@media(max-width:760px){.pa-grid{grid-template-columns:1fr}}
+.pa-img{border:1px solid var(--line);border-radius:11px;overflow:hidden;background:#fff}
+.pa-img .mp-hd{background:#B4451F;color:#fff;font-size:9.5px;text-align:center;padding:4px;font-weight:650}
+.pa-img .mp-art{display:grid;place-items:center;font-size:52px;padding:18px 0 8px}
+.pa-img .mp-pr{text-align:center;font-family:var(--mono);font-weight:700;font-size:17px;color:#B4451F}
+.pa-img .mp-pr s{font-size:11px;color:var(--muted);margin-left:4px}
+.pa-img .mp-ft{font-size:9px;color:var(--muted);text-align:center;padding:4px 6px 8px}
+.pa-img.menu-src .mp-hd{background:var(--surface-2);color:var(--muted)}
+.pa-imgnote{font-size:11.3px;color:var(--muted);margin-top:6px;text-align:center}
+.pa-fields{display:grid;grid-template-columns:1fr 1fr;gap:7px 13px;font-size:12.8px}
+.pa-fields .lab{margin-bottom:1px}
+.pa-copy{margin-top:10px;padding:10px 12px;border-radius:9px;background:var(--surface-2);font-size:12.8px}
+.pa-ch{display:flex;gap:5px;flex-wrap:wrap;margin-top:10px}
+.pa-ch .pill{font-size:11px}
+.pa-acts{display:flex;gap:7px;flex-wrap:wrap;margin-top:13px;align-items:center}
+.pa-acts .btn{font-size:12.3px}
+.pa-msg{font-size:12.5px;font-weight:650}
+
 </style>
 
 <div class="app">
@@ -947,80 +993,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
         <button class="stachip" data-st="rejected">已拒 <b>1</b></button>
         <button class="stachip" data-st="draft">草稿 <b>2</b></button>
       </div>
-      <div class="card planitem" data-status="pending">
-        <div class="row" style="justify-content:space-between;align-items:flex-start">
-          <div><b style="font-size:16px">午市快闪 · 甜蜜加价购</b><br>
-            <span style="font-size:12.3px;color:var(--muted)">2026-08-07 · AI plan · 主推 芒果糯米饭 + 柠檬薄荷饮（午市低谷套餐 · 引流拉新）</span></div>
-          <span class="pill" style="background:var(--amber);color:#fff">待确认</span>
-        </div>
-        <div class="grid g2" style="margin-top:12px;gap:9px">
-          <div><div class="lab">TIMING</div><div style="font-size:13px">下周三午市（2026-08-12）· 午市 12:00–14:30 占比仅 43%</div></div>
-          <div><div class="lab">FORMAT</div><div style="font-size:13px">套餐加价购 · 折后 RM38（原价 RM45）</div></div>
-          <div><div class="lab">MARGIN</div><div style="font-size:19px;font-family:var(--mono);color:var(--green)">61%</div></div>
-          <div><div class="lab">TARGET GROUP</div><div style="font-size:13px">华人 · 马来 <span style="color:var(--muted)">（无牛肉，全族群可）</span></div></div>
-        </div>
-        <details class="inv" style="margin-top:11px"><summary>🤖 AI 为什么这么定</summary><div class="body">
-          <table><tbody>
-            <tr><td style="color:var(--muted)">为什么选它</td><td>潜力象限（低量高毛利），FC 31% / 27%</td></tr>
-            <tr><td style="color:var(--muted)">打什么时段</td><td>午市 12:00–14:30（占比仅 43%）—— 打低谷不打高峰</td></tr>
-            <tr><td style="color:var(--muted)">形式</td><td>套餐加价购 · 折后毛利率 ≥ 40% 保险线</td></tr>
-            <tr><td style="color:var(--muted)">目标族群</td><td>全族群可推（无肉）· check_race_rule 已过</td></tr>
-            <tr><td style="color:var(--muted)">力度</td><td><b style="color:var(--amber)">待老板拍板</b> —— agent 工具白名单里没有「改价」</td></tr>
-          </tbody></table>
-        </div></details>
-        <details class="inv"><summary>📆 投放窗口（代码算的）</summary><div class="body">
-          由头 <b>Hari Merdeka 国庆日</b>（2026-08-31 · 还有 34 天）<br>
-          投放期 <span class="num">08-19 → 09-02</span> · 印刷截止 <b class="num" style="color:var(--red)">08-01</b><br>
-          <span style="color:var(--muted)"><b>为什么 8/19 开跑：</b>国庆 8/31，印刷提前一个月 → 8/1 前发印刷店，8/19 预热。这个提前期写死在规则里，AI 算不错。</span>
-        </div></details>
-
-        <div class="sect" style="margin-top:16px;border-top:1px solid var(--line-2);padding-top:14px"><span class="ic">🖨️</span>物料 · Material <small>就在方案里 · 确认 / 改 / 退 是这套系统的核心</small><span class="sp" style="flex:1"></span><span class="lab">物料预览 <span id="ver" style="color:var(--blue)">v1</span></span></div>
-        <div class="grid g2" style="margin-top:11px">
-          <div>
-            <div class="poster">
-              <div class="art"><span>菜品实拍位<br><span style="font-size:10.5px;opacity:.75">接出图 API / Canva 模板后替换为成品图</span></span></div>
-              <div class="body">
-                <div class="ttl" id="pTitle">午市快闪 · 甜蜜加价购</div>
-                <div class="copy" id="pCopy">午市来店，主食加购芒果糯米饭 + 柠檬薄荷饮，甜一口再上班。扫码或 WhatsApp 我们预订。</div>
-                <div class="price">RM <span id="pPrice">38</span><s>RM 45</s></div>
-                <div class="foot">
-                  <div>Warisan Grill · Halal ✓<br>Jalan Ampang, KL · 11:00–22:00<br>WhatsApp 012-345 6789<br>有效期至 <span class="num">2026-09-02</span></div>
-                  <div class="qr" aria-label="获客二维码"></div>
-                </div>
-              </div>
-            </div>
-            <div class="row" style="gap:7px;margin-top:10px">
-              <button class="btn" id="btnDl" type="button">⬇ 下载 PNG</button>
-              <button class="btn" id="btnRegen" type="button">🔄 重新生成</button>
-              <span id="dlMsg" style="font-size:12px;color:var(--green);align-self:center"></span>
-            </div>
-          </div>
-          <div>
-            <div class="card" style="background:var(--surface-2)">
-              <div class="sect"><span class="ic">🟨</span>铁律 Gate 已通过 <small>代码自动检查</small></div>
-              <ul class="check">
-                <li><span class="ok">✓</span>店名 · 地址 · 营业时间</li>
-                <li><span class="ok">✓</span>价格来自数据（未自编）</li>
-                <li><span class="ok">✓</span>有效期在投放窗口内</li>
-                <li><span class="ok">✓</span>Halal 标</li>
-                <li><span class="ok">✓</span>获客二维码 + WhatsApp</li>
-                <li><span class="ok">✓</span>族群规则（无肉 · 全族群可推）</li>
-              </ul>
-              <div class="note" style="margin-top:12px;font-size:12.8px">不合格的稿<b>自动回炉重出，根本到不了老板面前</b>。你看到的都是已经过关的。</div>
-            </div>
-            <div class="card" style="margin-top:13px">
-              <div class="sect"><span class="ic">✋</span>等你决定</div>
-              <div class="row" style="margin-top:11px">
-                <button class="btn btn-go" id="bOk">✓ 确认 · 印刷 + 发布</button>
-                <button class="btn btn-warn" id="bEdit">✎ 改</button>
-                <button class="btn btn-stop" id="bNo">✕ 退</button>
-              </div>
-              <div id="apResult" style="margin-top:12px;font-size:13.3px"></div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div id="planList"></div>
+      <div id="planAcc"></div>
       <details class="inv" style="margin-top:13px"><summary>💼 AI 出建议，但定不了力度</summary><div class="body">
         折扣打多少、活动做不做 —— <b>永远是老板拍板</b>。agent 的工具白名单里<b>根本没有「改价」</b>。<br>
         时间也不靠 AI 记：今天几号、接下来什么节日、印刷提前期多久，都是代码提供的上下文。<br>
@@ -2297,30 +2270,6 @@ why   = llm.explain(facts)    # 解释：交给 LLM
     });
   }
 
-  var res=document.getElementById("apResult"),ver=document.getElementById("ver");
-  document.getElementById("bOk").onclick=function(){
-    res.innerHTML='<span style="color:var(--green)">✓ <b>已确认。</b>物料包发印刷店，社媒排入日历。</span>'+
-      '<br><span style="color:var(--muted);font-size:12.3px">审计已记录：谁批的 · 发给谁 · 内容 · 时间戳（PDPA 要求）</span>';
-    setTimeout(function(){go(7);},1400);
-  };
-  document.getElementById("bNo").onclick=function(){
-    res.innerHTML='<span style="color:var(--red)">✕ <b>已退回。</b>流程停止，什么都不会发出去。</span>';
-  };
-  document.getElementById("bEdit").onclick=function(){
-    var b=this;b.disabled=true;
-    res.innerHTML='<span style="color:var(--amber)">↻ <b>回炉重出中…</b></span>'+
-      '<br><span style="color:var(--muted);font-size:12.3px">你的意见「价格改成 32、字大一点」已带回给营销设计师</span>';
-    setTimeout(function(){
-      document.getElementById("pPrice").textContent="32";
-      document.getElementById("pTitle").style.fontSize="19px";
-      document.getElementById("pCopy").textContent="午市来店，主食加购芒果糯米饭 + 柠檬薄荷饮，只要 RM32。扫码或 WhatsApp 预订，位子有限。";
-      ver.textContent="v2 · 已按意见重出";
-      res.innerHTML='<span style="color:var(--green)">✓ <b>v2 已出。</b>价格改为 RM32，标题加大。</span>'+
-        '<br><span style="color:var(--muted);font-size:12.3px">重出后重新过一遍铁律 Gate —— 价格变了，有效期和族群规则要复查</span>';
-      b.disabled=false;
-    },1700);
-  };
-
   function bindPick(id){
     var box=document.getElementById(id);
     box.addEventListener("click",function(e){
@@ -2453,128 +2402,135 @@ why   = llm.explain(facts)    # 解释：交给 LLM
       if(window.__go) __go(0);
     });
   })();
-  /* ---- 物料：下载 PNG + 重新生成（Harry 对齐：download / regenerate）---- */
+  /* ---- Promotion 手风琴：每条收纳，展开=方案+文案+图+发布渠道+审批 ---- */
   (function(){
-    var dl=document.getElementById("btnDl"); if(!dl) return;
-    dl.addEventListener("click",function(){
-      var cv=document.createElement("canvas"); cv.width=480; cv.height=640;
-      var g=cv.getContext("2d");
-      g.fillStyle="#F5EFE6"; g.fillRect(0,0,480,640);
-      g.fillStyle="#B4451F"; g.fillRect(0,0,480,120);
-      g.fillStyle="#fff"; g.font="700 26px sans-serif"; g.textAlign="center";
-      g.fillText("Warisan Grill · Halal ✓",240,52);
-      g.font="600 18px sans-serif"; g.fillText("午市快闪 · 甜蜜加价购",240,88);
-      g.font="120px serif"; g.fillText("🥭",240,300);
-      g.fillStyle="#1F2937"; g.font="700 44px sans-serif"; g.fillText("RM 38",240,400);
-      g.font="400 16px sans-serif"; g.fillText("原价 RM45 · 有效期至 2026-09-02",240,436);
-      g.font="400 14px sans-serif"; g.fillText("Jalan Ampang, KL · 11:00–22:00 · WhatsApp 012-345 6789",240,580);
-      var a=document.createElement("a"); a.download="WarisanGrill-午市快闪-poster.png";
-      a.href=cv.toDataURL("image/png"); a.click();
-      var m=document.getElementById("dlMsg"); m.textContent="✓ 已下载"; setTimeout(function(){m.textContent="";},2500);
-    });
-    var rg=document.getElementById("btnRegen"), rn=1;
-    rg.addEventListener("click",function(){
-      rn++; var v=document.getElementById("ver"); if(v) v.textContent="v"+rn;
-      var c=document.getElementById("pCopy");
-      if(c) c.style.opacity=".35";
-      setTimeout(function(){ if(c){c.style.opacity="1";}
-        var m=document.getElementById("dlMsg"); m.textContent="✓ 已重出 v"+rn+"（同价同素材，换构图）"; setTimeout(function(){m.textContent="";},3000);
-      },600);
-    });
-  })();
-  /* ---- 方案列表：每条 promotion 都带自己的 poster（给 IT 的参照 UI）---- */
-  (function(){
-    var box=document.getElementById("planList"); if(!box) return;
+    var box=document.getElementById("planAcc"); if(!box) return;
     var PLANS=[
-      {id:"teh",st:"draft",emo:"🧋",title:"拉茶 · 下午茶引流拉新",date:"2026-08-07 · 助理起草",
-       timing:"午市低谷（周一至五 14:00–17:00）",fmt:"九折优惠 · RM4.50",margin:"73%",group:"全客群（无肉）",
-       price:"4.50",orig:"5.00",copy:"下午三点困？拉茶九折，热的冰的都有。",gate:"✓ Gate 已过（6/6）"},
-      {id:"satay",st:"draft",emo:"🍢",title:"Chicken Satay · 周三晚市 15% off",date:"2026-08-09 · 助理起草",
-       timing:"周三晚市（全周最低谷 7 人次，引流填谷）",fmt:"限时折扣（仅堂食）· FB/IG 预告",margin:"60%",group:"chinese",
-       price:"11.90",orig:"14.00",copy:"周三晚市限定 15% off — 招牌鸡肉沙爹，Halal 认证。",gate:"✓ Gate 已过（6/6）"},
-      {id:"truffle1",st:"approved",emo:"🍝",title:"松露意面 · 午市九折",date:"2026-08-07 · 已批",
-       timing:"下周一午市（2026-08-10）",fmt:"九折单品限时优惠 · 折后 RM19.80",margin:"67%",group:"chinese",
-       price:"19.80",orig:"22.00",copy:"松露香浓，午市限定九折 —— 只到下周五。",gate:"✓ Gate 已过（6/6）· 已进日历 08-10"},
-      {id:"truffle2",st:"pending",emo:"🍝",title:"松露意面 · Merdeka 倒数预热",date:"2026-08-08 · AI plan",
+      {id:"flash",st:"pending",emo:"🥭",img:"ai",title:"午市快闪 · 甜蜜加价购",date:"2026-08-07 · AI plan",
+       timing:"下周三午市（2026-08-12）",fmt:"套餐加价购 · 折后 RM38",margin:"61%",group:"华人 · 马来（无牛肉）",
+       price:"38",orig:"RM 45",copy:"午市来店，主食加购芒果糯米饭 + 柠檬薄荷饮，甜一口再上班。扫码或 WhatsApp 我们预订。",
+       ch:["FB / IG 帖子","WhatsApp 群发（opt-in 248 人）","印刷海报","店内桌卡"],cal:"2026-08-12|午市快闪 投放",v:1},
+      {id:"truffle2",st:"pending",emo:"🍝",img:"ai",title:"松露意面 · Merdeka 倒数预热",date:"2026-08-08 · AI plan",
        timing:"下周三午市（2026-08-13）",fmt:"九折 + 国庆主题物料",margin:"67%",group:"chinese",
-       price:"19.80",orig:"22.00",copy:"Merdeka 倒数！一口香浓迎国庆，仅到 8/31。",gate:"✓ Gate 已过（6/6）",cal:"2026-08-13|松露意面 国庆预热 投放"},
-      {id:"mint",st:"rejected",emo:"🍹",title:"柠檬薄荷饮 · 国庆备战清凉一饮",date:"2026-08-06 · 已退回",
+       price:"19.80",orig:"RM 22.00",copy:"Merdeka 倒数！一口香浓迎国庆，仅到 8/31。",
+       ch:["FB / IG 帖子","店内桌卡"],cal:"2026-08-13|松露意面 国庆预热 投放",v:1},
+      {id:"truffle1",st:"approved",emo:"🍝",img:"ai",title:"松露意面 · 午市九折",date:"2026-08-07 · 已批 · 已进日历 08-10",
+       timing:"下周一午市（2026-08-10）",fmt:"九折单品 · 折后 RM19.80",margin:"67%",group:"chinese",
+       price:"19.80",orig:"RM 22.00",copy:"松露香浓，午市限定九折 —— 只到下周五。",
+       ch:["FB / IG 帖子","WhatsApp 群发"],v:1},
+      {id:"teh",st:"draft",emo:"🧋",img:"menu",title:"拉茶 · 下午茶引流拉新",date:"2026-08-07 · 助理起草 · 普通促销",
+       timing:"午市低谷（周一至五 14:00–17:00）",fmt:"九折优惠 · RM4.50",margin:"73%",group:"全客群（无肉）",
+       price:"4.50",orig:"RM 5.00",copy:"下午三点困？拉茶九折，热的冰的都有。",
+       ch:["店内口头 + 桌卡"],v:1},
+      {id:"satay",st:"draft",emo:"🍢",img:"menu",title:"Chicken Satay · 周三晚市 15% off",date:"2026-08-09 · 助理起草 · 普通促销",
+       timing:"周三晚市（全周最低谷，引流填谷）",fmt:"限时折扣（仅堂食）",margin:"60%",group:"chinese",
+       price:"11.90",orig:"RM 14.00",copy:"周三晚市限定 15% off — 招牌鸡肉沙爹，Halal 认证。",
+       ch:["FB / IG 预告（当天午后）"],v:1},
+      {id:"mint",st:"rejected",emo:"🍹",img:"ai",title:"柠檬薄荷饮 · 国庆备战清凉一饮",date:"2026-08-06 · 已退回：与「午市快闪」撞档期",
        timing:"平日午市低谷（周一至四）",fmt:"限时尝鲜价",margin:"71%",group:"全客群",
-       price:"4.00",orig:"4.80",copy:"清凉一饮，Warisan 招牌柠檬薄荷限时尝鲜。",gate:"✕ 老板退回：与「午市快闪」撞档期",fail:true}
+       price:"4.00",orig:"RM 4.80",copy:"清凉一饮，Warisan 招牌柠檬薄荷限时尝鲜。",
+       ch:["FB / IG 帖子"],v:1}
     ];
     var STLAB={pending:["待确认","st-pending"],approved:["已批","st-approved"],rejected:["已拒","st-rejected"],draft:["草稿","st-draft"]};
-    function poster(pl){
-      return '<div class="mini-poster"><div class="mp-hd">Warisan Grill · Halal ✓</div>'+
-        '<div class="mp-art">'+pl.emo+'</div>'+
-        '<div class="mp-pr">RM '+pl.price+'<s>RM '+pl.orig+'</s></div>'+
-        '<div class="mp-ft">'+pl.copy.slice(0,18)+'…<br>二维码 + WhatsApp（模板叠加）</div></div>';
+    var openId=PLANS[0].id, filter="all";
+    function imgHtml(pl){
+      if(pl.img==="ai") return '<div class="pa-img"><div class="mp-hd">Warisan Grill · Halal ✓</div>'+
+        '<div class="mp-art">'+pl.emo+'</div><div class="mp-pr">RM '+pl.price+'<s>'+pl.orig+'</s></div>'+
+        '<div class="mp-ft">有效期 · 二维码 + WhatsApp（模板叠加）</div></div>'+
+        '<div class="pa-imgnote">🎨 AI 生成海报 · v'+pl.v+'</div>';
+      return '<div class="pa-img menu-src"><div class="mp-hd">菜品照 · 来自 Library</div>'+
+        '<div class="mp-art">'+pl.emo+'</div><div class="mp-pr">RM '+pl.price+'<s>'+pl.orig+'</s></div>'+
+        '<div class="mp-ft">普通促销 · 不出海报，直接用菜品实拍</div></div>'+
+        '<div class="pa-imgnote">📷 菜品照（未出图 · 普通促销）</div>';
     }
-    function acts(pl){
-      if(pl.st==="pending") return '<button class="btn btn-go" data-pa="ok" data-id="'+pl.id+'">✓ 确认 · 发布</button>'+
-        '<button class="btn" data-pa="edit">✎ 改</button><button class="btn btn-stop" data-pa="no" data-id="'+pl.id+'">✕ 退</button>';
-      if(pl.st==="approved") return '<span class="done-msg" style="color:var(--green)">✓ 已批 · 已进日历</span>'+
-        '<button class="btn" data-pa="dl">⬇ 下载物料</button>';
-      if(pl.st==="rejected") return '<span class="done-msg" style="color:var(--red)">✕ 已退回</span>'+
-        '<button class="btn" data-pa="regen" data-id="'+pl.id+'">🔄 让 AI 重新生成</button>';
-      return '<button class="btn btn-go" data-pa="submit" data-id="'+pl.id+'">提交审批</button>'+
-        '<button class="btn" data-pa="edit">✎ 编辑草稿</button>';
+    function actsHtml(pl){
+      if(pl.st==="pending") return '<button class="btn btn-go" data-pa="ok">✓ 确认 · 发布</button>'+
+        '<button class="btn btn-warn" data-pa="edit">✎ 改</button><button class="btn btn-stop" data-pa="no">✕ 退</button>'+
+        (pl.img==="ai"?'<button class="btn" data-pa="dl">⬇ 下载 PNG</button><button class="btn" data-pa="regen">🔄 重新生成</button>':"");
+      if(pl.st==="approved") return '<span class="pa-msg" style="color:var(--green)">✓ 已批 · 已进日历</span>'+
+        (pl.img==="ai"?'<button class="btn" data-pa="dl">⬇ 下载 PNG</button>':"");
+      if(pl.st==="rejected") return '<span class="pa-msg" style="color:var(--red)">✕ 已退回</span>'+
+        '<button class="btn" data-pa="regen2">🔄 让 AI 重新生成</button>';
+      return '<button class="btn btn-go" data-pa="submit">提交审批</button><span class="pa-msg" style="color:var(--muted)">草稿 · 还没进审批箱</span>';
     }
     function render(){
-      box.innerHTML=PLANS.map(function(pl){
-        var st=STLAB[pl.st];
-        return '<div class="card planitem" data-status="'+pl.st+'" data-id="'+pl.id+'">'+
-          '<div class="row" style="justify-content:space-between;align-items:flex-start;margin-bottom:4px">'+
-            '<div><b style="font-size:14.5px">'+pl.title+'</b><br><span style="font-size:12px;color:var(--muted)">'+pl.date+'</span></div>'+
-            '<span class="st-pill '+st[1]+'">'+st[0]+'</span></div>'+
-          '<div class="plan2">'+poster(pl)+
-            '<div class="plan-bd"><div class="pl-meta">'+
+      box.innerHTML=PLANS.filter(function(pl){return filter==="all"||pl.st===filter;}).map(function(pl){
+        var st=STLAB[pl.st], open=(pl.id===openId);
+        return '<div class="pacc'+(open?" open":"")+'" data-id="'+pl.id+'">'+
+          '<div class="pacc-hd" data-tg>'+
+            '<span class="pa-thumb">'+pl.emo+'</span>'+
+            '<span class="pa-t"><b>'+pl.title+'</b><span>'+pl.date+'</span></span>'+
+            '<span class="pa-m">'+pl.margin+'</span>'+
+            '<span class="st-pill '+st[1]+'">'+st[0]+'</span>'+
+            '<span class="chev">▶</span></div>'+
+          '<div class="pacc-body"><div class="pa-grid">'+
+            '<div>'+imgHtml(pl)+'</div>'+
+            '<div><div class="pa-fields">'+
               '<div><div class="lab">TIMING</div>'+pl.timing+'</div>'+
               '<div><div class="lab">FORMAT</div>'+pl.fmt+'</div>'+
               '<div><div class="lab">MARGIN</div><b style="color:var(--green);font-family:var(--mono);font-size:15px">'+pl.margin+'</b></div>'+
               '<div><div class="lab">TARGET GROUP</div>'+pl.group+'</div></div>'+
-              '<div style="font-size:12.5px;color:var(--muted);margin-top:8px">文案：'+pl.copy+'</div>'+
-              '<div class="plan-gate'+(pl.fail?" fail":"")+'">'+pl.gate+'</div></div>'+
-            '<div class="plan-act">'+acts(pl)+'</div>'+
-          '</div></div>';
-      }).join("");
+              '<div class="pa-copy">✍️ '+pl.copy+'</div>'+
+              '<div class="lab" style="margin-top:10px">发布到</div>'+
+              '<div class="pa-ch">'+pl.ch.map(function(c){return '<span class="pill">'+c+'</span>';}).join("")+'</div>'+
+              '<div class="pa-acts">'+actsHtml(pl)+'</div>'+
+            '</div></div></div></div>';
+      }).join("")||'<div class="lab" style="padding:14px">这个状态下没有方案</div>';
     }
-    render();
-    /* 动作 */
-    box.addEventListener("click",function(e){
-      var b=e.target.closest("[data-pa]"); if(!b) return;
-      var pa=b.getAttribute("data-pa"), id=b.getAttribute("data-id");
-      var pl=PLANS.filter(function(x){return x.id===id;})[0];
-      if(pa==="ok"&&pl){ pl.st="approved"; pl.gate+=" · 已进日历";
-        if(pl.cal&&window.__calAdd){var c=pl.cal.split("|");__calAdd(c[0],c[1],"blue");} render(); counts(); }
-      else if(pa==="no"&&pl){ pl.st="rejected"; pl.fail=true; pl.gate="✕ 老板退回"; render(); counts(); }
-      else if(pa==="submit"&&pl){ pl.st="pending"; pl.date=pl.date.replace("助理起草","已提交"); render(); counts(); }
-      else if(pa==="regen"&&pl){ pl.st="pending"; pl.fail=false; pl.gate="✓ Gate 已过（6/6）· v2 换了档期"; 
-        pl.timing="下周五午市（2026-08-15）· 避开撞期"; render(); counts(); }
-      else if(pa==="edit"){ if(window.__go) __go(3); document.getElementById("promoAdd").click(); }
-      else if(pa==="dl"){ var d=document.getElementById("btnDl"); d&&d.click(); }
-    });
-    /* 筛选 */
     function counts(){
-      var all=PLANS.length+1; /* +1 特色卡 */
-      var n={pending:1,approved:0,rejected:0,draft:0}; /* 特色卡是 pending */
-      PLANS.forEach(function(x){n[x.st]=(n[x.st]||0)+1;});
+      var n={pending:0,approved:0,rejected:0,draft:0};
+      PLANS.forEach(function(x){n[x.st]++;});
       var chips=document.querySelectorAll("#staChips .stachip");
-      chips[0].innerHTML="全部 <b>"+all+"</b>";
+      chips[0].innerHTML="全部 <b>"+PLANS.length+"</b>";
       chips[1].innerHTML="待确认 <b>"+n.pending+"</b>";
       chips[2].innerHTML="已批 <b>"+n.approved+"</b>";
       chips[3].innerHTML="已拒 <b>"+n.rejected+"</b>";
       chips[4].innerHTML="草稿 <b>"+n.draft+"</b>";
     }
-    counts();
+    function dl(pl){
+      var cv=document.createElement("canvas"); cv.width=480; cv.height=640;
+      var g=cv.getContext("2d");
+      g.fillStyle="#F5EFE6"; g.fillRect(0,0,480,640);
+      g.fillStyle="#B4451F"; g.fillRect(0,0,480,110);
+      g.fillStyle="#fff"; g.font="700 24px sans-serif"; g.textAlign="center";
+      g.fillText("Warisan Grill · Halal ✓",240,46);
+      g.font="600 17px sans-serif"; g.fillText(pl.title.slice(0,18),240,82);
+      g.font="120px serif"; g.fillText(pl.emo,240,300);
+      g.fillStyle="#1F2937"; g.font="700 42px sans-serif"; g.fillText("RM "+pl.price,240,396);
+      g.font="400 15px sans-serif"; g.fillText("原价 "+pl.orig,240,430);
+      g.font="400 13px sans-serif"; g.fillText("Jalan Ampang, KL · WhatsApp 012-345 6789",240,580);
+      var a=document.createElement("a"); a.download="WarisanGrill-"+pl.id+"-poster.png";
+      a.href=cv.toDataURL("image/png"); a.click();
+    }
+    box.addEventListener("click",function(e){
+      var acc=e.target.closest(".pacc"); if(!acc) return;
+      var pl=PLANS.filter(function(x){return x.id===acc.getAttribute("data-id");})[0];
+      var pa=e.target.closest("[data-pa]");
+      if(pa&&pl){
+        var k=pa.getAttribute("data-pa");
+        if(k==="ok"){ pl.st="approved"; pl.date=pl.date.split(" · ")[0]+" · 已批 · 已进日历";
+          if(pl.cal&&window.__calAdd){var c=pl.cal.split("|");__calAdd(c[0],c[1],"blue");} }
+        else if(k==="no"){ pl.st="rejected"; pl.date=pl.date.split(" · ")[0]+" · 已退回"; }
+        else if(k==="submit"){ pl.st="pending"; pl.date=pl.date.split(" · ")[0]+" · 已提交待批";
+          if(pl.img==="menu"){ pl.img="ai"; pl.v=1; pl.date+="（AI 已顺手出图）"; } }
+        else if(k==="regen"){ pl.v++; pl.date=pl.date.split(" · ")[0]+" · v"+pl.v+" 已重出（同价换构图）"; }
+        else if(k==="regen2"){ pl.st="pending"; pl.timing="下周五午市（2026-08-15）· 避开撞期";
+          pl.v++; pl.date=pl.date.split(" · ")[0]+" · v"+pl.v+" 按退回原因换档期"; }
+        else if(k==="edit"){ pl.v++; pl.price=(pl.id==="flash"?"32":pl.price);
+          pl.copy=pl.copy.replace(/。$/,"")+"（v"+pl.v+" 已按意见改）。"; }
+        else if(k==="dl"){ dl(pl); return; }
+        render(); counts(); return;
+      }
+      if(e.target.closest("[data-tg]")){
+        openId=(openId===pl.id?null:pl.id); render();
+      }
+    });
     document.getElementById("staChips").addEventListener("click",function(e){
       var c=e.target.closest(".stachip"); if(!c) return;
       [].forEach.call(document.querySelectorAll("#staChips .stachip"),function(x){x.classList.remove("on");});
-      c.classList.add("on");
-      var st=c.getAttribute("data-st");
-      [].forEach.call(document.querySelectorAll(".planitem"),function(pi){
-        pi.style.display=(st==="all"||pi.getAttribute("data-status")===st)?"":"none";
-      });
+      c.classList.add("on"); filter=c.getAttribute("data-st"); render();
     });
+    render(); counts();
   })();
   /* ---- Home 审批卡 inline 确认/退 ---- */
   document.addEventListener("click",function(e){
