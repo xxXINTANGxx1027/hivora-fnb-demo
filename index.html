@@ -11,7 +11,7 @@
 <style>*{margin:0;padding:0}</style>
 </head>
 <body>
-<!-- build 2026-08-09 v3.1 · 历史侧栏 + Brand Kit 会话 -->
+<!-- build 2026-08-09 v3.2 · 分组侧栏 + Settings -->
 <title>Hivora F&B Marketing · Demo</title>
 <style>
 :root{
@@ -615,6 +615,14 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
   .chatpanel.hist .histpane{position:absolute;inset:59px 0 0;border-right:0;z-index:3;background:var(--surface)}
 }
 
+
+.stgw{font-size:12px;padding:6px 13px;border-radius:99px}
+.stgw.on{background:var(--green);border-color:var(--green);color:#fff}
+.stgw.lock{opacity:.75;cursor:not-allowed}
+.stgw.lock.off{background:var(--surface-2)}
+.attach.pulse{animation:atp 0.9s ease 3}
+@keyframes atp{0%,100%{box-shadow:none}50%{box-shadow:0 0 0 6px var(--blue-soft)}}
+
 </style>
 
 <div class="app">
@@ -629,16 +637,24 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
     <div class="biz"><b>F&amp;B Marketing</b><span>Warisan Grill · Halal ✓</span></div>
     <nav aria-label="主导航">
       <button class="nv" data-go="0"><span class="ic">🏠</span><span class="sp">Today</span></button>
+      <div class="nvsep">AI</div>
       <button class="nv" data-go="1" aria-current="true"><span class="ic">🏢</span><span class="sp">Agent Floor</span></button>
-      <div class="nvsep">营销流程</div>
+      <button class="nv" data-act="agents"><span class="ic">🤖</span><span class="sp">AI Agents</span></button>
+      <button class="nv" data-act="chat"><span class="ic">💬</span><span class="sp">Assistant</span></button>
+      <div class="nvsep">Workflow</div>
+      <button class="nv" data-act="upload"><span class="ic">📤</span><span class="sp">Upload Data</span></button>
       <button class="nv" data-go="2"><span class="ic">📊</span><span class="sp">Weekly Report</span></button>
       <button class="nv" data-go="3"><span class="ic">🎯</span><span class="sp">Promotion Plans</span></button>
-      <button class="nv" data-go="4"><span class="ic">🖨️</span><span class="sp">Approvals</span></button>
-      <button class="nv" data-go="5"><span class="ic">🍽️</span><span class="sp">Asset Library</span></button>
+      <button class="nv" data-go="4"><span class="ic">🖨️</span><span class="sp">Material Review</span></button>
       <button class="nv" data-go="6"><span class="ic">📅</span><span class="sp">Marketing Calendar</span></button>
-      <div class="nvsep">配置</div>
+      <div class="nvsep">Library</div>
+      <button class="nv" data-act="menu"><span class="ic">🍽️</span><span class="sp">Menu</span></button>
+      <button class="nv" data-act="assets"><span class="ic">🖼️</span><span class="sp">Asset Library</span></button>
+      <button class="nv" data-act="brand"><span class="ic">🎨</span><span class="sp">Brand Kit</span></button>
       <button class="nv" data-go="7"><span class="ic">👥</span><span class="sp">Customer Base</span></button>
+      <div class="nvsep">System</div>
       <button class="nv" data-go="8"><span class="ic">📈</span><span class="sp">Usage</span></button>
+      <button class="nv" data-go="9"><span class="ic">⚙️</span><span class="sp">Settings</span></button>
     </nav>
   </aside>
 
@@ -1092,6 +1108,38 @@ why   = llm.explain(facts)    # 解释：交给 LLM
       <div class="navb"><button class="btn" data-go="7">← Customer Base</button><button class="btn btn-go" data-go="2">回到营销流程 →</button></div>
     </section>
 
+    <!-- 9 Settings -->
+    <section class="panel" id="p9">
+      <div class="head"><div class="eyebrow">System · SETTINGS</div><h2>开关都在你手上</h2>
+        <p>AI 能碰什么、不能碰什么 —— 不是承诺，是开关。</p></div>
+      <div class="card">
+        <div class="sect"><span class="ic">🔐</span>隐私与安全</div>
+        <div style="margin-top:8px">
+          <div class="inbox"><span class="sp"><b>机密食谱不喂 AI</b><br><span style="font-size:12px;color:var(--muted)">配方、供应商成本明细不进模型 —— 只用「菜名+售价+Food Cost%」</span></span>
+            <button class="btn stgw on" data-stg type="button">已开启</button></div>
+          <div class="inbox"><span class="sp"><b>经营数据只对授权的人讲</b><br><span style="font-size:12px;color:var(--muted)">群里只在被 @ 时回答；私聊只认老板</span></span>
+            <button class="btn stgw lock" type="button" disabled>🔒 锁定开</button></div>
+          <div class="inbox"><span class="sp"><b>PDPA 合规模式</b><br><span style="font-size:12px;color:var(--muted)">只发 opt-in 客户 · 退订即停 · 不爬陌生人数据 · 全链审计</span></span>
+            <button class="btn stgw lock" type="button" disabled>🔒 锁定开</button></div>
+          <div class="inbox"><span class="sp"><b>危险能力（终端 / 代码执行 / 浏览器 / 文件）</b><br><span style="font-size:12px;color:var(--muted)">全部 agent 一律关闭 —— 代码层锁死，界面上改不了</span></span>
+            <button class="btn stgw lock off" type="button" disabled>🔒 锁定关</button></div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:13px">
+        <div class="sect"><span class="ic">🗣️</span>回复与接入</div>
+        <div style="margin-top:8px">
+          <div class="inbox"><span class="sp"><b>回复语言跟随对方消息</b><br><span style="font-size:12px;color:var(--muted)">中文来中文回 · 英文来英文回 · 看最新一条，不锁死</span></span>
+            <button class="btn stgw on" data-stg type="button">已开启</button></div>
+          <div class="inbox"><span class="sp"><b>Telegram bot</b><br><span style="font-size:12px;color:var(--muted)">@WarisanGrill_bot · 老板私聊 + 群内 @ 提及</span></span>
+            <span class="pill" style="background:var(--green);color:#fff">已绑定</span></div>
+          <div class="inbox"><span class="sp"><b>模型</b><br><span style="font-size:12px;color:var(--muted)">DeepSeek（走 OpenRouter）· 成本档见 Usage</span></span>
+            <span class="pill">hivora-main</span></div>
+        </div>
+      </div>
+      <div class="note" style="margin-top:13px"><b>为什么有些是 🔒：</b>能关的是偏好，不能关的是底线 —— 底线不放在界面上，放在代码里。</div>
+      <div class="navb"><button class="btn" data-go="0">← 今日看板</button><button class="btn" data-go="8">Usage →</button></div>
+    </section>
+
     </div>
   </div>
 </div>
@@ -1132,9 +1180,10 @@ why   = llm.explain(facts)    # 解释：交给 LLM
 
   var TITLES=[["Today","今日看板 · 待办与动态"],["Agent Floor","团队工位 · 上传数据 · 店长助理"],
     ["Weekly Report","AI 周报 · 四象限与人潮"],
-    ["Promotion Plans","促销方案 · 推谁与何时"],["Approvals","审批箱 · 确认 / 改 / 退"],
-    ["Menu","菜单 · 族群规则在这里生效"],["Marketing Calendar","营销日历 · 排期与印刷倒数"],
-    ["Customer Base","客户库 · PDPA 合规"],["Usage","用量与成本"]];
+    ["Promotion Plans","促销方案 · 推谁与何时"],["Material Review","物料审批 · 确认 / 改 / 退"],
+    ["Library","菜单 · 菜品照 · Brand Kit"],["Marketing Calendar","营销日历 · 排期与印刷倒数"],
+    ["Customer Base","客户库 · PDPA 合规"],["Usage","用量与成本"],
+    ["Settings","开关都在你手上"]];
   var panels=[].slice.call(document.querySelectorAll(".panel"));
   var navs=[].slice.call(document.querySelectorAll(".nv"));
   function go(i){
@@ -1149,6 +1198,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
     window.scrollTo({top:0,behavior:"smooth"});
     if(i===3) drawBars();
   }
+  window.__go=go;
   document.querySelector(".content").classList.add("wide");
   document.addEventListener("click",function(e){
     var b=e.target.closest("[data-go]"); if(!b) return;
@@ -2119,6 +2169,30 @@ why   = llm.explain(facts)    # 解释：交给 LLM
     }
   };
 })();
+  /* ---- 侧栏快捷动作（AI Agents / Assistant / Upload / Library 三分类）---- */
+  document.addEventListener("click",function(e){
+    var b=e.target.closest("[data-act]"); if(!b) return;
+    var act=b.getAttribute("data-act");
+    function mark(){ [].forEach.call(document.querySelectorAll(".nv"),function(n){n.setAttribute("aria-current","false");});
+      b.setAttribute("aria-current","true"); }
+    function openChat(){ var pn=document.getElementById("chatPanel");
+      if(pn && pn.hidden){ document.getElementById("fabChat").click(); } }
+    if(act==="agents"){ if(window.__go) __go(1); mark(); if(window.__openAgent) __openAgent(); }
+    else if(act==="chat"){ openChat(); mark(); }
+    else if(act==="upload"){ openChat(); mark();
+      var at=document.getElementById("btnAttach");
+      if(at){ at.classList.remove("pulse"); void at.offsetWidth; at.classList.add("pulse"); }
+      var inp=document.getElementById("chatinput"); inp&&inp.focus(); }
+    else if(act==="menu"||act==="assets"||act==="brand"){
+      if(window.__go) __go(5); mark();
+      var map={menu:"menu",assets:"photos",brand:"brand"};
+      var tb=document.querySelector('.assettabs button[data-apane="'+map[act]+'"]'); tb&&tb.click(); }
+  });
+  /* ---- Settings 开关（演示态）---- */
+  document.addEventListener("click",function(e){
+    var s=e.target.closest("[data-stg]"); if(!s||s.disabled) return;
+    var on=s.classList.toggle("on"); s.textContent=on?"已开启":"已关闭";
+  });
   /* ---- 素材库 tab 切换 ---- */
   (function(){
     var tabs=document.querySelectorAll(".assettabs button"); if(!tabs.length) return;
