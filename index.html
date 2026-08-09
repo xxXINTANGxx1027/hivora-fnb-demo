@@ -11,7 +11,7 @@
 <style>*{margin:0;padding:0}</style>
 </head>
 <body>
-<!-- build 2026-08-09 v3.4 · 导航去重 -->
+<!-- build 2026-08-09 v3.5 · Promo+Material 合并 · download/regenerate · calendar sync -->
 <title>Hivora F&B Marketing · Demo</title>
 <style>
 :root{
@@ -683,10 +683,8 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
       <button class="nv" data-go="0"><span class="ic">🏠</span><span class="sp">Home</span></button>
       <button class="nv" data-go="1" aria-current="true"><span class="ic">🏢</span><span class="sp">Agent Floor</span></button>
       <div class="nvsep">Workflow</div>
-      <button class="nv" data-act="upload"><span class="ic">📤</span><span class="sp">Upload Data</span></button>
       <button class="nv" data-go="2"><span class="ic">📊</span><span class="sp">Weekly Report</span></button>
       <button class="nv" data-go="3"><span class="ic">🎯</span><span class="sp">Promotion Plans</span></button>
-      <button class="nv" data-go="4"><span class="ic">🖨️</span><span class="sp">Material Review</span></button>
       <button class="nv" data-go="6"><span class="ic">📅</span><span class="sp">Marketing Calendar</span></button>
       <div class="nvsep">Library</div>
       <button class="nv" data-act="menu"><span class="ic">🍽️</span><span class="sp">Menu</span></button>
@@ -723,7 +721,7 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
       </div>
       <div class="card" style="margin-top:13px">
         <div class="sect"><span class="ic">📥</span>审批箱 <small>只有这里能放行真实动作</small><span class="sp" style="flex:1"></span><span class="pill" style="background:var(--amber);color:#fff">2 待确认</span></div>
-        <div class="apv" data-apv>
+        <div class="apv" data-apv data-cal="2026-08-12|午市快闪 投放">
           <div class="apv-th">🥭</div>
           <div class="apv-bd">
             <b>午市快闪 · 甜蜜加价购</b> <span class="apv-kind">Material Review</span>
@@ -732,11 +730,11 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
           </div>
           <div class="apv-act">
             <button class="btn btn-go apv-ok">✓ 确认</button>
-            <button class="btn" data-go="4">✎ 改</button>
+            <button class="btn" data-go="3">✎ 改</button>
             <button class="btn btn-stop apv-no">✕ 退</button>
           </div>
         </div>
-        <div class="apv" data-apv>
+        <div class="apv" data-apv data-cal="2026-08-19|排期已确认 ✓">
           <div class="apv-th">📅</div>
           <div class="apv-bd">
             <b>国庆排期确认</b> <span class="apv-kind">Calendar</span>
@@ -924,7 +922,77 @@ why   = llm.explain(facts)    # 解释：交给 LLM
         时间也不靠 AI 记：今天几号、接下来什么节日、印刷提前期多久，都是代码提供的上下文。<br>
         <span style="color:var(--muted)">（早期没喂时间上下文时，AI 在 7 月建议过「情人节套餐」和美国「感恩节」—— 现在这类错误由代码 Gate 直接拦掉。）</span>
       </div></details>
-      <div class="navb"><button class="btn" data-go="2">← 上一步</button><button class="btn btn-go" data-go="4">下一步：物料审批 →</button></div>
+      <div class="sect" style="margin-top:20px;font-size:15px"><span class="ic">🖨️</span>物料审批 · Material Review <small>方案批完，物料就在下面 —— 一页搞定</small></div>
+      <p style="font-size:13px;color:var(--muted);margin:4px 0 10px">文案、版式、必备元素一次出好。但下面这排按钮 —— <b>确认 / 改 / 退</b> —— 才是这套系统的核心。</p>
+      <div class="grid g2">
+        <div>
+          <div class="card" style="margin-bottom:11px">
+            <div class="row" style="justify-content:space-between;align-items:flex-start">
+              <div><b style="font-size:15px">午市快闪 · 甜蜜加价购</b><br>
+                <span style="font-size:12px;color:var(--muted)">2026-08-07 · AI plan</span></div>
+              <span class="pill" style="background:var(--amber);color:#fff">待确认</span>
+            </div>
+            <div class="grid g2" style="margin-top:11px;gap:9px">
+              <div><div class="lab">TIMING</div><div style="font-size:13px">下周三午市（2026-08-12）</div></div>
+              <div><div class="lab">FORMAT</div><div style="font-size:13px">加价购 · 折后 RM38</div></div>
+              <div><div class="lab">MARGIN</div><div style="font-size:19px;font-family:var(--mono);color:var(--green)">61%</div></div>
+              <div><div class="lab">TARGET GROUP</div><div style="font-size:13px">华人 · 马来 <span style="color:var(--muted)">（无牛肉，全族群可）</span></div></div>
+            </div>
+          </div>
+          <div class="lab" style="margin-bottom:9px">物料预览 <span id="ver" style="color:var(--blue)">v1</span></div>
+          <div class="poster">
+            <div class="art"><span>菜品实拍位<br><span style="font-size:10.5px;opacity:.75">接出图 API / Canva 模板后替换为成品图</span></span></div>
+            <div class="body">
+              <div class="ttl" id="pTitle">午市快闪 · 甜蜜加价购</div>
+              <div class="copy" id="pCopy">午市来店，主食加购芒果糯米饭 + 柠檬薄荷饮，甜一口再上班。扫码或 WhatsApp 我们预订。</div>
+              <div class="price">RM <span id="pPrice">38</span><s>RM 45</s></div>
+              <div class="foot">
+                <div>Warisan Grill · Halal ✓<br>Jalan Ampang, KL · 11:00–22:00<br>WhatsApp 012-345 6789<br>有效期至 <span class="num">2026-09-02</span></div>
+                <div class="qr" aria-label="获客二维码"></div>
+              </div>
+            </div>
+          </div>
+          <div class="row" style="gap:7px;margin-top:10px">
+            <button class="btn" id="btnDl" type="button">⬇ 下载 PNG</button>
+            <button class="btn" id="btnRegen" type="button">🔄 重新生成</button>
+            <span id="dlMsg" style="font-size:12px;color:var(--green);align-self:center"></span>
+          </div>
+        </div>
+        <div>
+          <div class="card">
+            <div class="sect"><span class="ic">🟨</span>铁律 Gate 已通过 <small>代码自动检查</small></div>
+            <ul class="check">
+              <li><span class="ok">✓</span>店名 · 地址 · 营业时间</li>
+              <li><span class="ok">✓</span>价格来自数据（未自编）</li>
+              <li><span class="ok">✓</span>有效期在投放窗口内</li>
+              <li><span class="ok">✓</span>Halal 标</li>
+              <li><span class="ok">✓</span>获客二维码 + WhatsApp</li>
+              <li><span class="ok">✓</span>族群规则（无肉 · 全族群可推）</li>
+            </ul>
+            <div class="note" style="margin-top:12px;font-size:12.8px">不合格的稿<b>自动回炉重出，根本到不了老板面前</b>。你看到的都是已经过关的。</div>
+          </div>
+          <div class="card" style="margin-top:13px">
+            <div class="sect"><span class="ic">✋</span>等你决定</div>
+            <div class="row" style="margin-top:11px">
+              <button class="btn btn-go" id="bOk">✓ 确认 · 印刷 + 发布</button>
+              <button class="btn btn-warn" id="bEdit">✎ 改</button>
+              <button class="btn btn-stop" id="bNo">✕ 退</button>
+            </div>
+            <div id="apResult" style="margin-top:12px;font-size:13.3px"></div>
+          </div>
+        </div>
+      </div>
+      <details class="inv"><summary>💼 HITL 无例外 —— 这是护城河，不是功能</summary><div class="body">
+        agent 手上<b>根本没有「发布」这个按钮</b>。它只能产出一份 <code>ActionSpec</code>（申请单）；老板 approve 之后，才由独立的 <code>executor</code> 执行。<br>
+        再加一层幂等键：同一活动重复触发会被跳过 —— <b>重复群发 = 被客人拉黑</b>，代价太高，不能靠 AI 自觉。
+        <pre>动作工具（永不绑给 agent）
+  send_whatsapp_blast · publish_social_post
+  send_to_printer · change_price
+
+只读工具（agent 可自由用）
+  get_margin_quadrant · get_daypart_peaks · check_race_rule</pre>
+      </div></details>
+      <div class="navb"><button class="btn" data-go="2">← 上一步</button><button class="btn btn-go" data-go="5">下一步：族群铁律 →</button></div>
     
       <dialog id="promoWiz" class="modal pwiz" aria-labelledby="pwTitle">
         <div class="modal-hd">
@@ -981,74 +1049,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
 </section>
 
     <!-- 4 Material Review -->
-    <section class="panel" id="p4">
-      <div class="head"><div class="eyebrow">营销流程 · APPROVALS</div><h2>AI 做完了，但发不发你说了算</h2>
-        <p>文案、版式、必备元素一次出好。但下面这排按钮 —— <b>确认 / 改 / 退</b> —— 才是这套系统的核心。</p></div>
-      <div class="grid g2">
-        <div>
-          <div class="card" style="margin-bottom:11px">
-            <div class="row" style="justify-content:space-between;align-items:flex-start">
-              <div><b style="font-size:15px">午市快闪 · 甜蜜加价购</b><br>
-                <span style="font-size:12px;color:var(--muted)">2026-08-07 · AI plan</span></div>
-              <span class="pill" style="background:var(--amber);color:#fff">待确认</span>
-            </div>
-            <div class="grid g2" style="margin-top:11px;gap:9px">
-              <div><div class="lab">TIMING</div><div style="font-size:13px">下周三午市（2026-08-12）</div></div>
-              <div><div class="lab">FORMAT</div><div style="font-size:13px">加价购 · 折后 RM38</div></div>
-              <div><div class="lab">MARGIN</div><div style="font-size:19px;font-family:var(--mono);color:var(--green)">61%</div></div>
-              <div><div class="lab">TARGET GROUP</div><div style="font-size:13px">华人 · 马来 <span style="color:var(--muted)">（无牛肉，全族群可）</span></div></div>
-            </div>
-          </div>
-          <div class="lab" style="margin-bottom:9px">物料预览 <span id="ver" style="color:var(--blue)">v1</span></div>
-          <div class="poster">
-            <div class="art"><span>菜品实拍位<br><span style="font-size:10.5px;opacity:.75">接出图 API / Canva 模板后替换为成品图</span></span></div>
-            <div class="body">
-              <div class="ttl" id="pTitle">午市快闪 · 甜蜜加价购</div>
-              <div class="copy" id="pCopy">午市来店，主食加购芒果糯米饭 + 柠檬薄荷饮，甜一口再上班。扫码或 WhatsApp 我们预订。</div>
-              <div class="price">RM <span id="pPrice">38</span><s>RM 45</s></div>
-              <div class="foot">
-                <div>Warisan Grill · Halal ✓<br>Jalan Ampang, KL · 11:00–22:00<br>WhatsApp 012-345 6789<br>有效期至 <span class="num">2026-09-02</span></div>
-                <div class="qr" aria-label="获客二维码"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div>
-          <div class="card">
-            <div class="sect"><span class="ic">🟨</span>铁律 Gate 已通过 <small>代码自动检查</small></div>
-            <ul class="check">
-              <li><span class="ok">✓</span>店名 · 地址 · 营业时间</li>
-              <li><span class="ok">✓</span>价格来自数据（未自编）</li>
-              <li><span class="ok">✓</span>有效期在投放窗口内</li>
-              <li><span class="ok">✓</span>Halal 标</li>
-              <li><span class="ok">✓</span>获客二维码 + WhatsApp</li>
-              <li><span class="ok">✓</span>族群规则（无肉 · 全族群可推）</li>
-            </ul>
-            <div class="note" style="margin-top:12px;font-size:12.8px">不合格的稿<b>自动回炉重出，根本到不了老板面前</b>。你看到的都是已经过关的。</div>
-          </div>
-          <div class="card" style="margin-top:13px">
-            <div class="sect"><span class="ic">✋</span>等你决定</div>
-            <div class="row" style="margin-top:11px">
-              <button class="btn btn-go" id="bOk">✓ 确认 · 印刷 + 发布</button>
-              <button class="btn btn-warn" id="bEdit">✎ 改</button>
-              <button class="btn btn-stop" id="bNo">✕ 退</button>
-            </div>
-            <div id="apResult" style="margin-top:12px;font-size:13.3px"></div>
-          </div>
-        </div>
-      </div>
-      <details class="inv"><summary>💼 HITL 无例外 —— 这是护城河，不是功能</summary><div class="body">
-        agent 手上<b>根本没有「发布」这个按钮</b>。它只能产出一份 <code>ActionSpec</code>（申请单）；老板 approve 之后，才由独立的 <code>executor</code> 执行。<br>
-        再加一层幂等键：同一活动重复触发会被跳过 —— <b>重复群发 = 被客人拉黑</b>，代价太高，不能靠 AI 自觉。
-        <pre>动作工具（永不绑给 agent）
-  send_whatsapp_blast · publish_social_post
-  send_to_printer · change_price
-
-只读工具（agent 可自由用）
-  get_margin_quadrant · get_daypart_peaks · check_race_rule</pre>
-      </div></details>
-      <div class="navb"><button class="btn" data-go="3">← 上一步</button><button class="btn btn-go" data-go="5">下一步：族群铁律 →</button></div>
-    </section>
+    <section class="panel" id="p4" style="display:none" aria-hidden="true"></section>
 
     <!-- 5 Race Gate -->
     <section class="panel" id="p5">
@@ -1128,7 +1129,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
     return {"passed": True}</pre>
         Gate 不过 → 自动回上游重出，最多 3 次；仍不过就标 blocked 上报，<b>不会无限循环，也不会绕过</b>。
       </div></details>
-      <div class="navb"><button class="btn" data-go="4">← 上一步</button><button class="btn btn-go" data-go="6">下一步：营销日历 →</button></div>
+      <div class="navb"><button class="btn" data-go="3">← 上一步</button><button class="btn btn-go" data-go="6">下一步：营销日历 →</button></div>
           </div><!-- /assetpane menu -->
 </section>
 
@@ -1298,7 +1299,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
 
   var TITLES=[["Home","今天该做什么 · 待你确认的在最上面"],["Agent Floor","团队工位 · 上传数据 · 店长助理"],
     ["Weekly Report","AI 周报 · 四象限与人潮"],
-    ["Promotion Plans","促销方案 · 推谁与何时"],["Material Review","物料审批 · 确认 / 改 / 退"],
+    ["Promotion Plans","促销方案 + 物料审批 · 一页搞定"],["Material Review","（已并入 Promotion Plans）"],
     ["Library","菜单 · 菜品照 · Brand Kit"],["Marketing Calendar","营销日历 · 排期与印刷倒数"],
     ["Customer Base","客户库 · PDPA 合规"],["Usage","用量与成本"],
     ["Settings","开关都在你手上"]];
@@ -1951,6 +1952,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
     document.getElementById("calPrev").addEventListener("click",function(){ m--; if(m<1){m=12;y--;} render(); });
     document.getElementById("calNext").addEventListener("click",function(){ m++; if(m>12){m=1;y++;} render(); });
     document.getElementById("calToday").addEventListener("click",function(){ y=TODAY.y; m=TODAY.m; render(); });
+    window.__calAdd=function(key,label,color){ EV[key]=EV[key]||[]; EV[key].push([label,color||"blue"]); render(); };
     /* 点日期看详情（对齐真平台：pick a day to see what to prepare） */
     var PREP={green:"🎉 节日 —— 物料要<b>提前约 1 个月印刷</b>，投放提前 2 周开跑。",
               red:"⛔ 截止 / 红线 —— 过了这天就来不及，<b>今天就要拍板</b>。",
@@ -1982,7 +1984,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
       {title:"国庆物料确认", time:"昨天 20:14", msgs:[
         {who:"ai",html:HELLO},
         {who:"me",html:"国庆的海报做好了吗"},
-        {who:"ai",html:"做好了，营销设计师出的 v2 —— 价格已按你的意见改成 RM32。<br>铁律 Gate 都过了：Halal 标 ✓ 二维码 ✓ 有效期在投放窗口内 ✓",go:4,btn:"去审批物料 →"},
+        {who:"ai",html:"做好了，营销设计师出的 v2 —— 价格已按你的意见改成 RM32。<br>铁律 Gate 都过了：Halal 标 ✓ 二维码 ✓ 有效期在投放窗口内 ✓",go:3,btn:"去审批物料 →"},
         {who:"me",html:"印刷什么时候要发"},
         {who:"ai",html:"<b>8 月 1 日截止</b> —— 国庆 8/31，印刷提前一个月。还有 4 天。"}]},
       {title:"品牌素材上传 · Brand Kit", time:"7月22日", msgs:[
@@ -2042,7 +2044,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
        go:2, btn:"查看完整周报 →"},
       {kw:["海报","物料","广告","促销","文案","poster","设计"],
        a:"好，我让销售出促销方案、营销设计师出物料。<br>出稿后会<b>停下来等你确认</b>才发 —— 我自己发不了。",
-       go:4, btn:"去审批物料 →"},
+       go:3, btn:"去审批物料 →"},
       {kw:["日历","排期","节日","节假日","calendar"],
        a:"营销日历排出来了：<b>国庆 8/31</b>，投放 8/19 开跑，<b>印刷 8/1 截止</b>（提前一个月）。",
        go:6, btn:"查看营销日历 →"},
@@ -2341,12 +2343,13 @@ why   = llm.explain(facts)    # 解释：交给 LLM
       var d=dish(), box=document.querySelector(".apv") && document.querySelector(".apv").parentElement;
       if(box){
         var el=document.createElement("div"); el.className="apv"; el.setAttribute("data-apv","");
+        el.setAttribute("data-cal","2026-08-12|午市快闪 · "+d+" 投放");
         el.innerHTML='<div class="apv-th">'+EMO[d]+'</div>'+
           '<div class="apv-bd"><b>午市快闪 · '+d+'</b> <span class="apv-kind">Material Review · 刚刚生成</span>'+
           '<div class="apv-meta">✦ Margin <b style="color:var(--green)">'+MARG[d]+'</b> · 你刚用 ＋ 新建的 · 文案+海报已出</div>'+
           '<div class="apv-tags"><span class="pill">午市低谷 14:00–17:00</span><span class="pill" style="background:var(--green);color:#fff">Halal-labeled</span></div></div>'+
           '<div class="apv-act"><button class="btn btn-go apv-ok">✓ 确认</button>'+
-          '<button class="btn" data-go="4">✎ 改</button>'+
+          '<button class="btn" data-go="3">✎ 改</button>'+
           '<button class="btn btn-stop apv-no">✕ 退</button></div>';
         box.insertBefore(el, box.firstElementChild);
         var pill=box.closest(".card").querySelector(".pill");
@@ -2357,13 +2360,44 @@ why   = llm.explain(facts)    # 解释：交给 LLM
       if(window.__go) __go(0);
     });
   })();
+  /* ---- 物料：下载 PNG + 重新生成（Harry 对齐：download / regenerate）---- */
+  (function(){
+    var dl=document.getElementById("btnDl"); if(!dl) return;
+    dl.addEventListener("click",function(){
+      var cv=document.createElement("canvas"); cv.width=480; cv.height=640;
+      var g=cv.getContext("2d");
+      g.fillStyle="#F5EFE6"; g.fillRect(0,0,480,640);
+      g.fillStyle="#B4451F"; g.fillRect(0,0,480,120);
+      g.fillStyle="#fff"; g.font="700 26px sans-serif"; g.textAlign="center";
+      g.fillText("Warisan Grill · Halal ✓",240,52);
+      g.font="600 18px sans-serif"; g.fillText("午市快闪 · 甜蜜加价购",240,88);
+      g.font="120px serif"; g.fillText("🥭",240,300);
+      g.fillStyle="#1F2937"; g.font="700 44px sans-serif"; g.fillText("RM 38",240,400);
+      g.font="400 16px sans-serif"; g.fillText("原价 RM45 · 有效期至 2026-09-02",240,436);
+      g.font="400 14px sans-serif"; g.fillText("Jalan Ampang, KL · 11:00–22:00 · WhatsApp 012-345 6789",240,580);
+      var a=document.createElement("a"); a.download="WarisanGrill-午市快闪-poster.png";
+      a.href=cv.toDataURL("image/png"); a.click();
+      var m=document.getElementById("dlMsg"); m.textContent="✓ 已下载"; setTimeout(function(){m.textContent="";},2500);
+    });
+    var rg=document.getElementById("btnRegen"), rn=1;
+    rg.addEventListener("click",function(){
+      rn++; var v=document.getElementById("ver"); if(v) v.textContent="v"+rn;
+      var c=document.getElementById("pCopy");
+      if(c) c.style.opacity=".35";
+      setTimeout(function(){ if(c){c.style.opacity="1";}
+        var m=document.getElementById("dlMsg"); m.textContent="✓ 已重出 v"+rn+"（同价同素材，换构图）"; setTimeout(function(){m.textContent="";},3000);
+      },600);
+    });
+  })();
   /* ---- Home 审批卡 inline 确认/退 ---- */
   document.addEventListener("click",function(e){
     var ok=e.target.closest(".apv-ok"), no=e.target.closest(".apv-no");
     if(!ok&&!no) return;
     var card=e.target.closest(".apv"); if(!card) return;
     var b=document.createElement("span"); b.className="apv-badge";
-    if(ok){ card.classList.add("done"); b.style.color="var(--green)"; b.textContent="✓ 已确认 · 已进日历"; }
+    if(ok){ card.classList.add("done"); b.style.color="var(--green)"; b.textContent="✓ 已确认 · 已进日历";
+      var cal=card.getAttribute("data-cal");
+      if(cal&&window.__calAdd){ var cp=cal.split("|"); __calAdd(cp[0],cp[1],"blue"); } }
     else { card.classList.add("rej"); b.style.color="var(--red)"; b.textContent="✕ 已退回"; }
     card.appendChild(b);
     var left=document.querySelectorAll(".apv:not(.done):not(.rej)").length;
