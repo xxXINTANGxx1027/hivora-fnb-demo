@@ -11,7 +11,7 @@
 <style>*{margin:0;padding:0}</style>
 </head>
 <body>
-<!-- build 2026-08-09 v3.2 · 分组侧栏 + Settings -->
+<!-- build 2026-08-09 v3.3 · Home 审批卡 + 新建促销向导 -->
 <title>Hivora F&B Marketing · Demo</title>
 <style>
 :root{
@@ -623,6 +623,50 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
 .attach.pulse{animation:atp 0.9s ease 3}
 @keyframes atp{0%,100%{box-shadow:none}50%{box-shadow:0 0 0 6px var(--blue-soft)}}
 
+
+/* Home 审批卡（平台同款）*/
+.apv{display:flex;gap:12px;align-items:flex-start;padding:13px 4px;border-bottom:1px dashed var(--line)}
+.apv:last-of-type{border-bottom:0}
+.apv-th{width:52px;height:52px;border-radius:11px;background:linear-gradient(135deg,var(--blue-soft),#F4EEE4);
+  display:grid;place-items:center;font-size:24px;flex-shrink:0}
+.apv-bd{flex:1;min-width:0}
+.apv-bd>b{font-size:13.8px}
+.apv-kind{font-size:10.5px;font-family:var(--mono);color:var(--muted);letter-spacing:.05em}
+.apv-meta{font-size:12.3px;color:var(--muted);margin-top:3px}
+.apv-tags{display:flex;gap:5px;flex-wrap:wrap;margin-top:7px}
+.apv-act{display:flex;flex-direction:column;gap:6px;flex-shrink:0}
+.apv-act .btn{font-size:12px;padding:6px 12px;white-space:nowrap}
+.apv.done{opacity:.55}
+.apv.done .apv-act{display:none}
+.apv.rej{opacity:.45}
+.apv.rej .apv-act{display:none}
+.apv-badge{font-size:12px;font-weight:650;flex-shrink:0;align-self:center}
+@media(max-width:640px){
+  .apv{flex-wrap:wrap}
+  .apv-act{flex-direction:row;width:100%;justify-content:flex-end}
+}
+
+
+/* ＋ 新建促销向导 */
+.pnew-btn{position:absolute;right:0;top:26px;font-size:13px}
+@media(max-width:640px){.pnew-btn{position:static;margin-top:9px}}
+.pwiz{max-width:560px;width:min(560px,92vw)}
+.pw-steps{display:flex;gap:7px;align-items:center;padding:12px 18px 0;font-size:11.5px;color:var(--muted);flex-wrap:wrap}
+.pw-steps i{opacity:.4;font-style:normal}
+.pws.on{color:var(--blue);font-weight:650}
+.pw-body{padding:14px 18px}
+.pwp{display:none}.pwp.on{display:block}
+.pw-dishes{display:grid;gap:7px;margin-top:8px}
+.pwd{display:block;border:1px solid var(--line);border-radius:10px;padding:10px 13px;cursor:pointer}
+.pwd input{display:none}
+.pwd b{font-size:13.5px;display:block}
+.pwd span{font-size:11.8px;color:var(--muted)}
+.pwd.on{border-color:var(--blue);background:var(--blue-soft)}
+.pw-meta{display:flex;gap:5px;flex-wrap:wrap;margin-top:7px}
+.pw-img{display:flex;gap:13px;align-items:center;border:1px solid var(--line);border-radius:12px;padding:13px;margin-top:9px}
+.pw-img>span{font-size:44px;width:76px;height:76px;border-radius:12px;background:linear-gradient(135deg,var(--blue-soft),#F4EEE4);display:grid;place-items:center;flex-shrink:0}
+.pw-done{font-size:44px;text-align:center;margin:10px 0 6px}
+
 </style>
 
 <div class="app">
@@ -636,7 +680,7 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
   <aside class="side">
     <div class="biz"><b>F&amp;B Marketing</b><span>Warisan Grill · Halal ✓</span></div>
     <nav aria-label="主导航">
-      <button class="nv" data-go="0"><span class="ic">🏠</span><span class="sp">Today</span></button>
+      <button class="nv" data-go="0"><span class="ic">🏠</span><span class="sp">Home</span></button>
       <div class="nvsep">AI</div>
       <button class="nv" data-go="1" aria-current="true"><span class="ic">🏢</span><span class="sp">Agent Floor</span></button>
       <button class="nv" data-act="agents"><span class="ic">🤖</span><span class="sp">AI Agents</span></button>
@@ -672,8 +716,8 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
 
     <!-- 0 Today -->
     <section class="panel" id="p0">
-      <div class="head"><div class="eyebrow">Hivora · AI Workforce</div><h2>今日看板</h2>
-        <p>老板每天打开的第一页：待你确认的东西在最上面，AI 干了什么在下面。</p></div>
+      <div class="head"><div class="eyebrow">Hivora · AI Workforce</div><h2>今天该做什么</h2>
+        <p>老板每天打开的第一页：<b>待你确认的在最上面</b>，AI 干了什么在下面。</p></div>
       <div class="grid g4">
         <div class="card kpi"><div class="lab">待确认</div><div class="v" style="color:var(--amber)">2</div><div class="s">物料 1 · 排期 1</div></div>
         <div class="card kpi"><div class="lab">本周营收</div><div class="v">13,867</div><div class="s">RM · +8% vs 上周</div></div>
@@ -681,11 +725,34 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
         <div class="card kpi"><div class="lab">今日 AI 花费</div><div class="v" style="font-size:21px">RM 3.10</div><div class="s">本月累计 RM 41 · DeepSeek</div></div>
       </div>
       <div class="card" style="margin-top:13px">
-        <div class="sect"><span class="ic">📥</span>审批箱 <small>只有这里能放行真实动作</small></div>
-        <div style="margin-top:8px">
-          <div class="inbox"><span class="pill">待确认</span><span class="sp"><b>午市快闪 · 物料包</b><br><span style="font-size:12px;color:var(--muted)">营销设计师 · 5 分钟前</span></span><button class="btn btn-go" data-go="4">去审</button></div>
-          <div class="inbox"><span class="pill">待确认</span><span class="sp"><b>国庆排期确认</b><br><span style="font-size:12px;color:var(--muted)">销售 · 今天 09:12</span></span><button class="btn" data-go="6">查看</button></div>
+        <div class="sect"><span class="ic">📥</span>审批箱 <small>只有这里能放行真实动作</small><span class="sp" style="flex:1"></span><span class="pill" style="background:var(--amber);color:#fff">2 待确认</span></div>
+        <div class="apv" data-apv>
+          <div class="apv-th">🥭</div>
+          <div class="apv-bd">
+            <b>午市快闪 · 甜蜜加价购</b> <span class="apv-kind">Material Review</span>
+            <div class="apv-meta">✦ Margin <b style="color:var(--green)">61%</b> · 加价购 折后 RM38 · 营销设计师 · 5 分钟前</div>
+            <div class="apv-tags"><span class="pill">下周三午市（2026-08-12）</span><span class="pill" style="background:var(--green);color:#fff">Halal-labeled</span><span class="pill">华人 · 马来</span></div>
+          </div>
+          <div class="apv-act">
+            <button class="btn btn-go apv-ok">✓ 确认</button>
+            <button class="btn" data-go="4">✎ 改</button>
+            <button class="btn btn-stop apv-no">✕ 退</button>
+          </div>
         </div>
+        <div class="apv" data-apv>
+          <div class="apv-th">📅</div>
+          <div class="apv-bd">
+            <b>国庆排期确认</b> <span class="apv-kind">Calendar</span>
+            <div class="apv-meta">8/19 开始投放 · <b style="color:var(--red)">8/1 印刷截止（还有 4 天）</b> · 销售 · 今天 09:12</div>
+            <div class="apv-tags"><span class="pill">🇲🇾 Merdeka 8/31</span><span class="pill">印刷提前 1 个月</span></div>
+          </div>
+          <div class="apv-act">
+            <button class="btn btn-go apv-ok">✓ 确认</button>
+            <button class="btn" data-go="6">📅 查看</button>
+            <button class="btn btn-stop apv-no">✕ 退</button>
+          </div>
+        </div>
+        <div class="note" style="margin-top:11px;font-size:12.3px">AI 手上没有「发布」按钮 —— 它只能把申请单放到这里，<b>你批了，系统才执行</b>。</div>
       </div>
       <div class="card" style="margin-top:13px">
         <div class="sect"><span class="ic">📡</span>Agent 实时动态 <small>who's running what</small><span class="sp" style="flex:1"></span><span class="livepulse"><i></i>Live</span></div>
@@ -763,7 +830,7 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
         agent 之间不直连、全部经总管中转 —— 这是<b>图的结构决定的</b>，不是靠提示词约定。
       </div></details>
 
-      <div class="navb"><button class="btn" data-go="0">← 今日看板</button><button class="btn btn-go" data-go="2">下一步：AI 周报 →</button></div>
+      <div class="navb"><button class="btn" data-go="0">← Home</button><button class="btn btn-go" data-go="2">下一步：AI 周报 →</button></div>
     </section>
 
 
@@ -828,8 +895,9 @@ why   = llm.explain(facts)    # 解释：交给 LLM
 
     <!-- 3 Promotion -->
     <section class="panel" id="p3">
-      <div class="head"><div class="eyebrow">营销流程 · Promotion Plans</div><h2>推提拉米苏，不是推牛肉面</h2>
-        <p>牛肉面本来就卖得好，打折等于送钱。潜力品毛利高但卖得慢 —— 打折还有得赚，还能把人拉进店。</p></div>
+      <div class="head" style="position:relative"><div class="eyebrow">营销流程 · Promotion Plans</div><h2>推提拉米苏，不是推牛肉面</h2>
+        <p>牛肉面本来就卖得好，打折等于送钱。潜力品毛利高但卖得慢 —— 打折还有得赚，还能把人拉进店。</p>
+        <button class="btn btn-go pnew-btn" id="promoAdd">＋ 新建促销</button></div>
       <div class="grid g2">
         <div class="card">
           <div class="sect"><span class="ic">🎯</span>AI 促销建议</div>
@@ -860,7 +928,60 @@ why   = llm.explain(facts)    # 解释：交给 LLM
         <span style="color:var(--muted)">（早期没喂时间上下文时，AI 在 7 月建议过「情人节套餐」和美国「感恩节」—— 现在这类错误由代码 Gate 直接拦掉。）</span>
       </div></details>
       <div class="navb"><button class="btn" data-go="2">← 上一步</button><button class="btn btn-go" data-go="4">下一步：物料审批 →</button></div>
-    </section>
+    
+      <dialog id="promoWiz" class="modal pwiz" aria-labelledby="pwTitle">
+        <div class="modal-hd">
+          <b id="pwTitle">＋ 新建促销 · AI 一条龙</b>
+          <span class="lab" style="margin-left:auto">方案 → 文案 → 生图 → 审批</span>
+          <button class="mclose" id="pwClose" aria-label="关闭">✕</button>
+        </div>
+        <div class="pw-steps" id="pwSteps">
+          <span class="pws on">1 选菜定档</span><i>→</i><span class="pws">2 AI 文案</span><i>→</i><span class="pws">3 AI 生图</span><i>→</i><span class="pws">4 进审批</span>
+        </div>
+        <div class="pw-body">
+          <!-- step1 -->
+          <div class="pwp on" data-pw="1">
+            <div class="lab">推哪道？（AI 已按「毛利高 + 卖得慢」排好序）</div>
+            <div class="pw-dishes" id="pwDishes">
+              <label class="pwd on"><input type="radio" name="pwd" value="芒果糯米饭" checked><b>🥭 芒果糯米饭</b><span>Margin 68% · 潜力品 · 25 份/周</span></label>
+              <label class="pwd"><input type="radio" name="pwd" value="柠檬薄荷饮"><b>🍹 柠檬薄荷饮</b><span>Margin 71% · 潜力品 · 30 份/周</span></label>
+              <label class="pwd"><input type="radio" name="pwd" value="松露意面"><b>🍝 松露意面</b><span>Margin 67% · 潜力品 · 22 份/周</span></label>
+            </div>
+            <div class="lab" style="margin-top:13px">由头 & 档期（AI 建议）</div>
+            <div class="pw-meta"><span class="pill">午市低谷 周一至五 14:00–17:00</span><span class="pill">加价购 · 折后 RM38</span><span class="pill" style="background:var(--green);color:#fff">折后毛利仍 ≥ 40% ✓</span></div>
+            <div class="note" style="margin-top:11px;font-size:12.3px">力度只是<b>建议</b> —— 你可以在下一步改，最终以你批的为准。</div>
+          </div>
+          <!-- step2 -->
+          <div class="pwp" data-pw="2">
+            <div class="lab">AI 文案（gen_copy · 可直接改）</div>
+            <textarea class="edit-ta" id="pwCopy" style="min-height:110px">午市来店，主食加购芒果糯米饭 + 柠檬薄荷饮，甜一口再上班。扫码或 WhatsApp 我们预订。</textarea>
+            <div class="pw-meta" style="margin-top:9px"><span class="pill">中文版</span><span class="pill" style="opacity:.6">EN（自动出）</span><span class="pill" style="opacity:.6">BM（自动出）</span></div>
+            <div class="note" style="margin-top:11px;font-size:12.3px">一条物料一种语言，中 / 英 / 马来分版出，按族群定向投放。</div>
+          </div>
+          <!-- step3 -->
+          <div class="pwp" data-pw="3">
+            <div class="lab">AI 生图（gcreate_gen_image · 套 Brand Kit）</div>
+            <div class="pw-img"><span id="pwImgEmoji">🥭</span>
+              <div><b id="pwImgTitle">午市快闪 · 甜蜜加价购</b><br>
+              <span style="font-size:12px;color:var(--muted)">海报版式稿 · 菜品照打底 · Halal 标 + 二维码由模板叠加（绝不让 AI 画）</span><br>
+              <span class="pw-meta" style="margin-top:7px;display:inline-flex"><span class="pill">主色 #B4451F</span><span class="pill">Poppins</span><span class="pill" style="background:var(--green);color:#fff">Halal ✓</span></span></div></div>
+            <div class="note" style="margin-top:11px;font-size:12.3px"><b>价格和二维码不靠 AI 画</b> —— AI 出美图，模板叠精确文字，印错一个数都过不了闸。</div>
+          </div>
+          <!-- step4 -->
+          <div class="pwp" data-pw="4">
+            <div class="pw-done">📥</div>
+            <p style="text-align:center;font-size:13.5px"><b>已生成方案 + 文案 + 物料</b><br>
+            <span style="font-size:12.5px;color:var(--muted)">下一步它自己去不了 —— 已放进<b>审批箱</b>，等你按「确认」。</span></p>
+          </div>
+        </div>
+        <div class="mfoot">
+          <span class="lab" id="pwHint">铁律 Gate 会在出稿后自动检查</span>
+          <span class="sp"></span>
+          <button class="btn" id="pwBack" hidden>← 上一步</button>
+          <button class="btn btn-go" id="pwNext">AI 出文案 →</button>
+        </div>
+      </dialog>
+</section>
 
     <!-- 4 Material Review -->
     <section class="panel" id="p4">
@@ -1091,7 +1212,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
         </div>
         <div class="note stop" style="margin-top:9px;font-size:12px">以上为演示用虚构资料，非真实个人数据。</div>
       </div>
-      <div class="navb"><button class="btn" data-go="0">← 今日看板</button><button class="btn" data-go="8">Usage →</button></div>
+      <div class="navb"><button class="btn" data-go="0">← Home</button><button class="btn" data-go="8">Usage →</button></div>
     </section>
 
     <!-- 8 Usage -->
@@ -1137,7 +1258,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
         </div>
       </div>
       <div class="note" style="margin-top:13px"><b>为什么有些是 🔒：</b>能关的是偏好，不能关的是底线 —— 底线不放在界面上，放在代码里。</div>
-      <div class="navb"><button class="btn" data-go="0">← 今日看板</button><button class="btn" data-go="8">Usage →</button></div>
+      <div class="navb"><button class="btn" data-go="0">← Home</button><button class="btn" data-go="8">Usage →</button></div>
     </section>
 
     </div>
@@ -1178,7 +1299,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
   "use strict";
   var root=document.documentElement;
 
-  var TITLES=[["Today","今日看板 · 待办与动态"],["Agent Floor","团队工位 · 上传数据 · 店长助理"],
+  var TITLES=[["Home","今天该做什么 · 待你确认的在最上面"],["Agent Floor","团队工位 · 上传数据 · 店长助理"],
     ["Weekly Report","AI 周报 · 四象限与人潮"],
     ["Promotion Plans","促销方案 · 推谁与何时"],["Material Review","物料审批 · 确认 / 改 / 退"],
     ["Library","菜单 · 菜品照 · Brand Kit"],["Marketing Calendar","营销日历 · 排期与印刷倒数"],
@@ -2187,6 +2308,71 @@ why   = llm.explain(facts)    # 解释：交给 LLM
       if(window.__go) __go(5); mark();
       var map={menu:"menu",assets:"photos",brand:"brand"};
       var tb=document.querySelector('.assettabs button[data-apane="'+map[act]+'"]'); tb&&tb.click(); }
+  });
+  /* ---- ＋ 新建促销向导（方案→文案→生图→并进 Material 审批）---- */
+  (function(){
+    var dlg=document.getElementById("promoWiz"); if(!dlg) return;
+    var step=1, EMO={"芒果糯米饭":"🥭","柠檬薄荷饮":"🍹","松露意面":"🍝"};
+    var COPY={"芒果糯米饭":"午市来店，主食加购芒果糯米饭 + 柠檬薄荷饮，甜一口再上班。扫码或 WhatsApp 我们预订。",
+              "柠檬薄荷饮":"下午三点困？柠檬薄荷饮限时 RM4.50，清凉一口回血。到店出示此图即享。",
+              "松露意面":"Merdeka 倒数！松露意面一口香浓迎国庆，午市限定九折。仅到 8/31。"};
+    var MARG={"芒果糯米饭":"68%","柠檬薄荷饮":"71%","松露意面":"67%"};
+    function dish(){ var c=document.querySelector('input[name="pwd"]:checked'); return c?c.value:"芒果糯米饭"; }
+    function show(){
+      [].forEach.call(dlg.querySelectorAll(".pwp"),function(x){x.classList.toggle("on",+x.getAttribute("data-pw")===step);});
+      [].forEach.call(dlg.querySelectorAll(".pws"),function(x,i){x.classList.toggle("on",i<step);});
+      document.getElementById("pwBack").hidden=(step===1);
+      var nx=document.getElementById("pwNext");
+      nx.textContent=step===1?"AI 出文案 →":step===2?"AI 生图 →":step===3?"放进审批箱 →":"完成 · 去 Home 批 ✓";
+      document.getElementById("pwHint").textContent=step===4?"真实动作只有审批箱能放行":"铁律 Gate 会在出稿后自动检查";
+      if(step===2){ document.getElementById("pwCopy").value=COPY[dish()]; }
+      if(step===3){ document.getElementById("pwImgEmoji").textContent=EMO[dish()];
+        document.getElementById("pwImgTitle").textContent="午市快闪 · "+dish(); }
+    }
+    document.getElementById("promoAdd").addEventListener("click",function(){ step=1; show(); if(!dlg.open) dlg.showModal(); });
+    document.getElementById("pwClose").addEventListener("click",function(){ dlg.close(); });
+    document.getElementById("pwBack").addEventListener("click",function(){ if(step>1){step--;show();} });
+    [].forEach.call(dlg.querySelectorAll(".pwd"),function(l){
+      l.addEventListener("click",function(){
+        [].forEach.call(dlg.querySelectorAll(".pwd"),function(x){x.classList.remove("on");});
+        l.classList.add("on"); l.querySelector("input").checked=true;
+      });
+    });
+    document.getElementById("pwNext").addEventListener("click",function(){
+      if(step<4){ step++; show(); return; }
+      /* 完成：并进 Home 审批箱 */
+      var d=dish(), box=document.querySelector(".apv") && document.querySelector(".apv").parentElement;
+      if(box){
+        var el=document.createElement("div"); el.className="apv"; el.setAttribute("data-apv","");
+        el.innerHTML='<div class="apv-th">'+EMO[d]+'</div>'+
+          '<div class="apv-bd"><b>午市快闪 · '+d+'</b> <span class="apv-kind">Material Review · 刚刚生成</span>'+
+          '<div class="apv-meta">✦ Margin <b style="color:var(--green)">'+MARG[d]+'</b> · 你刚用 ＋ 新建的 · 文案+海报已出</div>'+
+          '<div class="apv-tags"><span class="pill">午市低谷 14:00–17:00</span><span class="pill" style="background:var(--green);color:#fff">Halal-labeled</span></div></div>'+
+          '<div class="apv-act"><button class="btn btn-go apv-ok">✓ 确认</button>'+
+          '<button class="btn" data-go="4">✎ 改</button>'+
+          '<button class="btn btn-stop apv-no">✕ 退</button></div>';
+        box.insertBefore(el, box.firstElementChild);
+        var pill=box.closest(".card").querySelector(".pill");
+        var left=box.querySelectorAll(".apv:not(.done):not(.rej)").length;
+        if(pill){ pill.textContent=left+" 待确认"; pill.style.background="var(--amber)"; }
+      }
+      dlg.close();
+      if(window.__go) __go(0);
+    });
+  })();
+  /* ---- Home 审批卡 inline 确认/退 ---- */
+  document.addEventListener("click",function(e){
+    var ok=e.target.closest(".apv-ok"), no=e.target.closest(".apv-no");
+    if(!ok&&!no) return;
+    var card=e.target.closest(".apv"); if(!card) return;
+    var b=document.createElement("span"); b.className="apv-badge";
+    if(ok){ card.classList.add("done"); b.style.color="var(--green)"; b.textContent="✓ 已确认 · 已进日历"; }
+    else { card.classList.add("rej"); b.style.color="var(--red)"; b.textContent="✕ 已退回"; }
+    card.appendChild(b);
+    var left=document.querySelectorAll(".apv:not(.done):not(.rej)").length;
+    var pill=card.closest(".card").querySelector(".pill");
+    if(pill) pill.textContent=left?left+" 待确认":"全部处理完 ✓";
+    if(!left&&pill){ pill.style.background="var(--green)"; }
   });
   /* ---- Settings 开关（演示态）---- */
   document.addEventListener("click",function(e){
