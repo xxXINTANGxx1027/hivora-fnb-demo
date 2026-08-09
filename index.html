@@ -11,7 +11,7 @@
 <style>*{margin:0;padding:0}</style>
 </head>
 <body>
-<!-- build 2026-08-09 v4.0 · Promotion 手风琴：收起一行/展开见全部，每条必有图 -->
+<!-- build 2026-08-09 v4.1 · 删说教区 + 来源标签（AI自动/老板发起）-->
 <title>Hivora F&B Marketing · Demo</title>
 <style>
 :root{
@@ -994,21 +994,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
         <button class="stachip" data-st="draft">草稿 <b>2</b></button>
       </div>
       <div id="planAcc"></div>
-      <details class="inv" style="margin-top:13px"><summary>💼 AI 出建议，但定不了力度</summary><div class="body">
-        折扣打多少、活动做不做 —— <b>永远是老板拍板</b>。agent 的工具白名单里<b>根本没有「改价」</b>。<br>
-        时间也不靠 AI 记：今天几号、接下来什么节日、印刷提前期多久，都是代码提供的上下文。<br>
-        <span style="color:var(--muted)">（早期没喂时间上下文时，AI 在 7 月建议过「情人节套餐」和美国「感恩节」—— 现在这类错误由代码 Gate 直接拦掉。）</span>
-      </div></details>
-      <details class="inv"><summary>💼 HITL 无例外 —— 这是护城河，不是功能</summary><div class="body">
-        agent 手上<b>根本没有「发布」这个按钮</b>。它只能产出一份 <code>ActionSpec</code>（申请单）；老板 approve 之后，才由独立的 <code>executor</code> 执行。<br>
-        再加一层幂等键：同一活动重复触发会被跳过 —— <b>重复群发 = 被客人拉黑</b>，代价太高，不能靠 AI 自觉。
-        <pre>动作工具（永不绑给 agent）
-  send_whatsapp_blast · publish_social_post
-  send_to_printer · change_price
 
-只读工具（agent 可自由用）
-  get_margin_quadrant · get_daypart_peaks · check_race_rule</pre>
-      </div></details>
       <div class="navb"><button class="btn" data-go="2">← 上一步</button><button class="btn btn-go" data-go="5">下一步：族群铁律 →</button></div>
     
       <dialog id="promoWiz" class="modal pwiz" aria-labelledby="pwTitle">
@@ -2406,27 +2392,27 @@ why   = llm.explain(facts)    # 解释：交给 LLM
   (function(){
     var box=document.getElementById("planAcc"); if(!box) return;
     var PLANS=[
-      {id:"flash",st:"pending",emo:"🥭",img:"ai",title:"午市快闪 · 甜蜜加价购",date:"2026-08-07 · AI plan",
+      {id:"flash",st:"pending",emo:"🥭",img:"ai",title:"午市快闪 · 甜蜜加价购",date:"2026-08-07 · 💬 老板从聊天发起 · AI 起草",
        timing:"下周三午市（2026-08-12）",fmt:"套餐加价购 · 折后 RM38",margin:"61%",group:"华人 · 马来（无牛肉）",
        price:"38",orig:"RM 45",copy:"午市来店，主食加购芒果糯米饭 + 柠檬薄荷饮，甜一口再上班。扫码或 WhatsApp 我们预订。",
        ch:["FB / IG 帖子","WhatsApp 群发（opt-in 248 人）","印刷海报","店内桌卡"],cal:"2026-08-12|午市快闪 投放",v:1},
-      {id:"truffle2",st:"pending",emo:"🍝",img:"ai",title:"松露意面 · Merdeka 倒数预热",date:"2026-08-08 · AI plan",
+      {id:"truffle2",st:"pending",emo:"🍝",img:"ai",title:"松露意面 · Merdeka 倒数预热",date:"2026-08-08 · 🤖 AI 自动发起（国庆 cron 到点触发）",
        timing:"下周三午市（2026-08-13）",fmt:"九折 + 国庆主题物料",margin:"67%",group:"chinese",
        price:"19.80",orig:"RM 22.00",copy:"Merdeka 倒数！一口香浓迎国庆，仅到 8/31。",
        ch:["FB / IG 帖子","店内桌卡"],cal:"2026-08-13|松露意面 国庆预热 投放",v:1},
-      {id:"truffle1",st:"approved",emo:"🍝",img:"ai",title:"松露意面 · 午市九折",date:"2026-08-07 · 已批 · 已进日历 08-10",
+      {id:"truffle1",st:"approved",emo:"🍝",img:"ai",title:"松露意面 · 午市九折",date:"2026-08-07 · 🤖 AI 自动发起 · 已批 · 已进日历 08-10",
        timing:"下周一午市（2026-08-10）",fmt:"九折单品 · 折后 RM19.80",margin:"67%",group:"chinese",
        price:"19.80",orig:"RM 22.00",copy:"松露香浓，午市限定九折 —— 只到下周五。",
        ch:["FB / IG 帖子","WhatsApp 群发"],v:1},
-      {id:"teh",st:"draft",emo:"🧋",img:"menu",title:"拉茶 · 下午茶引流拉新",date:"2026-08-07 · 助理起草 · 普通促销",
+      {id:"teh",st:"draft",emo:"🧋",img:"menu",title:"拉茶 · 下午茶引流拉新",date:"2026-08-07 · 💬 老板随口一句「拉茶做个九折」· 助理起草",
        timing:"午市低谷（周一至五 14:00–17:00）",fmt:"九折优惠 · RM4.50",margin:"73%",group:"全客群（无肉）",
        price:"4.50",orig:"RM 5.00",copy:"下午三点困？拉茶九折，热的冰的都有。",
        ch:["店内口头 + 桌卡"],v:1},
-      {id:"satay",st:"draft",emo:"🍢",img:"menu",title:"Chicken Satay · 周三晚市 15% off",date:"2026-08-09 · 助理起草 · 普通促销",
+      {id:"satay",st:"draft",emo:"🍢",img:"menu",title:"Chicken Satay · 周三晚市 15% off",date:"2026-08-09 · 🤖 AI 发现周三晚市连续 4 周最低谷，自动起草",
        timing:"周三晚市（全周最低谷，引流填谷）",fmt:"限时折扣（仅堂食）",margin:"60%",group:"chinese",
        price:"11.90",orig:"RM 14.00",copy:"周三晚市限定 15% off — 招牌鸡肉沙爹，Halal 认证。",
        ch:["FB / IG 预告（当天午后）"],v:1},
-      {id:"mint",st:"rejected",emo:"🍹",img:"ai",title:"柠檬薄荷饮 · 国庆备战清凉一饮",date:"2026-08-06 · 已退回：与「午市快闪」撞档期",
+      {id:"mint",st:"rejected",emo:"🍹",img:"ai",title:"柠檬薄荷饮 · 国庆备战清凉一饮",date:"2026-08-06 · 🤖 AI 自动发起 · 已退回：撞档期",
        timing:"平日午市低谷（周一至四）",fmt:"限时尝鲜价",margin:"71%",group:"全客群",
        price:"4.00",orig:"RM 4.80",copy:"清凉一饮，Warisan 招牌柠檬薄荷限时尝鲜。",
        ch:["FB / IG 帖子"],v:1}
