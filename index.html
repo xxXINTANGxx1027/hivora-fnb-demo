@@ -11,7 +11,7 @@
 <style>*{margin:0;padding:0}</style>
 </head>
 <body>
-<!-- build 2026-08-09 v3.6 · 弹窗居中 -->
+<!-- build 2026-08-09 v3.7 · 向导活化 + Library 三合一可上传 -->
 <title>Hivora F&B Marketing · Demo</title>
 <style>
 :root{
@@ -667,6 +667,29 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
 .pw-img>span{font-size:44px;width:76px;height:76px;border-radius:12px;background:linear-gradient(135deg,var(--blue-soft),#F4EEE4);display:grid;place-items:center;flex-shrink:0}
 .pw-done{font-size:44px;text-align:center;margin:10px 0 6px}
 
+
+.pw-chips{display:flex;gap:6px;flex-wrap:wrap;margin-top:7px}
+.pwc{font-size:12.3px;padding:6px 11px;border-radius:99px;border:1px solid var(--line);background:var(--surface);cursor:pointer}
+.pwc s{text-decoration:none;font-family:var(--mono);font-size:10.5px;color:var(--green);margin-left:3px}
+.pwc.on{border-color:var(--blue);background:var(--blue-soft);color:var(--blue)}
+.pw-form{display:grid;grid-template-columns:1fr 1fr;gap:9px 11px;margin-top:12px}
+.pw-form label{display:block}
+.pw-form .lab{margin-bottom:3px}
+.pw-form input,.pw-form select{width:100%;border:1px solid var(--line);border-radius:8px;padding:8px 10px;
+  font-size:12.8px;font-family:var(--sans);background:var(--surface);color:var(--ink)}
+.pw-form input:focus,.pw-form select:focus{outline:2px solid var(--blue-line)}
+@media(max-width:640px){.pw-form{grid-template-columns:1fr}}
+.pw-fb{display:flex;gap:8px;margin-top:11px;align-items:stretch}
+.pw-fb textarea{flex:1;border:1px solid var(--line);border-radius:9px;padding:8px 10px;font-size:12.5px;
+  font-family:var(--sans);min-height:44px;resize:vertical;background:var(--surface);color:var(--ink)}
+.pw-fb .btn{white-space:nowrap;align-self:center}
+
+
+.phadd{cursor:pointer;border-style:dashed !important;color:var(--blue);font-size:22px}
+.phadd:hover{background:var(--blue-soft)}
+.bdadd{cursor:pointer;border-style:dashed;display:grid;place-items:center;text-align:center;color:var(--blue)}
+.bdadd:hover{background:var(--blue-soft)}
+
 </style>
 
 <div class="app">
@@ -687,9 +710,7 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
       <button class="nv" data-go="3"><span class="ic">🎯</span><span class="sp">Promotion Plans</span></button>
       <button class="nv" data-go="6"><span class="ic">📅</span><span class="sp">Marketing Calendar</span></button>
       <div class="nvsep">Library</div>
-      <button class="nv" data-act="menu"><span class="ic">🍽️</span><span class="sp">Menu</span></button>
-      <button class="nv" data-act="assets"><span class="ic">🖼️</span><span class="sp">Asset Library</span></button>
-      <button class="nv" data-act="brand"><span class="ic">🎨</span><span class="sp">Brand Kit</span></button>
+      <button class="nv" data-go="5"><span class="ic">🗂️</span><span class="sp">Library</span></button>
       <button class="nv" data-go="7"><span class="ic">👥</span><span class="sp">Customer Base</span></button>
       <div class="nvsep">System</div>
       <button class="nv" data-go="8"><span class="ic">📈</span><span class="sp">Usage</span></button>
@@ -1006,15 +1027,31 @@ why   = llm.explain(facts)    # 解释：交给 LLM
         <div class="pw-body">
           <!-- step1 -->
           <div class="pwp on" data-pw="1">
-            <div class="lab">推哪道？（AI 已按「毛利高 + 卖得慢」排好序）</div>
-            <div class="pw-dishes" id="pwDishes">
-              <label class="pwd on"><input type="radio" name="pwd" value="芒果糯米饭" checked><b>🥭 芒果糯米饭</b><span>Margin 68% · 潜力品 · 25 份/周</span></label>
-              <label class="pwd"><input type="radio" name="pwd" value="柠檬薄荷饮"><b>🍹 柠檬薄荷饮</b><span>Margin 71% · 潜力品 · 30 份/周</span></label>
-              <label class="pwd"><input type="radio" name="pwd" value="松露意面"><b>🍝 松露意面</b><span>Margin 67% · 潜力品 · 22 份/周</span></label>
+            <div class="lab">AI 推荐（点一个快速填入，字段都能改）</div>
+            <div class="pw-chips">
+              <button type="button" class="pwc on" data-dish="芒果糯米饭">🥭 芒果糯米饭 <s>68%</s></button>
+              <button type="button" class="pwc" data-dish="柠檬薄荷饮">🍹 柠檬薄荷饮 <s>71%</s></button>
+              <button type="button" class="pwc" data-dish="松露意面">🍝 松露意面 <s>67%</s></button>
             </div>
-            <div class="lab" style="margin-top:13px">由头 & 档期（AI 建议）</div>
-            <div class="pw-meta"><span class="pill">午市低谷 周一至五 14:00–17:00</span><span class="pill">加价购 · 折后 RM38</span><span class="pill" style="background:var(--green);color:#fff">折后毛利仍 ≥ 40% ✓</span></div>
-            <div class="note" style="margin-top:11px;font-size:12.3px">力度只是<b>建议</b> —— 你可以在下一步改，最终以你批的为准。</div>
+            <div class="pw-form">
+              <label><span class="lab">主推菜品</span><input id="pwDish" value="芒果糯米饭"></label>
+              <label><span class="lab">方案主题</span><input id="pwTheme" value="午市快闪 · 甜蜜加价购 — 主食加购芒果糯米饭"></label>
+              <label><span class="lab">目标族群</span>
+                <select id="pwGroup"><option value="chinese">chinese</option><option value="malay">malay</option><option value="indian">indian</option></select></label>
+              <label><span class="lab">形式</span><input id="pwFormat" value="加价购 · 折后 RM38（原价 RM45）"></label>
+              <label style="grid-column:1/-1"><span class="lab">时段</span><input id="pwTiming" value="午市低谷 · 周一至五 14:00–17:00（全周最低谷，引流填谷）"></label>
+            </div>
+            <details class="inv" style="margin-top:10px"><summary>🤖 AI 为什么这么定</summary><div class="body" id="pwWhy">
+              芒果糯米饭是<b>潜力品</b>（毛利 68%、销量低于中位数）—— 打折还有肉；午市 14:00–17:00 是全周人流最低谷，促销打低谷不打高峰；折后毛利 <b>52% ≥ 40% 保险线</b> ✓。
+            </div></details>
+            <div class="pw-fb">
+              <textarea id="pwFb" placeholder="给 AI 的意见，比如：折扣太深了，改成买一送一试试"></textarea>
+              <button class="btn" type="button" id="pwReplan">🔄 让 AI 重新生成</button>
+            </div>
+            <div class="row" style="margin-top:7px;gap:8px;align-items:center">
+              <span class="pill" style="background:var(--green);color:#fff">折后毛利仍 ≥ 40% ✓</span>
+              <span class="lab" id="pwVer">历史版本（1）</span>
+            </div>
           </div>
           <!-- step2 -->
           <div class="pwp" data-pw="2">
@@ -1053,8 +1090,10 @@ why   = llm.explain(facts)    # 解释：交给 LLM
 
     <!-- 5 Race Gate -->
     <section class="panel" id="p5">
-      <div class="head"><div class="eyebrow">营销流程 · ASSET LIBRARY</div><h2>素材库</h2>
+      <div class="head" style="position:relative"><div class="eyebrow">Library · 菜单 / 菜品照 / 品牌素材</div><h2>素材库</h2>
+        <button class="btn btn-go pnew-btn" id="libUp">⬆ 上传素材</button>
         <p>存放并浏览餐厅的 <b>菜单 · 菜品照 · 品牌素材</b>。从聊天里 📎 传菜单，AI 就存到这里 —— 每道菜标好<b>含不含牛肉、素食可不可</b>。<br>族群铁律（Race Rule）就靠这些字段执行：<b>选一道菜试试能投给谁</b>。</p></div>
+      <input type="file" id="libFile" multiple hidden accept=".png,.jpg,.jpeg,.pdf,.csv,.xlsx">
       <div class="assettabs" role="tablist">
         <button role="tab" data-apane="menu" aria-selected="true">🍽️ 菜单</button>
         <button role="tab" data-apane="photos" aria-selected="false">📷 菜品照 · 12</button>
@@ -1064,6 +1103,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
         <div class="card">
           <div class="sect"><span class="ic">📷</span>菜品照 <small>聊天里 📎 传的照片自动归档到这里 · 出物料时设计师直接取用</small></div>
           <div class="photogrid" style="margin-top:11px">
+            <label class="ph phadd" for="libFile">＋<small>上传照片</small></label>
             <div class="ph">🍜<small>海鲜炒面</small></div><div class="ph">🍛<small>咖喱鸡饭</small></div>
             <div class="ph">🥩<small>炭烤牛肋排</small></div><div class="ph">🍚<small>椰浆饭套餐</small></div>
             <div class="ph">🥗<small>三文鱼沙拉</small></div><div class="ph">🥭<small>芒果糯米饭</small></div>
@@ -1078,6 +1118,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
         <div class="card">
           <div class="sect"><span class="ic">🎨</span>Brand Kit <small>logo · 品牌色 · 字体 —— 所有物料自动 follow</small></div>
           <div class="brandrow" style="margin-top:11px">
+            <label class="bd bdadd" for="libFile"><b>＋ 上传素材</b><br><small style="color:var(--muted)">logo · 色卡 · 字体 · 旧物料</small></label>
             <div class="bd"><b>Logo</b><br><span style="font-size:30px">🍢</span> Warisan Grill<br><small style="color:var(--muted)">warisan-logo.png · 透明底</small></div>
             <div class="bd"><b>品牌色</b><div class="sw"><i style="background:#B4451F"></i><i style="background:#1F2937"></i><i style="background:#F5EFE6"></i><i style="background:#3F7D4E"></i></div><small style="color:var(--muted)">主 #B4451F · 辅 #1F2937</small></div>
             <div class="bd"><b>字体</b><br>标题 Poppins SemiBold<br>正文 Noto Sans / 中文 思源黑体<br><small style="color:var(--muted)">印刷物料统一衬线加粗价格</small></div>
@@ -2311,12 +2352,27 @@ why   = llm.explain(facts)    # 解释：交给 LLM
   /* ---- ＋ 新建促销向导（方案→文案→生图→并进 Material 审批）---- */
   (function(){
     var dlg=document.getElementById("promoWiz"); if(!dlg) return;
-    var step=1, EMO={"芒果糯米饭":"🥭","柠檬薄荷饮":"🍹","松露意面":"🍝"};
+    var step=1, ver=1, EMO={"芒果糯米饭":"🥭","柠檬薄荷饮":"🍹","松露意面":"🍝"};
+    var PLAN={
+      "芒果糯米饭":{theme:"午市快闪 · 甜蜜加价购 — 主食加购芒果糯米饭",fmt:"加价购 · 折后 RM38（原价 RM45）",group:"chinese",
+        why:"芒果糯米饭是<b>潜力品</b>（毛利 68%、销量低于中位数）—— 打折还有肉；午市 14:00–17:00 是全周最低谷，促销打低谷不打高峰；折后毛利 <b>52% ≥ 40% 保险线</b> ✓。"},
+      "柠檬薄荷饮":{theme:"下午茶引流 · 柠檬薄荷饮限时尝鲜",fmt:"九折优惠（RM4.50）· 到店出示即享",group:"malay",
+        why:"柠檬薄荷饮毛利 71% 全场最高、无族群限制（全客群可推）；下午 3–5 点饮品需求天然存在，把路过变进店。"},
+      "松露意面":{theme:"Merdeka 倒数 · 松露意面一口香浓迎国庆",fmt:"午市限定九折 · 仅到 8/31",group:"chinese",
+        why:"国庆是最近的营销由头（8/31）；松露意面毛利 67%，客单高，节日主题溢价空间大；印刷已来不及，走纯线上物料。"}};
     var COPY={"芒果糯米饭":"午市来店，主食加购芒果糯米饭 + 柠檬薄荷饮，甜一口再上班。扫码或 WhatsApp 我们预订。",
               "柠檬薄荷饮":"下午三点困？柠檬薄荷饮限时 RM4.50，清凉一口回血。到店出示此图即享。",
               "松露意面":"Merdeka 倒数！松露意面一口香浓迎国庆，午市限定九折。仅到 8/31。"};
     var MARG={"芒果糯米饭":"68%","柠檬薄荷饮":"71%","松露意面":"67%"};
-    function dish(){ var c=document.querySelector('input[name="pwd"]:checked'); return c?c.value:"芒果糯米饭"; }
+    function dish(){ var v=document.getElementById("pwDish").value.trim(); return v||"芒果糯米饭"; }
+    function fill(d){
+      var pl=PLAN[d]||{theme:"限时优惠 · "+d,fmt:"九折优惠 · 详情待定",group:"chinese",why:"你手动指定的菜品 —— AI 会按菜单数据补齐毛利与档期建议。"};
+      document.getElementById("pwDish").value=d;
+      document.getElementById("pwTheme").value=pl.theme;
+      document.getElementById("pwFormat").value=pl.fmt;
+      document.getElementById("pwGroup").value=pl.group;
+      document.getElementById("pwWhy").innerHTML=pl.why;
+    }
     function show(){
       [].forEach.call(dlg.querySelectorAll(".pwp"),function(x){x.classList.toggle("on",+x.getAttribute("data-pw")===step);});
       [].forEach.call(dlg.querySelectorAll(".pws"),function(x,i){x.classList.toggle("on",i<step);});
@@ -2324,18 +2380,32 @@ why   = llm.explain(facts)    # 解释：交给 LLM
       var nx=document.getElementById("pwNext");
       nx.textContent=step===1?"AI 出文案 →":step===2?"AI 生图 →":step===3?"放进审批箱 →":"完成 · 去 Home 批 ✓";
       document.getElementById("pwHint").textContent=step===4?"真实动作只有审批箱能放行":"铁律 Gate 会在出稿后自动检查";
-      if(step===2){ document.getElementById("pwCopy").value=COPY[dish()]; }
-      if(step===3){ document.getElementById("pwImgEmoji").textContent=EMO[dish()];
-        document.getElementById("pwImgTitle").textContent="午市快闪 · "+dish(); }
+      if(step===2){ document.getElementById("pwCopy").value=COPY[dish()]||
+        (document.getElementById("pwTheme").value+"。"+document.getElementById("pwFormat").value+"。扫码或 WhatsApp 我们预订。"); }
+      if(step===3){ document.getElementById("pwImgEmoji").textContent=EMO[dish()]||"🍽️";
+        document.getElementById("pwImgTitle").textContent=document.getElementById("pwTheme").value; }
     }
     document.getElementById("promoAdd").addEventListener("click",function(){ step=1; show(); if(!dlg.open) dlg.showModal(); });
     document.getElementById("pwClose").addEventListener("click",function(){ dlg.close(); });
     document.getElementById("pwBack").addEventListener("click",function(){ if(step>1){step--;show();} });
-    [].forEach.call(dlg.querySelectorAll(".pwd"),function(l){
-      l.addEventListener("click",function(){
-        [].forEach.call(dlg.querySelectorAll(".pwd"),function(x){x.classList.remove("on");});
-        l.classList.add("on"); l.querySelector("input").checked=true;
+    [].forEach.call(dlg.querySelectorAll(".pwc"),function(c){
+      c.addEventListener("click",function(){
+        [].forEach.call(dlg.querySelectorAll(".pwc"),function(x){x.classList.remove("on");});
+        c.classList.add("on"); fill(c.getAttribute("data-dish"));
       });
+    });
+    /* 给 AI 的意见 → 让 AI 重新生成（demo：按关键词改方案）*/
+    document.getElementById("pwReplan").addEventListener("click",function(){
+      var fb=document.getElementById("pwFb").value.trim();
+      var fm=document.getElementById("pwFormat");
+      if(/买一送一|B1F1|bogo/i.test(fb)){ fm.value="买一送一（同款第二份免费）· 限午市堂食"; }
+      else if(/太深|太大|亏|浅一点/.test(fb)){ fm.value="九五折 · 加送柠檬薄荷饮半价券（力度收窄）"; }
+      else if(/套餐|combo/i.test(fb)){ fm.value="午市套餐 · "+dish()+" + 饮品 RM42（原价 RM53）"; }
+      else if(fb){ fm.value=fm.value.replace(/（已按意见调整）/,"")+"（已按意见调整）"; }
+      ver++; document.getElementById("pwVer").textContent="历史版本（"+ver+"）";
+      document.getElementById("pwWhy").innerHTML=(fb?"按你的意见「<b>"+fb+"</b>」重出：":"")+
+        "折后毛利重新核过，仍 ≥ 40% 保险线 ✓（数字是 Python 算的，AI 只负责解释）";
+      document.getElementById("pwFb").value="";
     });
     document.getElementById("pwNext").addEventListener("click",function(){
       if(step<4){ step++; show(); return; }
@@ -2344,8 +2414,8 @@ why   = llm.explain(facts)    # 解释：交给 LLM
       if(box){
         var el=document.createElement("div"); el.className="apv"; el.setAttribute("data-apv","");
         el.setAttribute("data-cal","2026-08-12|午市快闪 · "+d+" 投放");
-        el.innerHTML='<div class="apv-th">'+EMO[d]+'</div>'+
-          '<div class="apv-bd"><b>午市快闪 · '+d+'</b> <span class="apv-kind">Material Review · 刚刚生成</span>'+
+        el.innerHTML='<div class="apv-th">'+(EMO[d]||"🍽️")+'</div>'+
+          '<div class="apv-bd"><b>'+document.getElementById("pwTheme").value.split("—")[0].trim()+'</b> <span class="apv-kind">Material Review · 刚刚生成</span>'+
           '<div class="apv-meta">✦ Margin <b style="color:var(--green)">'+MARG[d]+'</b> · 你刚用 ＋ 新建的 · 文案+海报已出</div>'+
           '<div class="apv-tags"><span class="pill">午市低谷 14:00–17:00</span><span class="pill" style="background:var(--green);color:#fff">Halal-labeled</span></div></div>'+
           '<div class="apv-act"><button class="btn btn-go apv-ok">✓ 确认</button>'+
@@ -2410,6 +2480,41 @@ why   = llm.explain(facts)    # 解释：交给 LLM
     var s=e.target.closest("[data-stg]"); if(!s||s.disabled) return;
     var on=s.classList.toggle("on"); s.textContent=on?"已开启":"已关闭";
   });
+  /* ---- Library 上传（菜品照 / 品牌素材 归档）---- */
+  (function(){
+    var fi=document.getElementById("libFile"); if(!fi) return;
+    var up=document.getElementById("libUp");
+    up&&up.addEventListener("click",function(){
+      /* 菜单分类没有直接传图 —— 切去菜品照再传 */
+      var act=document.querySelector('.assettabs button[aria-selected="true"]');
+      if(act&&act.getAttribute("data-apane")==="menu"){
+        var tb=document.querySelector('.assettabs button[data-apane="photos"]'); tb&&tb.click();
+      }
+      fi.click();
+    });
+    fi.addEventListener("change",function(){
+      var act=document.querySelector('.assettabs button[aria-selected="true"]');
+      var pane=act?act.getAttribute("data-apane"):"photos";
+      [].forEach.call(fi.files,function(f){
+        var name=f.name.replace(/\.[a-z0-9]+$/i,"");
+        if(pane==="brand"){
+          var card=document.createElement("div"); card.className="bd";
+          card.innerHTML="<b>"+name+"</b><br><small style='color:var(--muted)'>"+f.name+" · 刚上传 · 已入 Brand Kit</small>";
+          document.querySelector(".bdadd").after(card);
+        }else{
+          var ph=document.createElement("div"); ph.className="ph";
+          ph.innerHTML="📷<small>"+name+"</small>";
+          document.querySelector(".phadd").after(ph);
+        }
+      });
+      /* 更新 tab 计数 */
+      var pb=document.querySelector('.assettabs button[data-apane="photos"]');
+      if(pb) pb.textContent="📷 菜品照 · "+(document.querySelectorAll('.assetpane[data-pane="photos"] .ph:not(.phadd)').length);
+      var bb=document.querySelector('.assettabs button[data-apane="brand"]');
+      if(bb) bb.textContent="🎨 品牌素材 · "+(document.querySelectorAll('.assetpane[data-pane="brand"] .bd:not(.bdadd)').length);
+      fi.value="";
+    });
+  })();
   /* ---- 素材库 tab 切换 ---- */
   (function(){
     var tabs=document.querySelectorAll(".assettabs button"); if(!tabs.length) return;
