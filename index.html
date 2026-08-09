@@ -1,7 +1,6 @@
 <!doctype html>
 <html lang="zh-CN">
 <head>
-<!-- build 2026-08-07r2 · 对齐 developer 新版 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
@@ -12,6 +11,7 @@
 <style>*{margin:0;padding:0}</style>
 </head>
 <body>
+<!-- build 2026-08-09 v3 · UI 对齐 agent.hivorai.ai -->
 <title>Hivora F&B Marketing · Demo</title>
 <style>
 :root{
@@ -559,6 +559,47 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
 .inbox .sp{flex:1}
 .foot{margin-top:32px;padding-top:17px;border-top:1px solid var(--line);color:var(--faint);font-size:11.5px;line-height:1.7}
 .navb{display:flex;justify-content:space-between;gap:12px;margin-top:24px}
+
+/* v3 · 对齐 agent.hivorai.ai 的 UI 优化 */
+.livefeed{margin-top:8px}
+.livefeed .lf{display:flex;align-items:center;gap:9px;padding:7px 4px;border-bottom:1px dashed var(--line);font-size:12.8px}
+.livefeed .lf:last-child{border-bottom:0}
+.livefeed .lf i{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.livefeed .lf .who{font-weight:600;min-width:86px}
+.livefeed .lf .act{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+.livefeed .lf time{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--muted)}
+.livepulse{display:inline-flex;align-items:center;gap:5px;font-size:11px;color:var(--green);font-weight:600}
+.livepulse i{width:7px;height:7px;border-radius:50%;background:var(--green);animation:lp 1.6s infinite}
+@keyframes lp{0%,100%{opacity:1}50%{opacity:.25}}
+.wowrow{display:grid;grid-template-columns:88px minmax(0,1fr) 54px;gap:9px;align-items:center;font-size:12.6px;margin-top:8px}
+.wowrow .bars{display:grid;gap:3px}
+.wowrow .bar{height:9px;border-radius:5px;background:var(--blue);opacity:.9}
+.wowrow .bar.prev{background:#9AA7B8;opacity:.55}
+.wowrow .pc{font-family:var(--mono);font-size:11.5px;text-align:right;color:var(--green)}
+.wowrow .pc.down{color:var(--red)}
+.assettabs{display:flex;gap:7px;margin-bottom:11px;flex-wrap:wrap}
+.assettabs button{font-size:12.5px;padding:7px 13px;border-radius:9px;border:1px solid var(--line);background:var(--surface);cursor:pointer}
+.assettabs button[aria-selected="true"]{background:var(--blue);border-color:var(--blue);color:#fff}
+.assetpane{display:none}.assetpane.on{display:block}
+.photogrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(96px,1fr));gap:9px}
+.photogrid .ph{aspect-ratio:1;border-radius:10px;display:grid;place-items:center;font-size:26px;
+  background:linear-gradient(135deg,var(--blue-soft),#Eef2f7);border:1px solid var(--line)}
+.photogrid .ph small{font-size:10px;color:var(--muted)}
+.brandrow{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+.brandrow .bd{border:1px solid var(--line);border-radius:11px;padding:12px;font-size:12.5px}
+.brandrow .sw{display:flex;gap:5px;margin-top:7px}
+.brandrow .sw i{width:22px;height:22px;border-radius:6px}
+.caldetail{margin-top:12px;border:1px solid var(--line);border-radius:12px;padding:13px 15px}
+.caldetail .cd-date{font-weight:650;font-size:13.5px}
+.caldetail .cd-empty{color:var(--muted);font-size:12.8px;margin-top:5px}
+.caldetail ul{margin:7px 0 0;padding-left:18px;font-size:12.8px}
+.mday{cursor:pointer}
+.mday.sel{outline:2px solid var(--blue);outline-offset:-2px;border-radius:8px}
+.ag-meta{display:flex;gap:6px;flex-wrap:wrap;margin-top:5px}
+.ag-meta span{font-family:var(--mono);font-size:10.5px;padding:2px 8px;border-radius:99px;
+  background:var(--blue-soft);color:var(--blue)}
+.ag-meta span.cost{background:#F3F0FF;color:#6D5BD0}
+
 </style>
 
 <div class="app">
@@ -613,6 +654,15 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
         <div style="margin-top:8px">
           <div class="inbox"><span class="pill">待确认</span><span class="sp"><b>午市快闪 · 物料包</b><br><span style="font-size:12px;color:var(--muted)">营销设计师 · 5 分钟前</span></span><button class="btn btn-go" data-go="4">去审</button></div>
           <div class="inbox"><span class="pill">待确认</span><span class="sp"><b>国庆排期确认</b><br><span style="font-size:12px;color:var(--muted)">销售 · 今天 09:12</span></span><button class="btn" data-go="6">查看</button></div>
+        </div>
+      </div>
+      <div class="card" style="margin-top:13px">
+        <div class="sect"><span class="ic">📡</span>Agent 实时动态 <small>who's running what</small><span class="sp" style="flex:1"></span><span class="livepulse"><i></i>Live</span></div>
+        <div class="livefeed">
+          <div class="lf"><i style="background:var(--blue)"></i><span class="who">营销设计师</span><span class="act">llm_call · 出国庆海报 v2</span><time>09:41</time></div>
+          <div class="lf"><i style="background:var(--green)"></i><span class="who">销售</span><span class="act">tool_call · calc_promo_margin ✓ 61%</span><time>09:40</time></div>
+          <div class="lf"><i style="background:var(--amber)"></i><span class="who">总管</span><span class="act">workflow_paused · 等你批「午市快闪」</span><time>09:12</time></div>
+          <div class="lf"><i style="background:var(--muted)"></i><span class="who">数据管家</span><span class="act">idle · 上次清洗 08:02（625 行 → 0 错）</span><time>08:02</time></div>
         </div>
       </div>
       <div class="navb"><span></span><button class="btn btn-go" data-go="1">看看 AI 团队 →</button></div>
@@ -709,6 +759,16 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
             <ul><li>牛肉汉堡<span class="num">15</span></li><li>奶油蘑菇汤<span class="num">14</span></li><li>烤鱼<span class="num">12</span></li><li>和牛小排<span class="num">8</span></li></ul></div>
         </div>
         <div class="note" style="margin-top:13px">判定线：<b>Food Cost ≤ 35%</b> = 高毛利 · <b>销量 &gt; 中位数 46</b> = 高销量。两条线都是代码算的。</div>
+      </div>
+      <div class="card" style="margin-top:13px">
+        <div class="sect"><span class="ic">📈</span>Week over week <small>本周 vs 上周 · 份数</small>
+          <span class="sp" style="flex:1"></span><span style="font-size:11.5px;color:var(--muted)"><i style="display:inline-block;width:16px;height:8px;border-radius:4px;background:var(--blue);vertical-align:1px"></i> 本周 &nbsp;<i style="display:inline-block;width:16px;height:8px;border-radius:4px;background:#9AA7B8;opacity:.55;vertical-align:1px"></i> 上周</span></div>
+        <div class="wowrow"><span>海鲜炒面</span><span class="bars"><i class="bar" style="width:92%"></i><i class="bar prev" style="width:81%"></i></span><span class="pc">+13%</span></div>
+        <div class="wowrow"><span>香脆春卷</span><span class="bars"><i class="bar" style="width:75%"></i><i class="bar prev" style="width:66%"></i></span><span class="pc">+13%</span></div>
+        <div class="wowrow"><span>三文鱼沙拉</span><span class="bars"><i class="bar" style="width:30%"></i><i class="bar prev" style="width:26%"></i></span><span class="pc">+17%</span></div>
+        <div class="wowrow"><span>芒果糯米饭</span><span class="bars"><i class="bar" style="width:25%"></i><i class="bar prev" style="width:21%"></i></span><span class="pc">+19%</span></div>
+        <div class="wowrow"><span>牛肉汉堡</span><span class="bars"><i class="bar" style="width:14%"></i><i class="bar prev" style="width:19%"></i></span><span class="pc down">−21%</span></div>
+        <div class="note" style="margin-top:11px">四个涨的里有三个是<b>潜力品</b> —— 上周的「午市快闪」在起作用；牛肉汉堡继续跌，坐实鸡肋。</div>
       </div>
       <div class="grid g2" style="margin-top:13px">
         <div class="card">
@@ -820,9 +880,9 @@ why   = llm.explain(facts)    # 解释：交给 LLM
           <div class="card" style="margin-top:13px">
             <div class="sect"><span class="ic">✋</span>等你决定</div>
             <div class="row" style="margin-top:11px">
-              <button class="btn btn-go" id="bOk">确认 · 印刷 + 发布</button>
-              <button class="btn btn-warn" id="bEdit">改</button>
-              <button class="btn btn-stop" id="bNo">退</button>
+              <button class="btn btn-go" id="bOk">✓ 确认 · 印刷 + 发布</button>
+              <button class="btn btn-warn" id="bEdit">✎ 改</button>
+              <button class="btn btn-stop" id="bNo">✕ 退</button>
             </div>
             <div id="apResult" style="margin-top:12px;font-size:13.3px"></div>
           </div>
@@ -845,11 +905,37 @@ why   = llm.explain(facts)    # 解释：交给 LLM
     <section class="panel" id="p5">
       <div class="head"><div class="eyebrow">营销流程 · ASSET LIBRARY</div><h2>素材库</h2>
         <p>存放并浏览餐厅的 <b>菜单 · 菜品照 · 品牌素材</b>。从聊天里 📎 传菜单，AI 就存到这里 —— 每道菜标好<b>含不含牛肉、素食可不可</b>。<br>族群铁律（Race Rule）就靠这些字段执行：<b>选一道菜试试能投给谁</b>。</p></div>
-      <div class="row" style="gap:7px;margin-bottom:11px">
-        <span class="pill" style="background:var(--blue);color:#fff">🍽️ 菜单</span>
-        <span class="pill">📷 菜品照 <b>12</b></span>
-        <span class="pill">🎨 品牌素材 <b>5</b></span>
+      <div class="assettabs" role="tablist">
+        <button role="tab" data-apane="menu" aria-selected="true">🍽️ 菜单</button>
+        <button role="tab" data-apane="photos" aria-selected="false">📷 菜品照 · 12</button>
+        <button role="tab" data-apane="brand" aria-selected="false">🎨 品牌素材 · 5</button>
       </div>
+      <div class="assetpane" data-pane="photos">
+        <div class="card">
+          <div class="sect"><span class="ic">📷</span>菜品照 <small>聊天里 📎 传的照片自动归档到这里 · 出物料时设计师直接取用</small></div>
+          <div class="photogrid" style="margin-top:11px">
+            <div class="ph">🍜<small>海鲜炒面</small></div><div class="ph">🍛<small>咖喱鸡饭</small></div>
+            <div class="ph">🥩<small>炭烤牛肋排</small></div><div class="ph">🍚<small>椰浆饭套餐</small></div>
+            <div class="ph">🥗<small>三文鱼沙拉</small></div><div class="ph">🥭<small>芒果糯米饭</small></div>
+            <div class="ph">🌯<small>香脆春卷</small></div><div class="ph">🍹<small>柠檬薄荷饮</small></div>
+            <div class="ph">🍝<small>松露意面</small></div><div class="ph">🍔<small>牛肉汉堡</small></div>
+            <div class="ph">🍗<small>炸鸡翅</small></div><div class="ph">🐟<small>烤鱼</small></div>
+          </div>
+          <div class="note" style="margin-top:11px"><b>为什么要传实拍：</b>AI 出的海报用<b>你的真菜照</b>打底才有食欲；没照片的菜才用模型生成的示意图。</div>
+        </div>
+      </div>
+      <div class="assetpane" data-pane="brand">
+        <div class="card">
+          <div class="sect"><span class="ic">🎨</span>Brand Kit <small>logo · 品牌色 · 字体 —— 所有物料自动 follow</small></div>
+          <div class="brandrow" style="margin-top:11px">
+            <div class="bd"><b>Logo</b><br><span style="font-size:30px">🍢</span> Warisan Grill<br><small style="color:var(--muted)">warisan-logo.png · 透明底</small></div>
+            <div class="bd"><b>品牌色</b><div class="sw"><i style="background:#B4451F"></i><i style="background:#1F2937"></i><i style="background:#F5EFE6"></i><i style="background:#3F7D4E"></i></div><small style="color:var(--muted)">主 #B4451F · 辅 #1F2937</small></div>
+            <div class="bd"><b>字体</b><br>标题 Poppins SemiBold<br>正文 Noto Sans / 中文 思源黑体<br><small style="color:var(--muted)">印刷物料统一衬线加粗价格</small></div>
+          </div>
+          <div class="note" style="margin-top:11px">老板传过一次，之后每张海报、每条社媒图都自动套 —— <b>不用每次交代</b>。</div>
+        </div>
+      </div>
+      <div class="assetpane on" data-pane="menu">
       <div class="card">
         <div class="sect"><span class="ic">🍽️</span>菜单总表 <small>售价 · Food Cost · 族群字段 · 投放中的广告</small></div>
         <div class="scroll" style="margin-top:10px;max-height:340px;overflow-y:auto">
@@ -894,7 +980,8 @@ why   = llm.explain(facts)    # 解释：交给 LLM
         Gate 不过 → 自动回上游重出，最多 3 次；仍不过就标 blocked 上报，<b>不会无限循环，也不会绕过</b>。
       </div></details>
       <div class="navb"><button class="btn" data-go="4">← 上一步</button><button class="btn btn-go" data-go="6">下一步：营销日历 →</button></div>
-    </section>
+          </div><!-- /assetpane menu -->
+</section>
 
     <!-- 6 Calendar -->
     <section class="panel" id="p6">
@@ -915,6 +1002,10 @@ why   = llm.explain(facts)    # 解释：交给 LLM
             <span><i style="background:var(--red)"></i>截止 / 红线</span>
             <span><i style="background:var(--blue)"></i>投放</span>
             <span><i style="background:var(--green)"></i>节日</span>
+          </div>
+          <div class="caldetail" id="calDetail">
+            <div class="cd-date">点一个日期看当天安排</div>
+            <div class="cd-empty">节日 · 截止 · 投放，点了就知道要准备什么。</div>
           </div>
         </div>
         <div class="card">
@@ -1318,6 +1409,9 @@ why   = llm.explain(facts)    # 解释：交给 LLM
   })();
 
   /* ---- Agent Floor：点工位看配置 ---- */
+  /* 版本 + 今日用量（对齐真平台每张 agent 卡的 v · tokens · $）*/
+  var VMETA={hub:["v24","202k tok · RM1.2"],steward:["v12","96k tok · RM0.4"],
+             sales:["v91","203k tok · RM1.1"],designer:["v18","439k tok · RM1.6"]};
   var AGENTS={
     hub:{em:"🧭",name:"总管 Orchestrator",role:"唯一入口 · 认活派活 · 验收",model:"hivora-main",
       soul:"我只调度，不亲自分析、不写文案、不出图。\n收需求 → 认路由 → 派给对的 agent → 收成品 → 验收 → 呈老板。\n\n无状态：进度写工单，崩了读回接着干。\n同一 agent 最多重试 3 次；done 的绝不重派。\n真实动作（发布/群发/印刷/改价）一律先老板确认。",
@@ -1501,7 +1595,9 @@ why   = llm.explain(facts)    # 解释：交给 LLM
     cfgBox.innerHTML=
       '<div class="ag-hd">'+
         '<canvas class="ag-av" id="agAv"></canvas>'+
-        '<div class="ag-id"><b>'+a.name+'</b><span>'+a.role+'</span></div>'+
+        '<div class="ag-id"><b>'+a.name+'</b><span>'+a.role+'</span>'+
+          '<span class="ag-meta"><span>'+(VMETA[k]?VMETA[k][0]:"v1")+'</span><span>'+a.model+'</span>'+
+          '<span class="cost">今日 '+(VMETA[k]?VMETA[k][1]:"—")+'</span></span></div>'+
         '<span class="ag-stat" style="color:'+a.stat[2]+'"><i style="background:'+a.stat[2]+'"></i>'+
           a.stat[0]+' <s>'+a.stat[1]+'</s></span>'+
       '</div>'+
@@ -1665,13 +1761,29 @@ why   = llm.explain(facts)    # 解释：交给 LLM
         var isToday=(yy===TODAY.y&&mm===TODAY.m&&dd===TODAY.d);
         var lab=(dd===1?'<span class="mm">'+mm+'月</span>':'')+(isToday?'<b>'+dd+'</b>':dd);
         var evs=(EV[key]||[]).map(function(e){return '<span class="mev '+e[1]+'" title="'+e[0]+'">'+e[0]+'</span>';}).join("");
-        cells+='<span class="mday'+(out?" out":"")+(isToday?" today":"")+'"><span class="d">'+lab+'</span>'+evs+'</span>';
+        cells+='<span class="mday'+(out?" out":"")+(isToday?" today":"")+'" data-key="'+key+'"><span class="d">'+lab+'</span>'+evs+'</span>';
       }
       box.innerHTML=cells;
     }
     document.getElementById("calPrev").addEventListener("click",function(){ m--; if(m<1){m=12;y--;} render(); });
     document.getElementById("calNext").addEventListener("click",function(){ m++; if(m>12){m=1;y++;} render(); });
     document.getElementById("calToday").addEventListener("click",function(){ y=TODAY.y; m=TODAY.m; render(); });
+    /* 点日期看详情（对齐真平台：pick a day to see what to prepare） */
+    var PREP={green:"🎉 节日 —— 物料要<b>提前约 1 个月印刷</b>，投放提前 2 周开跑。",
+              red:"⛔ 截止 / 红线 —— 过了这天就来不及，<b>今天就要拍板</b>。",
+              blue:"📣 投放节点 —— 素材已备好，到点自动执行（真实动作仍等你批）。",
+              amber:"✍️ 定稿节点 —— 设计稿要在这天前定下来。"};
+    box.addEventListener("click",function(e){
+      var cell=e.target.closest(".mday"); if(!cell) return;
+      [].forEach.call(box.querySelectorAll(".mday.sel"),function(x){x.classList.remove("sel");});
+      cell.classList.add("sel");
+      var key=cell.getAttribute("data-key"), evs=EV[key]||[];
+      var d=document.getElementById("calDetail");
+      var nice=key.split("-"); nice=nice[0]+" 年 "+(+nice[1])+" 月 "+(+nice[2])+" 日";
+      if(!evs.length){ d.innerHTML='<div class="cd-date">'+nice+'</div><div class="cd-empty">这天没有节日 / 截止 / 投放 —— 不用准备什么。</div>'; return; }
+      d.innerHTML='<div class="cd-date">'+nice+'</div><ul>'+evs.map(function(ev){
+        return '<li><b>'+ev[0]+'</b><br><span style="font-size:12px;color:var(--muted)">'+(PREP[ev[1]]||"")+'</span></li>';}).join("")+'</ul>';
+    });
     render();
   })();
 
@@ -1984,6 +2096,20 @@ why   = llm.explain(facts)    # 解释：交给 LLM
     }
   };
 })();
+  /* ---- 素材库 tab 切换 ---- */
+  (function(){
+    var tabs=document.querySelectorAll(".assettabs button"); if(!tabs.length) return;
+    [].forEach.call(tabs,function(b){
+      b.addEventListener("click",function(){
+        [].forEach.call(tabs,function(x){x.setAttribute("aria-selected","false");});
+        b.setAttribute("aria-selected","true");
+        var k=b.getAttribute("data-apane");
+        [].forEach.call(document.querySelectorAll(".assetpane"),function(pn){
+          pn.classList.toggle("on", pn.getAttribute("data-pane")===k);
+        });
+      });
+    });
+  })();
 </script>
 
 </body>
