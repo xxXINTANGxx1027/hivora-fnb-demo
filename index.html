@@ -11,7 +11,7 @@
 <style>*{margin:0;padding:0}</style>
 </head>
 <body>
-<!-- build 2026-08-09 v3.8 · 方案卡一体化（material 装进 promotion 里）-->
+<!-- build 2026-08-09 v3.9 · 方案全列表：每条 promotion 都带 poster -->
 <title>Hivora F&B Marketing · Demo</title>
 <style>
 :root{
@@ -690,6 +690,32 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
 .bdadd{cursor:pointer;border-style:dashed;display:grid;place-items:center;text-align:center;color:var(--blue)}
 .bdadd:hover{background:var(--blue-soft)}
 
+
+/* 方案列表（每条都带 poster）*/
+.stachips{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:12px}
+.stachip{font-size:12.3px;padding:6px 12px;border-radius:99px;border:1px solid var(--line);background:var(--surface);cursor:pointer}
+.stachip b{font-family:var(--mono);font-weight:650}
+.stachip.on{background:var(--blue);border-color:var(--blue);color:#fff}
+.planitem{margin-bottom:13px}
+.plan2{display:grid;grid-template-columns:150px minmax(0,1fr) 210px;gap:14px;align-items:start}
+@media(max-width:860px){.plan2{grid-template-columns:110px minmax(0,1fr)}.plan2 .plan-act{grid-column:1/-1}}
+.mini-poster{border:1px solid var(--line);border-radius:11px;overflow:hidden;background:#fff}
+.mini-poster .mp-hd{background:#B4451F;color:#fff;font-size:9px;text-align:center;padding:3px 4px;font-weight:650}
+.mini-poster .mp-art{display:grid;place-items:center;font-size:40px;padding:14px 0 6px}
+.mini-poster .mp-pr{text-align:center;font-family:var(--mono);font-weight:700;font-size:15px;color:#B4451F}
+.mini-poster .mp-pr s{font-size:10px;color:var(--muted);margin-left:4px}
+.mini-poster .mp-ft{font-size:8.5px;color:var(--muted);text-align:center;padding:3px 4px 6px}
+.plan-bd .pl-meta{display:grid;grid-template-columns:1fr 1fr;gap:6px 12px;margin-top:8px;font-size:12.6px}
+.plan-bd .pl-meta .lab{margin-bottom:1px}
+.plan-gate{font-size:11.8px;color:var(--green);margin-top:8px}
+.plan-gate.fail{color:var(--red)}
+.plan-act{display:flex;flex-direction:column;gap:6px}
+.plan-act .btn{font-size:12px;padding:6px 11px;white-space:nowrap}
+.plan-act .done-msg{font-size:12.3px;font-weight:650}
+.st-pill{font-size:11px;padding:3px 10px;border-radius:99px;font-weight:650}
+.st-pending{background:#FEF3C7;color:#B45309}.st-approved{background:#D1FAE5;color:#047857}
+.st-rejected{background:#FEE2E2;color:#B91C1C}.st-draft{background:var(--surface-2);color:var(--muted)}
+
 </style>
 
 <div class="app">
@@ -914,7 +940,14 @@ why   = llm.explain(facts)    # 解释：交给 LLM
       <div class="head" style="position:relative"><div class="eyebrow">营销流程 · Promotion Plans</div><h2>推提拉米苏，不是推牛肉面</h2>
         <p>牛肉面本来就卖得好，打折等于送钱。潜力品毛利高但卖得慢 —— 打折还有得赚，还能把人拉进店。</p>
         <button class="btn btn-go pnew-btn" id="promoAdd">＋ 新建促销</button></div>
-      <div class="card">
+      <div class="stachips" id="staChips">
+        <button class="stachip on" data-st="all">全部 <b>6</b></button>
+        <button class="stachip" data-st="pending">待确认 <b>2</b></button>
+        <button class="stachip" data-st="approved">已批 <b>1</b></button>
+        <button class="stachip" data-st="rejected">已拒 <b>1</b></button>
+        <button class="stachip" data-st="draft">草稿 <b>2</b></button>
+      </div>
+      <div class="card planitem" data-status="pending">
         <div class="row" style="justify-content:space-between;align-items:flex-start">
           <div><b style="font-size:16px">午市快闪 · 甜蜜加价购</b><br>
             <span style="font-size:12.3px;color:var(--muted)">2026-08-07 · AI plan · 主推 芒果糯米饭 + 柠檬薄荷饮（午市低谷套餐 · 引流拉新）</span></div>
@@ -987,6 +1020,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
           </div>
         </div>
       </div>
+      <div id="planList"></div>
       <details class="inv" style="margin-top:13px"><summary>💼 AI 出建议，但定不了力度</summary><div class="body">
         折扣打多少、活动做不做 —— <b>永远是老板拍板</b>。agent 的工具白名单里<b>根本没有「改价」</b>。<br>
         时间也不靠 AI 记：今天几号、接下来什么节日、印刷提前期多久，都是代码提供的上下文。<br>
@@ -2446,6 +2480,100 @@ why   = llm.explain(facts)    # 解释：交给 LLM
       setTimeout(function(){ if(c){c.style.opacity="1";}
         var m=document.getElementById("dlMsg"); m.textContent="✓ 已重出 v"+rn+"（同价同素材，换构图）"; setTimeout(function(){m.textContent="";},3000);
       },600);
+    });
+  })();
+  /* ---- 方案列表：每条 promotion 都带自己的 poster（给 IT 的参照 UI）---- */
+  (function(){
+    var box=document.getElementById("planList"); if(!box) return;
+    var PLANS=[
+      {id:"teh",st:"draft",emo:"🧋",title:"拉茶 · 下午茶引流拉新",date:"2026-08-07 · 助理起草",
+       timing:"午市低谷（周一至五 14:00–17:00）",fmt:"九折优惠 · RM4.50",margin:"73%",group:"全客群（无肉）",
+       price:"4.50",orig:"5.00",copy:"下午三点困？拉茶九折，热的冰的都有。",gate:"✓ Gate 已过（6/6）"},
+      {id:"satay",st:"draft",emo:"🍢",title:"Chicken Satay · 周三晚市 15% off",date:"2026-08-09 · 助理起草",
+       timing:"周三晚市（全周最低谷 7 人次，引流填谷）",fmt:"限时折扣（仅堂食）· FB/IG 预告",margin:"60%",group:"chinese",
+       price:"11.90",orig:"14.00",copy:"周三晚市限定 15% off — 招牌鸡肉沙爹，Halal 认证。",gate:"✓ Gate 已过（6/6）"},
+      {id:"truffle1",st:"approved",emo:"🍝",title:"松露意面 · 午市九折",date:"2026-08-07 · 已批",
+       timing:"下周一午市（2026-08-10）",fmt:"九折单品限时优惠 · 折后 RM19.80",margin:"67%",group:"chinese",
+       price:"19.80",orig:"22.00",copy:"松露香浓，午市限定九折 —— 只到下周五。",gate:"✓ Gate 已过（6/6）· 已进日历 08-10"},
+      {id:"truffle2",st:"pending",emo:"🍝",title:"松露意面 · Merdeka 倒数预热",date:"2026-08-08 · AI plan",
+       timing:"下周三午市（2026-08-13）",fmt:"九折 + 国庆主题物料",margin:"67%",group:"chinese",
+       price:"19.80",orig:"22.00",copy:"Merdeka 倒数！一口香浓迎国庆，仅到 8/31。",gate:"✓ Gate 已过（6/6）",cal:"2026-08-13|松露意面 国庆预热 投放"},
+      {id:"mint",st:"rejected",emo:"🍹",title:"柠檬薄荷饮 · 国庆备战清凉一饮",date:"2026-08-06 · 已退回",
+       timing:"平日午市低谷（周一至四）",fmt:"限时尝鲜价",margin:"71%",group:"全客群",
+       price:"4.00",orig:"4.80",copy:"清凉一饮，Warisan 招牌柠檬薄荷限时尝鲜。",gate:"✕ 老板退回：与「午市快闪」撞档期",fail:true}
+    ];
+    var STLAB={pending:["待确认","st-pending"],approved:["已批","st-approved"],rejected:["已拒","st-rejected"],draft:["草稿","st-draft"]};
+    function poster(pl){
+      return '<div class="mini-poster"><div class="mp-hd">Warisan Grill · Halal ✓</div>'+
+        '<div class="mp-art">'+pl.emo+'</div>'+
+        '<div class="mp-pr">RM '+pl.price+'<s>RM '+pl.orig+'</s></div>'+
+        '<div class="mp-ft">'+pl.copy.slice(0,18)+'…<br>二维码 + WhatsApp（模板叠加）</div></div>';
+    }
+    function acts(pl){
+      if(pl.st==="pending") return '<button class="btn btn-go" data-pa="ok" data-id="'+pl.id+'">✓ 确认 · 发布</button>'+
+        '<button class="btn" data-pa="edit">✎ 改</button><button class="btn btn-stop" data-pa="no" data-id="'+pl.id+'">✕ 退</button>';
+      if(pl.st==="approved") return '<span class="done-msg" style="color:var(--green)">✓ 已批 · 已进日历</span>'+
+        '<button class="btn" data-pa="dl">⬇ 下载物料</button>';
+      if(pl.st==="rejected") return '<span class="done-msg" style="color:var(--red)">✕ 已退回</span>'+
+        '<button class="btn" data-pa="regen" data-id="'+pl.id+'">🔄 让 AI 重新生成</button>';
+      return '<button class="btn btn-go" data-pa="submit" data-id="'+pl.id+'">提交审批</button>'+
+        '<button class="btn" data-pa="edit">✎ 编辑草稿</button>';
+    }
+    function render(){
+      box.innerHTML=PLANS.map(function(pl){
+        var st=STLAB[pl.st];
+        return '<div class="card planitem" data-status="'+pl.st+'" data-id="'+pl.id+'">'+
+          '<div class="row" style="justify-content:space-between;align-items:flex-start;margin-bottom:4px">'+
+            '<div><b style="font-size:14.5px">'+pl.title+'</b><br><span style="font-size:12px;color:var(--muted)">'+pl.date+'</span></div>'+
+            '<span class="st-pill '+st[1]+'">'+st[0]+'</span></div>'+
+          '<div class="plan2">'+poster(pl)+
+            '<div class="plan-bd"><div class="pl-meta">'+
+              '<div><div class="lab">TIMING</div>'+pl.timing+'</div>'+
+              '<div><div class="lab">FORMAT</div>'+pl.fmt+'</div>'+
+              '<div><div class="lab">MARGIN</div><b style="color:var(--green);font-family:var(--mono);font-size:15px">'+pl.margin+'</b></div>'+
+              '<div><div class="lab">TARGET GROUP</div>'+pl.group+'</div></div>'+
+              '<div style="font-size:12.5px;color:var(--muted);margin-top:8px">文案：'+pl.copy+'</div>'+
+              '<div class="plan-gate'+(pl.fail?" fail":"")+'">'+pl.gate+'</div></div>'+
+            '<div class="plan-act">'+acts(pl)+'</div>'+
+          '</div></div>';
+      }).join("");
+    }
+    render();
+    /* 动作 */
+    box.addEventListener("click",function(e){
+      var b=e.target.closest("[data-pa]"); if(!b) return;
+      var pa=b.getAttribute("data-pa"), id=b.getAttribute("data-id");
+      var pl=PLANS.filter(function(x){return x.id===id;})[0];
+      if(pa==="ok"&&pl){ pl.st="approved"; pl.gate+=" · 已进日历";
+        if(pl.cal&&window.__calAdd){var c=pl.cal.split("|");__calAdd(c[0],c[1],"blue");} render(); counts(); }
+      else if(pa==="no"&&pl){ pl.st="rejected"; pl.fail=true; pl.gate="✕ 老板退回"; render(); counts(); }
+      else if(pa==="submit"&&pl){ pl.st="pending"; pl.date=pl.date.replace("助理起草","已提交"); render(); counts(); }
+      else if(pa==="regen"&&pl){ pl.st="pending"; pl.fail=false; pl.gate="✓ Gate 已过（6/6）· v2 换了档期"; 
+        pl.timing="下周五午市（2026-08-15）· 避开撞期"; render(); counts(); }
+      else if(pa==="edit"){ if(window.__go) __go(3); document.getElementById("promoAdd").click(); }
+      else if(pa==="dl"){ var d=document.getElementById("btnDl"); d&&d.click(); }
+    });
+    /* 筛选 */
+    function counts(){
+      var all=PLANS.length+1; /* +1 特色卡 */
+      var n={pending:1,approved:0,rejected:0,draft:0}; /* 特色卡是 pending */
+      PLANS.forEach(function(x){n[x.st]=(n[x.st]||0)+1;});
+      var chips=document.querySelectorAll("#staChips .stachip");
+      chips[0].innerHTML="全部 <b>"+all+"</b>";
+      chips[1].innerHTML="待确认 <b>"+n.pending+"</b>";
+      chips[2].innerHTML="已批 <b>"+n.approved+"</b>";
+      chips[3].innerHTML="已拒 <b>"+n.rejected+"</b>";
+      chips[4].innerHTML="草稿 <b>"+n.draft+"</b>";
+    }
+    counts();
+    document.getElementById("staChips").addEventListener("click",function(e){
+      var c=e.target.closest(".stachip"); if(!c) return;
+      [].forEach.call(document.querySelectorAll("#staChips .stachip"),function(x){x.classList.remove("on");});
+      c.classList.add("on");
+      var st=c.getAttribute("data-st");
+      [].forEach.call(document.querySelectorAll(".planitem"),function(pi){
+        pi.style.display=(st==="all"||pi.getAttribute("data-status")===st)?"":"none";
+      });
     });
   })();
   /* ---- Home 审批卡 inline 确认/退 ---- */
