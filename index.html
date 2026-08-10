@@ -11,7 +11,7 @@
 <style>*{margin:0;padding:0}</style>
 </head>
 <body>
-<!-- build 2026-08-09 v4.8 · ref 任务面板版式（蓝白）：双列+KPI迷你柱+任务卡+右栏团队/动态 -->
+<!-- build 2026-08-09 v4.9 · 要留意卡：资料完成度分段条 + 4 类主动提醒 -->
 <title>Hivora F&B Marketing · Demo</title>
 <style>
 :root{
@@ -932,6 +932,25 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
 .rail-feed .an{font-size:12.3px;padding:8px 0}
 .rail-feed .an time{font-size:10px}
 
+
+/* 要留意：分段进度条（ref2 capsule meter）+ 告警行 */
+.segwrap{margin:8px 0 4px;padding:10px 11px;border-radius:10px;background:var(--surface-2)}
+.seg-lab{display:flex;justify-content:space-between;align-items:baseline}
+.seg-lab s{text-decoration:none;font-size:11.8px;color:var(--muted)}
+.seg-lab b{font-size:15px;font-weight:800}
+.segbar{display:flex;gap:3px;margin-top:7px}
+.segbar i{flex:1;height:9px;border-radius:3px;background:var(--line)}
+.segbar i.on{background:var(--green)}
+.seg-sub{font-size:10.8px;color:var(--muted);margin-top:6px}
+.alerts{margin-top:9px}
+.alr{display:flex;gap:9px;align-items:flex-start;padding:9px 10px;border-radius:10px;margin-top:6px;
+  background:var(--surface-2);border-left:3px solid var(--line)}
+.alr.amber{background:var(--amber-soft);border-left-color:var(--amber)}
+.alr.red{background:var(--red-soft);border-left-color:var(--red)}
+.alr-ic{flex-shrink:0;font-size:14px;margin-top:1px}
+.alr-t{font-size:12px;line-height:1.55;min-width:0}
+.alr-t .lnk{font-size:12px;margin-left:3px}
+
 </style>
 
 <div class="app">
@@ -1053,6 +1072,22 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
       </div><!-- /h2-main -->
       <aside class="h2-rail">
         <div class="card">
+          <div class="sect" style="font-size:13.5px"><span class="ic">🔔</span>要留意 <small>AI 替你盯着的</small><span class="sp" style="flex:1"></span><span class="pill" style="background:var(--amber-soft);color:var(--amber);font-weight:650">4</span></div>
+          <div class="segwrap">
+            <div class="seg-lab"><s>餐厅资料完成度</s><b>72%</b></div>
+            <div class="segbar">
+              <i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i>
+            </div>
+            <div class="seg-sub">菜单 ✓ · Telegram ✓ · 菜品照 12/19 · Brand Kit 差字体</div>
+          </div>
+          <div class="alerts">
+            <div class="alr amber"><span class="alr-ic">🎨</span><span class="alr-t"><b>Brand Kit 还差字体文件</b> —— 现在海报用的是默认字体<button class="lnk" data-act="brand">去传 →</button></span></div>
+            <div class="alr"><span class="alr-ic">📷</span><span class="alr-t"><b>7 道菜还没有实拍照</b>，海报只能用示意图打底<button class="lnk" data-act="assets">去看 →</button></span></div>
+            <div class="alr red"><span class="alr-ic">📦</span><span class="alr-t"><b>椰浆按本周卖法只够到周五</b> —— AI 从销量推的，记得补货</span></div>
+            <div class="alr"><span class="alr-ic">🇲🇾</span><span class="alr-t"><b>Malaysia Day 9/16</b> 还有 50 天 —— 要印刷的话 8/16 前定稿<button class="lnk" data-qa="promo">现在备战 →</button></span></div>
+          </div>
+        </div>
+        <div class="card" style="margin-top:13px">
           <div class="sect" style="font-size:13.5px"><span class="ic">👥</span>AI 团队<span class="sp" style="flex:1"></span><button class="btn btnsm" data-go="1">看工位 →</button></div>
           <div class="team">
             <button class="tm" data-go="1"><span class="tm-av">🧭</span><span><b>总管</b><s>在等你批「午市快闪」</s></span><i class="dot amber"></i></button>
