@@ -11,7 +11,7 @@
 <style>*{margin:0;padding:0}</style>
 </head>
 <body>
-<!-- build 2026-08-09 v4.1 · 删说教区 + 来源标签（AI自动/老板发起）-->
+<!-- build 2026-08-09 v4.2 · 统一标签系统 -->
 <title>Hivora F&B Marketing · Demo</title>
 <style>
 :root{
@@ -762,6 +762,18 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
 .pa-acts .btn{font-size:12.3px}
 .pa-msg{font-size:12.5px;font-weight:650}
 
+
+/* 统一标签系统：软底 + 语义色 + 一致字号（4.5:1 对比）*/
+.apv-tags .pill,.pa-ch .pill,.pw-meta .pill{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:11px;font-weight:600;line-height:1;
+  padding:4px 10px;border-radius:99px;
+  background:var(--surface-2);border:1px solid var(--line);color:var(--muted)}
+.pill.t-date{background:#EFF6FF;border-color:#BFDBFE;color:#1D4ED8}
+.pill.t-halal{background:#ECFDF5;border-color:#A7F3D0;color:#047857}
+.pill.t-group{background:#F5F3FF;border-color:#DDD6FE;color:#6D28D9}
+.pill.t-warn{background:#FFFBEB;border-color:#FDE68A;color:#B45309}
+
 </style>
 
 <div class="app">
@@ -819,7 +831,7 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
           <div class="apv-bd">
             <b>午市快闪 · 甜蜜加价购</b> <span class="apv-kind">Material Review</span>
             <div class="apv-meta">✦ Margin <b style="color:var(--green)">61%</b> · 加价购 折后 RM38 · 营销设计师 · 5 分钟前</div>
-            <div class="apv-tags"><span class="pill">下周三午市（2026-08-12）</span><span class="pill" style="background:var(--green);color:#fff">Halal-labeled</span><span class="pill">华人 · 马来</span></div>
+            <div class="apv-tags"><span class="pill t-date">📅 下周三午市 · 08-12</span><span class="pill t-halal">✓ Halal-labeled</span><span class="pill t-group">👥 华人 · 马来</span></div>
           </div>
           <div class="apv-act">
             <button class="btn btn-go apv-ok">✓ 确认</button>
@@ -832,7 +844,7 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
           <div class="apv-bd">
             <b>国庆排期确认</b> <span class="apv-kind">Calendar</span>
             <div class="apv-meta">8/19 开始投放 · <b style="color:var(--red)">8/1 印刷截止（还有 4 天）</b> · 销售 · 今天 09:12</div>
-            <div class="apv-tags"><span class="pill">🇲🇾 Merdeka 8/31</span><span class="pill">印刷提前 1 个月</span></div>
+            <div class="apv-tags"><span class="pill t-date">🇲🇾 Merdeka · 08-31</span><span class="pill t-warn">🖨️ 印刷提前 1 个月</span></div>
           </div>
           <div class="apv-act">
             <button class="btn btn-go apv-ok">✓ 确认</button>
@@ -2375,7 +2387,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
         el.innerHTML='<div class="apv-th">'+(EMO[d]||"🍽️")+'</div>'+
           '<div class="apv-bd"><b>'+document.getElementById("pwTheme").value.split("—")[0].trim()+'</b> <span class="apv-kind">Material Review · 刚刚生成</span>'+
           '<div class="apv-meta">✦ Margin <b style="color:var(--green)">'+MARG[d]+'</b> · 你刚用 ＋ 新建的 · 文案+海报已出</div>'+
-          '<div class="apv-tags"><span class="pill">午市低谷 14:00–17:00</span><span class="pill" style="background:var(--green);color:#fff">Halal-labeled</span></div></div>'+
+          '<div class="apv-tags"><span class="pill t-date">📅 午市低谷 14:00–17:00</span><span class="pill t-halal">✓ Halal-labeled</span></div></div>'+
           '<div class="apv-act"><button class="btn btn-go apv-ok">✓ 确认</button>'+
           '<button class="btn" data-go="3">✎ 改</button>'+
           '<button class="btn btn-stop apv-no">✕ 退</button></div>';
@@ -2458,7 +2470,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
               '<div><div class="lab">TARGET GROUP</div>'+pl.group+'</div></div>'+
               '<div class="pa-copy">✍️ '+pl.copy+'</div>'+
               '<div class="lab" style="margin-top:10px">发布到</div>'+
-              '<div class="pa-ch">'+pl.ch.map(function(c){return '<span class="pill">'+c+'</span>';}).join("")+'</div>'+
+              '<div class="pa-ch">'+pl.ch.map(function(c){var ic=/WhatsApp/.test(c)?"💬 ":/FB|IG/.test(c)?"📣 ":/印刷/.test(c)?"🖨️ ":/桌卡|店内/.test(c)?"🪧 ":"";return '<span class="pill">'+ic+c+'</span>';}).join("")+'</div>'+
               '<div class="pa-acts">'+actsHtml(pl)+'</div>'+
             '</div></div></div></div>';
       }).join("")||'<div class="lab" style="padding:14px">这个状态下没有方案</div>';
