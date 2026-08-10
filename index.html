@@ -11,7 +11,7 @@
 <style>*{margin:0;padding:0}</style>
 </head>
 <body>
-<!-- build 2026-08-09 v4.2 · 统一标签系统 -->
+<!-- build 2026-08-09 v4.3 · Home 优化：简报/快捷动作/可点KPI/空状态 -->
 <title>Hivora F&B Marketing · Demo</title>
 <style>
 :root{
@@ -774,6 +774,20 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
 .pill.t-group{background:#F5F3FF;border-color:#DDD6FE;color:#6D28D9}
 .pill.t-warn{background:#FFFBEB;border-color:#FDE68A;color:#B45309}
 
+
+/* Home 优化：简报 / 快捷动作 / 可点 KPI */
+.brief{border-left:3px solid var(--blue)}
+.brieflist{list-style:none;margin:9px 0 0;padding:0}
+.brieflist li{display:flex;gap:9px;align-items:flex-start;font-size:13px;padding:6px 0;line-height:1.55}
+.brieflist i{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:7px}
+.b-red{background:var(--red)}.b-blue{background:var(--blue)}.b-green{background:var(--green)}
+.qact{display:flex;gap:8px;flex-wrap:wrap;margin:13px 0}
+.qact .btn{font-size:13px}
+.kgo{text-align:left;cursor:pointer;transition:.15s;font-family:inherit;color:inherit;width:100%}
+.kgo:hover{border-color:var(--blue);transform:translateY(-1px);box-shadow:0 4px 14px -6px rgba(37,99,235,.25)}
+.karr{text-decoration:none;color:var(--blue);opacity:0;transition:.15s;font-family:var(--mono)}
+.kgo:hover .karr{opacity:1}
+
 </style>
 
 <div class="app">
@@ -816,15 +830,29 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
 
     <!-- 0 Today -->
     <section class="panel" id="p0">
-      <div class="head"><div class="eyebrow">Hivora · AI Workforce</div><h2>今天该做什么</h2>
-        <p>老板每天打开的第一页：<b>待你确认的在最上面</b>，AI 干了什么在下面。</p></div>
-      <div class="grid g4">
-        <div class="card kpi"><div class="lab">待确认</div><div class="v" style="color:var(--amber)">2</div><div class="s">物料 1 · 排期 1</div></div>
-        <div class="card kpi"><div class="lab">本周营收</div><div class="v">13,867</div><div class="s">RM · +8% vs 上周</div></div>
-        <div class="card kpi"><div class="lab">印刷倒数</div><div class="v" style="color:var(--red)">4 天</div><div class="s">国庆物料 08-01 截止</div></div>
-        <div class="card kpi"><div class="lab">今日 AI 花费</div><div class="v" style="font-size:21px">RM 3.10</div><div class="s">本月累计 RM 41 · DeepSeek</div></div>
+      <div class="head"><div class="eyebrow">Hivora · AI Workforce · 2026-07-28 周二</div><h2>老板早 👋 今天该做什么</h2>
+        <p><b>待你确认的在最上面</b>，AI 干了什么在下面。</p></div>
+      <div class="card brief">
+        <div class="sect"><span class="ic">📋</span>AI 今日简报 <small>30 秒看完</small></div>
+        <ul class="brieflist">
+          <li><i class="b-red"></i><b>国庆物料 8/1 印刷截止（还有 4 天）</b> —— 排期确认还差你一下，就在下面审批箱。</li>
+          <li><i class="b-blue"></i>昨天营收 <b class="num">RM 2,140</b>（+6% vs 上周二）；晚市依旧占大头，午市快闪正好补谷。</li>
+          <li><i class="b-green"></i>AI 发现<b>周三晚市连续 4 周最低谷</b>，已起草「Chicken Satay 15% off」（草稿，在 Promotion Plans）。</li>
+        </ul>
       </div>
-      <div class="card" style="margin-top:13px">
+      <div class="qact">
+        <button class="btn btn-go" data-qa="promo">＋ 新建促销</button>
+        <button class="btn" data-qa="upload">📎 传销售表</button>
+        <button class="btn" data-qa="ask">💬 问助理</button>
+        <button class="btn" data-go="6">📅 看日历</button>
+      </div>
+      <div class="grid g4">
+        <button class="card kpi kgo" data-kgo="inbox"><div class="lab">待确认 <s class="karr">→</s></div><div class="v" style="color:var(--amber)">2</div><div class="s">物料 1 · 排期 1</div></button>
+        <button class="card kpi kgo" data-go="2"><div class="lab">本周营收 <s class="karr">→</s></div><div class="v">13,867</div><div class="s">RM · +8% vs 上周</div></button>
+        <button class="card kpi kgo" data-go="6"><div class="lab">印刷倒数 <s class="karr">→</s></div><div class="v" style="color:var(--red)">4 天</div><div class="s">国庆物料 08-01 截止</div></button>
+        <button class="card kpi kgo" data-go="8"><div class="lab">今日 AI 花费 <s class="karr">→</s></div><div class="v" style="font-size:21px">RM 3.10</div><div class="s">本月累计 RM 41 · DeepSeek</div></button>
+      </div>
+      <div class="card" style="margin-top:13px" id="inboxCard">
         <div class="sect"><span class="ic">📥</span>审批箱 <small>只有这里能放行真实动作</small><span class="sp" style="flex:1"></span><span class="pill" style="background:var(--amber);color:#fff">2 待确认</span></div>
         <div class="apv" data-apv data-cal="2026-08-12|午市快闪 投放">
           <div class="apv-th">🥭</div>
@@ -855,7 +883,7 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
         <div class="note" style="margin-top:11px;font-size:12.3px">AI 手上没有「发布」按钮 —— 它只能把申请单放到这里，<b>你批了，系统才执行</b>。</div>
       </div>
       <div class="card" style="margin-top:13px">
-        <div class="sect"><span class="ic">📡</span>Agent 实时动态 <small>who's running what</small><span class="sp" style="flex:1"></span><span class="livepulse"><i></i>Live</span></div>
+        <div class="sect"><span class="ic">📡</span>Agent 实时动态 <small>who's running what</small><span class="sp" style="flex:1"></span><span class="livepulse"><i></i>Live</span><button class="btn btnsm" data-go="1" style="margin-left:10px">查看工位 →</button></div>
         <div class="livefeed">
           <div class="lf"><i style="background:var(--blue)"></i><span class="who">营销设计师</span><span class="act">llm_call · 出国庆海报 v2</span><time>09:41</time></div>
           <div class="lf"><i style="background:var(--green)"></i><span class="who">销售</span><span class="act">tool_call · calc_promo_margin ✓ 61%</span><time>09:40</time></div>
@@ -2530,6 +2558,25 @@ why   = llm.explain(facts)    # 解释：交给 LLM
     });
     render(); counts();
   })();
+  /* ---- Home 快捷动作 / KPI 跳转 / 清空状态 ---- */
+  document.addEventListener("click",function(e){
+    var qa=e.target.closest("[data-qa]");
+    if(qa){
+      var k=qa.getAttribute("data-qa");
+      if(k==="promo"){ if(window.__go) __go(3); var b=document.getElementById("promoAdd"); b&&b.click(); }
+      else if(k==="upload"){ var pn=document.getElementById("chatPanel");
+        if(pn&&pn.hidden) document.getElementById("fabChat").click();
+        var at=document.getElementById("btnAttach");
+        if(at){ at.classList.remove("pulse"); void at.offsetWidth; at.classList.add("pulse"); }
+        var inp=document.getElementById("chatinput"); inp&&inp.focus(); }
+      else if(k==="ask"){ var pn2=document.getElementById("chatPanel");
+        if(pn2&&pn2.hidden) document.getElementById("fabChat").click();
+        var i2=document.getElementById("chatinput"); i2&&i2.focus(); }
+      return;
+    }
+    var kg=e.target.closest('[data-kgo="inbox"]');
+    if(kg){ var c=document.getElementById("inboxCard"); c&&c.scrollIntoView({behavior:"smooth",block:"start"}); }
+  });
   /* ---- Home 审批卡 inline 确认/退 ---- */
   document.addEventListener("click",function(e){
     var ok=e.target.closest(".apv-ok"), no=e.target.closest(".apv-no");
@@ -2544,7 +2591,14 @@ why   = llm.explain(facts)    # 解释：交给 LLM
     var left=document.querySelectorAll(".apv:not(.done):not(.rej)").length;
     var pill=card.closest(".card").querySelector(".pill");
     if(pill) pill.textContent=left?left+" 待确认":"全部处理完 ✓";
-    if(!left&&pill){ pill.style.background="var(--green)"; }
+    if(!left&&pill){ pill.style.background="var(--green)";
+      var host=card.parentElement;
+      if(host&&!host.querySelector(".apv-empty")){
+        var em=document.createElement("div"); em.className="apv-empty";
+        em.style.cssText="text-align:center;padding:14px;font-size:13.5px;color:var(--green);font-weight:650";
+        em.innerHTML="🎉 今天没有等你的事了 —— AI 继续干活，有事再叫你。";
+        host.appendChild(em);
+      } }
   });
   /* ---- Settings 开关（演示态）---- */
   document.addEventListener("click",function(e){
