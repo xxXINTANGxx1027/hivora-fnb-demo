@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex, nofollow">
 <meta name="description" content="Hivora F&B AI 营销团队 · 产品演示">
-<meta name="color-scheme" content="dark">
+<meta name="color-scheme" content="light">
 <title>Hivora F&B Marketing · Demo</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍜</text></svg>">
-<style>*{margin:0;padding:0}html{background:#131316}</style>
+<style>*{margin:0;padding:0}</style>
 </head>
 <body>
-<!-- build 2026-08-09 v4.6 · 深色皮（按老板 Pinterest 参考：Fintrixity/Decision）-->
+<!-- build 2026-08-09 v4.7 · 参考版式（保留蓝白）：账户卡/高亮柱图/圆弧仪表盘/卡底洞察 -->
 <title>Hivora F&B Marketing · Demo</title>
 <style>
 :root{
@@ -836,55 +836,50 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
   box-shadow:inset 0 0 0 3px #fff}
 
 
-/* ═══ Dark skin · 按老板 Pinterest 参考（Fintrixity / Decision dashboard）═══ */
-:root{
-  --bg:#131316;
-  --surface:#1C1C21; --surface-2:#25252C; --line:#2F2F38; --line-2:#26262E;
-  --ink:#F4F4F5; --ink-2:#C9CDD6; --muted:#9CA0AB; --faint:#6C7078;
-  --blue:#F97316; --blue-soft:#2B1D12; --blue-line:#7C3D12; --indigo:#FB923C;
-  --green:#4ADE80; --green-soft:#122A1B;
-  --amber:#FBBF24; --amber-soft:#2E2410;
-  --red:#F87171; --red-soft:#331717;
-  --sea:#FB923C; --sea-soft:#2B1D12;
-  --sh-sm:0 1px 2px rgba(0,0,0,.45);
-  --sh:0 1px 3px rgba(0,0,0,.5),0 12px 30px -14px rgba(0,0,0,.65);
-  --iso-floor:#20242E; --iso-line:#2D3342; --iso-top:#2B303C; --iso-side:#232834; --iso-side2:#282D39;
-}
-/* 语义标签 → 深色软底 */
-.pill.t-date{background:#172033;border-color:#2A4680;color:#8FB3FF}
-.pill.t-halal{background:#10291B;border-color:#1E5B38;color:#5BE49B}
-.pill.t-group{background:#251C3A;border-color:#4A3680;color:#C4B5FD}
-.pill.t-warn{background:#2E2410;border-color:#6B5311;color:#FBD34D}
-/* 紧急条 */
-.urgent{background:#2A190C;border-color:#7C3D12;border-left-color:#F97316}
-.urgent .u-tx b{color:#FDBA74}
-/* 状态 pill */
-.st-pending{background:#2E2410;color:#FBD34D}
-.st-approved{background:#10291B;color:#5BE49B}
-.st-rejected{background:#331717;color:#FCA5A5}
-/* KPI 瓦片：图标块深色化 + 首卡橙色渐变 hero（ref: My balance）*/
-.stat2 .s2-ic{filter:none}
-.stat2[data-go="2"]:first-child{background:linear-gradient(135deg,#F97316,#C2410C);border-color:#F97316}
-.stat2.hero,.statrow .stat2:first-child{background:linear-gradient(135deg,#F97316 0%,#C2410C 90%);border-color:transparent}
-.statrow .stat2:first-child .s2-l,.statrow .stat2:first-child .s2-d{color:rgba(255,255,255,.85)}
-.statrow .stat2:first-child .s2-v{color:#fff}
-.statrow .stat2:first-child .s2-ic{background:rgba(255,255,255,.22) !important;color:#fff !important}
-.statrow .stat2:first-child:hover{box-shadow:0 10px 28px -10px rgba(249,115,22,.55)}
-.statrow .stat2:nth-child(2) .s2-ic{background:#172033 !important;color:#8FB3FF !important}
-.statrow .stat2:nth-child(3) .s2-ic{background:#251C3A !important;color:#C4B5FD !important}
-/* 审批缩略图：深色暖底 */
-.apv-th{background:linear-gradient(135deg,#2E2013,#33181B);border-color:#4A2E1C;box-shadow:none}
-/* 菜品照占位格 */
-.photogrid .ph{background:linear-gradient(135deg,#2B1D12,#23262E)}
-.pw-img>span{background:linear-gradient(135deg,#2B1D12,#2E2013)}
-.pa-thumb{background:linear-gradient(135deg,#2B1D12,#23262E) !important;border-color:#3A2C1C !important}
-/* 绿底白字 pill → 软底绿字（对比度）*/
-.stgw.on{background:#10291B;border-color:#1E5B38;color:#5BE49B}
-/* 卡片阴影层级（深色下更依赖描边）*/
-.card{box-shadow:0 1px 2px rgba(0,0,0,.4)}
-/* 海报 = 纸张，保持亮色（在深色下反而是焦点，符合 ref 的对比逻辑）*/
-.poster,.mini-poster,.pa-img{color:#1F2937}
-.poster .body{color:#1F2937}
+
+
+
+/* ref1 账户卡版式 */
+.acct{display:flex;flex-direction:column;align-items:stretch;text-align:left;padding:0;border-radius:14px;
+  background:var(--surface);border:1px solid var(--line);font-family:inherit;color:inherit;overflow:hidden}
+.acct .ac-hd{display:flex;align-items:center;gap:10px;padding:13px 15px 0}
+.acct .ac-hd b{font-size:13px;display:block}
+.acct .ac-hd s{font-size:10.5px;color:var(--faint);text-decoration:none;display:block;font-family:var(--mono)}
+.acct .ac-num{display:flex;align-items:center;gap:8px;font-size:22px;font-weight:750;letter-spacing:-.03em;padding:9px 15px 12px}
+.ac-chip{font-style:normal;font-size:10.5px;font-weight:650;padding:3px 8px;border-radius:99px;
+  background:var(--surface-2);color:var(--muted);font-family:var(--mono)}
+.ac-chip.up{background:#ECFDF5;color:#047857}
+.acct .ac-ft{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--muted);
+  padding:9px 15px;border-top:1px solid var(--line-2);background:var(--surface-2);transition:.15s}
+.acct:hover .ac-ft{color:var(--blue);background:var(--blue-soft)}
+.acct:hover{border-color:var(--blue);transform:translateY(-1px);box-shadow:0 6px 18px -8px rgba(37,99,235,.22);transition:.15s}
+/* ref1 CashFlow 柱图：高亮柱+数值气泡 */
+.cashflow{display:flex;gap:12px;align-items:flex-end;height:150px;padding:26px 6px 4px;margin-top:6px}
+.cf-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:6px;position:relative;height:100%}
+.cf-col i{display:block;width:100%;max-width:46px;border-radius:8px 8px 4px 4px;background:var(--blue-soft);
+  border:1px solid var(--blue-line);min-height:8px}
+.cf-col.hot i{background:var(--blue);border-color:var(--blue)}
+.cf-col.dim i{background:var(--red-soft);border-color:#F1B8B0}
+.cf-col s{text-decoration:none;font-size:11px;color:var(--muted);order:2;margin-top:2px}
+.cf-tip{position:absolute;top:-24px;left:50%;transform:translateX(-50%);font-size:11px;font-weight:700;
+  background:var(--ink);color:#fff;padding:3px 9px;border-radius:7px;white-space:nowrap;font-family:var(--mono)}
+.cf-tip:after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);
+  border:5px solid transparent;border-top-color:var(--ink)}
+/* ref2：卡底一句洞察 + 文字链 */
+.cardnote{margin-top:12px;padding-top:11px;border-top:1px solid var(--line-2);font-size:12.6px;color:var(--muted)}
+.lnk{background:none;border:0;color:var(--blue);font-size:12.6px;font-weight:650;cursor:pointer;padding:0 2px}
+.lnk:hover{text-decoration:underline}
+/* ref2 圆弧仪表盘（周报用）*/
+.gauge{display:flex;align-items:center;gap:18px}
+.gauge .g-ring{width:132px;height:132px;border-radius:50%;flex-shrink:0;display:grid;place-items:center;
+  background:conic-gradient(var(--blue) 0 72%, var(--blue-soft) 72% 100%)}
+.gauge .g-ring>span{width:96px;height:96px;border-radius:50%;background:var(--surface);display:grid;place-items:center;
+  font-size:23px;font-weight:800;letter-spacing:-.03em}
+.gauge .g-ring>span s{display:block;font-size:10px;color:var(--muted);text-decoration:none;font-weight:500;text-align:center}
+.g-leg{flex:1;min-width:0}
+.g-leg .gl{display:flex;align-items:center;gap:8px;font-size:12.8px;padding:5px 0}
+.g-leg .gl i{width:9px;height:9px;border-radius:3px;flex-shrink:0}
+.g-leg .gl b{margin-left:auto;font-family:var(--mono)}
 
 </style>
 
@@ -977,15 +972,33 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
       </div>
 
       <div class="statrow">
-        <button class="stat2 kgo" data-go="2">
-          <span class="s2-bd"><span class="s2-l">昨天营收</span><span class="s2-v num">RM 2,140</span><span class="s2-d up">↑ +6% vs 上周二</span></span>
-          <span class="s2-ic" style="background:#ECFDF5;color:#047857">💰</span></button>
-        <button class="stat2 kgo" data-go="2">
-          <span class="s2-bd"><span class="s2-l">本周营收</span><span class="s2-v num">RM 13,867</span><span class="s2-d up">↑ +8% vs 上周</span></span>
-          <span class="s2-ic" style="background:#EFF6FF;color:#1D4ED8">📈</span></button>
-        <button class="stat2 kgo" data-go="8">
-          <span class="s2-bd"><span class="s2-l">本月 AI 花费</span><span class="s2-v num">RM 41</span><span class="s2-d">≈ 每天 2 杯拉茶</span></span>
-          <span class="s2-ic" style="background:#F5F3FF;color:#6D28D9">🤖</span></button>
+        <button class="acct kgo" data-go="2">
+          <span class="ac-hd"><span class="s2-ic" style="background:#ECFDF5;color:#047857">💰</span><span><b>昨天营收</b><s>Yesterday</s></span></span>
+          <span class="ac-num num">RM 2,140 <em class="ac-chip up">+6% ↑</em></span>
+          <span class="ac-ft">看昨天卖了什么 <i>→</i></span></button>
+        <button class="acct kgo" data-go="2">
+          <span class="ac-hd"><span class="s2-ic" style="background:#EFF6FF;color:#1D4ED8">📈</span><span><b>本周营收</b><s>This week · 625 单</s></span></span>
+          <span class="ac-num num">RM 13,867 <em class="ac-chip up">+8% ↑</em></span>
+          <span class="ac-ft">看完整周报 <i>→</i></span></button>
+        <button class="acct kgo" data-go="8">
+          <span class="ac-hd"><span class="s2-ic" style="background:#F5F3FF;color:#6D28D9">🤖</span><span><b>本月 AI 花费</b><s>DeepSeek</s></span></span>
+          <span class="ac-num num">RM 41 <em class="ac-chip">≈2杯拉茶/天</em></span>
+          <span class="ac-ft">看用量明细 <i>→</i></span></button>
+      </div>
+
+      <div class="card" style="margin-top:13px">
+        <div class="sect"><span class="ic">🍜</span>本周每天卖多少 <small>周六最旺 · 周三晚市最冷</small>
+          <span class="sp" style="flex:1"></span><button class="btn btnsm" data-go="2" style="margin-left:10px">看周报 →</button></div>
+        <div class="cashflow">
+          <div class="cf-col"><s>一</s><i style="height:38%"></i></div>
+          <div class="cf-col"><s>二</s><i style="height:44%"></i></div>
+          <div class="cf-col dim"><s>三</s><i style="height:26%"></i></div>
+          <div class="cf-col"><s>四</s><i style="height:52%"></i></div>
+          <div class="cf-col"><s>五</s><i style="height:68%"></i></div>
+          <div class="cf-col hot"><b class="cf-tip">RM 2,860</b><s>六</s><i style="height:100%"></i></div>
+          <div class="cf-col"><s>日</s><i style="height:84%"></i></div>
+        </div>
+        <div class="cardnote">周三那根最矮的 —— 就是 AI 建议做沙爹促销的原因。<button class="lnk" data-go="3">去看方案 →</button></div>
       </div>
 
       <div class="card" style="margin-top:13px">
@@ -1108,8 +1121,15 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
         <div class="card">
           <div class="sect"><span class="ic">▥</span>Footfall Heatmap <small>Lunch / Dinner · RM</small></div>
           <div class="bars" id="bars"></div>
-          <div class="legend"><span><i style="background:var(--amber)"></i>午市 5,956（43%）</span><span><i style="background:var(--blue)"></i>晚市 7,911（57%）</span></div>
-          <div class="note warn" style="margin-top:12px"><b>晚市占 57%。</b>午市是<b>机会</b>，不是问题 —— 潜力品拿去打午市低谷。</div>
+          <div class="gauge" style="margin-top:14px">
+            <div class="g-ring" style="background:conic-gradient(var(--blue) 0 57%, var(--amber) 57% 100%)"><span>57%<s>晚市占比</s></span></div>
+            <div class="g-leg">
+              <div class="gl"><i style="background:var(--blue)"></i>晚市营收<b>RM 7,911</b></div>
+              <div class="gl"><i style="background:var(--amber)"></i>午市营收<b>RM 5,956</b></div>
+              <div class="gl"><i style="background:var(--red)"></i>周三晚市（全周最低）<b>7 人次</b></div>
+            </div>
+          </div>
+          <div class="cardnote"><b>晚市占 57%。</b>午市是<b>机会</b>，不是问题 —— 潜力品拿去打午市低谷。<button class="lnk" data-go="3">去出促销 →</button></div>
         </div>
         <div class="card">
           <div class="sect"><span class="ic">▤</span>明细 <small>按营收排序</small></div>
@@ -1421,7 +1441,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
           <div class="inbox"><span class="sp"><b>回复语言跟随对方消息</b><br><span style="font-size:12px;color:var(--muted)">中文来中文回 · 英文来英文回 · 看最新一条，不锁死</span></span>
             <button class="btn stgw on" data-stg type="button">已开启</button></div>
           <div class="inbox"><span class="sp"><b>Telegram bot</b><br><span style="font-size:12px;color:var(--muted)">@WarisanGrill_bot · 老板私聊 + 群内 @ 提及</span></span>
-            <span class="pill" style="background:#10291B;border:1px solid #1E5B38;color:#5BE49B">已绑定</span></div>
+            <span class="pill" style="background:var(--green);color:#fff">已绑定</span></div>
           <div class="inbox"><span class="sp"><b>模型</b><br><span style="font-size:12px;color:var(--muted)">DeepSeek（走 OpenRouter）· 成本档见 Usage</span></span>
             <span class="pill">hivora-main</span></div>
         </div>
