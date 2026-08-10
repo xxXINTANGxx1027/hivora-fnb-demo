@@ -11,7 +11,7 @@
 <style>*{margin:0;padding:0}</style>
 </head>
 <body>
-<!-- build 2026-08-09 v4.4 · Home 以老板视角重做：紧急条/人话审批/去冗余/去术语 -->
+<!-- build 2026-08-09 v4.5 · Dribbble 参考对齐：KPI瓦片/图标圆块/卡片质感 -->
 <title>Hivora F&B Marketing · Demo</title>
 <style>
 :root{
@@ -815,6 +815,26 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
 .apv-act .btn{font-size:12.5px;padding:7px 14px}
 .apv-act .btn-go{font-size:13px;padding:8px 18px;font-weight:650}
 
+
+/* ref 对齐：KPI 瓦片（Dribbble food-admin 式）*/
+.stat2{display:flex;align-items:center;gap:12px;padding:15px 17px;border-radius:14px;text-align:left;
+  background:var(--surface);border:1px solid var(--line);font-family:inherit;color:inherit;width:100%}
+.stat2 .s2-bd{flex:1;min-width:0;display:block}
+.stat2 .s2-l{display:block;font-size:12px;color:var(--muted)}
+.stat2 .s2-v{display:block;font-size:22px;font-weight:750;letter-spacing:-.03em;margin-top:3px}
+.stat2 .s2-d{display:block;font-size:11.5px;color:var(--muted);margin-top:3px}
+.stat2 .s2-d.up{color:#047857;font-weight:650}
+.stat2 .s2-ic{width:42px;height:42px;border-radius:12px;display:grid;place-items:center;font-size:19px;flex-shrink:0}
+.stat2:hover{border-color:var(--blue);transform:translateY(-1px);box-shadow:0 6px 18px -8px rgba(37,99,235,.25);transition:.15s}
+/* 节标题图标统一装彩色圆块（ref4 式）*/
+.sect .ic{width:27px;height:27px;border-radius:9px;background:var(--blue-soft);display:inline-grid;place-items:center;font-size:13.5px;flex-shrink:0}
+/* 卡片质感统一：更大圆角 + 更软阴影 */
+.card{border-radius:15px;box-shadow:0 1px 2px rgba(16,24,40,.04),0 4px 14px -8px rgba(16,24,40,.06)}
+/* 审批缩略图：ref4 圆片风 */
+.apv-th{width:56px;height:56px;border-radius:15px;font-size:26px;
+  background:linear-gradient(135deg,#FFF4E5,#FDE8E8 60%,#FFF);border:1px solid #F3E2CE;
+  box-shadow:inset 0 0 0 3px #fff}
+
 </style>
 
 <div class="app">
@@ -906,9 +926,15 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
       </div>
 
       <div class="statrow">
-        <button class="stat kgo" data-go="2"><span class="st-l">昨天营收</span><span class="st-v num">RM 2,140</span><span class="st-d up">+6%</span></button>
-        <button class="stat kgo" data-go="2"><span class="st-l">本周营收</span><span class="st-v num">RM 13,867</span><span class="st-d up">+8%</span></button>
-        <button class="stat kgo" data-go="8"><span class="st-l">本月 AI 花费</span><span class="st-v num">RM 41</span><span class="st-d">≈ 2 杯拉茶/天</span></button>
+        <button class="stat2 kgo" data-go="2">
+          <span class="s2-bd"><span class="s2-l">昨天营收</span><span class="s2-v num">RM 2,140</span><span class="s2-d up">↑ +6% vs 上周二</span></span>
+          <span class="s2-ic" style="background:#ECFDF5;color:#047857">💰</span></button>
+        <button class="stat2 kgo" data-go="2">
+          <span class="s2-bd"><span class="s2-l">本周营收</span><span class="s2-v num">RM 13,867</span><span class="s2-d up">↑ +8% vs 上周</span></span>
+          <span class="s2-ic" style="background:#EFF6FF;color:#1D4ED8">📈</span></button>
+        <button class="stat2 kgo" data-go="8">
+          <span class="s2-bd"><span class="s2-l">本月 AI 花费</span><span class="s2-v num">RM 41</span><span class="s2-d">≈ 每天 2 杯拉茶</span></span>
+          <span class="s2-ic" style="background:#F5F3FF;color:#6D28D9">🤖</span></button>
       </div>
 
       <div class="card" style="margin-top:13px">
