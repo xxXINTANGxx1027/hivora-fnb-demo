@@ -11,7 +11,7 @@
 <style>*{margin:0;padding:0}</style>
 </head>
 <body>
-<!-- build 2026-08-09 v4.7 · 参考版式（保留蓝白）：账户卡/高亮柱图/圆弧仪表盘/卡底洞察 -->
+<!-- build 2026-08-09 v4.8 · ref 任务面板版式（蓝白）：双列+KPI迷你柱+任务卡+右栏团队/动态 -->
 <title>Hivora F&B Marketing · Demo</title>
 <style>
 :root{
@@ -881,6 +881,57 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
 .g-leg .gl i{width:9px;height:9px;border-radius:3px;flex-shrink:0}
 .g-leg .gl b{margin-left:auto;font-family:var(--mono)}
 
+
+/* Home v3 · ref 版式（蓝白）：双列 + KPI迷你柱 + 任务卡 */
+.home2{display:grid;grid-template-columns:minmax(0,1fr) 296px;gap:14px;align-items:start}
+@media(max-width:1000px){.home2{grid-template-columns:1fr}}
+.kpirow{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media(max-width:700px){.kpirow{grid-template-columns:1fr}}
+.kpi3{display:flex;flex-direction:column;gap:10px;padding:14px 15px;border-radius:14px;text-align:left;
+  background:var(--surface);border:1px solid var(--line);font-family:inherit;color:inherit}
+.kpi3:hover{border-color:var(--blue);transform:translateY(-1px);box-shadow:0 6px 18px -8px rgba(37,99,235,.22);transition:.15s}
+.kpi3 .k3-top{display:flex;align-items:center;justify-content:space-between}
+.kpi3 .k3-top s{text-decoration:none;font-size:12.3px;color:var(--muted)}
+.kpi3 .k3-bot{display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
+.kpi3 .k3-bot b{font-size:23px;font-weight:750;letter-spacing:-.03em}
+.mini{display:flex;gap:3px;align-items:flex-end;height:34px}
+.mini i{width:6px;border-radius:3px;background:#C7D6F5;min-height:4px}
+.mini.blue i{background:var(--blue);opacity:.85}
+.avstack{display:flex}
+.avstack i{width:30px;height:30px;border-radius:50%;background:var(--blue-soft);border:2px solid var(--surface);
+  display:grid;place-items:center;font-size:14px;margin-left:-8px}
+.avstack i:first-child{margin-left:0}
+.sechd{display:flex;align-items:center;justify-content:space-between;margin:16px 2px 9px}
+.sechd b{font-size:15.5px;letter-spacing:-.01em}
+/* 任务卡（ref: My day）*/
+.tcard{display:block;border:1px solid var(--line);border-radius:12px;padding:12px 14px;margin:8px 0;background:var(--surface)}
+.tcard:hover{border-color:var(--blue-line)}
+.t-top{display:flex;align-items:center;justify-content:space-between;gap:8px}
+.t-chip{font-size:11.3px;font-weight:650;padding:4px 10px;border-radius:8px;border:1px solid var(--line);color:var(--muted);font-family:var(--mono)}
+.t-chip.red{background:var(--red-soft);border-color:#F1B8B0;color:var(--red)}
+.t-chip.amber{background:var(--amber-soft);border-color:#F3DFB6;color:var(--amber)}
+.t-meta{font-size:11.5px;color:var(--faint);font-family:var(--mono);flex-shrink:0}
+.t-title{font-size:14.5px;font-weight:700;margin:9px 0 8px;letter-spacing:-.01em}
+.t-tags{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+.t-tags .pill{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;line-height:1;
+  padding:4px 10px;border-radius:99px;background:var(--surface-2);border:1px solid var(--line);color:var(--muted)}
+.t-av{margin-left:auto;width:26px;height:26px;border-radius:50%;background:var(--blue-soft);
+  display:grid;place-items:center;font-size:13px;flex-shrink:0}
+.tcard .apv-act{margin-top:11px;padding-top:10px;border-top:1px dashed var(--line-2)}
+.tcard.done .apv-act,.tcard.rej .apv-act{display:none}
+/* 右栏 */
+.h2-rail .card{padding:14px 15px}
+.team{margin-top:4px}
+.tm{display:flex;align-items:center;gap:10px;width:100%;text-align:left;padding:8px 6px;border-radius:10px;background:none;border:0;cursor:pointer;font-family:inherit;color:inherit}
+.tm:hover{background:var(--surface-2)}
+.tm-av{width:32px;height:32px;border-radius:10px;background:var(--blue-soft);display:grid;place-items:center;font-size:15px;flex-shrink:0}
+.tm b{font-size:12.8px;display:block}
+.tm s{font-size:11.3px;color:var(--muted);text-decoration:none;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:168px}
+.tm .dot{width:8px;height:8px;border-radius:50%;margin-left:auto;flex-shrink:0}
+.dot.green{background:var(--green)}.dot.blue{background:var(--blue)}.dot.amber{background:var(--amber)}.dot.gray{background:var(--faint)}
+.rail-feed .an{font-size:12.3px;padding:8px 0}
+.rail-feed .an time{font-size:10px}
+
 </style>
 
 <div class="app">
@@ -933,57 +984,55 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
         </div>
       </div>
 
-      <div class="urgent" role="alert">
-        <span class="u-ic">🖨️</span>
-        <span class="u-tx"><b>国庆物料 8/1 印刷截止 —— 还有 4 天</b>，排期确认就差你一下。</span>
-        <button class="btn btn-go btnsm" data-kgo="inbox">去确认 ↓</button>
+      <div class="home2">
+      <div class="h2-main">
+
+      <div class="kpirow">
+        <button class="kpi3 kgo" data-go="2">
+          <span class="k3-top"><s>昨天营收</s><em class="ac-chip up">+6%</em></span>
+          <span class="k3-bot"><b class="num">RM 2,140</b>
+            <span class="mini"><i style="height:40%"></i><i style="height:55%"></i><i style="height:35%"></i><i style="height:70%"></i><i style="height:58%"></i><i style="height:90%"></i><i style="height:76%"></i></span></span>
+        </button>
+        <button class="kpi3 kgo" data-go="2">
+          <span class="k3-top"><s>本周营收</s><em class="ac-chip up">+8%</em></span>
+          <span class="k3-bot"><b class="num">RM 13,867</b>
+            <span class="mini blue"><i style="height:30%"></i><i style="height:45%"></i><i style="height:62%"></i><i style="height:50%"></i><i style="height:78%"></i><i style="height:95%"></i><i style="height:88%"></i></span></span>
+        </button>
+        <button class="kpi3 kgo" data-kgo="inbox">
+          <span class="k3-top"><s>等你拍板</s><em class="ac-chip" style="background:var(--amber-soft);color:var(--amber)">今天</em></span>
+          <span class="k3-bot"><b class="num" style="font-size:26px">2</b>
+            <span class="avstack"><i>🎨</i><i>📊</i></span></span>
+        </button>
       </div>
 
-      <div class="card" style="margin-top:13px" id="inboxCard">
-        <div class="sect"><span class="ic">✋</span>等你拍板 <small>只有这里能放行真实动作</small><span class="sp" style="flex:1"></span><span class="pill" style="background:var(--amber);color:#fff">2 件</span></div>
+      <div class="sechd"><b>今天要处理</b><button class="btn btnsm" data-kgo="inbox">全部 →</button></div>
+      <div class="card" id="inboxCard" style="padding:10px 12px">
+        <div class="sect" style="display:none"><span class="pill">2 件</span></div>
         <div>
-        <div class="apv" data-apv data-cal="2026-08-12|午市快闪 投放">
-          <div class="apv-th">🥭</div>
-          <div class="apv-bd">
-            <b>午市快闪海报做好了，发不发？</b>
-            <div class="apv-meta">加价购 折后 RM38 · 毛利 61% ✓ · 铁律 Gate 已过 · 营销设计师 · 5 分钟前</div>
-            <div class="apv-tags"><span class="pill t-date">📅 下周三午市 · 08-12</span><span class="pill t-halal">✓ Halal</span><span class="pill t-group">👥 华人 · 马来</span></div>
-            <div class="apv-act">
-              <button class="btn btn-go apv-ok">✓ 发布</button>
-              <button class="btn" data-go="3">先看看 / 改</button>
-              <button class="btn btn-stop apv-no">✕ 退</button>
-            </div>
+        <div class="apv tcard" data-apv data-cal="2026-08-12|午市快闪 投放">
+          <div class="t-top"><span class="t-chip amber">⏱ 建议档期 08-12 · 还有 2 周</span>
+            <span class="t-meta">💬 1 · 📎 海报 v1</span></div>
+          <div class="t-title">午市快闪海报做好了，发不发？</div>
+          <div class="t-tags"><span class="pill t-halal">✓ Halal</span><span class="st-pill st-pending">待确认</span><span class="pill">加价购 RM38 · 毛利 61%</span><span class="t-av" title="营销设计师">🎨</span></div>
+          <div class="apv-act">
+            <button class="btn btn-go apv-ok">✓ 发布</button>
+            <button class="btn" data-go="3">先看看 / 改</button>
+            <button class="btn btn-stop apv-no">✕ 退</button>
           </div>
         </div>
-        <div class="apv" data-apv data-cal="2026-08-19|排期已确认 ✓">
-          <div class="apv-th">📅</div>
-          <div class="apv-bd">
-            <b>国庆排期定不定？8/19 开跑</b>
-            <div class="apv-meta">8/19 投放 → 9/2 结束 · <b style="color:var(--red)">印刷 8/1 截止</b> · 销售 · 今天 09:12</div>
-            <div class="apv-tags"><span class="pill t-date">🇲🇾 Merdeka · 08-31</span><span class="pill t-warn">🖨️ 印刷要提前 1 个月</span></div>
-            <div class="apv-act">
-              <button class="btn btn-go apv-ok">✓ 就这么定</button>
-              <button class="btn" data-go="6">看日历</button>
-              <button class="btn btn-stop apv-no">✕ 退</button>
-            </div>
+        <div class="apv tcard" data-apv data-cal="2026-08-19|排期已确认 ✓">
+          <div class="t-top"><span class="t-chip red">⏱ 印刷 8/1 截止 · 还有 4 天</span>
+            <span class="t-meta">💬 0 · 📎 排期表</span></div>
+          <div class="t-title">国庆排期定不定？8/19 开跑</div>
+          <div class="t-tags"><span class="pill t-date">🇲🇾 Merdeka · 08-31</span><span class="st-pill st-pending">待确认</span><span class="pill t-warn">🖨️ 印刷要提前 1 个月</span><span class="t-av" title="销售">📊</span></div>
+          <div class="apv-act">
+            <button class="btn btn-go apv-ok">✓ 就这么定</button>
+            <button class="btn" data-go="6">看日历</button>
+            <button class="btn btn-stop apv-no">✕ 退</button>
           </div>
         </div>
         </div>
-      </div>
-
-      <div class="statrow">
-        <button class="acct kgo" data-go="2">
-          <span class="ac-hd"><span class="s2-ic" style="background:#ECFDF5;color:#047857">💰</span><span><b>昨天营收</b><s>Yesterday</s></span></span>
-          <span class="ac-num num">RM 2,140 <em class="ac-chip up">+6% ↑</em></span>
-          <span class="ac-ft">看昨天卖了什么 <i>→</i></span></button>
-        <button class="acct kgo" data-go="2">
-          <span class="ac-hd"><span class="s2-ic" style="background:#EFF6FF;color:#1D4ED8">📈</span><span><b>本周营收</b><s>This week · 625 单</s></span></span>
-          <span class="ac-num num">RM 13,867 <em class="ac-chip up">+8% ↑</em></span>
-          <span class="ac-ft">看完整周报 <i>→</i></span></button>
-        <button class="acct kgo" data-go="8">
-          <span class="ac-hd"><span class="s2-ic" style="background:#F5F3FF;color:#6D28D9">🤖</span><span><b>本月 AI 花费</b><s>DeepSeek</s></span></span>
-          <span class="ac-num num">RM 41 <em class="ac-chip">≈2杯拉茶/天</em></span>
-          <span class="ac-ft">看用量明细 <i>→</i></span></button>
+        <div class="cardnote" style="margin:6px 4px 4px">AI 手上没有「发布」按钮 —— 它只能把申请单放到这里，<b>你批了，系统才执行</b>。</div>
       </div>
 
       <div class="card" style="margin-top:13px">
@@ -1001,16 +1050,29 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
         <div class="cardnote">周三那根最矮的 —— 就是 AI 建议做沙爹促销的原因。<button class="lnk" data-go="3">去看方案 →</button></div>
       </div>
 
-      <div class="card" style="margin-top:13px">
-        <div class="sect"><span class="ic">🤖</span>AI 在干嘛 <small>不用管，看看就好</small><span class="sp" style="flex:1"></span><span class="livepulse"><i></i>Live</span><button class="btn btnsm" data-go="1" style="margin-left:10px">看工位 →</button></div>
-        <div class="ainow">
-          <div class="an"><span class="an-e">🎨</span><span class="an-t">营销设计师<b>正在出国庆海报（第 2 版）</b>—— 按你说的把价格改成了 RM32</span><time>09:41</time></div>
-          <div class="an"><span class="an-e">📊</span><span class="an-t">销售算完了午市快闪的账：<b>打完折还赚 61%</b>，过保险线</span><time>09:40</time></div>
-          <div class="an"><span class="an-e">🗄️</span><span class="an-t">数据管家清完昨天流水：<b>625 行，0 错</b></span><time>08:02</time></div>
-          <div class="an insight"><span class="an-e">💡</span><span class="an-t"><b>AI 发现：周三晚市连续 4 周全店最冷清。</b>已经起草了「沙爹 15% off」，草稿放在 Promotion Plans</span>
-            <button class="btn btnsm" data-go="3">去看看 →</button></div>
+      </div><!-- /h2-main -->
+      <aside class="h2-rail">
+        <div class="card">
+          <div class="sect" style="font-size:13.5px"><span class="ic">👥</span>AI 团队<span class="sp" style="flex:1"></span><button class="btn btnsm" data-go="1">看工位 →</button></div>
+          <div class="team">
+            <button class="tm" data-go="1"><span class="tm-av">🧭</span><span><b>总管</b><s>在等你批「午市快闪」</s></span><i class="dot amber"></i></button>
+            <button class="tm" data-go="1"><span class="tm-av">🎨</span><span><b>营销设计师</b><s>正在出国庆海报 v2</s></span><i class="dot blue"></i></button>
+            <button class="tm" data-go="1"><span class="tm-av">📊</span><span><b>销售</b><s>算完账 · 毛利 61% ✓</s></span><i class="dot green"></i></button>
+            <button class="tm" data-go="1"><span class="tm-av">🗄️</span><span><b>数据管家</b><s>空闲 · 08:02 清完流水</s></span><i class="dot gray"></i></button>
+          </div>
         </div>
-      </div>
+        <div class="card" style="margin-top:13px">
+          <div class="sect" style="font-size:13.5px"><span class="ic">📡</span>刚刚发生<span class="sp" style="flex:1"></span><span class="livepulse"><i></i>Live</span></div>
+          <div class="ainow rail-feed">
+            <div class="an"><span class="an-e">🎨</span><span class="an-t">海报 v2 出稿 —— 价格按你说的改成 RM32</span><time>09:41</time></div>
+            <div class="an"><span class="an-e">📊</span><span class="an-t">午市快闪毛利复核：<b>61% ✓</b> 过保险线</span><time>09:40</time></div>
+            <div class="an"><span class="an-e">🗄️</span><span class="an-t">昨天流水清洗完：<b>625 行 0 错</b></span><time>08:02</time></div>
+            <div class="an insight"><span class="an-e">💡</span><span class="an-t"><b>周三晚市连续 4 周最冷。</b>已起草沙爹 15% off</span>
+              <button class="btn btnsm" data-go="3">去看 →</button></div>
+          </div>
+        </div>
+      </aside>
+      </div><!-- /home2 -->
 
       <div class="navb"><span></span><button class="btn btn-go" data-go="1">看看 AI 团队 →</button></div>
     </section>
