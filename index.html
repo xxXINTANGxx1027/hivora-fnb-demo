@@ -337,6 +337,86 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .socrow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;align-content:stretch}
 @media(max-width:760px){.socrow{grid-template-columns:repeat(2,1fr)}}
 
+
+/* ═══ 宣传设计工作台 ═══ */
+.steps{display:flex;align-items:center;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.stp{display:inline-flex;align-items:center;gap:7px;font-size:12.3px;font-weight:650;color:var(--faint)}
+.stp i{width:22px;height:22px;border-radius:50%;background:var(--surface2);display:grid;place-items:center;font-size:11px;font-style:normal}
+.stp.on{color:var(--ink)}
+.stp.on i{background:var(--ink);color:#fff}
+.steps em{flex:0 0 26px;height:1px;background:var(--line)}
+.wb{display:grid;grid-template-columns:340px minmax(0,1fr);gap:16px;align-items:start}
+@media(max-width:1000px){.wb{grid-template-columns:1fr}}
+.goals{display:grid;gap:7px}
+.goal{display:block;text-align:left;border:1px solid var(--line);border-radius:12px;padding:10px 13px;transition:.15s}
+.goal b{font-size:13.3px;display:block}
+.goal s{font-size:11.3px;color:var(--mut)}
+.goal:hover{border-color:var(--blue-line)}
+.goal[aria-pressed="true"]{border-color:var(--blue);background:var(--blue-soft)}
+.dsel{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.dch{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:11px;padding:8px 10px;text-align:left;transition:.15s}
+.dch span{font-size:20px}
+.dch b{font-size:12.3px;display:block;line-height:1.25}
+.dch s{font-size:10.5px;color:var(--mut);display:block}
+.dch[aria-pressed="true"]{border-color:var(--blue);background:var(--blue-soft)}
+.store{margin-top:12px;background:var(--surface2);border-radius:12px;padding:11px 13px}
+.strow{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink2);padding:3.5px 0}
+.strow .sw{width:14px;height:14px;border-radius:4px;background:#B4451F;display:inline-block}
+.styles{display:grid;gap:7px}
+.sty{display:flex;align-items:center;gap:10px;border:1px solid var(--line);border-radius:12px;padding:9px 12px;text-align:left;transition:.15s}
+.sty .sp1{width:26px;height:26px;border-radius:8px;flex-shrink:0}
+.sty b{font-size:12.8px;display:block}
+.sty s{font-size:11px;color:var(--mut)}
+.sty[aria-pressed="true"]{border-color:var(--blue);background:var(--blue-soft)}
+.vars{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:11px}
+@media(max-width:760px){.vars{grid-template-columns:1fr}}
+.var{position:relative;border-radius:14px;cursor:pointer;transition:.15s;border:2px solid transparent}
+.var:hover{transform:translateY(-2px)}
+.var.sel{border-color:var(--blue)}
+.var .rec{position:absolute;top:-9px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;
+  font-size:10px;font-weight:700;padding:3px 10px;border-radius:99px;z-index:2}
+.vp{border:1px solid #EFE6D5;border-radius:12px;overflow:hidden;background:#FFFDF8;color:#241F18}
+.vp .h{color:#fff;text-align:center;font-size:9.5px;font-weight:800;padding:5px;letter-spacing:.05em}
+.vp .a{display:grid;place-items:center;font-size:42px;padding:16px 0 4px}
+.vp .t{text-align:center;font-weight:800;font-size:12.5px;padding:4px 8px 0}
+.vp .pr{text-align:center;font-weight:800;font-size:16px;padding:4px 0 2px}
+.vp .f{display:flex;justify-content:space-between;align-items:center;font-size:7.5px;color:#8A8071;padding:6px 9px;border-top:1px solid #EFE6D5;margin-top:6px}
+.vp .qrp{width:22px;height:22px;border-radius:4px}
+.gen-load .a{animation:pulse 1s ease infinite}
+.edbar{display:flex;gap:7px;flex-wrap:wrap}
+.exps{display:flex;gap:7px;flex-wrap:wrap}
+.exp{border:1px solid var(--line);border-radius:10px;padding:8px 13px;font-size:12.3px;font-weight:600;transition:.15s}
+.exp:hover{border-color:var(--blue);color:var(--blue)}
+.copybox{margin-top:13px;background:var(--surface2);border-radius:12px;padding:12px 14px;font-size:12.8px}
+.copybox .hash{color:var(--blue);margin-top:6px;font-size:12px}
+.copybox .cta{color:var(--mut);margin-top:6px;font-size:12px}
+
+
+/* 会员 Loyalty */
+.stamps{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;margin:6px 0 4px}
+.stamp{aspect-ratio:1;border-radius:50%;border:2px dashed var(--line);display:grid;place-items:center;
+  font-size:13px;font-weight:800;color:var(--faint)}
+.stamp.on{border-style:solid;border-color:#B4451F;background:linear-gradient(145deg,#FFF3E8,#FDE7DA);color:#B4451F}
+.stamp.gift{border-color:var(--green);font-size:17px;background:var(--green-soft)}
+/* 图画感：海报/照片墙的"食物光" */
+.paper .art,.vp .a{background:
+  radial-gradient(circle at 30% 25%,#FFE8C7 0 26%,transparent 27%),
+  radial-gradient(circle at 72% 65%,#FFD9D0 0 30%,transparent 31%),
+  radial-gradient(circle at 60% 20%,#FDF0D5 0 18%,transparent 19%),
+  linear-gradient(160deg,#FDF6EA,#F8ECDC)}
+.paper .art>*,.vp .a>*{filter:drop-shadow(0 6px 10px rgba(120,60,20,.28))}
+.vp .a{font-size:46px}
+.photo{background:
+  radial-gradient(circle at 32% 30%,#FFE9CB 0 30%,transparent 31%),
+  radial-gradient(circle at 70% 68%,#FFDCD2 0 32%,transparent 33%),
+  linear-gradient(150deg,#FDF4E6,#F6EADA);font-size:34px}
+.photo>*{filter:drop-shadow(0 4px 7px rgba(120,60,20,.3))}
+.gitem{background:
+  radial-gradient(circle at 30% 28%,#FFE9CB 0 26%,transparent 27%),
+  linear-gradient(150deg,#FDF6EA,#F7ECDC)}
+.gitem .gi1{font-size:38px;filter:drop-shadow(0 4px 7px rgba(120,60,20,.28))}
+.dch span{filter:drop-shadow(0 2px 4px rgba(120,60,20,.25))}
+
 </style>
 </head>
 <body>
@@ -368,6 +448,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
     <button class="nv" data-p="2"><i data-i="chart"></i>销售分析</button>
     <button class="nv" data-p="3"><i data-i="bowl"></i>菜品与菜单</button>
     <button class="nv" data-p="4"><i data-i="users"></i>客户</button>
+    <button class="nv" data-p="8"><i data-i="star"></i>会员 · Loyalty</button>
     <button class="nv" data-p="5"><i data-i="bulb"></i>新菜灵感</button>
     <button class="nv" data-p="7"><i data-i="share"></i>社媒中心</button>
     <div class="ngrp">配置</div>
@@ -478,68 +559,103 @@ td b.pr2{font-variant-numeric:tabular-nums}
 
   <!-- ═══════════ P1 营销生成 ═══════════ -->
   <section class="panel" id="p1">
-    <div style="margin-bottom:16px"><div class="eyebrow">AI Marketing Studio</div>
-      <h2>说一句话，拿一套物料</h2>
-      <p class="sub">海报 · 社媒图 · 文案一次出好。价格和二维码由模板精确叠加 —— AI 画不准的，不让它画。</p></div>
-    <div class="mk">
-    <div>
-      <div class="card">
-        <div class="ptype" role="group">
-          <button aria-pressed="true">海报</button><button aria-pressed="false">社媒图</button><button aria-pressed="false">文案</button><button aria-pressed="false">WhatsApp 群发稿</button>
+    <div style="margin-bottom:14px"><div class="eyebrow">AI Design Studio</div>
+      <h2>宣传设计工作台</h2>
+      <p class="sub">跟着五步走完海报、社媒贴文与文案 —— 不用会设计，也不用会写 prompt。</p></div>
+    <div class="steps">
+      <span class="stp on"><i>1</i>选目标</span><em></em>
+      <span class="stp on"><i>2</i>选菜品</span><em></em>
+      <span class="stp on"><i>3</i>选风格</span><em></em>
+      <span class="stp" id="st4"><i>4</i>AI 生成</span><em></em>
+      <span class="stp" id="st5"><i>5</i>编辑导出</span>
+    </div>
+    <div class="wb">
+      <!-- 列1：目标 + 资料 -->
+      <div>
+        <div class="card">
+          <div class="chd"><b>1 · 这次想做什么？</b></div>
+          <div class="goals">
+            <button class="goal" aria-pressed="true"><b>提升午市销量</b><s>午市只占 43% · 打低谷正合适</s></button>
+            <button class="goal" aria-pressed="false"><b>推广新品</b><s>菜单里有 2 道新品还没人知道</s></button>
+            <button class="goal" aria-pressed="false"><b>节日促销</b><s>Merdeka 还有 34 天 · 印刷 8/1 截止</s></button>
+            <button class="goal" aria-pressed="false"><b>提高回头客</b><s>回头客占 31% · 本月 6 位生日</s></button>
+            <button class="goal" aria-pressed="false"><b>社媒曝光</b><s>本周曝光 103.2k · 小红书涨最快</s></button>
+          </div>
         </div>
-        <textarea class="prompt" id="mkPrompt" placeholder="想推什么？随便说 —— 例：芒果糯米饭做个午市加价购，甜蜜一点的感觉"></textarea>
-        <div class="mrow">
-          <select class="msel" id="mkDish"><option>芒果糯米饭 · 毛利 68%</option><option>柠檬薄荷饮 · 毛利 71%</option><option>松露意面 · 毛利 67%</option><option>Chicken Satay · 毛利 60%</option></select>
-          <span class="tag gn">折后毛利仍 ≥ 40% ✓</span>
-          <span class="sp" style="flex:1"></span>
-          <button class="btn pri" id="mkGo">生成</button>
+        <div class="card mt">
+          <div class="chd"><b>2 · 用哪些菜？</b><s>多选 · 价格来自菜单</s></div>
+          <div class="dsel">
+            <button class="dch" aria-pressed="true"><span>🥭</span><b>芒果糯米饭</b><s class="num">RM 14.00</s></button>
+            <button class="dch" aria-pressed="true"><span>🍹</span><b>柠檬薄荷饮</b><s class="num">RM 4.80</s></button>
+            <button class="dch" aria-pressed="false"><span>🍝</span><b>松露意面</b><s class="num">RM 22.00</s></button>
+            <button class="dch" aria-pressed="false"><span>🍢</span><b>Chicken Satay</b><s class="num">RM 14.00</s></button>
+          </div>
+          <div class="store">
+            <div class="chd" style="margin-bottom:6px"><b style="font-size:12px">店铺资料 · 已自动带入</b><span class="sp"></span><button class="lnk" data-p="6" style="font-size:11.5px">编辑</button></div>
+            <div class="strow"><i class="ii" style="background:#B4451F;width:22px;height:22px;border-radius:6px;font-size:10px">W</i>Warisan Grill · Halal ✓</div>
+            <div class="strow"><i class="sw"></i>品牌主色 #B4451F</div>
+            <div class="strow">📍 Jalan Ampang, KL</div>
+            <div class="strow">💬 WhatsApp +60 12-345 6789</div>
+          </div>
+        </div>
+        <div class="card mt">
+          <div class="chd"><b>3 · 什么风格？</b></div>
+          <div class="styles">
+            <button class="sty" data-sty="a" aria-pressed="true"><span class="sp1" style="background:#B4451F"></span><b>活力促销风</b><s>色块醒目 · 吸引下单</s></button>
+            <button class="sty" data-sty="b" aria-pressed="false"><span class="sp1" style="background:#1F2937"></span><b>高级简约风</b><s>干净留白 · 质感优先</s></button>
+            <button class="sty" data-sty="c" aria-pressed="false"><span class="sp1" style="background:#3F7D4E"></span><b>家庭亲和风</b><s>温暖家常 · 阖家用餐</s></button>
+          </div>
+          <button class="btn pri" id="wbGo" style="width:100%;margin-top:13px;justify-content:center;padding:11px">AI 生成 3 个方案</button>
         </div>
       </div>
-      <div class="card mt" id="mkOut" hidden>
-        <div class="chd"><i data-i="spark"></i><b>生成结果</b><s id="mkVer">v1 · 铁律 Gate 已过（6/6）</s><span class="sp"></span>
-          <button class="btn sm" id="mkDl">下载 PNG</button><button class="btn sm" id="mkRe">重新生成</button><button class="btn pri sm" id="mkPub">提交发布</button></div>
-        <div class="grid2">
-          <div class="paper" id="mkPaper">
-            <div class="ph1">WARISAN GRILL · HALAL ✓</div>
-            <div class="art" id="mkArt">🥭</div>
-            <div class="tt" id="mkTitle">午市快闪 · 甜蜜加价购</div>
-            <div class="cp" id="mkCopy">主食加购芒果糯米饭 + 柠檬薄荷饮，甜一口再上班。</div>
-            <div class="pr num">RM 38 <sss>原价 RM 45</sss></div>
-            <div class="ft"><span>Jalan Ampang, KL · 11:00–22:00<br>WhatsApp 012-345 6789 · 有效期至 09-02</span><span class="qrp"></span></div>
+      <!-- 列2：结果 + 编辑导出 -->
+      <div>
+        <div class="card" id="wbOut" hidden>
+          <div class="chd"><b>4 · AI 生成结果</b><s>共生成 3 个方案 · 点选一个 · 每案约 8 秒</s><span class="sp"></span><span class="tag gn">Gate 已过（6/6）</span></div>
+          <div class="vars" id="wbVars"></div>
+          <div class="cnote">铁律检查：价格来自菜单 ✓ · Halal 标 ✓ · 二维码模板叠加 ✓ · 族群规则 ✓ —— 不合格的稿根本不会出现在这里。</div>
+        </div>
+        <div class="card mt" id="wbEdit" hidden>
+          <div class="chd"><b>5 · 编辑与导出</b></div>
+          <div class="edbar">
+            <button class="btn sm" data-ed="txt">改文字</button>
+            <button class="btn sm" data-ed="price">改价格</button>
+            <button class="btn sm" data-ed="img">换图片</button>
+            <button class="btn sm" data-ed="color">调配色</button>
+            <button class="btn sm" data-ed="re">重新生成</button>
           </div>
-          <div>
-            <div class="note" style="margin-bottom:10px"><b>Gate 检查：</b>店名地址 ✓ · 价格来自菜单 ✓ · Halal 标 ✓ · 二维码 ✓ · 有效期在窗口内 ✓ · 族群规则 ✓</div>
-            <div class="pubq" id="mkQ" hidden>
-              <div><span>Facebook 帖子</span><span class="st" style="color:var(--green)">已进队列 ✓</span></div>
-              <div><span>Instagram 帖子</span><span class="st" style="color:var(--green)">已进队列 ✓</span></div>
-              <div><span>WhatsApp 群发（opt-in 248 人）</span><span class="st" style="color:var(--amber)">等老板批</span></div>
-              <div><span>小红书</span><span class="st" style="color:var(--mut)">内容已备 · 需手动发</span></div>
-            </div>
-            <p class="sub" id="mkHint" style="font-size:12.5px">「提交发布」不会直接发出去 —— 先进审批箱，你批了才执行（幂等键防重发）。</p>
+          <div class="chd" style="margin:13px 0 7px"><b style="font-size:12.5px">导出尺寸</b></div>
+          <div class="exps">
+            <button class="exp" data-ex="IG Post 1080×1080">IG Post</button>
+            <button class="exp" data-ex="IG Story 1080×1920">IG Story</button>
+            <button class="exp" data-ex="FB Post 1200×630">FB Post</button>
+            <button class="exp" data-ex="小红书封面 1242×1660">小红书封面</button>
+            <button class="exp" data-ex="A4 海报 · 300dpi 印刷" data-a4="1">A4 海报打印</button>
           </div>
+          <div class="copybox">
+            <div class="chd" style="margin-bottom:6px"><b style="font-size:12.5px">AI 宣传文案</b><span class="sp"></span><button class="btn sm" id="wbCopy">复制全部</button></div>
+            <p id="wbCopyTx">工作日午餐，来 Warisan Grill！主食加购芒果糯米饭 + 柠檬薄荷饮只要 RM 38，甜一口再上班，满满能量 💪</p>
+            <p class="hash">#好味午餐 #午市特惠 #KL美食 #WarisanGrill #HalalFood</p>
+            <p class="cta">CTA 按钮文案：<b>立即点餐 · 了解更多</b></p>
+          </div>
+          <div class="mrow" style="margin-top:13px">
+            <span class="sub" style="font-size:12.3px;margin:0">「提交发布」先进审批箱，你批了才执行。</span>
+            <span class="sp" style="flex:1"></span>
+            <button class="btn pri" id="wbPub">提交发布</button>
+          </div>
+          <div class="pubq" id="wbQ" hidden>
+            <div><span>Facebook + Instagram</span><span class="st" style="color:var(--green)">已进队列 ✓</span></div>
+            <div><span>WhatsApp 群发（opt-in 248 人）</span><span class="st" style="color:var(--amber)">等老板批</span></div>
+            <div><span>小红书</span><span class="st" style="color:var(--mut)">封面已备 · 需手动发</span></div>
+          </div>
+        </div>
+        <div class="card mt" id="wbTip">
+          <div class="chd"><i data-i="bulb"></i><b>小贴士</b></div>
+          <p class="sub" style="font-size:12.6px;margin:0">选清晰的主菜 + 简短有力的文案，点击率平均高 <b>2.3 倍</b>；带价格的海报到店转化多 <b>41%</b>。选好目标和菜品后按「AI 生成 3 个方案」。</p>
         </div>
       </div>
     </div>
-    <aside>
-      <div class="card">
-        <div class="chd"><i data-i="folder"></i><b>最近生成</b><span class="sp"></span><s>本周 12 张</s></div>
-        <div class="gallery">
-          <div class="gitem"><div class="gi1">🍝</div><div class="gi2">Merdeka 倒数预热</div><div class="gi3 num">RM 19.80</div></div>
-          <div class="gitem"><div class="gi1">🧋</div><div class="gi2">下午茶引流</div><div class="gi3 num">RM 4.50</div></div>
-          <div class="gitem"><div class="gi1">🍢</div><div class="gi2">周三晚市 15% off</div><div class="gi3 num">RM 11.90</div></div>
-          <div class="gitem"><div class="gi1">🍹</div><div class="gi2">清凉一饮</div><div class="gi3 num">RM 4.00</div></div>
-        </div>
-      </div>
-      <div class="card mt">
-        <div class="chd"><i data-i="activity"></i><b>发布队列</b></div>
-        <div class="pubq">
-          <div><span>松露意面 · 午市九折</span><span class="st" style="color:var(--green)">FB/IG 已发 ✓</span></div>
-          <div><span>午市快闪 · 甜蜜加价购</span><span class="st" style="color:var(--amber)">等你批</span></div>
-        </div>
-      </div>
-    </aside>
-    </div>
-  </section>
+</section>
 
   <!-- ═══════════ P2 销售分析 ═══════════ -->
   <section class="panel" id="p2">
@@ -785,6 +901,64 @@ td b.pr2{font-variant-numeric:tabular-nums}
     </div>
   </section>
 
+
+  <!-- ═══════════ P8 会员 · Loyalty ═══════════ -->
+  <section class="panel" id="p8">
+    <div style="margin-bottom:16px"><div class="eyebrow">Loyalty · 让客人再来一次</div>
+      <h2>会员与积分</h2>
+      <p class="sub">扫码入会 → 消费攒分 → 到点唤回。全部 opt-in，退订即停。</p></div>
+    <div class="kpis" style="grid-template-columns:repeat(4,minmax(0,1fr))">
+      <button class="kpi" data-p="4"><span class="r1"><s>会员总数</s><span class="tag gn">+31 本周</span></span>
+        <span class="r2"><b class="num">248</b><s style="font-size:11px;color:var(--mut)">全部 opt-in</s></span></button>
+      <button class="kpi"><span class="r1"><s>30 天活跃</s><span class="tag gn">+4.2%</span></span>
+        <span class="r2"><b class="num">31.4%</b><s style="font-size:11px;color:var(--mut)">78 人回访过</s></span></button>
+      <button class="kpi"><span class="r1"><s>会员复购率</s><span class="tag bl">vs 散客 1.8×</span></span>
+        <span class="r2"><b class="num">46.7%</b><s style="font-size:11px;color:var(--mut)">散客仅 26%</s></span></button>
+      <button class="kpi"><span class="r1"><s>本月兑换</s><span class="tag am">RM 215 成本</span></span>
+        <span class="r2"><b class="num">43 次</b><s style="font-size:11px;color:var(--mut)">带动消费 RM 1,872</s></span></button>
+    </div>
+    <div class="grid2">
+      <div>
+        <div class="card">
+          <div class="chd"><i data-i="star"></i><b>集章卡 · 买 10 送 1</b><s>示例：陈伟明的卡</s><span class="sp"></span><span class="tag gn">还差 2 章</span></div>
+          <div class="stamps">
+            <span class="stamp on">1</span><span class="stamp on">2</span><span class="stamp on">3</span><span class="stamp on">4</span>
+            <span class="stamp on">5</span><span class="stamp on">6</span><span class="stamp on">7</span><span class="stamp on">8</span>
+            <span class="stamp">9</span><span class="stamp gift">🎁</span>
+          </div>
+          <div class="cnote">第 10 章送「椰浆饭套餐」一份（成本 RM 5.10，换回一次到店 · 平均带朋友 1.6 人）。</div>
+        </div>
+        <div class="card mt">
+          <div class="chd"><b>积分规则</b><s>简单到收银员一句话讲得完</s></div>
+          <div class="intg"><span class="ii" style="background:#2563EB">1</span><span><b>消费 RM 1 = 1 分</b><s>扫码点餐自动记，不用出示卡</s></span></div>
+          <div class="intg"><span class="ii" style="background:#0F172A">2</span><span><b>100 分 = RM 5 现金券</b><s>核销即扣 · 全场通用</s></span></div>
+          <div class="intg"><span class="ii" style="background:#B4451F">3</span><span><b>生日月双倍积分</b><s>本月 6 位寿星 · 惊喜稿已备好等你批</s></span></div>
+        </div>
+      </div>
+      <div>
+        <div class="card">
+          <div class="chd"><b>会员等级</b><s>按 12 个月累计消费</s></div>
+          <table>
+            <thead><tr><th>等级</th><th>门槛</th><th>人数</th><th>权益</th></tr></thead>
+            <tbody>
+              <tr><td><b>🥉 常客</b></td><td class="num">入会即是</td><td class="num">193</td><td>积分 + 生日双倍</td></tr>
+              <tr><td><b>🥈 熟客</b></td><td class="num">RM 500</td><td class="num">44</td><td>+ 每月 1 次饮品半价</td></tr>
+              <tr><td><b>🥇 贵客</b></td><td class="num">RM 1,500</td><td class="num">11</td><td>+ 新菜免费试吃 · 免排队</td></tr>
+            </tbody>
+          </table>
+          <div class="cnote">11 位贵客贡献了 <b class="num">18%</b> 的营收 —— 他们值得一条专属 WhatsApp 问候。<button class="lnk" data-p="1">去写 →</button></div>
+        </div>
+        <div class="card mt">
+          <div class="chd"><b>唤回引擎</b><s>AI 盯着 · 动作等你批</s></div>
+          <div class="al am"><span><b>14 天没来：23 人</b> —— 「想你了，甜品 8 折」草稿已备<button class="lnk" data-p="1">看稿 →</button></span></div>
+          <div class="al"><span><b>生日月：6 人</b> —— 双倍分 + 免费甜品券，自动排在生日周发送</span></div>
+          <div class="al"><span><b>只来过 1 次：41 人</b> —— 第二次到店转化是留客关键，建议发「回头礼」</span></div>
+          <div class="note" style="margin-top:10px">所有唤回消息走 WhatsApp（opt-in 248 人）· 先进审批箱 · 退订即停。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
 </main>
 </div>
 <div class="toast" id="toast"></div>
@@ -809,12 +983,13 @@ td b.pr2{font-variant-numeric:tabular-nums}
     grid:s('<rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/>'),
     gauge:s('<path d="M4 14a8 8 0 1 1 16 0"/><path d="M12 14 15.5 9"/><path d="M4 19h16"/>'),
     folder:s('<path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/>'),
-    share:s('<circle cx="6" cy="12" r="2.5"/><circle cx="17.5" cy="5.5" r="2.5"/><circle cx="17.5" cy="18.5" r="2.5"/><path d="m8.3 10.7 7-3.9M8.3 13.3l7 3.9"/>')
+    share:s('<circle cx="6" cy="12" r="2.5"/><circle cx="17.5" cy="5.5" r="2.5"/><circle cx="17.5" cy="18.5" r="2.5"/><path d="m8.3 10.7 7-3.9M8.3 13.3l7 3.9"/>'),
+    star:s('<path d="m12 3 2.7 5.7 6.3.8-4.6 4.3 1.2 6.2L12 17l-5.6 3 1.2-6.2L3 9.5l6.3-.8Z"/>')
   };
   document.querySelectorAll("[data-i]").forEach(function(el){ el.innerHTML=I[el.getAttribute("data-i")]||""; });
 })();
 /* ═══ nav ═══ */
-var TITLES=["总览","营销生成","销售分析","菜品与菜单","客户","新菜灵感","店面与接入","社媒中心"];
+var TITLES=["总览","宣传设计","销售分析","菜品与菜单","客户","新菜灵感","店面与接入","社媒中心","会员 · Loyalty"];
 function go(i){
   document.querySelectorAll(".panel").forEach(function(p,k){p.classList.toggle("on",k===i);});
   document.querySelectorAll(".side .nv").forEach(function(n){n.setAttribute("aria-current",n.getAttribute("data-p")==String(i));});
@@ -842,58 +1017,83 @@ document.addEventListener("click",function(e){
   toast(ok?"已批 —— 档期已写进营销日历":"已退回");
 });
 document.getElementById("kpiInbox").addEventListener("click",function(){ document.getElementById("taskList").scrollIntoView({behavior:"smooth",block:"center"}); });
-/* ═══ 营销生成 ═══ */
+/* ═══ 宣传设计工作台 ═══ */
 (function(){
-  var DISH={"芒果糯米饭":["🥭","午市快闪 · 甜蜜加价购","主食加购芒果糯米饭 + 柠檬薄荷饮，甜一口再上班。","38","45"],
-            "柠檬薄荷饮":["🍹","下午茶引流 · 清凉一饮","下午三点困？柠檬薄荷饮限时尝鲜，到店出示此图即享。","4.50","5.50"],
-            "松露意面":["🍝","Merdeka 倒数 · 一口香浓","松露香浓迎国庆，午市限定九折，仅到 8/31。","19.80","22.00"],
-            "Chicken Satay":["🍢","周三晚市 · 15% off","招牌鸡肉沙爹，Halal 认证，人均低谷来一串。","11.90","14.00"]};
-  document.querySelectorAll(".ptype button").forEach(function(b){
-    b.addEventListener("click",function(){
-      document.querySelectorAll(".ptype button").forEach(function(x){x.setAttribute("aria-pressed","false");});
-      b.setAttribute("aria-pressed","true");
-    });
+  var STY={a:{c:"#B4451F",n:"活力促销"},b:{c:"#1F2937",n:"高级简约"},c:{c:"#3F7D4E",n:"家庭亲和"}};
+  var cur={sty:"a",price:"38",orig:"45",emo:"🥭",v:1};
+  var TT=["午餐能量满满当当","午市时刻 · 美味加油站","好好吃饭 · 午餐更满足"];
+  function sel(group,btn){[].forEach.call(document.querySelectorAll(group),function(x){x.setAttribute("aria-pressed","false");});btn.setAttribute("aria-pressed","true");}
+  document.addEventListener("click",function(e){
+    var g=e.target.closest(".goal"); if(g){sel(".goal",g);return;}
+    var st=e.target.closest(".sty"); if(st){sel(".sty",st);cur.sty=st.getAttribute("data-sty");
+      if(!document.getElementById("wbOut").hidden) render(); return;}
+    var d=e.target.closest(".dch"); if(d){d.setAttribute("aria-pressed",d.getAttribute("aria-pressed")!=="true");
+      var on=document.querySelector('.dch[aria-pressed="true"] span'); if(on) cur.emo=on.textContent; return;}
+    var v=e.target.closest(".var"); if(v){[].forEach.call(document.querySelectorAll(".var"),function(x){x.classList.remove("sel");});v.classList.add("sel");return;}
   });
-  document.getElementById("mkGo").addEventListener("click",function(){
-    var d=document.getElementById("mkDish").value.split(" ·")[0];
-    var cfg=DISH[d]||DISH["芒果糯米饭"];
-    var out=document.getElementById("mkOut"); out.hidden=false;
-    var paper=document.getElementById("mkPaper"); paper.classList.add("gen-load");
-    document.getElementById("mkQ").hidden=true; document.getElementById("mkHint").hidden=false;
-    setTimeout(function(){
-      paper.classList.remove("gen-load");
-      document.getElementById("mkArt").textContent=cfg[0];
-      document.getElementById("mkTitle").textContent=cfg[1];
-      document.getElementById("mkCopy").textContent=cfg[2];
-      paper.querySelector(".pr").innerHTML='RM '+cfg[3]+' <sss>原价 RM '+cfg[4]+'</sss>';
-      out.scrollIntoView({behavior:"smooth",block:"center"});
-      toast("已生成 —— Gate 六项检查通过");
-    },900);
+  function poster(i,recc){
+    var c=STY[cur.sty].c;
+    return '<div class="var'+(recc?" sel":"")+'">'+(recc?'<span class="rec">推荐方案</span>':"")+
+      '<div class="vp"><div class="h" style="background:'+c+'">WARISAN GRILL · HALAL ✓</div>'+
+      '<div class="a">'+cur.emo+'</div><div class="t">'+TT[i]+'</div>'+
+      '<div class="pr num" style="color:'+c+'">RM '+cur.price+' <s style="font-size:10px;color:#9A9184">原 RM '+cur.orig+'</s></div>'+
+      '<div class="f"><span>Jalan Ampang, KL · 11:00–22:00<br>WhatsApp +60 12-345 6789</span><span class="qrp"></span></div></div></div>';
+  }
+  function render(){
+    var vs=document.getElementById("wbVars");
+    vs.innerHTML=poster(0,false)+poster(1,true)+poster(2,false);
+  }
+  document.getElementById("wbGo").addEventListener("click",function(){
+    document.getElementById("wbOut").hidden=false;
+    document.getElementById("wbEdit").hidden=false;
+    document.getElementById("wbTip").hidden=true;
+    document.getElementById("st4").classList.add("on");
+    document.getElementById("st5").classList.add("on");
+    var vs=document.getElementById("wbVars");
+    vs.innerHTML='<div class="var"><div class="vp gen-load"><div class="h" style="background:#D8CDB9">生成中…</div><div class="a">✦</div><div class="t">AI 排版中</div><div class="pr">·</div></div></div>'.repeat(3).replace(/class="var"/,'class="var"');
+    setTimeout(function(){ render();
+      document.getElementById("wbOut").scrollIntoView({behavior:"smooth",block:"start"});
+      toast("已生成 3 个方案 —— Gate 六项全过"); },1000);
   });
-  document.getElementById("mkRe").addEventListener("click",function(){
-    document.getElementById("mkVer").textContent="v2 · 同价换构图 · Gate 已过（6/6）";
-    var paper=document.getElementById("mkPaper"); paper.classList.add("gen-load");
-    setTimeout(function(){paper.classList.remove("gen-load"); toast("v2 已重出（价格未变）");},800);
+  document.addEventListener("click",function(e){
+    var ed=e.target.closest("[data-ed]"); if(ed){
+      var k=ed.getAttribute("data-ed");
+      if(k==="price"){ cur.price=(cur.price==="38"?"32":"38"); render(); toast("价格改为 RM "+cur.price+"（老板指令 · Gate 重核 ✓）"); }
+      else if(k==="img"){ var ring=["🥭","🍹","🍝","🍢"]; cur.emo=ring[(ring.indexOf(cur.emo)+1)%4]; render(); toast("已换主图"); }
+      else if(k==="color"){ var ks=["a","b","c"]; cur.sty=ks[(ks.indexOf(cur.sty)+1)%3];
+        [].forEach.call(document.querySelectorAll(".sty"),function(x){x.setAttribute("aria-pressed",x.getAttribute("data-sty")===cur.sty);});
+        render(); toast("配色切到「"+STY[cur.sty].n+"」"); }
+      else if(k==="txt"){ document.getElementById("wbCopyTx").textContent="打工人的午市救星！加购芒果糯米饭 + 柠檬薄荷饮只要 RM "+cur.price+"，今天甜一点。"; toast("文案已改一版"); }
+      else if(k==="re"){ cur.v++; render(); toast("v"+cur.v+" 已重出（同价换构图）"); }
+      return;
+    }
+    var ex=e.target.closest("[data-ex]"); if(ex){
+      if(ex.getAttribute("data-a4")){
+        var cv=document.createElement("canvas"); cv.width=480; cv.height=640;
+        var g=cv.getContext("2d"), c=STY[cur.sty].c;
+        g.fillStyle="#FFFDF8"; g.fillRect(0,0,480,640);
+        g.fillStyle=c; g.fillRect(0,0,480,96);
+        g.fillStyle="#fff"; g.textAlign="center"; g.font="700 21px Outfit,sans-serif";
+        g.fillText("WARISAN GRILL · HALAL ✓",240,58);
+        g.font="110px serif"; g.fillText(cur.emo,240,270);
+        g.fillStyle="#241F18"; g.font="800 26px sans-serif"; g.fillText("午市快闪 · 甜蜜加价购",240,360);
+        g.fillStyle=c; g.font="800 40px Outfit,sans-serif"; g.fillText("RM "+cur.price,240,430);
+        g.fillStyle="#8A8071"; g.font="500 13px sans-serif";
+        g.fillText("Jalan Ampang, KL · 11:00–22:00 · WhatsApp +60 12-345 6789",240,580);
+        var a=document.createElement("a"); a.download="WarisanGrill-A4-poster.png"; a.href=cv.toDataURL("image/png"); a.click();
+        toast("A4 海报已导出（300dpi 版接出图 API 后开放）");
+      } else { toast("已导出 "+ex.getAttribute("data-ex")+"（demo）"); }
+      return;
+    }
   });
-  document.getElementById("mkPub").addEventListener("click",function(){
-    document.getElementById("mkQ").hidden=false; document.getElementById("mkHint").hidden=true;
-    toast("已提交审批 —— 批了才会真的发");
+  document.getElementById("wbCopy").addEventListener("click",function(){
+    var tx=document.getElementById("wbCopyTx").textContent+"\n#好味午餐 #午市特惠 #KL美食 #WarisanGrill #HalalFood";
+    try{navigator.clipboard.writeText(tx);}catch(_){}
+    toast("文案 + hashtag 已复制");
   });
-  document.getElementById("mkDl").addEventListener("click",function(){
-    var cv=document.createElement("canvas"); cv.width=480; cv.height=640;
-    var g=cv.getContext("2d");
-    g.fillStyle="#FFFDF8"; g.fillRect(0,0,480,640);
-    g.fillStyle="#B4451F"; g.fillRect(0,0,480,96);
-    g.fillStyle="#fff"; g.textAlign="center"; g.font="700 22px Outfit,sans-serif";
-    g.fillText("WARISAN GRILL · HALAL ✓",240,58);
-    g.font="110px serif"; g.fillText(document.getElementById("mkArt").textContent,240,270);
-    g.fillStyle="#241F18"; g.font="800 26px sans-serif"; g.fillText(document.getElementById("mkTitle").textContent,240,360);
-    g.fillStyle="#B4451F"; g.font="800 40px Outfit,sans-serif";
-    g.fillText(document.getElementById("mkPaper").querySelector(".pr").textContent.split(" 原")[0],240,430);
-    g.fillStyle="#8A8071"; g.font="500 13px sans-serif";
-    g.fillText("Jalan Ampang, KL · 11:00–22:00 · WhatsApp 012-345 6789",240,580);
-    var a=document.createElement("a"); a.download="WarisanGrill-poster.png"; a.href=cv.toDataURL("image/png"); a.click();
-    toast("PNG 已下载");
+  document.getElementById("wbPub").addEventListener("click",function(){
+    document.getElementById("wbQ").hidden=false;
+    toast("已提交审批 —— 你批了才会真的发");
   });
 })();
 /* ═══ 分析：拖放 ═══ */
