@@ -294,11 +294,12 @@ td b.pr2{font-variant-numeric:tabular-nums}
 /* 总览社媒速览条 */
 .socrow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}
 @media(max-width:760px){.socrow{grid-template-columns:repeat(2,1fr)}}
-.soc{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:12px;padding:9px 11px;background:var(--surface);transition:.15s;text-align:left}
+.soc{display:grid;grid-template-columns:auto 1fr;gap:1px 9px;align-items:center;align-content:center;
+  border:1px solid var(--line);border-radius:12px;padding:9px 12px;background:var(--surface);transition:.15s;text-align:left}
 .soc:hover{border-color:var(--blue-line);transform:translateY(-1px)}
-.soc .ii{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;font-size:10px;font-weight:800;color:#fff;flex-shrink:0}
-.soc b{font-size:14.5px;font-weight:750}
-.soc s{font-size:10.5px;color:var(--mut);margin-left:auto}
+.soc .ii{grid-row:1/3;width:26px;height:26px;border-radius:8px;display:grid;place-items:center;font-size:10px;font-weight:800;color:#fff}
+.soc b{font-size:14.5px;font-weight:750;line-height:1.15;white-space:nowrap}
+.soc s{grid-column:2;font-size:10.5px;color:var(--mut);white-space:nowrap}
 .soc s.up{color:var(--green);font-weight:700}
 
 
