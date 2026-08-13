@@ -11,8 +11,9 @@
 <style>*{margin:0;padding:0}</style>
 </head>
 <body>
-<!-- build 2026-08-09 v5.0 · Agent Floor 左右布局 -->
+<!-- build 2026-08-09 v5.1 · taste pass + 客户四功能（照片美化/Menu生成/QR收客/提交发布）-->
 <title>Hivora F&B Marketing · Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#F7F8FA;
@@ -959,6 +960,78 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
 .f2-rail .note{margin-top:13px !important}
 .f2-rail .inbox{padding:9px 4px}
 
+
+/* ═══ Taste pass A：字体 / 交互态 / 动效 ═══ */
+h2,.k3-bot b,.s2-v,.ac-num,.seg-lab b,.mp-pr,.price,.stat .st-v{font-family:"Outfit",var(--sans);font-variant-numeric:tabular-nums}
+.num,time,.t-chip,.t-meta{font-variant-numeric:tabular-nums}
+h2,h3{text-wrap:balance}
+p,.note,.cardnote{text-wrap:pretty}
+/* 按压反馈 + 焦点环（全局）*/
+.btn:active,.nv:active,.kpi3:active,.acct:active,.pni:active,.tm:active,.stachip:active,.pwc:active{transform:scale(.98)}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:6px}
+/* 面板切换：卡片瀑布入场（仅动 transform/opacity；尊重 reduced-motion）*/
+@media (prefers-reduced-motion: no-preference){
+  .panel.on>.card,.panel.on>.grid,.panel.on>.statrow,.panel.on>.kpirow,.panel.on>.urgent,.panel.on>.home2,.panel.on>.floor2,.panel.on>.stachips,.panel.on>#planAcc{
+    animation:rise .5s cubic-bezier(.16,1,.3,1) both}
+  .panel.on>*:nth-child(2){animation-delay:40ms}
+  .panel.on>*:nth-child(3){animation-delay:80ms}
+  .panel.on>*:nth-child(4){animation-delay:120ms}
+  .panel.on>*:nth-child(5){animation-delay:160ms}
+  .panel.on>*:nth-child(6){animation-delay:200ms}
+}
+@keyframes rise{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+
+
+/* B1 照片美化 */
+.ph{cursor:pointer;position:relative;transition:.2s}
+.ph:hover{transform:translateY(-2px);box-shadow:0 6px 16px -8px rgba(37,99,235,.3)}
+.ph.enhancing{animation:shimmer 0.7s ease}
+@keyframes shimmer{0%{filter:brightness(1)}50%{filter:brightness(1.6) saturate(1.4)}100%{filter:brightness(1)}}
+.ph.enh{background:linear-gradient(145deg,#FFF8EC,#FFEFD9 55%,#FDE9F0);border-color:#F3CDA0;box-shadow:inset 0 0 0 2px #fff}
+.ph.enh:after{content:"✨ 已美化";position:absolute;top:5px;right:5px;font-size:9px;font-weight:700;
+  background:var(--ink);color:#fff;padding:2px 7px;border-radius:99px}
+/* B2 菜单纸 */
+.menupaper{background:#FFFDF8;border:1px solid #EFE6D5;border-radius:12px;padding:26px 28px;color:#241F18}
+.menupaper .mg-hd{text-align:center;border-bottom:2px solid #241F18;padding-bottom:12px;margin-bottom:14px}
+.menupaper .mg-hd b{font-size:21px;letter-spacing:.02em;font-family:"Outfit",var(--sans)}
+.menupaper .mg-hd s{display:block;font-size:10.5px;color:#8A8071;text-decoration:none;letter-spacing:.22em;margin-top:4px}
+.menupaper .mg-cat{font-size:11px;font-weight:800;letter-spacing:.18em;color:#B4451F;margin:15px 0 6px}
+.menupaper .mg-row{display:flex;align-items:baseline;gap:8px;font-size:13.3px;padding:4px 0}
+.menupaper .mg-row i{flex:1;border-bottom:1px dotted #D8CDB9;transform:translateY(-3px)}
+.menupaper .mg-row b{font-family:"Outfit",var(--mono);font-variant-numeric:tabular-nums}
+.menupaper .mg-ft{text-align:center;font-size:10px;color:#8A8071;border-top:1px solid #EFE6D5;padding-top:10px;margin-top:16px}
+
+
+/* B3 QR 收客页 */
+.qrwrap{display:grid;grid-template-columns:150px 172px minmax(0,1fr);gap:16px;margin-top:11px;align-items:start}
+@media(max-width:860px){.qrwrap{grid-template-columns:1fr 1fr}.qrpts{grid-column:1/-1}}
+.qrbox{text-align:center}
+.qrpat{width:132px;height:132px;margin:0 auto;border-radius:12px;border:1px solid var(--line);
+  background:
+   radial-gradient(circle at 18% 18%,var(--ink) 0 11px,transparent 11px),
+   radial-gradient(circle at 82% 18%,var(--ink) 0 11px,transparent 11px),
+   radial-gradient(circle at 18% 82%,var(--ink) 0 11px,transparent 11px),
+   repeating-conic-gradient(var(--ink) 0 25%,#fff 0 50%);
+  background-size:100% 100%,100% 100%,100% 100%,14px 14px;background-color:#fff}
+.qrlink{font-size:11.5px;color:var(--blue);margin-top:7px;font-weight:650}
+.qrphone{border:1px solid var(--line);border-radius:18px;padding:12px 13px;background:var(--surface-2)}
+.qp-bar{width:44px;height:4px;border-radius:99px;background:var(--line);margin:0 auto 9px}
+.qp-sub{display:block;font-size:10.8px;color:var(--muted);margin:2px 0 8px}
+.qp-f{border:1px solid var(--line);border-radius:8px;background:var(--surface);padding:7px 9px;
+  font-size:10.8px;color:var(--faint);margin-top:5px}
+.qp-f s{text-decoration:none;font-size:9.5px}
+.qp-btn{margin-top:8px;background:var(--blue);color:#fff;border-radius:9px;text-align:center;
+  font-size:11px;font-weight:700;padding:8px}
+.qp-note{display:block;text-align:center;font-size:9px;color:var(--faint);margin-top:5px}
+.qrpts .alr{margin-top:5px}
+/* B4 发布队列 chips */
+.pubrow{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
+.pub-chip{font-size:11px;font-weight:650;padding:5px 11px;border-radius:99px;opacity:0;
+  animation:popin .4s cubic-bezier(.34,1.56,.64,1) both}
+.pub-chip.ok{background:var(--green-soft);color:var(--green);border:1px solid #BCE3C8}
+.pub-chip.half{background:var(--amber-soft);color:var(--amber);border:1px solid #F3DFB6}
+@keyframes popin{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
+
 </style>
 
 <div class="app">
@@ -1362,7 +1435,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
       </div>
       <div class="assetpane" data-pane="photos">
         <div class="card">
-          <div class="sect"><span class="ic">📷</span>菜品照 <small>聊天里 📎 传的照片自动归档到这里 · 出物料时设计师直接取用</small></div>
+          <div class="sect"><span class="ic">📷</span>菜品照 <small>点任意一张试试 AI 美化 · 出物料时设计师直接取用</small></div>
           <div class="photogrid" style="margin-top:11px">
             <label class="ph phadd" for="libFile">＋<small>上传照片</small></label>
             <div class="ph">🍜<small>海鲜炒面</small></div><div class="ph">🍛<small>咖喱鸡饭</small></div>
@@ -1397,6 +1470,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
         </div>
         <div class="row" style="margin-top:11px">
           <button class="btn" id="addDish" type="button">＋ 添加菜品</button>
+          <button class="btn btn-go" id="menuGenBtn" type="button">🖨 生成精美菜单</button>
           <span style="font-size:12px;color:var(--muted)">✏️ 点<b>名称 / 售价</b>直接改 · 点<b>牛肉 / 素食 / 状态</b>切换 —— 改完族群规则立刻按新菜单执行</span>
         </div>
         <div class="note" style="margin-top:11px;font-size:12.5px"><b>📣 投放中</b>一列来自营销日历的已确认排期 —— 菜单、广告、日历是<b>同一份数据</b>，不用两头维护。改动仅存在本次演示。</div>
@@ -1433,6 +1507,17 @@ why   = llm.explain(facts)    # 解释：交给 LLM
       </div></details>
       <div class="navb"><button class="btn" data-go="3">← 上一步</button><button class="btn btn-go" data-go="6">下一步：营销日历 →</button></div>
           </div><!-- /assetpane menu -->
+
+      <dialog id="menuGen" class="modal" style="width:min(560px,92vw)">
+        <div class="modal-hd"><b>🖨 精美菜单 · AI 排版</b>
+          <span class="lab" style="margin-left:auto">数据来自菜单总表 · 价格绝不让 AI 画</span>
+          <button class="mclose" id="mgClose" aria-label="关闭">✕</button></div>
+        <div style="padding:16px 18px;max-height:62vh;overflow-y:auto">
+          <div class="menupaper" id="menuPaper"></div>
+        </div>
+        <div class="mfoot"><span class="lab">换模板 · 双语版 接出图 API 后开放</span><span class="sp"></span>
+          <button class="btn btn-go" id="mgDl">⬇ 下载 PNG</button></div>
+      </dialog>
 </section>
 
     <!-- 6 Calendar -->
@@ -1492,6 +1577,28 @@ why   = llm.explain(facts)    # 解释：交给 LLM
     <section class="panel" id="p7">
       <div class="head"><div class="eyebrow">Configuration</div><h2>Customer Base</h2>
         <p>客户库<b>自己长</b>：广告/海报把人吸来问 → 来问就捕获 → 标来源 → 入库。不买名单、不爬数据。</p></div>
+      <div class="card" style="margin-bottom:13px">
+        <div class="sect"><span class="ic">🔗</span>QR 收客页 <small>客人扫码自己填 —— 天生 opt-in，PDPA 零风险</small>
+          <span class="sp" style="flex:1"></span><button class="btn btnsm" id="qrCopy">复制链接</button></div>
+        <div class="qrwrap">
+          <div class="qrbox"><div class="qrpat" aria-label="收客页二维码"></div>
+            <div class="qrlink num">hivora.my/warisan-join</div></div>
+          <div class="qrphone">
+            <div class="qp-bar"></div>
+            <b style="font-size:12.5px">Warisan Grill 会员</b>
+            <span class="qp-sub">留个资料，好康先通知你 🎁</span>
+            <div class="qp-f">名字</div><div class="qp-f">电话（WhatsApp）</div><div class="qp-f">生日 <s>（生日月有惊喜）</s></div>
+            <div class="qp-btn">加入 · 同意接收优惠通知</div>
+            <span class="qp-note">随时回复 STOP 退订</span>
+          </div>
+          <div class="qrpts">
+            <div class="alr"><span class="alr-ic">✅</span><span class="alr-t"><b>扫码即同意</b> —— 同意时间/来源自动存证</span></div>
+            <div class="alr"><span class="alr-ic">🎂</span><span class="alr-t"><b>生日字段</b> → 生日月自动进促销候选</span></div>
+            <div class="alr"><span class="alr-ic">📵</span><span class="alr-t"><b>退订即停</b>，触达走 WhatsApp（比 SMS 便宜）</span></div>
+            <div class="alr"><span class="alr-ic">🖨️</span><span class="alr-t">桌卡 / 收银台立牌都印这个码 —— 本周扫码进来 <b>18 人</b></span></div>
+          </div>
+        </div>
+      </div>
       <div class="grid g4">
         <div class="card kpi"><div class="lab">客户库</div><div class="v">248</div><div class="s">全部 opt-in</div></div>
         <div class="card kpi"><div class="lab">本周新增</div><div class="v" style="color:var(--green)">+31</div><div class="s">扫码 18 · WhatsApp 13</div></div>
@@ -1969,7 +2076,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
   var CAMP={"招牌炭烤牛肋排":["国庆 Merdeka","08-19 → 09-02"],
             "芒果糯米饭":["午市快闪","07-29 → 08-11"],
             "柠檬薄荷饮":["午市快闪","07-29 → 08-11"]};
-  var MENU={list:MENU_DEMO, src:null};
+  var MENU=window.__MENU={list:MENU_DEMO, src:null};
   window.__renderMenu=function(){
     var box=document.getElementById("pickDish");
     if(box){
@@ -2712,8 +2819,15 @@ why   = llm.explain(facts)    # 解释：交给 LLM
       if(pl.st==="pending") return '<button class="btn btn-go" data-pa="ok">✓ 确认 · 发布</button>'+
         '<button class="btn btn-warn" data-pa="edit">✎ 改</button><button class="btn btn-stop" data-pa="no">✕ 退</button>'+
         (pl.img==="ai"?'<button class="btn" data-pa="dl">⬇ 下载 PNG</button><button class="btn" data-pa="regen">🔄 重新生成</button>':"");
-      if(pl.st==="approved") return '<span class="pa-msg" style="color:var(--green)">✓ 已批 · 已进日历</span>'+
-        (pl.img==="ai"?'<button class="btn" data-pa="dl">⬇ 下载 PNG</button>':"");
+      if(pl.st==="approved"){
+        if(pl.pub) return '<span class="pubrow">'+
+          '<span class="pub-chip ok">FB ✓</span><span class="pub-chip ok" style="animation-delay:.25s">IG ✓</span>'+
+          '<span class="pub-chip ok" style="animation-delay:.5s">WhatsApp 已排队</span>'+
+          '<span class="pub-chip half" style="animation-delay:.75s">小红书 · 内容已备，需手动发</span></span>';
+        return '<span class="pa-msg" style="color:var(--green)">✓ 已批</span>'+
+          '<button class="btn btn-go" data-pa="pub">📣 提交发布</button>'+
+          (pl.img==="ai"?'<button class="btn" data-pa="dl">⬇ 下载 PNG</button>':"");
+      }
       if(pl.st==="rejected") return '<span class="pa-msg" style="color:var(--red)">✕ 已退回</span>'+
         '<button class="btn" data-pa="regen2">🔄 让 AI 重新生成</button>';
       return '<button class="btn btn-go" data-pa="submit">提交审批</button><span class="pa-msg" style="color:var(--muted)">草稿 · 还没进审批箱</span>';
@@ -2783,6 +2897,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
           pl.v++; pl.date=pl.date.split(" · ")[0]+" · v"+pl.v+" 按退回原因换档期"; }
         else if(k==="edit"){ pl.v++; pl.price=(pl.id==="flash"?"32":pl.price);
           pl.copy=pl.copy.replace(/。$/,"")+"（v"+pl.v+" 已按意见改）。"; }
+        else if(k==="pub"){ pl.pub=true; pl.date=pl.date.split(" · ")[0]+" · 已批 · 已提交发布（幂等键防重发）"; }
         else if(k==="dl"){ dl(pl); return; }
         render(); counts(); return;
       }
@@ -2796,6 +2911,59 @@ why   = llm.explain(facts)    # 解释：交给 LLM
       c.classList.add("on"); filter=c.getAttribute("data-st"); render();
     });
     render(); counts();
+  })();
+  /* ---- B3 QR 收客页：复制链接 ---- */
+  (function(){
+    var b=document.getElementById("qrCopy"); if(!b) return;
+    b.addEventListener("click",function(){
+      try{ navigator.clipboard.writeText("https://hivora.my/warisan-join"); }catch(_){}
+      var o=b.textContent; b.textContent="✓ 已复制"; setTimeout(function(){b.textContent=o;},2000);
+    });
+  })();
+  /* ---- B1 照片美化（点击→shimmer→已美化）---- */
+  document.addEventListener("click",function(e){
+    var ph=e.target.closest(".ph"); if(!ph||ph.classList.contains("phadd")) return;
+    if(ph.classList.contains("enh")) return;
+    ph.classList.add("enhancing");
+    setTimeout(function(){ ph.classList.remove("enhancing"); ph.classList.add("enh"); },700);
+  });
+  /* ---- B2 生成精美菜单 ---- */
+  (function(){
+    var btn=document.getElementById("menuGenBtn"); if(!btn) return;
+    var dlg=document.getElementById("menuGen");
+    function build(){
+      var list=(window.__MENU&&__MENU.list)||[];
+      var cats={};
+      list.filter(function(d){return d[6]==="在售";}).forEach(function(d){ (cats[d[1]]=cats[d[1]]||[]).push(d); });
+      var html='<div class="mg-hd"><b>WARISAN GRILL</b><s>HALAL ✓ · JALAN AMPANG, KL</s></div>';
+      Object.keys(cats).forEach(function(c){
+        html+='<div class="mg-cat">'+c+'</div>';
+        cats[c].forEach(function(d){ html+='<div class="mg-row"><span>'+d[0]+'</span><i></i><b>RM '+Number(d[2]).toFixed(2)+'</b></div>'; });
+      });
+      html+='<div class="mg-ft">11:00–22:00 · WhatsApp 012-345 6789 · 价格含服务费</div>';
+      document.getElementById("menuPaper").innerHTML=html;
+    }
+    btn.addEventListener("click",function(){ build(); if(!dlg.open) dlg.showModal(); });
+    document.getElementById("mgClose").addEventListener("click",function(){ dlg.close(); });
+    document.getElementById("mgDl").addEventListener("click",function(){
+      var list=(window.__MENU&&__MENU.list)||[]; var rows=list.filter(function(d){return d[6]==="在售";});
+      var cv=document.createElement("canvas"); cv.width=560; cv.height=200+rows.length*34+120;
+      var g=cv.getContext("2d");
+      g.fillStyle="#FFFDF8"; g.fillRect(0,0,cv.width,cv.height);
+      g.fillStyle="#241F18"; g.textAlign="center";
+      g.font="800 30px Outfit,sans-serif"; g.fillText("WARISAN GRILL",280,64);
+      g.font="500 12px sans-serif"; g.fillStyle="#8A8071"; g.fillText("H A L A L ✓ · J A L A N  A M P A N G , K L",280,90);
+      g.strokeStyle="#241F18"; g.lineWidth=2; g.beginPath(); g.moveTo(60,108); g.lineTo(500,108); g.stroke();
+      var y=150; g.textAlign="left";
+      rows.forEach(function(d){
+        g.fillStyle="#241F18"; g.font="600 16px sans-serif"; g.fillText(d[0],60,y);
+        g.fillStyle="#B4451F"; g.font="700 16px Outfit,monospace"; g.textAlign="right"; g.fillText("RM "+Number(d[2]).toFixed(2),500,y);
+        g.textAlign="left"; y+=34;
+      });
+      g.fillStyle="#8A8071"; g.font="500 11px sans-serif"; g.textAlign="center";
+      g.fillText("11:00–22:00 · WhatsApp 012-345 6789",280,y+40);
+      var a=document.createElement("a"); a.download="WarisanGrill-Menu.png"; a.href=cv.toDataURL("image/png"); a.click();
+    });
   })();
   /* ---- Home 快捷动作 / KPI 跳转 / 清空状态 ---- */
   document.addEventListener("click",function(e){
