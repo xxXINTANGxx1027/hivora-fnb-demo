@@ -11,7 +11,7 @@
 <style>*{margin:0;padding:0}</style>
 </head>
 <body>
-<!-- build 2026-08-09 v5.1 · taste pass + 客户四功能（照片美化/Menu生成/QR收客/提交发布）-->
+<!-- build 2026-08-09 v5.2 · Redesign：SVG图标系统/墨色主按钮/去彩虹/token统一 -->
 <title>Hivora F&B Marketing · Demo</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
 <style>
@@ -648,7 +648,7 @@ dialog.modal::backdrop{background:rgba(15,23,42,.45)}
 }
 
 
-/* ＋ 新建促销向导 */
+/* 新建促销向导 */
 .pnew-btn{position:absolute;right:0;top:26px;font-size:13px}
 @media(max-width:640px){.pnew-btn{position:static;margin-top:9px}}
 .pwiz{max-width:560px;width:min(560px,92vw)}
@@ -1032,6 +1032,38 @@ p,.note,.cardnote{text-wrap:pretty}
 .pub-chip.half{background:var(--amber-soft);color:var(--amber);border:1px solid #F3DFB6}
 @keyframes popin{from{opacity:0;transform:scale(.7)}to{opacity:1;transform:scale(1)}}
 
+
+/* ═══ Redesign pass：SVG 图标系统 + token 纪律 ═══ */
+.ic svg,.nv .ic svg{width:17px;height:17px;display:block}
+.sect .ic{background:transparent;border:0;width:auto;height:auto;color:var(--muted)}
+.sect .ic svg{width:16px;height:16px}
+.nv .ic{display:grid;place-items:center;width:20px;color:inherit}
+/* 圆角 token：卡 16 · 控件 10 · 胶囊 99 */
+.card{border-radius:16px}
+.btn{border-radius:10px}
+.tcard{border-radius:14px}
+/* 按钮系统：主=墨色 · 次=描边 · 危=幽灵红；两个尺寸 */
+.btn{font-weight:600;letter-spacing:.01em}
+.btn-go{background:var(--ink);border-color:var(--ink);color:#fff}
+.btn-go:hover{background:#1E293B;border-color:#1E293B}
+.btn-stop{background:transparent;border-color:transparent;color:var(--red)}
+.btn-stop:hover{background:var(--red-soft);border-color:transparent}
+.btn-warn{background:transparent;border-color:var(--line)}
+/* 蓝色只留给：链接 / 当前态 / 数据强调 */
+.nv[aria-current="true"]{box-shadow:inset 3px 0 0 var(--blue)}
+/* 标签去彩虹：默认中性，语义色只给状态/认证/预警 */
+.pill.t-date,.pill.t-group{background:var(--surface);border-color:var(--line);color:var(--muted)}
+/* 节头排版统一 */
+.sect{font-size:13px;font-weight:650;letter-spacing:.01em}
+.sect small{font-weight:450}
+/* eyebrow 去蓝，改墨灰宽字距 */
+.eyebrow{color:var(--faint);letter-spacing:.18em}
+/* 卡内卡拍平 */
+.card .card{box-shadow:none;border-radius:12px}
+/* KPI 图标块统一中性 */
+.s2-ic{background:var(--surface-2) !important;color:var(--ink) !important}
+.s2-ic svg{width:19px;height:19px}
+
 </style>
 
 <div class="app">
@@ -1045,18 +1077,18 @@ p,.note,.cardnote{text-wrap:pretty}
   <aside class="side">
     <div class="biz"><b>F&amp;B Marketing</b><span>Warisan Grill · Halal ✓</span></div>
     <nav aria-label="主导航">
-      <button class="nv" data-go="0"><span class="ic">🏠</span><span class="sp">Home</span></button>
-      <button class="nv" data-go="1" aria-current="true"><span class="ic">🏢</span><span class="sp">Agent Floor</span></button>
+      <button class="nv" data-go="0"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/></svg></span><span class="sp">Home</span></button>
+      <button class="nv" data-go="1" aria-current="true"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M4 9h16M4 15h16M9 3v18"/></svg></span><span class="sp">Agent Floor</span></button>
       <div class="nvsep">Workflow</div>
-      <button class="nv" data-go="2"><span class="ic">📊</span><span class="sp">Weekly Report</span></button>
-      <button class="nv" data-go="3"><span class="ic">🎯</span><span class="sp">Promotion Plans</span></button>
-      <button class="nv" data-go="6"><span class="ic">📅</span><span class="sp">Marketing Calendar</span></button>
+      <button class="nv" data-go="2"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M21 20H3"/></svg></span><span class="sp">Weekly Report</span></button>
+      <button class="nv" data-go="3"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r="1" fill="currentColor" stroke="none"/></svg></span><span class="sp">Promotion Plans</span></button>
+      <button class="nv" data-go="6"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><span class="sp">Marketing Calendar</span></button>
       <div class="nvsep">Library</div>
-      <button class="nv" data-go="5"><span class="ic">🗂️</span><span class="sp">Library</span></button>
-      <button class="nv" data-go="7"><span class="ic">👥</span><span class="sp">Customer Base</span></button>
+      <button class="nv" data-go="5"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z"/></svg></span><span class="sp">Library</span></button>
+      <button class="nv" data-go="7"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.2 3.4-5 6.5-5s5.7 1.8 6.5 5"/><circle cx="17" cy="9" r="2.5"/><path d="M16.5 15c2.4.3 4.3 1.8 5 4.5"/></svg></span><span class="sp">Customer Base</span></button>
       <div class="nvsep">System</div>
-      <button class="nv" data-go="8"><span class="ic">📈</span><span class="sp">Usage</span></button>
-      <button class="nv" data-go="9"><span class="ic">⚙️</span><span class="sp">Settings</span></button>
+      <button class="nv" data-go="8"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 14a8 8 0 1 1 16 0"/><path d="M12 14 15.5 9"/><path d="M4 19h16"/></svg></span><span class="sp">Usage</span></button>
+      <button class="nv" data-go="9"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M12 2v3M12 19v3M4.9 4.9l2.1 2.1M17 17l2.1 2.1M2 12h3M19 12h3M4.9 19.1 7 17M17 7l2.1-2.1"/></svg></span><span class="sp">Settings</span></button>
     </nav>
   </aside>
 
@@ -1076,11 +1108,11 @@ p,.note,.cardnote{text-wrap:pretty}
     <section class="panel" id="p0">
       <div class="head" style="margin-bottom:14px">
         <div class="eyebrow">2026-07-28 周二 · Warisan Grill</div>
-        <h2>老板早 👋</h2>
+        <h2>早上好，老板</h2>
         <div class="qact" style="margin:10px 0 0">
-          <button class="btn btnsm" data-qa="promo">＋ 新建促销</button>
-          <button class="btn btnsm" data-qa="upload">📎 传销售表</button>
-          <button class="btn btnsm" data-qa="ask">💬 问助理</button>
+          <button class="btn btnsm" data-qa="promo">新建促销</button>
+          <button class="btn btnsm" data-qa="upload">传销售表</button>
+          <button class="btn btnsm" data-qa="ask">问助理</button>
         </div>
       </div>
 
@@ -1115,9 +1147,9 @@ p,.note,.cardnote{text-wrap:pretty}
           <div class="t-title">午市快闪海报做好了，发不发？</div>
           <div class="t-tags"><span class="pill t-halal">✓ Halal</span><span class="st-pill st-pending">待确认</span><span class="pill">加价购 RM38 · 毛利 61%</span><span class="t-av" title="营销设计师">🎨</span></div>
           <div class="apv-act">
-            <button class="btn btn-go apv-ok">✓ 发布</button>
+            <button class="btn btn-go apv-ok">发布</button>
             <button class="btn" data-go="3">先看看 / 改</button>
-            <button class="btn btn-stop apv-no">✕ 退</button>
+            <button class="btn btn-stop apv-no">退</button>
           </div>
         </div>
         <div class="apv tcard" data-apv data-cal="2026-08-19|排期已确认 ✓">
@@ -1126,9 +1158,9 @@ p,.note,.cardnote{text-wrap:pretty}
           <div class="t-title">国庆排期定不定？8/19 开跑</div>
           <div class="t-tags"><span class="pill t-date">🇲🇾 Merdeka · 08-31</span><span class="st-pill st-pending">待确认</span><span class="pill t-warn">🖨️ 印刷要提前 1 个月</span><span class="t-av" title="销售">📊</span></div>
           <div class="apv-act">
-            <button class="btn btn-go apv-ok">✓ 就这么定</button>
+            <button class="btn btn-go apv-ok">就这么定</button>
             <button class="btn" data-go="6">看日历</button>
-            <button class="btn btn-stop apv-no">✕ 退</button>
+            <button class="btn btn-stop apv-no">退</button>
           </div>
         </div>
         </div>
@@ -1136,7 +1168,7 @@ p,.note,.cardnote{text-wrap:pretty}
       </div>
 
       <div class="card" style="margin-top:13px">
-        <div class="sect"><span class="ic">🍜</span>本周每天卖多少 <small>周六最旺 · 周三晚市最冷</small>
+        <div class="sect"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11h16a8 8 0 0 1-16 0Z"/><path d="M9 7c0-2 1.5-2 1.5-4M14 7c0-2 1.5-2 1.5-4"/></svg></span>本周每天卖多少 <small>周六最旺 · 周三晚市最冷</small>
           <span class="sp" style="flex:1"></span><button class="btn btnsm" data-go="2" style="margin-left:10px">看周报 →</button></div>
         <div class="cashflow">
           <div class="cf-col"><s>一</s><i style="height:38%"></i></div>
@@ -1153,7 +1185,7 @@ p,.note,.cardnote{text-wrap:pretty}
       </div><!-- /h2-main -->
       <aside class="h2-rail">
         <div class="card">
-          <div class="sect" style="font-size:13.5px"><span class="ic">🔔</span>要留意 <small>AI 替你盯着的</small><span class="sp" style="flex:1"></span><span class="pill" style="background:var(--amber-soft);color:var(--amber);font-weight:650">4</span></div>
+          <div class="sect" style="font-size:13.5px"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9a6 6 0 1 1 12 0c0 5 2 6 2 6H4s2-1 2-6"/><path d="M10 20a2 2 0 0 0 4 0"/></svg></span>要留意 <small>AI 替你盯着的</small><span class="sp" style="flex:1"></span><span class="pill" style="background:var(--amber-soft);color:var(--amber);font-weight:650">4</span></div>
           <div class="segwrap">
             <div class="seg-lab"><s>餐厅资料完成度</s><b>72%</b></div>
             <div class="segbar">
@@ -1169,7 +1201,7 @@ p,.note,.cardnote{text-wrap:pretty}
           </div>
         </div>
         <div class="card" style="margin-top:13px">
-          <div class="sect" style="font-size:13.5px"><span class="ic">👥</span>AI 团队<span class="sp" style="flex:1"></span><button class="btn btnsm" data-go="1">看工位 →</button></div>
+          <div class="sect" style="font-size:13.5px"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.2 3.4-5 6.5-5s5.7 1.8 6.5 5"/><circle cx="17" cy="9" r="2.5"/><path d="M16.5 15c2.4.3 4.3 1.8 5 4.5"/></svg></span>AI 团队<span class="sp" style="flex:1"></span><button class="btn btnsm" data-go="1">看工位 →</button></div>
           <div class="team">
             <button class="tm" data-go="1"><span class="tm-av">🧭</span><span><b>总管</b><s>在等你批「午市快闪」</s></span><i class="dot amber"></i></button>
             <button class="tm" data-go="1"><span class="tm-av">🎨</span><span><b>营销设计师</b><s>正在出国庆海报 v2</s></span><i class="dot blue"></i></button>
@@ -1178,7 +1210,7 @@ p,.note,.cardnote{text-wrap:pretty}
           </div>
         </div>
         <div class="card" style="margin-top:13px">
-          <div class="sect" style="font-size:13.5px"><span class="ic">📡</span>刚刚发生<span class="sp" style="flex:1"></span><span class="livepulse"><i></i>Live</span></div>
+          <div class="sect" style="font-size:13.5px"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l2.5-7 5 14L17 12h4"/></svg></span>刚刚发生<span class="sp" style="flex:1"></span><span class="livepulse"><i></i>Live</span></div>
           <div class="ainow rail-feed">
             <div class="an"><span class="an-e">🎨</span><span class="an-t">海报 v2 出稿 —— 价格按你说的改成 RM32</span><time>09:41</time></div>
             <div class="an"><span class="an-e">📊</span><span class="an-t">午市快闪毛利复核：<b>61% ✓</b> 过保险线</span><time>09:40</time></div>
@@ -1236,7 +1268,7 @@ p,.note,.cardnote{text-wrap:pretty}
       </div><!-- /f2-main -->
       <aside class="f2-rail">
       <div class="card" style="margin-top:13px">
-        <div class="sect"><span class="ic">🏢</span>部门 <small>现在只开营销部，其余为路线图</small></div>
+        <div class="sect"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="3" width="14" height="18" rx="1.5"/><path d="M9 7h2M13 7h2M9 11h2M13 11h2M9 15h2M13 15h2M10.5 21v-3h3v3"/></svg></span>部门 <small>现在只开营销部，其余为路线图</small></div>
         <div style="margin-top:8px">
           <div class="inbox"><span class="pill" style="background:var(--blue);color:#fff">01</span>
             <span class="sp"><b>Marketing 营销部</b> <span style="font-size:12px;color:var(--muted)">· 已上线</span><br>
@@ -1278,7 +1310,7 @@ p,.note,.cardnote{text-wrap:pretty}
         <div class="card kpi"><div class="lab">营收第一</div><div class="v" style="font-size:18px">炭烤牛肋排</div><div class="s">RM 2,790 · 占 20%</div></div>
       </div>
       <div class="card" style="margin-top:13px">
-        <div class="sect"><span class="ic">▦</span>Dish Quadrant <small>Sales volume × Gross margin</small></div>
+        <div class="sect"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="4" width="7" height="7" rx="1.5"/><rect x="13" y="4" width="7" height="7" rx="1.5"/><rect x="4" y="13" width="7" height="7" rx="1.5"/><rect x="13" y="13" width="7" height="7" rx="1.5"/></svg></span>Dish Quadrant <small>Sales volume × Gross margin</small></div>
         <div class="quad" style="margin-top:12px">
           <div class="q q-star"><h3>Stars · 明星</h3><div class="sub">高销量 + 高毛利 → <b>主推，别打折</b></div>
             <ul><li>拉茶<span class="num">180</span></li><li>咖喱鸡饭<span class="num">95</span></li><li>椰浆饭套餐<span class="num">88</span></li><li>香脆春卷<span class="num">78</span></li></ul></div>
@@ -1292,7 +1324,7 @@ p,.note,.cardnote{text-wrap:pretty}
         <div class="note" style="margin-top:13px">判定线：<b>Food Cost ≤ 35%</b> = 高毛利 · <b>销量 &gt; 中位数 46</b> = 高销量。两条线都是代码算的。</div>
       </div>
       <div class="card" style="margin-top:13px">
-        <div class="sect"><span class="ic">📈</span>Week over week <small>本周 vs 上周 · 份数</small>
+        <div class="sect"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M21 20H3"/></svg></span>Week over week <small>本周 vs 上周 · 份数</small>
           <span class="sp" style="flex:1"></span><span style="font-size:11.5px;color:var(--muted)"><i style="display:inline-block;width:16px;height:8px;border-radius:4px;background:var(--blue);vertical-align:1px"></i> 本周 &nbsp;<i style="display:inline-block;width:16px;height:8px;border-radius:4px;background:#9AA7B8;opacity:.55;vertical-align:1px"></i> 上周</span></div>
         <div class="wowrow"><span>海鲜炒面</span><span class="bars"><i class="bar" style="width:92%"></i><i class="bar prev" style="width:81%"></i></span><span class="pc">+13%</span></div>
         <div class="wowrow"><span>香脆春卷</span><span class="bars"><i class="bar" style="width:75%"></i><i class="bar prev" style="width:66%"></i></span><span class="pc">+13%</span></div>
@@ -1303,7 +1335,7 @@ p,.note,.cardnote{text-wrap:pretty}
       </div>
       <div class="grid g2" style="margin-top:13px">
         <div class="card">
-          <div class="sect"><span class="ic">▥</span>Footfall Heatmap <small>Lunch / Dinner · RM</small></div>
+          <div class="sect"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M21 20H3"/></svg></span>Footfall Heatmap <small>Lunch / Dinner · RM</small></div>
           <div class="bars" id="bars"></div>
           <div class="gauge" style="margin-top:14px">
             <div class="g-ring" style="background:conic-gradient(var(--blue) 0 57%, var(--amber) 57% 100%)"><span>57%<s>晚市占比</s></span></div>
@@ -1316,7 +1348,7 @@ p,.note,.cardnote{text-wrap:pretty}
           <div class="cardnote"><b>晚市占 57%。</b>午市是<b>机会</b>，不是问题 —— 潜力品拿去打午市低谷。<button class="lnk" data-go="3">去出促销 →</button></div>
         </div>
         <div class="card">
-          <div class="sect"><span class="ic">▤</span>明细 <small>按营收排序</small></div>
+          <div class="sect"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="4" cy="6" r="1" fill="currentColor" stroke="none"/><circle cx="4" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="4" cy="18" r="1" fill="currentColor" stroke="none"/></svg></span>明细 <small>按营收排序</small></div>
           <div class="scroll" style="margin-top:9px;max-height:322px;overflow-y:auto">
             <table><thead><tr><th>菜品</th><th style="text-align:right">销量</th><th style="text-align:right">营收</th><th style="text-align:right">FC%</th><th>判定</th></tr></thead><tbody id="tbody"></tbody></table>
           </div>
@@ -1337,7 +1369,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
     <section class="panel" id="p3">
       <div class="head" style="position:relative"><div class="eyebrow">营销流程 · Promotion Plans</div><h2>推提拉米苏，不是推牛肉面</h2>
         <p>牛肉面本来就卖得好，打折等于送钱。潜力品毛利高但卖得慢 —— 打折还有得赚，还能把人拉进店。</p>
-        <button class="btn btn-go pnew-btn" id="promoAdd">＋ 新建促销</button></div>
+        <button class="btn btn-go pnew-btn" id="promoAdd">新建促销</button></div>
       <div class="stachips" id="staChips">
         <button class="stachip on" data-st="all">全部 <b>6</b></button>
         <button class="stachip" data-st="pending">待确认 <b>2</b></button>
@@ -1351,7 +1383,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
     
       <dialog id="promoWiz" class="modal pwiz" aria-labelledby="pwTitle">
         <div class="modal-hd">
-          <b id="pwTitle">＋ 新建促销 · AI 一条龙</b>
+          <b id="pwTitle">新建促销 · AI 一条龙</b>
           <span class="lab" style="margin-left:auto">方案 → 文案 → 生图 → 审批</span>
           <button class="mclose" id="pwClose" aria-label="关闭">✕</button>
         </div>
@@ -1380,7 +1412,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
             </div></details>
             <div class="pw-fb">
               <textarea id="pwFb" placeholder="给 AI 的意见，比如：折扣太深了，改成买一送一试试"></textarea>
-              <button class="btn" type="button" id="pwReplan">🔄 让 AI 重新生成</button>
+              <button class="btn" type="button" id="pwReplan">让 AI 重新生成</button>
             </div>
             <div class="row" style="margin-top:7px;gap:8px;align-items:center">
               <span class="pill" style="background:var(--green);color:#fff">折后毛利仍 ≥ 40% ✓</span>
@@ -1425,7 +1457,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
     <!-- 5 Race Gate -->
     <section class="panel" id="p5">
       <div class="head" style="position:relative"><div class="eyebrow">Library · 菜单 / 菜品照 / 品牌素材</div><h2>素材库</h2>
-        <button class="btn btn-go pnew-btn" id="libUp">⬆ 上传素材</button>
+        <button class="btn btn-go pnew-btn" id="libUp">上传素材</button>
         <p>存放并浏览餐厅的 <b>菜单 · 菜品照 · 品牌素材</b>。从聊天里 📎 传菜单，AI 就存到这里 —— 每道菜标好<b>含不含牛肉、素食可不可</b>。<br>族群铁律（Race Rule）就靠这些字段执行：<b>选一道菜试试能投给谁</b>。</p></div>
       <input type="file" id="libFile" multiple hidden accept=".png,.jpg,.jpeg,.pdf,.csv,.xlsx">
       <div class="assettabs" role="tablist">
@@ -1435,7 +1467,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
       </div>
       <div class="assetpane" data-pane="photos">
         <div class="card">
-          <div class="sect"><span class="ic">📷</span>菜品照 <small>点任意一张试试 AI 美化 · 出物料时设计师直接取用</small></div>
+          <div class="sect"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h3l2-3h6l2 3h3v12H4Z"/><circle cx="12" cy="13" r="3.5"/></svg></span>菜品照 <small>点任意一张试试 AI 美化 · 出物料时设计师直接取用</small></div>
           <div class="photogrid" style="margin-top:11px">
             <label class="ph phadd" for="libFile">＋<small>上传照片</small></label>
             <div class="ph">🍜<small>海鲜炒面</small></div><div class="ph">🍛<small>咖喱鸡饭</small></div>
@@ -1450,7 +1482,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
       </div>
       <div class="assetpane" data-pane="brand">
         <div class="card">
-          <div class="sect"><span class="ic">🎨</span>Brand Kit <small>logo · 品牌色 · 字体 —— 所有物料自动 follow</small></div>
+          <div class="sect"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3a9 9 0 1 0 0 18h1.5a2 2 0 0 0 0-4H12a2 2 0 0 1 0-4h6a3 3 0 0 0 3-3c0-4-4-7-9-7Z"/><circle cx="7.5" cy="10.5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="7.5" r="1" fill="currentColor" stroke="none"/><circle cx="16.5" cy="10.5" r="1" fill="currentColor" stroke="none"/></svg></span>Brand Kit <small>logo · 品牌色 · 字体 —— 所有物料自动 follow</small></div>
           <div class="brandrow" style="margin-top:11px">
             <label class="bd bdadd" for="libFile"><b>＋ 上传素材</b><br><small style="color:var(--muted)">logo · 色卡 · 字体 · 旧物料</small></label>
             <div class="bd"><b>Logo</b><br><span style="font-size:30px">🍢</span> Warisan Grill<br><small style="color:var(--muted)">warisan-logo.png · 透明底</small></div>
@@ -1462,22 +1494,22 @@ why   = llm.explain(facts)    # 解释：交给 LLM
       </div>
       <div class="assetpane on" data-pane="menu">
       <div class="card">
-        <div class="sect"><span class="ic">🍽️</span>菜单总表 <small>售价 · Food Cost · 族群字段 · 投放中的广告</small></div>
+        <div class="sect"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="4" cy="6" r="1" fill="currentColor" stroke="none"/><circle cx="4" cy="12" r="1" fill="currentColor" stroke="none"/><circle cx="4" cy="18" r="1" fill="currentColor" stroke="none"/></svg></span>菜单总表 <small>售价 · Food Cost · 族群字段 · 投放中的广告</small></div>
         <div class="scroll" style="margin-top:10px;max-height:340px;overflow-y:auto">
           <table><thead><tr><th>菜品</th><th>类别</th><th style="text-align:right">售价 RM</th>
             <th style="text-align:right">FC%</th><th>牛肉</th><th>素食</th><th>投放中</th><th>状态</th><th></th></tr></thead>
             <tbody id="menuBody"></tbody></table>
         </div>
         <div class="row" style="margin-top:11px">
-          <button class="btn" id="addDish" type="button">＋ 添加菜品</button>
-          <button class="btn btn-go" id="menuGenBtn" type="button">🖨 生成精美菜单</button>
+          <button class="btn" id="addDish" type="button">添加菜品</button>
+          <button class="btn btn-go" id="menuGenBtn" type="button">生成精美菜单</button>
           <span style="font-size:12px;color:var(--muted)">✏️ 点<b>名称 / 售价</b>直接改 · 点<b>牛肉 / 素食 / 状态</b>切换 —— 改完族群规则立刻按新菜单执行</span>
         </div>
         <div class="note" style="margin-top:11px;font-size:12.5px"><b>📣 投放中</b>一列来自营销日历的已确认排期 —— 菜单、广告、日历是<b>同一份数据</b>，不用两头维护。改动仅存在本次演示。</div>
       </div>
       <div class="card">
         <div class="menusrc" id="menuSrc"></div>
-        <div class="sect" style="margin:2px 0 10px"><span class="ic">🕌</span>族群规则测试 <small>Race Rule · 代码写死，不靠提示词</small></div>
+        <div class="sect" style="margin:2px 0 10px"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 5 6v6c0 4.5 3 7.7 7 9 4-1.3 7-4.5 7-9V6Z"/><path d="m9 12 2 2 4-4.5"/></svg></span>族群规则测试 <small>Race Rule · 代码写死，不靠提示词</small></div>
         <div class="grid g2">
           <div><div class="lab">选一道菜 <span id="dishCount" style="color:var(--faint);font-weight:400"></span></div><div class="pick" id="pickDish">
             <button data-beef="1" aria-pressed="true">招牌炭烤牛肋排</button>
@@ -1516,7 +1548,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
           <div class="menupaper" id="menuPaper"></div>
         </div>
         <div class="mfoot"><span class="lab">换模板 · 双语版 接出图 API 后开放</span><span class="sp"></span>
-          <button class="btn btn-go" id="mgDl">⬇ 下载 PNG</button></div>
+          <button class="btn btn-go" id="mgDl">下载 PNG</button></div>
       </dialog>
 </section>
 
@@ -1578,7 +1610,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
       <div class="head"><div class="eyebrow">Configuration</div><h2>Customer Base</h2>
         <p>客户库<b>自己长</b>：广告/海报把人吸来问 → 来问就捕获 → 标来源 → 入库。不买名单、不爬数据。</p></div>
       <div class="card" style="margin-bottom:13px">
-        <div class="sect"><span class="ic">🔗</span>QR 收客页 <small>客人扫码自己填 —— 天生 opt-in，PDPA 零风险</small>
+        <div class="sect"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 14a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 10a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7L12.5 19"/></svg></span>QR 收客页 <small>客人扫码自己填 —— 天生 opt-in，PDPA 零风险</small>
           <span class="sp" style="flex:1"></span><button class="btn btnsm" id="qrCopy">复制链接</button></div>
         <div class="qrwrap">
           <div class="qrbox"><div class="qrpat" aria-label="收客页二维码"></div>
@@ -1607,7 +1639,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
       </div>
       <div class="note stop" style="margin-top:13px"><b>PDPA 红线：</b>只发同意来的 · 给退订 · <b>不爬陌生人 · 不自动 follow</b> · 每次群发写审计（谁批的·发给谁·内容·时间戳）。</div>
       <div class="card" style="margin-top:13px">
-        <div class="sect"><span class="ic">👥</span>客户资料 <small>演示数据 · 全部 opt-in 采集 · 已退订的不再发</small></div>
+        <div class="sect"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c.8-3.2 3.4-5 6.5-5s5.7 1.8 6.5 5"/><circle cx="17" cy="9" r="2.5"/><path d="M16.5 15c2.4.3 4.3 1.8 5 4.5"/></svg></span>客户资料 <small>演示数据 · 全部 opt-in 采集 · 已退订的不再发</small></div>
         <div class="scroll" style="margin-top:10px;max-height:420px;overflow-y:auto">
           <table><thead><tr><th>名字</th><th>性别</th><th>号码</th><th>Email</th><th>生日</th>
             <th>族群 · 语言</th><th>来源</th><th style="text-align:right">观光次数</th><th>点餐记录</th><th>状态</th></tr></thead>
@@ -1641,7 +1673,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
       <div class="head"><div class="eyebrow">System · SETTINGS</div><h2>开关都在你手上</h2>
         <p>AI 能碰什么、不能碰什么 —— 不是承诺，是开关。</p></div>
       <div class="card">
-        <div class="sect"><span class="ic">🔐</span>隐私与安全</div>
+        <div class="sect"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 5 6v6c0 4.5 3 7.7 7 9 4-1.3 7-4.5 7-9V6Z"/><path d="m9 12 2 2 4-4.5"/></svg></span>隐私与安全</div>
         <div style="margin-top:8px">
           <div class="inbox"><span class="sp"><b>机密食谱不喂 AI</b><br><span style="font-size:12px;color:var(--muted)">配方、供应商成本明细不进模型 —— 只用「菜名+售价+Food Cost%」</span></span>
             <button class="btn stgw on" data-stg type="button">已开启</button></div>
@@ -1654,7 +1686,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
         </div>
       </div>
       <div class="card" style="margin-top:13px">
-        <div class="sect"><span class="ic">🗣️</span>回复与接入</div>
+        <div class="sect"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l2.5-7 5 14L17 12h4"/></svg></span>回复与接入</div>
         <div style="margin-top:8px">
           <div class="inbox"><span class="sp"><b>回复语言跟随对方消息</b><br><span style="font-size:12px;color:var(--muted)">中文来中文回 · 英文来英文回 · 看最新一条，不锁死</span></span>
             <button class="btn stgw on" data-stg type="button">已开启</button></div>
@@ -2693,7 +2725,7 @@ why   = llm.explain(facts)    # 解释：交给 LLM
       var map={menu:"menu",assets:"photos",brand:"brand"};
       var tb=document.querySelector('.assettabs button[data-apane="'+map[act]+'"]'); tb&&tb.click(); }
   });
-  /* ---- ＋ 新建促销向导（方案→文案→生图→并进 Material 审批）---- */
+  /* ---- 新建促销向导（方案→文案→生图→并进 Material 审批）---- */
   (function(){
     var dlg=document.getElementById("promoWiz"); if(!dlg) return;
     var step=1, ver=1, EMO={"芒果糯米饭":"🥭","柠檬薄荷饮":"🍹","松露意面":"🍝"};
@@ -2762,9 +2794,9 @@ why   = llm.explain(facts)    # 解释：交给 LLM
           '<div class="apv-bd"><b>'+document.getElementById("pwTheme").value.split("—")[0].trim()+'的物料做好了，发不发？</b>'+
           '<div class="apv-meta">毛利 '+(MARG[d]||"—")+' ✓ · 你刚用 ＋ 新建的 · 文案+海报已出</div>'+
           '<div class="apv-tags"><span class="pill t-date">📅 午市低谷 14:00–17:00</span><span class="pill t-halal">✓ Halal</span></div>'+
-          '<div class="apv-act"><button class="btn btn-go apv-ok">✓ 发布</button>'+
+          '<div class="apv-act"><button class="btn btn-go apv-ok">发布</button>'+
           '<button class="btn" data-go="3">先看看 / 改</button>'+
-          '<button class="btn btn-stop apv-no">✕ 退</button></div></div>';
+          '<button class="btn btn-stop apv-no">退</button></div></div>';
         box.insertBefore(el, box.firstElementChild);
         var pill=box.closest(".card").querySelector(".pill");
         var left=box.querySelectorAll(".apv:not(.done):not(.rej)").length;
@@ -2816,20 +2848,20 @@ why   = llm.explain(facts)    # 解释：交给 LLM
         '<div class="pa-imgnote">📷 菜品照（未出图 · 普通促销）</div>';
     }
     function actsHtml(pl){
-      if(pl.st==="pending") return '<button class="btn btn-go" data-pa="ok">✓ 确认 · 发布</button>'+
-        '<button class="btn btn-warn" data-pa="edit">✎ 改</button><button class="btn btn-stop" data-pa="no">✕ 退</button>'+
-        (pl.img==="ai"?'<button class="btn" data-pa="dl">⬇ 下载 PNG</button><button class="btn" data-pa="regen">🔄 重新生成</button>':"");
+      if(pl.st==="pending") return '<button class="btn btn-go" data-pa="ok">确认 · 发布</button>'+
+        '<button class="btn btn-warn" data-pa="edit">改</button><button class="btn btn-stop" data-pa="no">退</button>'+
+        (pl.img==="ai"?'<button class="btn" data-pa="dl">下载 PNG</button><button class="btn" data-pa="regen">重新生成</button>':"");
       if(pl.st==="approved"){
         if(pl.pub) return '<span class="pubrow">'+
           '<span class="pub-chip ok">FB ✓</span><span class="pub-chip ok" style="animation-delay:.25s">IG ✓</span>'+
           '<span class="pub-chip ok" style="animation-delay:.5s">WhatsApp 已排队</span>'+
           '<span class="pub-chip half" style="animation-delay:.75s">小红书 · 内容已备，需手动发</span></span>';
         return '<span class="pa-msg" style="color:var(--green)">✓ 已批</span>'+
-          '<button class="btn btn-go" data-pa="pub">📣 提交发布</button>'+
-          (pl.img==="ai"?'<button class="btn" data-pa="dl">⬇ 下载 PNG</button>':"");
+          '<button class="btn btn-go" data-pa="pub">提交发布</button>'+
+          (pl.img==="ai"?'<button class="btn" data-pa="dl">下载 PNG</button>':"");
       }
       if(pl.st==="rejected") return '<span class="pa-msg" style="color:var(--red)">✕ 已退回</span>'+
-        '<button class="btn" data-pa="regen2">🔄 让 AI 重新生成</button>';
+        '<button class="btn" data-pa="regen2">让 AI 重新生成</button>';
       return '<button class="btn btn-go" data-pa="submit">提交审批</button><span class="pa-msg" style="color:var(--muted)">草稿 · 还没进审批箱</span>';
     }
     function render(){
