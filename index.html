@@ -288,6 +288,17 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .grid2{display:grid;grid-template-columns:1fr 1fr;gap:16px;align-items:start}
 @media(max-width:1000px){.grid2{grid-template-columns:1fr}}
 .mt{margin-top:16px}
+
+/* 总览社媒速览条 */
+.socrow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px}
+@media(max-width:760px){.socrow{grid-template-columns:repeat(2,1fr)}}
+.soc{display:flex;align-items:center;gap:8px;border:1px solid var(--line);border-radius:12px;padding:9px 11px;background:var(--surface);transition:.15s;text-align:left}
+.soc:hover{border-color:var(--blue-line);transform:translateY(-1px)}
+.soc .ii{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;font-size:10px;font-weight:800;color:#fff;flex-shrink:0}
+.soc b{font-size:14.5px;font-weight:750}
+.soc s{font-size:10.5px;color:var(--mut);margin-left:auto}
+.soc s.up{color:var(--green);font-weight:700}
+
 </style>
 </head>
 <body>
@@ -374,6 +385,18 @@ td b.pr2{font-variant-numeric:tabular-nums}
           <div class="bcol"><s>日</s><i style="height:84%"></i></div>
         </div>
         <div class="cnote">周三那根最矮的 —— 就是 AI 建议做沙爹促销的原因。<button class="lnk" data-p="1">去看方案 →</button></div>
+      </div>
+
+      <div class="card mt">
+        <div class="chd"><i data-i="share"></i><b>社媒一眼</b><s>五个账号 · 官方数据</s><span class="sp"></span><button class="btn sm" data-p="7">详情 →</button></div>
+        <div class="socrow">
+          <button class="soc" data-p="7"><span class="ii" style="background:#1877F2">f</span><b class="num">12.4k</b><s class="up">+2.1%</s></button>
+          <button class="soc" data-p="7"><span class="ii" style="background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF)">Ig</span><b class="num">8,930</b><s class="up">+4.8%</s></button>
+          <button class="soc" data-p="7"><span class="ii" style="background:#FE2C55">小</span><b class="num">1,204</b><s class="up">+12.3%</s></button>
+          <button class="soc" data-p="7"><span class="ii" style="background:#111">Tk</span><b class="num">3,481</b><s class="up">+6.9%</s></button>
+          <button class="soc" data-p="7"><span class="ii" style="background:#25D366">Wa</span><b class="num">248</b><s>opt-in</s></button>
+        </div>
+        <div class="cnote">本周最佳：Merdeka 短片 <b class="num">18.7k</b> 曝光 —— 短视频是图文的 <b>2.9 倍</b>，下周物料已默认短片优先。</div>
       </div>
     </div>
     <aside class="rail">
