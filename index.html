@@ -322,6 +322,20 @@ td b.pr2{font-variant-numeric:tabular-nums}
   .srch{display:none}
 }
 
+
+/* 社媒一眼 · 加强版（总曝光大数 + 平台chips）*/
+.socwrap{display:grid;grid-template-columns:200px minmax(0,1fr);gap:12px;align-items:stretch}
+@media(max-width:860px){.socwrap{grid-template-columns:1fr}}
+.socbig{display:flex;flex-direction:column;gap:3px;text-align:left;border:1px solid var(--blue-line);
+  background:var(--blue-soft);border-radius:12px;padding:12px 15px;transition:.15s}
+.socbig:hover{transform:translateY(-1px)}
+.socbig>s{font-size:11.5px;color:var(--mut);font-weight:600}
+.socbig>b{font-size:26px;font-weight:800;letter-spacing:-.03em;line-height:1.1}
+.socbig em{font-style:normal;align-self:flex-start;margin:3px 0}
+.socbig>span{font-size:11px;color:var(--mut)}
+.socrow{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:9px;align-content:stretch}
+@media(max-width:760px){.socrow{grid-template-columns:repeat(2,1fr)}}
+
 </style>
 </head>
 <body>
@@ -379,6 +393,24 @@ td b.pr2{font-variant-numeric:tabular-nums}
           <span class="r2"><b class="num" id="inboxN">2</b><span class="avs"><span style="background:#B4451F">设</span><span style="background:#2563EB">销</span></span></span></button>
       </div>
 
+      <div class="card" style="margin-bottom:16px">
+        <div class="chd"><i data-i="share"></i><b>社媒一眼</b><s>流量在涨 · 官方数据</s><span class="sp"></span><button class="btn sm" data-p="7">详情 →</button></div>
+        <div class="socwrap">
+          <button class="socbig" data-p="7">
+            <s>本周总曝光</s><b class="num">103.2k</b><em class="tag gn">+18% vs 上周</em>
+            <span>短视频占 62% · 五平台合计</span>
+          </button>
+          <div class="socrow">
+            <button class="soc" data-p="7"><span class="ii" style="background:#1877F2">f</span><b class="num">12.4k</b><s class="up">+2.1%</s></button>
+            <button class="soc" data-p="7"><span class="ii" style="background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF)">Ig</span><b class="num">8,930</b><s class="up">+4.8%</s></button>
+            <button class="soc" data-p="7"><span class="ii" style="background:#FE2C55">小</span><b class="num">1,204</b><s class="up">+12.3%</s></button>
+            <button class="soc" data-p="7"><span class="ii" style="background:#111">Tk</span><b class="num">3,481</b><s class="up">+6.9%</s></button>
+            <button class="soc" data-p="7"><span class="ii" style="background:#25D366">Wa</span><b class="num">248</b><s>opt-in</s></button>
+          </div>
+        </div>
+        <div class="cnote">本周最佳：Merdeka 短片 <b class="num">18.7k</b> 曝光 —— 短视频是图文的 <b>2.9 倍</b>，下周物料已默认短片优先。<button class="lnk" data-p="7">看全部内容 →</button></div>
+      </div>
+
       <div class="shead"><b>今天要处理</b><button class="btn sm">全部 →</button></div>
       <div id="taskList">
         <div class="task">
@@ -410,17 +442,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
         <div class="cnote">周三那根最矮的 —— 就是 AI 建议做沙爹促销的原因。<button class="lnk" data-p="1">去看方案 →</button></div>
       </div>
 
-      <div class="card mt">
-        <div class="chd"><i data-i="share"></i><b>社媒一眼</b><s>五个账号 · 官方数据</s><span class="sp"></span><button class="btn sm" data-p="7">详情 →</button></div>
-        <div class="socrow">
-          <button class="soc" data-p="7"><span class="ii" style="background:#1877F2">f</span><b class="num">12.4k</b><s class="up">+2.1%</s></button>
-          <button class="soc" data-p="7"><span class="ii" style="background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF)">Ig</span><b class="num">8,930</b><s class="up">+4.8%</s></button>
-          <button class="soc" data-p="7"><span class="ii" style="background:#FE2C55">小</span><b class="num">1,204</b><s class="up">+12.3%</s></button>
-          <button class="soc" data-p="7"><span class="ii" style="background:#111">Tk</span><b class="num">3,481</b><s class="up">+6.9%</s></button>
-          <button class="soc" data-p="7"><span class="ii" style="background:#25D366">Wa</span><b class="num">248</b><s>opt-in</s></button>
-        </div>
-        <div class="cnote">本周最佳：Merdeka 短片 <b class="num">18.7k</b> 曝光 —— 短视频是图文的 <b>2.9 倍</b>，下周物料已默认短片优先。</div>
-      </div>
+
     </div>
     <aside class="rail">
       <div class="card">
