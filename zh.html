@@ -1080,6 +1080,19 @@ td b.pr2{font-variant-numeric:tabular-nums}
           <button class="ing" aria-pressed="false">薄荷</button><button class="ing" aria-pressed="false">糯米</button>
           <button class="ing" aria-pressed="false">黄瓜</button><button class="ing" aria-pressed="false">辣椒</button>
         </div>
+        <div class="chd" style="margin:10px 0 6px"><b style="font-size:12px">时令 · 天气</b><s>按预报自动带入 —— 点选可改</s></div>
+        <div class="ingrow" style="margin:0 0 6px">
+          <button class="ing" aria-pressed="true">炎热 · 33°C</button>
+          <button class="ing" aria-pressed="false" id="wRain">接下来有雨</button>
+          <button class="ing" aria-pressed="false">Merdeka 临近</button>
+          <button class="ing" aria-pressed="true">芒果当季</button>
+        </div>
+        <div class="chd" style="margin:10px 0 6px"><b style="font-size:12px">顾客最近在说</b><s>来自 Google 评论 · WhatsApp —— 只看内容不存个人（PDPA）</s></div>
+        <div class="ingrow" style="margin:0 0 6px">
+          <button class="ing" aria-pressed="true">「可以不那么辣吗」×3</button>
+          <button class="ing" aria-pressed="false">「有椰子冰沙吗？」×2</button>
+          <button class="ing" aria-pressed="false">「汤有点少」</button>
+        </div>
         <div class="fchips" style="margin:2px 0 4px"><span class="stc">食材成本 ≤ 30%</span><span class="stc">备餐 ≤ 15 分钟</span><span class="stc">无牛肉 · 全族群可吃 ✓</span></div>
         <div class="mrow" style="margin-top:10px"><select class="msel"><option>马来西亚 Halal 烧烤 · 中端</option><option>咖啡馆 / 早午餐</option><option>夜市档口</option></select>
           <span class="sp" style="flex:1"></span><button class="btn pri" id="rcGo">AI 出菜</button></div>
@@ -1093,16 +1106,25 @@ td b.pr2{font-variant-numeric:tabular-nums}
           <div class="rmeta"><span class="tag gn">预估成本 31%</span><span class="tag">建议售 RM 16.90</span><span class="tag">备餐 12 分钟</span><span class="tag">无牛肉 · 全族群</span></div>
           <div class="costr"><b><span>成本 RM 5.20 → 卖 RM 16.90</span><em class="num">毛利 69%</em></b><span class="abar"><i style="width:69%;background:var(--green)"></i></span></div>
           <ol><li>鸡腿用椰浆、青柠和香料腌 2 小时</li><li>炭烤 8 分钟，边烤边刷椰香酱</li><li>青柠黄瓜收尾 —— 用你现有烤线就能做</li></ol>
-          <div class="cnote">为什么推它：你的烤线 3–5pm 闲置，而买沙爹的客人交叉点鸡肉的概率高 2.3 倍。
+          <div class="cnote">为什么推它：烤线 3–5pm 闲置、沙爹客人交叉点鸡肉概率高 2.3 倍 —— 而且 3 条评论求少辣，默认就做微辣版。
             <div style="display:flex;gap:8px;margin-top:9px"><button class="btn pri sm" id="rcAdd">加进菜单</button><button class="btn sm" data-p="1">做海报 →</button></div></div>
         </div>
-        <div class="rcp">
+        <div class="rcp" id="rcDrinkHot">
           <div class="rcimg" style="background-image:url(img/cooler.jpg)"></div>
           <h3>青柠薄荷椰风 · 下午茶饱和档</h3>
           <div class="rmeta"><span class="tag gn">预估成本 22%</span><span class="tag">建议售 RM 6.50</span><span class="tag">10 秒出杯</span><span class="tag am">专治 3–5pm 低谷</span></div>
           <div class="costr"><b><span>成本 RM 1.40 → 卖 RM 6.50</span><em class="num">毛利 78%</em></b><span class="abar"><i style="width:78%;background:var(--green)"></i></span></div>
           <ol><li>椰浆、青柠、糖浆摇匀</li><li>薄荷擦杯，加碎冰</li><li>十秒出杯 —— 下午茶引流神器</li></ol>
           <div class="cnote">为什么推它：下午茶时段销量比午市低 38% —— 一杯快手饮品零后厨负担就能填上。
+            <div style="display:flex;gap:8px;margin-top:9px"><button class="btn sm" data-p="1">做物料 →</button></div></div>
+        </div>
+        <div class="rcp" id="rcDrinkRain" hidden>
+          <div class="rcimg" style="background-image:url(img/warmer.jpg)"></div>
+          <h3>香茅姜暖饮 · 雨天暖身档</h3>
+          <div class="rmeta"><span class="tag gn">预估成本 18%</span><span class="tag">建议售 RM 5.90</span><span class="tag">热饮</span><span class="tag bl">雨天优选</span></div>
+          <div class="costr"><b><span>成本 RM 1.05 → 卖 RM 5.90</span><em class="num">毛利 82%</em></b><span class="abar"><i style="width:82%;background:var(--green)"></i></span></div>
+          <ol><li>姜、香茅、椰糖小火煮 10 分钟</li><li>滤进温杯，青柠配在旁</li><li>傍晚下雨前煮好一壶 —— 几秒就能出一杯</li></ol>
+          <div class="cnote">为什么推它：下雨天客人不想喝冰的、还怕感冒 —— 一杯热饮把客单守住。
             <div style="display:flex;gap:8px;margin-top:9px"><button class="btn sm" data-p="1">做物料 →</button></div></div>
         </div>
         </div>
@@ -1556,7 +1578,10 @@ document.querySelectorAll(".ing").forEach(function(b){
   b.addEventListener("click",function(){b.setAttribute("aria-pressed",b.getAttribute("aria-pressed")!=="true");});
 });
 document.getElementById("rcGo").addEventListener("click",function(){
-  hvTrack("recipe_suggest");
+  var _rc=document.getElementById("wRain");var _rain=_rc&&_rc.getAttribute("aria-pressed")==="true";
+  var _dh=document.getElementById("rcDrinkHot"),_dw=document.getElementById("rcDrinkRain");
+  if(_dh&&_dw){_dh.hidden=_rain;_dw.hidden=!_rain;}
+  hvTrack("recipe_suggest",{rain:_rain});
   var o=document.getElementById("rcOut"); o.hidden=false; o.scrollIntoView({behavior:"smooth",block:"center"});
   toast("按你的食材和店型出了 2 个主意");
 });

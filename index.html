@@ -1083,6 +1083,19 @@ td b.pr2{font-variant-numeric:tabular-nums}
           <button class="ing" aria-pressed="false">Mint</button><button class="ing" aria-pressed="false">Sticky rice</button>
           <button class="ing" aria-pressed="false">Cucumber</button><button class="ing" aria-pressed="false">Chili</button>
         </div>
+        <div class="chd" style="margin:10px 0 6px"><b style="font-size:12px">Season &amp; weather</b><s>forecast auto-filled — tap to adjust</s></div>
+        <div class="ingrow" style="margin:0 0 6px">
+          <button class="ing" aria-pressed="true">Hot spell · 33°C</button>
+          <button class="ing" aria-pressed="false" id="wRain">Rainy days ahead</button>
+          <button class="ing" aria-pressed="false">Merdeka coming</button>
+          <button class="ing" aria-pressed="true">Mango in season</button>
+        </div>
+        <div class="chd" style="margin:10px 0 6px"><b style="font-size:12px">What customers are saying</b><s>Google reviews &amp; WhatsApp · content only, no profiles (PDPA)</s></div>
+        <div class="ingrow" style="margin:0 0 6px">
+          <button class="ing" aria-pressed="true">“Less spicy, please” ×3</button>
+          <button class="ing" aria-pressed="false">“Any coconut smoothie?” ×2</button>
+          <button class="ing" aria-pressed="false">“Soup portion small”</button>
+        </div>
         <div class="fchips" style="margin:2px 0 4px"><span class="stc">Food cost ≤ 30%</span><span class="stc">Prep ≤ 15 min</span><span class="stc">No beef · safe for all diets ✓</span></div>
         <div class="mrow" style="margin-top:10px"><select class="msel"><option>Malaysian halal grill · mid-range</option><option>Café / brunch</option><option>Night-market stall</option></select>
           <span class="sp" style="flex:1"></span><button class="btn pri" id="rcGo">Suggest dishes</button></div>
@@ -1096,16 +1109,25 @@ td b.pr2{font-variant-numeric:tabular-nums}
           <div class="rmeta"><span class="tag gn">Est. FC 31%</span><span class="tag">Suggested RM 16.90</span><span class="tag">Prep 12 min</span><span class="tag">No beef · all diets</span></div>
           <div class="costr"><b><span>Cost RM 5.20 → sell RM 16.90</span><em class="num">69% margin</em></b><span class="abar"><i style="width:69%;background:var(--green)"></i></span></div>
           <ol><li>Marinate thighs in coconut milk, lime and spices, 2 hrs</li><li>Char-grill 8 min, basting with coconut glaze</li><li>Finish with lime and cucumber — runs on your existing grill line</li></ol>
-          <div class="cnote">Why this: your grill line sits idle 3–5pm, and satay buyers cross-order chicken 2.3×.
+          <div class="cnote">Why this: your grill line sits idle 3–5pm, satay buyers cross-order chicken 2.3× — and 3 reviews asked for less spice, so mild is the default.
             <div style="display:flex;gap:8px;margin-top:9px"><button class="btn pri sm" id="rcAdd">Add to menu</button><button class="btn sm" data-p="1">Make poster →</button></div></div>
         </div>
-        <div class="rcp">
+        <div class="rcp" id="rcDrinkHot">
           <div class="rcimg" style="background-image:url(img/cooler.jpg)"></div>
           <h3>Lime-Mint Coconut Cooler · drinks gap-filler</h3>
           <div class="rmeta"><span class="tag gn">Est. FC 22%</span><span class="tag">Suggested RM 6.50</span><span class="tag">10-sec serve</span><span class="tag am">Built for the 3–5pm dip</span></div>
           <div class="costr"><b><span>Cost RM 1.40 → sell RM 6.50</span><em class="num">78% margin</em></b><span class="abar"><i style="width:78%;background:var(--green)"></i></span></div>
           <ol><li>Shake coconut milk, lime and syrup</li><li>Mint-rubbed glass, crushed ice</li><li>Ten seconds to serve — perfect teatime bait</li></ol>
           <div class="cnote">Why this: teatime sales dip 38% below lunch — a fast drink fills the gap with zero kitchen load.
+            <div style="display:flex;gap:8px;margin-top:9px"><button class="btn sm" data-p="1">Make assets →</button></div></div>
+        </div>
+        <div class="rcp" id="rcDrinkRain" hidden>
+          <div class="rcimg" style="background-image:url(img/warmer.jpg)"></div>
+          <h3>Lemongrass-Ginger Warmer · rainy-day comfort</h3>
+          <div class="rmeta"><span class="tag gn">Est. FC 18%</span><span class="tag">Suggested RM 5.90</span><span class="tag">Served hot</span><span class="tag bl">Rainy-day pick</span></div>
+          <div class="costr"><b><span>Cost RM 1.05 → sell RM 5.90</span><em class="num">82% margin</em></b><span class="abar"><i style="width:82%;background:var(--green)"></i></span></div>
+          <ol><li>Simmer ginger, lemongrass and palm sugar, 10 min</li><li>Strain into a warm mug, lime on the side</li><li>Batch a pot before the evening rain — pours in seconds</li></ol>
+          <div class="cnote">Why this: rainy evenings, customers skip iced drinks and worry about catching a cold — a warm cup keeps the ticket alive.
             <div style="display:flex;gap:8px;margin-top:9px"><button class="btn sm" data-p="1">Make assets →</button></div></div>
         </div>
         </div>
@@ -1559,7 +1581,10 @@ document.querySelectorAll(".ing").forEach(function(b){
   b.addEventListener("click",function(){b.setAttribute("aria-pressed",b.getAttribute("aria-pressed")!=="true");});
 });
 document.getElementById("rcGo").addEventListener("click",function(){
-  hvTrack("recipe_suggest");
+  var _rc=document.getElementById("wRain");var _rain=_rc&&_rc.getAttribute("aria-pressed")==="true";
+  var _dh=document.getElementById("rcDrinkHot"),_dw=document.getElementById("rcDrinkRain");
+  if(_dh&&_dw){_dh.hidden=_rain;_dw.hidden=!_rain;}
+  hvTrack("recipe_suggest",{rain:_rain});
   var o=document.getElementById("rcOut"); o.hidden=false; o.scrollIntoView({behavior:"smooth",block:"center"});
   toast("2 ideas from your pantry and concept");
 });
