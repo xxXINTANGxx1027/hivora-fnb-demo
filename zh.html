@@ -446,7 +446,11 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .vp{aspect-ratio:4/5}
 .var{max-width:232px;margin:0 auto;width:100%}
 .langrow{display:grid;grid-template-columns:repeat(3,minmax(0,150px));gap:10px;margin-top:10px}
-.langp{border:1px solid var(--line);border-radius:11px;overflow:hidden;background:#FFFDF8;position:relative}
+.langp{border:2px solid var(--line);border-radius:11px;overflow:hidden;background:#FFFDF8;position:relative;cursor:pointer;transition:.15s;text-align:left;padding:0;display:block;width:100%}
+.langp.on{border-color:var(--blue)}
+.langp:not(.on){opacity:.55}
+.lchk{position:absolute;top:6px;right:6px;width:20px;height:20px;border-radius:50%;background:#fff;border:1.5px solid var(--line);color:transparent;display:grid;place-items:center;font-size:11px;font-weight:800;transition:.15s}
+.langp.on .lchk{background:var(--blue);border-color:var(--blue);color:#fff}
 .langp .li{height:96px;background-size:cover;background-position:center}
 .langp .lt{font-size:10.5px;font-weight:800;text-align:center;padding:6px 6px 1px;color:#241F18}
 .langp .lp{font-size:12px;font-weight:800;text-align:center;color:#B4451F;padding-bottom:7px}
@@ -796,7 +800,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
             <button class="btn sm" data-ed="re">重新生成</button><span class="tag gn">Gate 6/6</span></div>
           <div class="vars" id="wbVars"></div>
           <div id="wbLang" hidden style="margin-top:13px;padding-top:12px;border-top:1px solid var(--line2)">
-            <div class="chd" style="margin-bottom:8px"><b style="font-size:12.5px">三语言版本</b><s>同图同价 · 按族群定向投放</s></div>
+            <div class="chd" style="margin-bottom:8px"><b style="font-size:12.5px">三语言版本</b><s>勾选要发布的语言 · 同图同价</s><span class="sp"></span><s id="lpCnt" style="color:var(--blue);font-weight:650">已选 3/3 · 全部进入审批</s></div>
             <div class="langrow" id="wbLangRow"></div>
           </div>
           <div class="ckrow"><b>铁律检查</b><span class="ck">价格来自菜单 ✓</span><span class="ck">Halal 标 ✓</span><span class="ck">二维码模板 ✓</span><span class="ck">族群规则 ✓</span><s>不合格的稿到不了你面前</s></div>
@@ -1231,12 +1235,17 @@ document.getElementById("kpiInbox").addEventListener("click",function(){ documen
       if(!document.getElementById("wbOut").hidden) render(); livePrev(); return;}
     var d=e.target.closest(".dch"); if(d){d.setAttribute("aria-pressed",d.getAttribute("aria-pressed")!=="true");
       var on=document.querySelector('.dch[aria-pressed="true"]'); if(on) cur.emo=on.getAttribute("data-emo")||cur.emo; var s3b=document.getElementById("st3");s3b&&s3b.classList.add("on"); livePrev(); return;}
+    var lp=e.target.closest(".langp"); if(lp){lp.classList.toggle("on");
+      var _n=document.querySelectorAll(".langp.on").length;
+      var _c=document.getElementById("lpCnt"); if(_c) _c.textContent=(_n?"已选 "+_n+"/3 · 进入审批":"一个都没选 — 至少留一个");
+      return;}
     var v=e.target.closest(".var"); if(v&&!v.closest("#bLiveP")){[].forEach.call(document.querySelectorAll(".var"),function(x){x.classList.remove("sel");});v.classList.add("sel");
       var L=[["中文","午市快闪 · 甜蜜加价购"],["EN","Lunch Flash · Sweet Add-on"],["BM","Kilat Tengah Hari · Tambahan Manis"]];
       var img=IMGS[cur.emo]||"img/mango.jpg";
       document.getElementById("wbLangRow").innerHTML=L.map(function(l){
-        return '<div class="langp"><span class="lb">'+l[0]+'</span><div class="li" style="background-image:url('+img+')"></div>'+
-          '<div class="lt">'+l[1]+'</div><div class="lp num">RM '+cur.price+'</div></div>';}).join("");
+        return '<button type="button" class="langp on"><span class="lb">'+l[0]+'</span><span class="lchk">✓</span><div class="li" style="background-image:url('+img+')"></div>'+
+          '<div class="lt">'+l[1]+'</div><div class="lp num">RM '+cur.price+'</div></button>';}).join("");
+      var lc=document.getElementById("lpCnt"); if(lc) lc.textContent="已选 3/3 · 全部进入审批";
       document.getElementById("wbLang").hidden=false;
       toast("方案已选 —— 三语言版已备好");
       return;}

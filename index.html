@@ -449,7 +449,11 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .vp{aspect-ratio:4/5}
 .var{max-width:232px;margin:0 auto;width:100%}
 .langrow{display:grid;grid-template-columns:repeat(3,minmax(0,150px));gap:10px;margin-top:10px}
-.langp{border:1px solid var(--line);border-radius:11px;overflow:hidden;background:#FFFDF8;position:relative}
+.langp{border:2px solid var(--line);border-radius:11px;overflow:hidden;background:#FFFDF8;position:relative;cursor:pointer;transition:.15s;text-align:left;padding:0;display:block;width:100%}
+.langp.on{border-color:var(--blue)}
+.langp:not(.on){opacity:.55}
+.lchk{position:absolute;top:6px;right:6px;width:20px;height:20px;border-radius:50%;background:#fff;border:1.5px solid var(--line);color:transparent;display:grid;place-items:center;font-size:11px;font-weight:800;transition:.15s}
+.langp.on .lchk{background:var(--blue);border-color:var(--blue);color:#fff}
 .langp .li{height:96px;background-size:cover;background-position:center}
 .langp .lt{font-size:10.5px;font-weight:800;text-align:center;padding:6px 6px 1px;color:#241F18}
 .langp .lp{font-size:12px;font-weight:800;text-align:center;color:#B4451F;padding-bottom:7px}
@@ -799,7 +803,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
             <button class="btn sm" data-ed="re">Regenerate</button><span class="tag gn">Gate 6/6</span></div>
           <div class="vars" id="wbVars"></div>
           <div id="wbLang" hidden style="margin-top:13px;padding-top:12px;border-top:1px solid var(--line2)">
-            <div class="chd" style="margin-bottom:8px"><b style="font-size:12.5px">Localized versions</b><s>same image, same price — targeted by audience</s></div>
+            <div class="chd" style="margin-bottom:8px"><b style="font-size:12.5px">Localized versions</b><s>tick the ones to publish · same image, same price</s><span class="sp"></span><s id="lpCnt" style="color:var(--blue);font-weight:650">3/3 selected · all go to approval</s></div>
             <div class="langrow" id="wbLangRow"></div>
           </div>
           <div class="ckrow"><b>Hard checks</b><span class="ck">Price from menu ✓</span><span class="ck">Halal mark ✓</span><span class="ck">QR template ✓</span><span class="ck">Dietary rules ✓</span><s>failures never reach you</s></div>
@@ -1234,12 +1238,17 @@ document.getElementById("kpiInbox").addEventListener("click",function(){ documen
       if(!document.getElementById("wbOut").hidden) render(); livePrev(); return;}
     var d=e.target.closest(".dch"); if(d){d.setAttribute("aria-pressed",d.getAttribute("aria-pressed")!=="true");
       var on=document.querySelector('.dch[aria-pressed="true"]'); if(on) cur.emo=on.getAttribute("data-emo")||cur.emo; var s3b=document.getElementById("st3");s3b&&s3b.classList.add("on"); livePrev(); return;}
+    var lp=e.target.closest(".langp"); if(lp){lp.classList.toggle("on");
+      var _n=document.querySelectorAll(".langp.on").length;
+      var _c=document.getElementById("lpCnt"); if(_c) _c.textContent=_n+"/3 selected · "+(_n?"going to approval":"none — pick at least one");
+      return;}
     var v=e.target.closest(".var"); if(v&&!v.closest("#bLiveP")){[].forEach.call(document.querySelectorAll(".var"),function(x){x.classList.remove("sel");});v.classList.add("sel");
       var L=[["中文","午市快闪 · 甜蜜加价购"],["EN","Lunch Flash · Sweet Add-on"],["BM","Kilat Tengah Hari · Tambahan Manis"]];
       var img=IMGS[cur.emo]||"img/mango.jpg";
       document.getElementById("wbLangRow").innerHTML=L.map(function(l){
-        return '<div class="langp"><span class="lb">'+l[0]+'</span><div class="li" style="background-image:url('+img+')"></div>'+
-          '<div class="lt">'+l[1]+'</div><div class="lp num">RM '+cur.price+'</div></div>';}).join("");
+        return '<button type="button" class="langp on"><span class="lb">'+l[0]+'</span><span class="lchk">✓</span><div class="li" style="background-image:url('+img+')"></div>'+
+          '<div class="lt">'+l[1]+'</div><div class="lp num">RM '+cur.price+'</div></button>';}).join("");
+      var lc=document.getElementById("lpCnt"); if(lc) lc.textContent="3/3 selected · all go to approval";
       document.getElementById("wbLang").hidden=false;
       toast("Concept selected — 3 language versions ready");
       return;}
