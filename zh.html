@@ -519,6 +519,15 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .inline-reply{margin:-4px 0 12px 44px;max-width:none;display:block}
 .inline-reply[hidden]{display:none}
 
+
+/* 聊天内选项 chips */
+.agchips{display:flex;gap:6px;flex-wrap:wrap;align-self:flex-start;max-width:95%}
+.agchips button{font-size:11.5px;font-weight:650;border:1px solid var(--blue-line);background:var(--blue-soft);
+  color:var(--blue);border-radius:99px;padding:6px 12px;text-align:left;transition:.12s}
+.agchips button:hover{background:var(--blue);color:#fff}
+.agchips button.done{border-color:var(--line);background:var(--surface2);color:var(--mut)}
+.agchips button.go{background:var(--ink);border-color:var(--ink);color:#fff}
+
 </style>
 </head>
 <body>
@@ -1298,8 +1307,9 @@ document.getElementById("rcAdd").addEventListener("click",function(){
 });
   /* ═══ Agent 聊天 ═══ */
   (function(){
-    var fab=document.getElementById("agFab"),panel=document.getElementById("agChat");
-    fab.addEventListener("click",function(){panel.hidden=!panel.hidden;});
+    var fab=document.getElementById("agFab"),panel=document.getElementById("agChat"),flowStarted=false;
+    fab.addEventListener("click",function(){panel.hidden=!panel.hidden;
+      if(!panel.hidden&&!flowStarted){flowStarted=true;setTimeout(startFlow,300);}});
     document.getElementById("agX").addEventListener("click",function(){panel.hidden=true;});
     var log=document.getElementById("agLog");
     function say(who,txt){var d=document.createElement("div");d.className="agm "+who;d.textContent=txt;log.appendChild(d);log.scrollTop=log.scrollHeight;
@@ -1324,6 +1334,44 @@ document.getElementById("rcAdd").addEventListener("click",function(){
             var re=document.querySelector('[data-ed="re"]'); re&&re.click(); say("ai","已换成 Chicken Satay —— 方案已用沙爹实拍图重出。");});
         } else { say("ai","收到。可以直接说「价格改 32」「用沙爹」「买一送一」，我马上重出方案。"); }
       },450);
+    }
+    function chips(items){var w=document.createElement("div");w.className="agchips";
+      items.forEach(function(it){var b=document.createElement("button");b.textContent=it.t;
+        if(it.cls)b.className=it.cls;
+        b.addEventListener("click",function(){it.cb(b);});w.appendChild(b);});
+      log.appendChild(w);log.scrollTop=log.scrollHeight;return w;}
+    function startFlow(){
+      say("ai",'你好！我们来做一个 campaign。先选 —— 这次想做什么？');
+      var gl=[].slice.call(document.querySelectorAll(".goal"));
+      var w=chips(gl.map(function(g,i){return {t:g.querySelector("b").textContent,cb:function(btn){
+        g.click(); say("me",btn.textContent); w.remove();
+        say("ai",'好，目标定了：{g}。接着挑菜（点了就加）：'.replace("{g}",btn.textContent));
+        dishStep();
+      }};}));
+    }
+    function dishStep(){
+      var ds=[].slice.call(document.querySelectorAll(".dch"));
+      var picked=0;
+      var w=chips(ds.map(function(d){return {t:d.querySelector("b").textContent,cb:function(btn){
+        d.click(); picked++;
+        btn.classList.toggle("done");
+      }};}).concat([{t:'选好了',cls:"go",cb:function(){
+        w.remove(); say("ai",'OK。要什么风格？'); styleStep(picked);
+      }}]));
+    }
+    function styleStep(n){
+      var ss=[].slice.call(document.querySelectorAll(".sty"));
+      var w=chips(ss.map(function(s){return {t:s.querySelector("b").textContent,cb:function(btn){
+        s.click(); say("me",btn.textContent); w.remove();
+        var g=document.querySelector('.goal[aria-pressed="true"] b').textContent;
+        var nn=document.querySelectorAll('.dch[aria-pressed="true"]').length;
+        say("ai",'都齐了 —— {g} · {n} 道菜 · {s}。随时开始：'.replace("{g}",g).replace("{n}",nn).replace("{s}",btn.textContent));
+        var w2=chips([{t:'AI 生成 3 个方案',cls:"go",cb:function(){
+          w2.remove(); document.querySelector('.nv[data-p="1"]').click();
+          document.getElementById("wbGo").click();
+          setTimeout(function(){say("ai",'3 个方案出来了 —— 在页面上点选一个，或直接跟我说改哪里（「价格改 32」「用沙爹」…）。');},1300);
+        }}]);
+      }};}));
     }
     window.__agHandle=handle;
     var inf=document.getElementById("agInlineForm");

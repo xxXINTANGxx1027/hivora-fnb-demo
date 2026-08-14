@@ -522,6 +522,15 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .inline-reply{margin:-4px 0 12px 44px;max-width:none;display:block}
 .inline-reply[hidden]{display:none}
 
+
+/* 聊天内选项 chips */
+.agchips{display:flex;gap:6px;flex-wrap:wrap;align-self:flex-start;max-width:95%}
+.agchips button{font-size:11.5px;font-weight:650;border:1px solid var(--blue-line);background:var(--blue-soft);
+  color:var(--blue);border-radius:99px;padding:6px 12px;text-align:left;transition:.12s}
+.agchips button:hover{background:var(--blue);color:#fff}
+.agchips button.done{border-color:var(--line);background:var(--surface2);color:var(--mut)}
+.agchips button.go{background:var(--ink);border-color:var(--ink);color:#fff}
+
 </style>
 <script>try{if(localStorage.getItem("hv_lang")==="zh"&&location.search.indexOf("stay")<0)location.replace("zh.html");}catch(e){}</script></head>
 <body>
@@ -1301,8 +1310,9 @@ document.getElementById("rcAdd").addEventListener("click",function(){
 });
   /* ═══ Agent 聊天 ═══ */
   (function(){
-    var fab=document.getElementById("agFab"),panel=document.getElementById("agChat");
-    fab.addEventListener("click",function(){panel.hidden=!panel.hidden;});
+    var fab=document.getElementById("agFab"),panel=document.getElementById("agChat"),flowStarted=false;
+    fab.addEventListener("click",function(){panel.hidden=!panel.hidden;
+      if(!panel.hidden&&!flowStarted){flowStarted=true;setTimeout(startFlow,300);}});
     document.getElementById("agX").addEventListener("click",function(){panel.hidden=true;});
     var log=document.getElementById("agLog");
     function say(who,txt){var d=document.createElement("div");d.className="agm "+who;d.textContent=txt;log.appendChild(d);log.scrollTop=log.scrollHeight;
@@ -1327,6 +1337,44 @@ document.getElementById("rcAdd").addEventListener("click",function(){
             var re=document.querySelector('[data-ed="re"]'); re&&re.click(); say("ai","Swapped to Chicken Satay — concepts regenerated with the satay shot.");});
         } else { say("ai","Noted. Say things like “price to 32”, “use the satay”, or “buy-1-free-1” and I’ll redo the concepts."); }
       },450);
+    }
+    function chips(items){var w=document.createElement("div");w.className="agchips";
+      items.forEach(function(it){var b=document.createElement("button");b.textContent=it.t;
+        if(it.cls)b.className=it.cls;
+        b.addEventListener("click",function(){it.cb(b);});w.appendChild(b);});
+      log.appendChild(w);log.scrollTop=log.scrollHeight;return w;}
+    function startFlow(){
+      say("ai",'Hi! Let’s build a campaign. First — what are we driving?');
+      var gl=[].slice.call(document.querySelectorAll(".goal"));
+      var w=chips(gl.map(function(g,i){return {t:g.querySelector("b").textContent,cb:function(btn){
+        g.click(); say("me",btn.textContent); w.remove();
+        say("ai",'Got it: {g}. Now pick the dishes (tap to add):'.replace("{g}",btn.textContent));
+        dishStep();
+      }};}));
+    }
+    function dishStep(){
+      var ds=[].slice.call(document.querySelectorAll(".dch"));
+      var picked=0;
+      var w=chips(ds.map(function(d){return {t:d.querySelector("b").textContent,cb:function(btn){
+        d.click(); picked++;
+        btn.classList.toggle("done");
+      }};}).concat([{t:'Done picking',cls:"go",cb:function(){
+        w.remove(); say("ai",'Nice. Which look?'); styleStep(picked);
+      }}]));
+    }
+    function styleStep(n){
+      var ss=[].slice.call(document.querySelectorAll(".sty"));
+      var w=chips(ss.map(function(s){return {t:s.querySelector("b").textContent,cb:function(btn){
+        s.click(); say("me",btn.textContent); w.remove();
+        var g=document.querySelector('.goal[aria-pressed="true"] b').textContent;
+        var nn=document.querySelectorAll('.dch[aria-pressed="true"]').length;
+        say("ai",'All set — {g}, {n} dish(es), {s}. Ready when you are:'.replace("{g}",g).replace("{n}",nn).replace("{s}",btn.textContent));
+        var w2=chips([{t:'Generate 3 concepts',cls:"go",cb:function(){
+          w2.remove(); document.querySelector('.nv[data-p="1"]').click();
+          document.getElementById("wbGo").click();
+          setTimeout(function(){say("ai",'3 concepts are out — pick one on the page, or just tell me what to change (“price to 32”, “use the satay”…).');},1300);
+        }}]);
+      }};}));
     }
     window.__agHandle=handle;
     var inf=document.getElementById("agInlineForm");
