@@ -417,6 +417,17 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .gitem .gi1{font-size:38px;filter:drop-shadow(0 4px 7px rgba(120,60,20,.28))}
 .dch span{filter:drop-shadow(0 2px 4px rgba(120,60,20,.25))}
 
+
+/* 真图打底 */
+.photo.real{background-size:cover;background-position:center;position:relative;font-size:0}
+.photo.real small{position:absolute;left:6px;bottom:6px;background:rgba(255,255,255,.92);color:var(--ink);
+  font-size:9.5px;font-weight:700;padding:2px 8px;border-radius:99px}
+.photo.real:after{display:none}
+.photo.real.enh:after{display:block;content:"Enhanced"}
+.vp .a.real{height:112px;background-size:cover;background-position:center;padding:0}
+.paper .art.real{height:190px;background-size:cover;background-position:center;padding:0;font-size:0}
+.gi-img{height:84px;background-size:cover;background-position:center;border-radius:0}
+
 </style>
 </head>
 <body>
@@ -730,10 +741,10 @@ td b.pr2{font-variant-numeric:tabular-nums}
             <div class="photo">🍛<small>Curry Chicken</small></div>
             <div class="photo">🥩<small>Beef Ribs</small></div>
             <div class="photo">🍚<small>Nasi Lemak</small></div>
-            <div class="photo">🥭<small>Mango Rice</small></div>
-            <div class="photo">🍢<small>Satay</small></div>
-            <div class="photo">🍹<small>Cooler</small></div>
-            <div class="photo">🍝<small>Truffle Pasta</small></div>
+            <div class="photo real" style="background-image:url(img/mango.jpg)"><small>Mango Rice</small></div>
+            <div class="photo real" style="background-image:url(img/satay.jpg)"><small>Satay</small></div>
+            <div class="photo real" style="background-image:url(img/cooler.jpg)"><small>Cooler</small></div>
+            <div class="photo real" style="background-image:url(img/pasta.jpg)"><small>Truffle Pasta</small></div>
           </div>
         </div>
         <div class="card mt" id="mgWrap" hidden>
@@ -1031,11 +1042,13 @@ document.getElementById("kpiInbox").addEventListener("click",function(){ documen
       var on=document.querySelector('.dch[aria-pressed="true"] span'); if(on) cur.emo=on.textContent; return;}
     var v=e.target.closest(".var"); if(v){[].forEach.call(document.querySelectorAll(".var"),function(x){x.classList.remove("sel");});v.classList.add("sel");return;}
   });
+  var IMGS={"🥭":"img/mango.jpg","🍹":"img/cooler.jpg","🍝":"img/pasta.jpg","🍢":"img/satay.jpg"};
   function poster(i,recc){
     var c=STY[cur.sty].c;
+    var art=IMGS[cur.emo]?'<div class="a real" style="background-image:url('+IMGS[cur.emo]+')"></div>':'<div class="a">'+cur.emo+'</div>';
     return '<div class="var'+(recc?" sel":"")+'">'+(recc?'<span class="rec">Recommended</span>':"")+
       '<div class="vp"><div class="h" style="background:'+c+'">WARISAN GRILL · HALAL ✓</div>'+
-      '<div class="a">'+cur.emo+'</div><div class="t">'+TT[i]+'</div>'+
+      art+'<div class="t">'+TT[i]+'</div>'+
       '<div class="pr num" style="color:'+c+'">RM '+cur.price+' <s style="font-size:10px;color:#9A9184">was RM '+cur.orig+'</s></div>'+
       '<div class="f"><span>Jalan Ampang, KL · 11:00–22:00<br>WhatsApp +60 12-345 6789</span><span class="qrp"></span></div></div></div>';
   }
