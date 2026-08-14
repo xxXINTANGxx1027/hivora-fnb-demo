@@ -536,7 +536,21 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .mtabs2{display:inline-flex;background:var(--surface2);border:1px solid var(--line);border-radius:12px;padding:3px;margin-bottom:14px}
 .mtabs2 button{padding:7px 22px;border-radius:9px;font-weight:700;font-size:13px;color:var(--mut)}
 .mtabs2 button[aria-pressed="true"]{background:var(--ink);color:#fff}
-.bchat{display:flex;flex-direction:column;height:660px;padding:0;overflow:hidden}
+.bchat{display:flex;flex-direction:column;height:min(600px,calc(100dvh - 290px));min-height:450px;padding:0;overflow:hidden}
+.bc-log::before{content:"";flex:1 0 12px}
+.agm{animation:msgIn .26s cubic-bezier(.2,.8,.2,1)}
+@keyframes msgIn{from{opacity:0;transform:translateY(6px)}}
+#bChips{display:flex;flex-wrap:wrap;gap:6px;padding:10px 14px 0;border-top:1px solid var(--line)}
+#bChips:empty{display:none}
+#bChips:not(:empty)+.bc-in{border-top:0;padding-top:10px}
+.agm.tpg{display:inline-flex;gap:4px;align-items:center;padding:12px 13px;align-self:flex-start}
+.agm.tpg i{width:6px;height:6px;border-radius:50%;background:#94A3B8;animation:tp 1.1s infinite}
+.agm.tpg i:nth-child(2){animation-delay:.18s}
+.agm.tpg i:nth-child(3){animation-delay:.36s}
+@keyframes tp{0%,60%,100%{opacity:.25}30%{opacity:1}}
+.wb3:not(.chatmode) #bLive{display:none}
+#bLiveP .var{max-width:210px;margin:8px auto 2px;cursor:default}
+#bLiveP .var:hover{border-color:transparent}
 .bc-hd{display:flex;align-items:center;gap:9px;padding:12px 15px;border-bottom:1px solid var(--line);background:var(--surface2)}
 .bc-log{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:9px}
 .bc-in{display:flex;gap:8px;padding:12px 14px;border-top:1px solid var(--line)}
@@ -709,6 +723,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
       <div class="card bchat" id="bChat">
         <div class="bc-hd"><span class="ag-av">D</span><span><b style="font-size:13px">Designer</b><s style="font-size:10.5px;color:var(--mut);display:block">Building your campaign together</s></span></div>
         <div class="bc-log" id="bLog"></div>
+        <div id="bChips"></div>
         <form class="bc-in" id="bForm"><input id="bIn" placeholder="Message the designer…" autocomplete="off"><button type="submit">Send</button></form>
       </div>
       <!-- 栏1 目标 -->
@@ -752,6 +767,11 @@ td b.pr2{font-variant-numeric:tabular-nums}
       </div>
       <!-- 栏3 结果+编辑导出+文案 -->
       <div>
+        <div class="card" id="bLive">
+          <div class="chd"><b>Live preview</b><span class="sp"></span><s id="bLiveS">updates as you chat</s></div>
+          <div id="bLiveP"></div>
+          <div class="cnote">Draft layout — price, Halal mark & QR stay locked by the Gate. Generate for the real concepts.</div>
+        </div>
         <div class="card" id="wbOut" hidden>
           <div class="chd"><b>4 · Concepts</b><s id="mkVer">pick one · Gate re-runs each time</s><span class="sp"></span>
             <button class="btn sm" data-ed="re">Regenerate</button><span class="tag gn">Gate 6/6</span></div>
@@ -1186,12 +1206,12 @@ document.getElementById("kpiInbox").addEventListener("click",function(){ documen
   var TT=["Lunch, done properly","Midday, made delicious","Eat well, work better"];
   function sel(group,btn){[].forEach.call(document.querySelectorAll(group),function(x){x.setAttribute("aria-pressed","false");});btn.setAttribute("aria-pressed","true");}
   document.addEventListener("click",function(e){
-    var g=e.target.closest(".goal"); if(g){sel(".goal",g);return;}
+    var g=e.target.closest(".goal"); if(g){sel(".goal",g);livePrev();return;}
     var st=e.target.closest(".sty"); if(st){sel(".sty",st);cur.sty=st.getAttribute("data-sty");
-      if(!document.getElementById("wbOut").hidden) render(); return;}
+      if(!document.getElementById("wbOut").hidden) render(); livePrev(); return;}
     var d=e.target.closest(".dch"); if(d){d.setAttribute("aria-pressed",d.getAttribute("aria-pressed")!=="true");
-      var on=document.querySelector('.dch[aria-pressed="true"]'); if(on) cur.emo=on.getAttribute("data-emo")||cur.emo; return;}
-    var v=e.target.closest(".var"); if(v){[].forEach.call(document.querySelectorAll(".var"),function(x){x.classList.remove("sel");});v.classList.add("sel");
+      var on=document.querySelector('.dch[aria-pressed="true"]'); if(on) cur.emo=on.getAttribute("data-emo")||cur.emo; livePrev(); return;}
+    var v=e.target.closest(".var"); if(v&&!v.closest("#bLiveP")){[].forEach.call(document.querySelectorAll(".var"),function(x){x.classList.remove("sel");});v.classList.add("sel");
       var L=[["中文","午市快闪 · 甜蜜加价购"],["EN","Lunch Flash · Sweet Add-on"],["BM","Kilat Tengah Hari · Tambahan Manis"]];
       var img=IMGS[cur.emo]||"img/mango.jpg";
       document.getElementById("wbLangRow").innerHTML=L.map(function(l){
@@ -1215,10 +1235,18 @@ document.getElementById("kpiInbox").addEventListener("click",function(){ documen
     var vs=document.getElementById("wbVars");
     vs.innerHTML=poster(0,false)+poster(1,true)+poster(2,false);
   }
+  function livePrev(){var el=document.getElementById("bLiveP"); if(!el) return;
+    el.innerHTML=poster(1,false);
+    var s=document.getElementById("bLiveS"),g=document.querySelector('.goal[aria-pressed="true"] b');
+    var n=document.querySelectorAll('.dch[aria-pressed="true"]').length;
+    if(s) s.textContent=(g?g.textContent:"—")+" · "+n+(n===1?" dish":" dishes")+" · "+STY[cur.sty].n;
+  }
+  livePrev();
   document.getElementById("wbGo").addEventListener("click",function(){
     document.getElementById("wbOut").hidden=false;
     document.getElementById("wbEdit").hidden=false;
     document.getElementById("wbTip").hidden=true;
+    var _bl=document.getElementById("bLive"); if(_bl) _bl.hidden=true;
     document.getElementById("st4").classList.add("on");
     document.getElementById("st5").classList.add("on");
     var vs=document.getElementById("wbVars");
@@ -1339,13 +1367,16 @@ document.getElementById("rcAdd").addEventListener("click",function(){
     function curLog(){var b=document.getElementById("bLog");
       return (b&&b.offsetParent!==null)?b:log;}
     function say(who,txt){var L=curLog();var d=document.createElement("div");d.className="agm "+who;d.textContent=txt;L.appendChild(d);L.scrollTop=L.scrollHeight;}
+    function typing(){var L=curLog();var d=document.createElement("div");d.className="agm ai tpg";d.innerHTML="<i></i><i></i><i></i>";L.appendChild(d);L.scrollTop=L.scrollHeight;return d;}
+    function sayAI(txt,cb){var t=typing();setTimeout(function(){t.remove();say("ai",txt);cb&&cb();},430);}
     function ensureGen(cb){
       if(document.getElementById("wbOut").hidden){document.querySelector('.nv[data-p="1"]').click();document.getElementById("wbGo").click();setTimeout(cb,1200);}
       else cb();
     }
     function handle(msg){
       say("me",msg);
-      setTimeout(function(){
+      var _t=typing();
+      setTimeout(function(){_t.remove();
         var m;
         if(/买一送一|b1f1|bogo|buy.?1/i.test(msg)){
           ensureGen(function(){document.getElementById("wbCopyTx").textContent="Buy one, get one free — weekday lunch only at Warisan Grill.";
@@ -1364,24 +1395,26 @@ document.getElementById("rcAdd").addEventListener("click",function(){
       items.forEach(function(it){var b=document.createElement("button");b.textContent=it.t;
         if(it.cls)b.className=it.cls;
         b.addEventListener("click",function(){it.cb(b);});w.appendChild(b);});
-      var LL=curLog();LL.appendChild(w);LL.scrollTop=LL.scrollHeight;return w;}
+      var bl=document.getElementById("bLog"),bc=document.getElementById("bChips");
+      if(bl&&bc&&bl.offsetParent!==null){bc.textContent="";bc.appendChild(w);}
+      else{var LL=curLog();LL.appendChild(w);LL.scrollTop=LL.scrollHeight;}
+      return w;}
     function startFlow(){
-      say("ai",'Hi! Let’s build a campaign. First — what are we driving?');
+      sayAI('Hi! Let’s build a campaign. First — what are we driving?',function(){
       var gl=[].slice.call(document.querySelectorAll(".goal"));
       var w=chips(gl.map(function(g,i){return {t:g.querySelector("b").textContent,cb:function(btn){
         g.click(); say("me",btn.textContent); w.remove();
-        say("ai",'Got it: {g}. Now pick the dishes (tap to add):'.replace("{g}",btn.textContent));
-        dishStep();
-      }};}));
+        sayAI('Got it: {g}. Now the dishes — tap to add, the preview on the right updates live:'.replace("{g}",btn.textContent),dishStep);
+      }};}));});
     }
     function dishStep(){
       var ds=[].slice.call(document.querySelectorAll(".dch"));
       var picked=0;
-      var w=chips(ds.map(function(d){return {t:d.querySelector("b").textContent,cb:function(btn){
+      var w=chips(ds.map(function(d){return {t:d.querySelector("b").textContent,cls:(d.getAttribute("aria-pressed")==="true"?"done":""),cb:function(btn){
         d.click(); picked++;
         btn.classList.toggle("done");
       }};}).concat([{t:'Done picking',cls:"go",cb:function(){
-        w.remove(); say("ai",'Nice. Which look?'); styleStep(picked);
+        w.remove(); sayAI('Nice. Which look?',function(){styleStep(picked);});
       }}]));
     }
     function styleStep(n){
@@ -1390,12 +1423,13 @@ document.getElementById("rcAdd").addEventListener("click",function(){
         s.click(); say("me",btn.textContent); w.remove();
         var g=document.querySelector('.goal[aria-pressed="true"] b').textContent;
         var nn=document.querySelectorAll('.dch[aria-pressed="true"]').length;
-        say("ai",'All set — {g}, {n} dish(es), {s}. Ready when you are:'.replace("{g}",g).replace("{n}",nn).replace("{s}",btn.textContent));
+        sayAI('All set — {g}, {n} dish(es), {s}. The card on the right is your draft. Ready?'.replace("{g}",g).replace("{n}",nn).replace("{s}",btn.textContent),function(){
         var w2=chips([{t:'Generate 3 concepts',cls:"go",cb:function(){
           w2.remove(); document.querySelector('.nv[data-p="1"]').click();
           document.getElementById("wbGo").click();
-          setTimeout(function(){say("ai",'3 concepts are out — pick one on the page, or just tell me what to change (“price to 32”, “use the satay”…).');},1300);
-        }}]);
+          var _t2=typing();
+          setTimeout(function(){_t2.remove();say("ai",'Concepts are in — pick one on the right, or tell me what to change (“price to 32”, “use the satay”…).');},1300);
+        }}]);});
       }};}));
     }
     window.__agHandle=handle;
