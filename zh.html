@@ -417,6 +417,14 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .gitem .gi1{font-size:38px;filter:drop-shadow(0 4px 7px rgba(120,60,20,.28))}
 .dch span{filter:drop-shadow(0 2px 4px rgba(120,60,20,.25))}
 
+
+.photo.real{background-size:cover;background-position:center;position:relative;font-size:0}
+.photo.real small{position:absolute;left:6px;bottom:6px;background:rgba(255,255,255,.92);color:var(--ink);
+  font-size:9.5px;font-weight:700;padding:2px 8px;border-radius:99px}
+.photo.real:after{display:none}
+.photo.real.enh:after{display:block;content:"已美化"}
+.vp .a.real{height:112px;background-size:cover;background-position:center;padding:0}
+
 </style>
 </head>
 <body>
@@ -457,7 +465,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
 </aside>
 <main class="main">
   <div class="top"><h1 id="ptitle">总览</h1><span class="crumb" id="pcrumb">2026-07-28 周二</span><span class="sp"></span>
-    <div class="srch">⌕ 搜方案 · 物料 · 客户…</div><span class="avat">W</span></div>
+    <div class="srch">⌕ 搜方案 · 物料 · 客户…</div><a class="btn sm" href="./" style="text-decoration:none">EN</a><span class="avat">W</span></div>
 
   <!-- ═══════════ P0 总览 ═══════════ -->
   <section class="panel on" id="p0">
@@ -730,10 +738,10 @@ td b.pr2{font-variant-numeric:tabular-nums}
             <div class="photo">🍛<small>咖喱鸡饭</small></div>
             <div class="photo">🥩<small>牛肋排</small></div>
             <div class="photo">🍚<small>椰浆饭</small></div>
-            <div class="photo">🥭<small>芒果糯米饭</small></div>
-            <div class="photo">🍢<small>Satay</small></div>
-            <div class="photo">🍹<small>薄荷饮</small></div>
-            <div class="photo">🍝<small>松露意面</small></div>
+            <div class="photo real" style="background-image:url(img/mango.jpg)"><small>芒果糯米饭</small></div>
+            <div class="photo real" style="background-image:url(img/satay.jpg)"><small>Satay</small></div>
+            <div class="photo real" style="background-image:url(img/cooler.jpg)"><small>薄荷饮</small></div>
+            <div class="photo real" style="background-image:url(img/pasta.jpg)"><small>松露意面</small></div>
           </div>
         </div>
         <div class="card mt" id="mgWrap" hidden>
@@ -1031,11 +1039,13 @@ document.getElementById("kpiInbox").addEventListener("click",function(){ documen
       var on=document.querySelector('.dch[aria-pressed="true"] span'); if(on) cur.emo=on.textContent; return;}
     var v=e.target.closest(".var"); if(v){[].forEach.call(document.querySelectorAll(".var"),function(x){x.classList.remove("sel");});v.classList.add("sel");return;}
   });
+  var IMGS={"🥭":"img/mango.jpg","🍹":"img/cooler.jpg","🍝":"img/pasta.jpg","🍢":"img/satay.jpg"};
   function poster(i,recc){
     var c=STY[cur.sty].c;
+    var art=IMGS[cur.emo]?'<div class="a real" style="background-image:url('+IMGS[cur.emo]+')"></div>':'<div class="a">'+cur.emo+'</div>';
     return '<div class="var'+(recc?" sel":"")+'">'+(recc?'<span class="rec">推荐方案</span>':"")+
       '<div class="vp"><div class="h" style="background:'+c+'">WARISAN GRILL · HALAL ✓</div>'+
-      '<div class="a">'+cur.emo+'</div><div class="t">'+TT[i]+'</div>'+
+      art+'<div class="t">'+TT[i]+'</div>'+
       '<div class="pr num" style="color:'+c+'">RM '+cur.price+' <s style="font-size:10px;color:#9A9184">原 RM '+cur.orig+'</s></div>'+
       '<div class="f"><span>Jalan Ampang, KL · 11:00–22:00<br>WhatsApp +60 12-345 6789</span><span class="qrp"></span></div></div></div>';
   }
