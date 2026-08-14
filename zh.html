@@ -15,7 +15,7 @@
 :root{
   --bg:#F6F7F9; --surface:#FFFFFF; --surface2:#F1F3F6;
   --line:#E5E8EE; --line2:#EEF0F4;
-  --ink:#0F172A; --ink2:#334155; --mut:#64748B; --faint:#94A3B8;
+  --ink:#0F172A; --ink2:#334155; --mut:#576273; --faint:#8792A3;
   --blue:#2563EB; --blue-soft:#EEF4FF; --blue-line:#C6D8FD;
   --green:#0F7B41; --green-soft:#E8F6EE;
   --amber:#B45309; --amber-soft:#FCF4E3;
@@ -129,6 +129,80 @@ h2{font-family:var(--sans);font-size:clamp(22px,2.4vw,27px);letter-spacing:-.02e
 .chip{font-size:11px;font-weight:700;padding:4px 10px;border-radius:8px;border:1px solid var(--line);color:var(--mut)}
 .chip.rd{background:var(--red-soft);border-color:#F2C7C2;color:var(--red)}
 .chip.am{background:var(--amber-soft);border-color:#F1DFBB;color:var(--amber)}
+/* ═══ Home v9 ═══ */
+.kpis.k4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:1060px){.kpis.k4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.kpi .ksub{display:block;font-size:10.8px;color:var(--mut);margin-top:3px}
+.kic{width:34px;height:34px;border-radius:10px;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;flex-shrink:0}
+.kimg{width:42px;height:42px;border-radius:10px;background-size:cover;background-position:center;flex-shrink:0}
+.ins3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media(max-width:1060px){.ins3{grid-template-columns:1fr}}
+.ins{border:1px solid var(--line);border-radius:12px;padding:11px 12px;display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.ins b{font-size:12.8px}
+.ins>s{font-size:11.4px;color:var(--mut);line-height:1.5;flex:1}
+.chip.bl{background:var(--blue-soft);border-color:var(--blue-line);color:var(--blue)}
+.chip.gn{background:#F0FDF4;border-color:#BBF7D0;color:#15803D}
+.qk6{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.qk{border:1px solid var(--line);border-radius:12px;padding:12px 8px;display:flex;flex-direction:column;align-items:center;gap:5px;text-align:center;transition:.15s}
+.qk:hover{border-color:var(--blue-line);background:var(--blue-soft)}
+.qk:active{transform:scale(.97)}
+.qk i{width:34px;height:34px;border-radius:10px;background:var(--surface2);display:grid;place-items:center}
+.qk b{font-size:12.2px}
+.qk s{font-size:10.4px;color:var(--mut)}
+.bnr{display:flex;align-items:center;gap:12px;background:var(--surface2);border:1px solid var(--line);border-radius:14px;padding:13px 16px}
+.bnr>span:last-of-type b{display:block;font-size:13.3px}
+.bnr>span:last-of-type s{font-size:11.6px;color:var(--mut)}
+.bnr .btn{margin-left:auto;flex-shrink:0}
+.st5 .s5{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line2)}
+.st5 .s5:last-child{border-bottom:0}
+.s5 i{width:24px;height:24px;border-radius:50%;background:var(--surface2);color:var(--mut);display:grid;place-items:center;font-size:11.5px;font-weight:700;font-style:normal;flex-shrink:0}
+.s5.done i{background:var(--green);color:#fff}
+.s5.cur i{background:var(--ink);color:#fff}
+.s5>span{flex:1;min-width:0}
+.s5 b{font-size:12.5px;display:block}
+.s5 s{font-size:10.8px;color:var(--mut)}
+.sug .sgi{display:flex;gap:9px;align-items:flex-start;width:100%;text-align:left;padding:8px 0;border-bottom:1px dashed var(--line2);font-size:12.2px;line-height:1.45;color:var(--ink2)}
+.sug .sgi:last-child{border-bottom:0}
+.pr{flex-shrink:0;font-size:10px;font-weight:800;font-style:normal;border-radius:6px;padding:2px 7px;margin-top:1px}
+.pr.hi{background:#FEF2F2;color:#B91C1C;border:1px solid #FECACA}
+.pr.md{background:#FFFBEB;color:#B45309;border:1px solid #FDE68A}
+.pr.lo{background:var(--surface2);color:var(--mut);border:1px solid var(--line)}
+/* ═══ Store details v9 ═══ */
+.aud{display:flex;align-items:center;gap:10px;padding:7px 0}
+.aud .ai2{width:30px;height:30px;border-radius:9px;background:var(--surface2);display:grid;place-items:center;flex-shrink:0}
+.aud>span:last-child{flex:1;min-width:0}
+.aud .ai2{flex:0 0 30px}
+.aud b{font-size:12.5px;display:flex;justify-content:space-between}
+.aud b em{font-style:normal;font-family:Outfit,sans-serif}
+.abar{height:6px;background:var(--surface2);border-radius:99px;margin-top:4px;overflow:hidden}
+.abar i{display:block;height:100%;border-radius:99px;background:var(--blue)}
+.fchips{display:flex;flex-wrap:wrap;gap:5px;padding-top:2px}
+.fchips .stc{cursor:default}
+
+/* ═══ Mobile pass v9 ═══ */
+@media(max-width:640px){
+  .kpis.k4{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .kpi .num{font-size:19px}
+  .kpi .ksub{font-size:10px}
+  .socrow{display:flex;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}
+  .socrow .soc{flex:0 0 96px}
+  .ins3,.qk6{grid-template-columns:1fr 1fr}
+  .bnr{flex-wrap:wrap}
+  .bnr .btn{margin-left:0;width:100%;justify-content:center}
+  .steps-r{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .steps-r .stp s{display:none}
+  .steps-r .stp{min-width:56px}
+  .mtabs2{display:flex;width:100%}
+  .mtabs2 button{flex:1}
+  .bchat{height:calc(100dvh - 220px);min-height:380px}
+  .chatmode #bLiveP{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+  .vlab{font-size:9.5px}
+  .acts{flex-wrap:wrap}
+  .acts .btn{flex:1;justify-content:center}
+}
+
+
+
 .task .meta{font-size:11.5px;color:var(--faint)}
 .task h3{font-size:15px;font-weight:700;letter-spacing:-.01em;margin:9px 0 8px}
 .task .tags{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
@@ -387,7 +461,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .vp .a{display:grid;place-items:center;font-size:42px;padding:16px 0 4px}
 .vp .t{text-align:center;font-weight:800;font-size:12.5px;padding:4px 8px 0}
 .vp .pr{text-align:center;font-weight:800;font-size:16px;padding:4px 0 2px}
-.vp .f{display:flex;justify-content:space-between;align-items:center;font-size:7.5px;color:#8A8071;padding:6px 9px;border-top:1px solid #EFE6D5;margin-top:6px}
+.vp .f{display:flex;justify-content:space-between;align-items:center;font-size:8px;color:#8A8071;padding:6px 9px;border-top:1px solid #EFE6D5;margin-top:6px}
 .vp .qrp{width:22px;height:22px;border-radius:4px}
 .gen-load .a{animation:pulse 1s ease infinite}
 .edbar{display:flex;gap:7px;flex-wrap:wrap}
@@ -558,6 +632,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
 @keyframes tp{0%,60%,100%{opacity:.25}30%{opacity:1}}
 .wb3:not(.chatmode) #bLive{display:none}
 #bLiveP .var{max-width:210px;margin:8px auto 2px}
+.var.hasrec .vp .h{padding-top:16px}
 .wb3.chatmode{align-items:stretch}
 .chatmode #wbCol3{display:flex;flex-direction:column;min-height:0}
 .chatmode #bLive:not([hidden]){flex:1;display:flex;flex-direction:column}
@@ -570,7 +645,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .vp.v1 .pr{font-size:20px;letter-spacing:-.01em}
 .vp.v1 .a.real{min-height:92px}
 .vp.v1 .t{font-size:12px}
-.vp.v1 .f{font-size:7px}
+.vp.v1 .f{font-size:7.5px}
 .vp.v2 .t{font-size:16px;line-height:1.15;padding-top:10px}
 .vp.v2 .a.real{min-height:82px}
 .vp.v2 .pr{font-size:13px}
@@ -624,7 +699,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
     <button class="nv" data-p="5"><i data-i="bulb"></i>新菜灵感</button>
     <button class="nv" data-p="7"><i data-i="share"></i>社媒中心</button>
     <div class="ngrp">配置</div>
-    <button class="nv" data-p="6"><i data-i="gear"></i>店面与接入</button>
+    <button class="nv" data-p="6"><i data-i="gear"></i>店面资料</button>
   </nav>
 </aside>
 <main class="main">
@@ -633,97 +708,113 @@ td b.pr2{font-variant-numeric:tabular-nums}
 
   <!-- ═══════════ P0 总览 ═══════════ -->
   <section class="panel on" id="p0">
-    <div style="margin-bottom:16px"><div class="eyebrow">Warisan Grill · Kuala Lumpur</div>
-      <h2>早上好，老板</h2>
-      <p class="sub">等你拍板的在最上面，AI 干了什么在右边。</p></div>
+    <div style="margin-bottom:16px"><div class="eyebrow">Warisan Grill · 吉隆坡</div>
+      <h2>早上好</h2>
+      <p class="sub">决策优先 —— AI 备好一切，你只管拍板。</p></div>
+
+    <div class="kpis k4">
+      <button class="kpi" data-p="2"><span class="r1"><s>今日销售额</s><span class="tag gn">+6.4%</span></span>
+        <span class="r2"><b class="num">RM 2,140</b><i class="kic" data-i="chart"></i></span><span class="ksub">较昨日 · 128 单</span></button>
+      <button class="kpi" data-p="2"><span class="r1"><s>本周</s><span class="tag gn">+8.1%</span></span>
+        <span class="r2"><b class="num">RM 13,867</b><i class="kic" data-i="activity"></i></span><span class="ksub">625 单 · 周六最旺</span></button>
+      <button class="kpi" data-p="2"><span class="r1"><s>平均客单</s><span class="tag gn">+5.1%</span></span>
+        <span class="r2"><b class="num">RM 16.70</b><i class="kic" data-i="tagT"></i></span><span class="ksub">今日每单</span></button>
+      <button class="kpi" data-p="3"><span class="r1"><s>最畅销</s><span class="tag bl">今日 56 份</span></span>
+        <span class="r2"><b style="font-size:15px">芒果糯米饭</b><span class="kimg" style="background-image:url(img/mango.jpg)"></span></span><span class="ksub">RM 14.00</span></button>
+    </div>
+
+    <div class="card" style="margin-bottom:16px">
+      <div class="chd"><i data-i="share"></i><b>社媒总览</b><s>官方平台数据</s><span class="sp"></span><button class="btn sm" data-p="7">详情 →</button></div>
+      <div class="socwrap">
+        <button class="socbig" data-p="7">
+          <s>本周触达</s><b class="num">103.2k</b><em class="tag gn">较上周 +18%</em>
+          <span>62% 短视频 · 5 个平台</span>
+        </button>
+        <div class="socrow">
+          <button class="soc" data-p="7"><span class="ii" style="background:#1877F2">f</span><b class="num">12.4k</b><s class="up">+2.1%</s></button>
+          <button class="soc" data-p="7"><span class="ii" style="background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF)">Ig</span><b class="num">8,930</b><s class="up">+4.8%</s></button>
+          <button class="soc" data-p="7"><span class="ii" style="background:#FE2C55">小</span><b class="num">1,204</b><s class="up">+12.3%</s></button>
+          <button class="soc" data-p="7"><span class="ii" style="background:#111">Tk</span><b class="num">3,481</b><s class="up">+6.9%</s></button>
+          <button class="soc" data-p="7"><span class="ii" style="background:#25D366">Wa</span><b class="num">248</b><s>已订阅</s></button>
+        </div>
+      </div>
+    </div>
+
     <div class="two">
     <div>
-      <div class="kpis">
-        <button class="kpi"><span class="r1"><s>昨天营收</s><span class="tag gn">+6.4%</span></span>
-          <span class="r2"><b class="num">RM 2,140</b><span class="mini"><i style="height:40%"></i><i style="height:55%"></i><i style="height:34%"></i><i style="height:68%"></i><i style="height:57%"></i><i class="hi" style="height:92%"></i><i style="height:74%"></i></span></span></button>
-        <button class="kpi"><span class="r1"><s>本周营收 · 625 单</s><span class="tag gn">+8.1%</span></span>
-          <span class="r2"><b class="num">RM 13,867</b><span class="mini"><i style="height:30%"></i><i style="height:45%"></i><i style="height:26%"></i><i style="height:52%"></i><i style="height:70%"></i><i class="hi" style="height:96%"></i><i style="height:84%"></i></span></span></button>
-        <button class="kpi" id="kpiInbox"><span class="r1"><s>等你拍板</s><span class="tag am">今天</span></span>
-          <span class="r2"><b class="num" id="inboxN">2</b><span class="avs"><span style="background:#B4451F">设</span><span style="background:#2563EB">销</span></span></span></button>
-      </div>
-
-      <div class="card" style="margin-bottom:16px">
-        <div class="chd"><i data-i="share"></i><b>社媒一眼</b><s>流量在涨 · 官方数据</s><span class="sp"></span><button class="btn sm" data-p="7">详情 →</button></div>
-        <div class="socwrap">
-          <button class="socbig" data-p="7">
-            <s>本周总曝光</s><b class="num">103.2k</b><em class="tag gn">+18% vs 上周</em>
-            <span>短视频占 62% · 五平台合计</span>
-          </button>
-          <div class="socrow">
-            <button class="soc" data-p="7"><span class="ii" style="background:#1877F2">f</span><b class="num">12.4k</b><s class="up">+2.1%</s></button>
-            <button class="soc" data-p="7"><span class="ii" style="background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF)">Ig</span><b class="num">8,930</b><s class="up">+4.8%</s></button>
-            <button class="soc" data-p="7"><span class="ii" style="background:#FE2C55">小</span><b class="num">1,204</b><s class="up">+12.3%</s></button>
-            <button class="soc" data-p="7"><span class="ii" style="background:#111">Tk</span><b class="num">3,481</b><s class="up">+6.9%</s></button>
-            <button class="soc" data-p="7"><span class="ii" style="background:#25D366">Wa</span><b class="num">248</b><s>opt-in</s></button>
-          </div>
-        </div>
-        <div class="cnote">本周最佳：Merdeka 短片 <b class="num">18.7k</b> 曝光 —— 短视频是图文的 <b>2.9 倍</b>，下周物料已默认短片优先。<button class="lnk" data-p="7">看全部内容 →</button></div>
-      </div>
-
-      <div class="shead"><b>今天要处理</b><button class="btn sm">全部 →</button></div>
+      <div class="shead"><b>今天要拍板</b><span class="tag am" style="margin-left:8px">2 件待定</span><span class="sp"></span><button class="btn sm" data-p="1">查看全部 →</button></div>
       <div id="taskList">
         <div class="task">
-          <div class="tr1"><span class="chip am">建议档期 08-12 · 还有 2 周</span><span class="meta">附件 · 海报 v1</span></div>
-          <h3>午市快闪海报做好了，发不发？</h3>
-          <div class="tags"><span class="tag gn">✓ Halal</span><span class="tag am">待确认</span><span class="tag">加价购 RM38 · 毛利 61%</span></div>
-          <div class="acts"><button class="btn pri ok1">发布</button><button class="btn" data-p="1">先看看 / 改</button><button class="btn gho no1">退</button></div>
+          <div class="tr1"><span class="chip am">建议 8/12 上线 · 还有 2 周</span><span class="meta">海报 v1 已附</span></div>
+          <h3>午市快闪海报做好了，发吗？</h3>
+          <div class="tags"><span class="tag gn">✓ Halal</span><span class="tag am">待审批</span><span class="tag">加购套餐 RM 38 · 毛利 61%</span></div>
+          <div class="acts"><button class="btn pri ok1">发布</button><button class="btn" data-p="1">先看看 / 改</button><button class="btn gho no1">不要</button></div>
         </div>
         <div class="task">
-          <div class="tr1"><span class="chip rd">印刷 8/1 截止 · 还有 4 天</span><span class="meta">附件 · 排期表</span></div>
-          <h3>国庆排期定不定？8/19 开跑</h3>
-          <div class="tags"><span class="tag">Merdeka · 08-31</span><span class="tag am">待确认</span><span class="tag am">印刷要提前 1 个月</span></div>
-          <div class="acts"><button class="btn pri ok1">就这么定</button><button class="btn" data-p="2">看分析</button><button class="btn gho no1">退</button></div>
+          <div class="tr1"><span class="chip rd">印刷截止 8/1 · 剩 4 天</span><span class="meta">排期已附</span></div>
+          <h3>Merdeka 档期锁定吗？8/19 开跑</h3>
+          <div class="tags"><span class="tag">Merdeka · 8/31</span><span class="tag am">待审批</span><span class="tag am">印刷要提前 1 个月</span></div>
+          <div class="acts"><button class="btn pri ok1">锁定</button><button class="btn" data-p="2">看分析</button><button class="btn gho no1">不要</button></div>
         </div>
       </div>
-      <div class="note" style="margin-top:4px">AI 手上没有「发布」按钮 —— 它只能把申请单放到这里，<b>你批了，系统才执行</b>。</div>
+      <div class="note" style="margin-top:4px">AI 没有发布按钮，只能把请求放到这里 —— <b>你不点头，什么都不会发生</b>。</div>
 
       <div class="card mt">
-        <div class="chd"><i data-i="chart"></i><b>本周每天卖多少</b><s>周六最旺 · 周三最冷</s><span class="sp"></span><button class="btn sm" data-p="2">看分析 →</button></div>
-        <div class="bars">
-          <div class="bcol"><s>一</s><i style="height:38%"></i></div>
-          <div class="bcol"><s>二</s><i style="height:44%"></i></div>
-          <div class="bcol lo"><s>三</s><i style="height:26%"></i></div>
-          <div class="bcol"><s>四</s><i style="height:52%"></i></div>
-          <div class="bcol"><s>五</s><i style="height:68%"></i></div>
-          <div class="bcol hi"><span class="tip num">RM 2,860</span><s>六</s><i style="height:100%"></i></div>
-          <div class="bcol"><s>日</s><i style="height:84%"></i></div>
+        <div class="chd"><i data-i="bulb"></i><b>AI 经营洞察</b><s>来自你自己的数据</s><span class="sp"></span><button class="btn sm" data-p="2">全部洞察 →</button></div>
+        <div class="ins3">
+          <div class="ins"><span class="chip am">销售机会</span><b>午市还有很大空间</b><s>午市只占营收 43%，但 11:30–13:30 客流不差。推一个午市加购套餐能拉客单。</s><button class="btn sm" data-p="1">看方案 →</button></div>
+          <div class="ins"><span class="chip bl">顾客洞察</span><b>老顾客在流失</b><s>复购率 31%，低于同行。23 位会员 14 天没来 —— 唤回消息已草拟好。</s><button class="btn sm" data-p="8">看唤回 →</button></div>
+          <div class="ins"><span class="chip gn">菜单健康</span><b>8 道菜卖不动</b><s>连续 14 天低销量。下次印菜单前，砍掉或捆绑到畅销款后面。</s><button class="btn sm" data-p="3">菜单分析 →</button></div>
         </div>
-        <div class="cnote">周三那根最矮的 —— 就是 AI 建议做沙爹促销的原因。<button class="lnk" data-p="1">去看方案 →</button></div>
       </div>
 
+      <div class="card mt">
+        <div class="chd"><i data-i="spark"></i><b>快速开始</b><s>挑一件事 —— 剩下的交给 AI</s></div>
+        <div class="qk6">
+          <button class="qk" data-p="1"><i data-i="imgT"></i><b>设计海报</b><s>AI 排版 + 文案</s></button>
+          <button class="qk" data-p="1"><i data-i="typeT"></i><b>生成文案</b><s>3 种语言</s></button>
+          <button class="qk" data-p="2"><i data-i="chart"></i><b>上传销售表</b><s>出周报</s></button>
+          <button class="qk" data-p="3"><i data-i="camera"></i><b>美化食物照</b><s>菜单级出片</s></button>
+          <button class="qk" data-p="3"><i data-i="list"></i><b>生成菜单</b><s>可印 PNG</s></button>
+          <button class="qk" data-p="8"><i data-i="users"></i><b>会员营销</b><s>唤回 · 生日</s></button>
+        </div>
+      </div>
 
+      <div class="bnr mt">
+        <span class="ag-av" style="width:38px;height:38px;font-size:15px;flex-shrink:0">D</span>
+        <span><b>老板，杂活交给 AI 团队。</b><s>海报、分析、日历都包了 —— 但你不点头，一样都不会发出去。</s></span>
+        <button class="btn pri" data-p="1">聊着做一张</button>
+      </div>
     </div>
+
     <aside class="rail">
       <div class="card">
-        <div class="chd"><i data-i="bell"></i><b>要留意</b><s>AI 替你盯着</s><span class="sp"></span><span class="tag am">4</span></div>
-        <div class="seg"><div class="s1"><s>餐厅资料完成度</s><b>72%</b></div>
-          <div class="segbar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></div>
-          <div class="s2">菜单 ✓ · 接入 ✓ · 菜品照 12/19 · Brand Kit 差字体</div></div>
-        <div class="al am"><span>Brand Kit 还差<b>字体文件</b> —— 现在海报用默认字体。<button class="lnk" data-p="6">去传 →</button></span></div>
-        <div class="al"><span><b>7 道菜</b>还没有实拍照，海报只能用示意图。<button class="lnk" data-p="3">去看 →</button></span></div>
-        <div class="al rd"><span>椰浆按本周卖法<b>只够到周五</b> —— AI 从销量推的。</span></div>
-        <div class="al"><span><b>Malaysia Day 9/16</b> 还有 50 天，要印刷 8/16 前定稿。<button class="lnk" data-p="1">备战 →</button></span></div>
-      </div>
-      <div class="card">
-        <div class="chd"><i data-i="users"></i><b>AI 团队</b><span class="sp"></span><span class="tag gn">在岗</span></div>
-        <div class="tm"><span class="ta" style="background:#0F172A">总</span><span><b>总管</b><s>在等你批「午市快闪」</s></span><i class="dot" style="background:var(--amber)"></i></div>
-        <div class="tm"><span class="ta" style="background:#B4451F">设</span><span><b>营销设计师</b><s>正在出国庆海报 v2</s></span><i class="dot" style="background:var(--blue)"></i></div>
-        <div class="tm"><span class="ta" style="background:#2563EB">销</span><span><b>销售分析</b><s>算完账 · 毛利 61% ✓</s></span><i class="dot" style="background:var(--green)"></i></div>
-        <div class="tm"><span class="ta" style="background:#64748B">数</span><span><b>数据管家</b><s>空闲 · 08:02 清完流水</s></span><i class="dot" style="background:var(--faint)"></i></div>
-      </div>
-      <div class="card">
-        <div class="chd"><i data-i="activity"></i><b>刚刚发生</b><span class="sp"></span><span class="tag bl">Live</span></div>
-        <div class="feed">
-          <div><span>海报 v2 出稿 —— 价格按你说的改成 RM32</span><time>09:41</time></div>
-          <div><span>午市快闪毛利复核：<b>61% ✓</b> 过保险线</span><time>09:40</time></div>
-          <div><span>昨天流水清洗完：<b>625 行 · 0 错</b></span><time>08:02</time></div>
+        <div class="chd"><i data-i="gauge"></i><b>跟着步骤走，就有结果</b></div>
+        <div class="st5">
+          <div class="s5 done"><i>✓</i><span><b>选目标</b><s>提升午市销量 —— 已定</s></span><em class="tag gn">完成</em></div>
+          <div class="s5 cur"><i>2</i><span><b>上传资料</b><s>销售表 · 菜品照片</s></span><button class="btn sm" data-p="2">去上传 →</button></div>
+          <div class="s5"><i>3</i><span><b>AI 分析生成</b><s>方案 + 文案</s></span><em class="tag">下一步</em></div>
+          <div class="s5"><i>4</i><span><b>微调</b><s>价格 · 图 · 语气</s></span></div>
+          <div class="s5"><i>5</i><span><b>发布</b><s>审批后才会发</s></span></div>
         </div>
-        <div class="insight"><span><b>周三连续 4 周最冷。</b>已起草沙爹 15% off</span><button class="btn sm" data-p="1" style="margin-left:auto">去看 →</button></div>
+        <div class="cnote">按顺序做效果最好 —— 走到哪 AI 都记得。</div>
+      </div>
+
+      <div class="card mt">
+        <div class="chd"><i data-i="bulb"></i><b>本周经营建议</b><span class="sp"></span><button class="btn sm" data-p="2">更多 →</button></div>
+        <div class="sug">
+          <button class="sgi" data-p="1"><i class="pr hi">高</i><span>推「工作日午市套餐」—— 把 43% 的午市份额拉上来</span></button>
+          <button class="sgi" data-p="7"><i class="pr md">中</i><span>发新菜制作过程视频 —— 视频触达是图片的 2.9 倍</span></button>
+          <button class="sgi" data-p="3"><i class="pr md">中</i><span>Merdeka 菜单付印前，清掉 8 道低销菜</span></button>
+          <button class="sgi" data-p="8"><i class="pr lo">低</i><span>会员日双倍积分 —— 把 31% 复购率抬起来</span></button>
+        </div>
+      </div>
+
+      <div class="card mt">
+        <div class="chd"><i data-i="bell"></i><b>盯梢清单</b><span class="sp"></span><span class="tag am">3</span></div>
+        <div class="al am"><span>品牌包缺<b>字体文件</b> —— 海报暂用默认字体。<button class="lnk" data-p="6">上传 →</button></span></div>
+        <div class="al rd"><span>照这个卖法，椰浆<b>周五前</b>见底 —— 按销量推算。</span></div>
+        <div class="al"><span><b>Malaysia Day 9/16</b> —— 还有 50 天，8/16 前锁印刷。<button class="lnk" data-p="1">准备 →</button></span></div>
       </div>
     </aside>
     </div>
@@ -828,7 +919,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
               <p class="hash">#好味午餐 #午市特惠 #KL美食 #WarisanGrill #HalalFood</p>
               <p class="cta">CTA 按钮文案：<b>立即点餐 · 了解更多</b></p>
               <div class="mrow" style="margin-top:11px">
-                <button class="btn pri" id="wbPub" style="width:100%;justify-content:center">提交发布审批</button>
+                <button class="btn pri" id="wbPub" style="width:100%;justify-content:center" onclick="hvTrack('submit_approval',{price:window.__wb.price})">提交发布审批</button>
               </div>
               <div class="pubq" id="wbQ" hidden>
                 <div><span>Facebook + Instagram</span><span class="st" style="color:var(--green)">已进队列 ✓</span></div>
@@ -1002,35 +1093,64 @@ td b.pr2{font-variant-numeric:tabular-nums}
 
   <!-- ═══════════ P6 店面与接入 ═══════════ -->
   <section class="panel" id="p6">
-    <div style="margin-bottom:16px"><div class="eyebrow">Store & Integrations</div>
-      <h2>资料传一次，处处自动用</h2>
-      <p class="sub">店名地址电话进海报页脚、Brand Kit 管配色字体、接入管发布渠道。</p></div>
+    <div style="margin-bottom:16px"><div class="eyebrow">店面资料</div>
+      <h2>填一次，到处能用</h2>
+      <p class="sub">这些资料自动带进海报、菜单和社媒 —— 不用重复填，品牌信息保持一致。</p></div>
     <div class="grid2">
       <div class="card">
-        <div class="chd"><i data-i="gear"></i><b>店面资料</b><s>海报页脚 · 菜单页眉都用它</s></div>
-        <div class="form2">
+        <div class="chd"><i data-i="gear"></i><b>店铺基础资料</b><s>自动应用到各模块</s><span class="sp"></span><span class="tag gn">已保存</span></div>
+        <div class="intg"><span class="ii" style="background:#B4451F">W</span><span><b>Logo</b><s>warisan-logo.png · 透明底</s></span><button class="btn sm">更换</button></div>
+        <div class="intg"><span class="ii" style="background:linear-gradient(135deg,#B4451F,#1F2937)">C</span><span><b>品牌色</b><span class="swatch" style="margin-top:4px"><i style="background:#B4451F"></i><i style="background:#1F2937"></i><i style="background:#F5EFE6"></i><i style="background:#3F7D4E"></i></span></span><span class="st tag gn">已设置</span></div>
+        <div class="intg"><span class="ii" style="background:#64748B">Aa</span><span><b>字体</b><s>Poppins 标题 · Noto Sans 正文</s></span><span class="st tag am">缺字体文件</span></div>
+        <div class="form2" style="margin-top:12px">
           <div class="fld"><label>店名</label><input value="Warisan Grill"></div>
           <div class="fld"><label>认证</label><input value="Halal ✓ · JAKIM 2024-11"></div>
           <div class="fld"><label>地址</label><input value="Jalan Ampang, Kuala Lumpur"></div>
+          <div class="fld"><label>Google 地图</label><input value="maps.app.goo.gl/warisan"></div>
+          <div class="fld"><label>营业时间</label><input value="11:00 – 22:00 · 每天"></div>
+          <div class="fld"><label>电话</label><input value="+60 3-2161 0088"></div>
           <div class="fld"><label>WhatsApp</label><input value="+60 12-345 6789"></div>
-          <div class="fld"><label>营业时间</label><input value="11:00 – 22:00"></div>
-          <div class="fld"><label>人均</label><input value="RM 22 – 35"></div>
+          <div class="fld"><label>餐厅类型</label><input value="Halal 烧烤 · 休闲餐"></div>
+          <div class="fld"><label>Facebook</label><input value="facebook.com/warisangrillkl"></div>
+          <div class="fld"><label>Instagram</label><input value="@warisangrill"></div>
         </div>
-        <div class="cnote">「附近人潮」我们用<b>你自己的 POS 数据</b>算（更准）—— 不承诺拿不到的第三方大数据。</div>
+        <div class="fld" style="margin-top:10px"><label>主力客群</label>
+          <div class="fchips"><span class="stc">上班族</span><span class="stc">家庭</span><span class="stc">学生</span></div></div>
+        <div class="fld" style="margin-top:8px"><label>价格带</label>
+          <div class="fchips"><span class="stc">$$ · 人均 RM 15 – 35</span></div></div>
+        <div class="mrow" style="margin-top:13px"><button class="btn pri" id="stSave">保存资料</button><button class="btn">重置</button></div>
+        <div class="cnote">宣传设计、菜单、QR 页、社媒发布都复用这里 —— 改一处，处处更新。</div>
       </div>
       <div>
         <div class="card">
-          <div class="chd"><i data-i="palette"></i><b>Brand Kit</b><s>差 1 项：字体文件</s></div>
-          <div class="intg"><span class="ii" style="background:#B4451F">W</span><span><b>Logo</b><s>warisan-logo.png · 透明底</s></span><span class="st tag gn">已上传</span></div>
-          <div class="intg"><span class="ii" style="background:linear-gradient(135deg,#B4451F,#1F2937)">色</span><span><b>品牌色</b><span class="swatch" style="margin-top:4px"><i style="background:#B4451F"></i><i style="background:#1F2937"></i><i style="background:#F5EFE6"></i><i style="background:#3F7D4E"></i></span></span><span class="st tag gn">已配置</span></div>
-          <div class="intg"><span class="ii" style="background:#64748B">Aa</span><span><b>字体</b><s>标题 Poppins · 正文 Noto Sans</s></span><span class="st tag am">差文件 · 去传</span></div>
+          <div class="chd"><i data-i="imgT"></i><b>品牌资料预览</b><s>这些资料长什么样</s></div>
+          <div style="display:grid;grid-template-columns:130px 1fr;gap:12px;align-items:start">
+            <div class="vp" style="border-radius:10px"><div class="h" style="background:#B4451F">WARISAN GRILL · HALAL ✓</div>
+              <div class="a real" style="height:74px;background-image:url(img/mango.jpg);background-size:cover;background-position:center"></div>
+              <div class="t" style="font-size:10px">午市快闪 · RM 38</div>
+              <div class="f" style="font-size:6.5px"><span>Jalan Ampang · 11:00–22:00</span><span class="qrp" style="width:14px;height:14px"></span></div></div>
+            <div>
+              <div class="strow" style="font-size:12px"><b>菜单页眉</b></div>
+              <div class="strow">Warisan Grill · Halal ✓ · 11:00–22:00</div>
+              <div class="strow" style="margin-top:6px;font-size:12px"><b>社媒简介</b></div>
+              <div class="strow">吉隆坡 Halal 烧烤 · WhatsApp +60 12-345 6789</div>
+            </div>
+          </div>
         </div>
         <div class="card mt">
-          <div class="chd"><i data-i="link"></i><b>发布接入</b><s>对外动作永远先过审批</s></div>
-          <div class="intg"><span class="ii" style="background:#1877F2">f</span><span><b>Facebook 专页</b><s>Warisan Grill KL</s></span><span class="st tag gn">已连接</span></div>
+          <div class="chd"><i data-i="users"></i><b>客群构成</b><s>你自己的估算 · 可编辑</s><span class="sp"></span><span class="tag">不追踪 · PDPA</span></div>
+          <div class="aud"><span class="ai2">💼</span><span><b>上班族 <em>42%</em></b><span class="abar"><i style="width:42%"></i></span></span></div>
+          <div class="aud"><span class="ai2">👨‍👩‍👧</span><span><b>家庭 <em>28%</em></b><span class="abar"><i style="width:28%"></i></span></span></div>
+          <div class="aud"><span class="ai2">🎓</span><span><b>学生 <em>18%</em></b><span class="abar"><i style="width:18%"></i></span></span></div>
+          <div class="aud"><span class="ai2">🧳</span><span><b>游客 <em>12%</em></b><span class="abar"><i style="width:12%"></i></span></span></div>
+          <div class="cnote">由你填写、再用自家 POS 规律校准 —— 不买也不爬第三方"人潮数据"。</div>
+        </div>
+        <div class="card mt">
+          <div class="chd"><i data-i="link"></i><b>发布通道</b><s>所有对外动作都先过你审批</s></div>
+          <div class="intg"><span class="ii" style="background:#1877F2">f</span><span><b>Facebook 主页</b><s>Warisan Grill KL</s></span><span class="st tag gn">已连接</span></div>
           <div class="intg"><span class="ii" style="background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF)">Ig</span><span><b>Instagram</b><s>@warisangrill</s></span><span class="st tag gn">已连接</span></div>
-          <div class="intg"><span class="ii" style="background:#25D366">Wa</span><span><b>WhatsApp Business</b><s>群发走官方 API · 幂等键防重发</s></span><span class="st tag gn">已连接</span></div>
-          <div class="intg"><span class="ii" style="background:#FE2C55">小</span><span><b>小红书</b><s>无官方 API —— 内容自动备好，人工发</s></span><span class="st tag">半自动</span></div>
+          <div class="intg"><span class="ii" style="background:#25D366">Wa</span><span><b>WhatsApp Business</b><s>官方 API · 幂等键防重发</s></span><span class="st tag gn">已连接</span></div>
+          <div class="intg"><span class="ii" style="background:#FE2C55">小</span><span><b>小红书</b><s>无官方 API —— 内容备好，人工发布</s></span><span class="st tag">半自动</span></div>
         </div>
       </div>
     </div>
@@ -1158,7 +1278,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
   <div class="agq"><button data-agq="b1">改成买一送一</button><button data-agq="p32">价格改 32</button><button data-agq="satay">用沙爹那道</button></div>
   <form class="agin" id="agForm"><input id="agIn" placeholder="输入指令…" autocomplete="off"><button type="submit">发送</button></form>
 </div>
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
 /* ═══ icons ═══ */
 (function(){
@@ -1191,8 +1311,13 @@ td b.pr2{font-variant-numeric:tabular-nums}
   document.querySelectorAll("[data-i]").forEach(function(el){ el.innerHTML=I[el.getAttribute("data-i")]||""; });
 })();
 /* ═══ nav ═══ */
-var TITLES=["总览","宣传设计","销售分析","菜品与菜单","客户","新菜灵感","店面与接入","社媒中心","会员 · Loyalty"];
+var TITLES=["总览","宣传设计","销售分析","菜品与菜单","客户","新菜灵感","店面资料","社媒中心","会员 · Loyalty"];
+window.hvTrack=function(ev,props){try{var a=JSON.parse(localStorage.getItem("hv_events")||"[]");
+  a.push({e:ev,p:props||{},t:Date.now()});if(a.length>500)a=a.slice(-500);
+  localStorage.setItem("hv_events",JSON.stringify(a));}catch(_){}
+  if(window.console&&console.debug)console.debug("[hv]",ev,props||{});};
 function go(i){
+  hvTrack("page_view",{page:i});
   document.querySelectorAll(".panel").forEach(function(p,k){p.classList.toggle("on",k===i);});
   document.querySelectorAll(".side .nv").forEach(function(n){n.setAttribute("aria-current",n.getAttribute("data-p")==String(i));});
   document.getElementById("ptitle").textContent=TITLES[i];
@@ -1208,6 +1333,7 @@ function toast(m){ var t=document.getElementById("toast"); t.textContent=m; t.cl
 /* ═══ 总览：任务批复 ═══ */
 document.addEventListener("click",function(e){
   var ok=e.target.closest(".ok1"), no=e.target.closest(".no1");
+  if(ok)hvTrack("decision",{a:"approve"}); if(no)hvTrack("decision",{a:"reject"});
   if(!ok&&!no) return;
   var card=e.target.closest(".task"); card.classList.add("done");
   var b=document.createElement("div"); b.className="donebadge";
@@ -1218,7 +1344,8 @@ document.addEventListener("click",function(e){
   document.getElementById("inboxN").textContent=left;
   toast(ok?"已批 —— 档期已写进营销日历":"已退回");
 });
-document.getElementById("kpiInbox").addEventListener("click",function(){ document.getElementById("taskList").scrollIntoView({behavior:"smooth",block:"center"}); });
+var _ss=document.getElementById("stSave"); if(_ss)_ss.addEventListener("click",function(){hvTrack("store_save");toast("已保存 —— 海报、菜单、社媒同步更新");});
+var _kib=document.getElementById("kpiInbox"); if(_kib)_kib.addEventListener("click",function(){ document.getElementById("taskList").scrollIntoView({behavior:"smooth",block:"center"}); });
 /* ═══ 宣传设计工作台 ═══ */
 (function(){
   var STY={a:{c:"#B4451F",n:"活力促销"},b:{c:"#1F2937",n:"高级简约"},c:{c:"#3F7D4E",n:"家庭亲和"}};
@@ -1232,13 +1359,13 @@ document.getElementById("kpiInbox").addEventListener("click",function(){ documen
       if(!document.getElementById("wbOut").hidden) render(); livePrev(); return;}
     var d=e.target.closest(".dch"); if(d){d.setAttribute("aria-pressed",d.getAttribute("aria-pressed")!=="true");
       var on=document.querySelector('.dch[aria-pressed="true"]'); if(on) cur.emo=on.getAttribute("data-emo")||cur.emo; var s3b=document.getElementById("st3");s3b&&s3b.classList.add("on"); livePrev(); return;}
-    var lp=e.target.closest(".langp"); if(lp){lp.classList.toggle("on");
+    var lp=e.target.closest(".langp"); if(lp){lp.classList.toggle("on");hvTrack("lang_version_toggle",{on:lp.classList.contains("on")});
       var _n=document.querySelectorAll(".langp.on").length;
       var _c=document.getElementById("lpCnt"); if(_c) _c.textContent=(_n?"已选 "+_n+"/3 · 进入审批":"一个都没选 — 至少留一个");
       return;}
     var v=e.target.closest(".var");
     if(v&&v.closest("#bLiveP")){var _ii=[].indexOf.call(document.getElementById("bLiveP").children,v);
-      if(_ii>-1){cur.pref=_ii;livePrev(); if(!document.getElementById("wbOut").hidden) render();
+      if(_ii>-1){cur.pref=_ii;hvTrack("direction_pick",{dir:_ii});livePrev(); if(!document.getElementById("wbOut").hidden) render();
         toast("已选方向："+VL[_ii]+" —— 生成时优先推荐这版");}
       return;}
     if(v&&!v.closest("#bLiveP")){[].forEach.call(document.querySelectorAll(".var"),function(x){x.classList.remove("sel");});v.classList.add("sel");
@@ -1256,8 +1383,10 @@ document.getElementById("kpiInbox").addEventListener("click",function(){ documen
   var VL=["图为主","价格为主","文案为主"];
   function poster(i,recc){
     var c=STY[cur.sty].c;
-    var art=IMGS[cur.emo]?'<div class="a real" style="background-image:url('+IMGS[cur.emo]+')"></div>':'<div class="a">'+cur.emo+'</div>';
-    return '<div class="var'+(recc?" sel":"")+'">'+(recc?'<span class="rec">推荐方案</span>':"")+
+    var VIMG=["img/mango2.jpg","img/mango.jpg","img/mango3.jpg"];
+    var pimg=(cur.emo==="🥭"?VIMG[i]:IMGS[cur.emo]);
+    var art=pimg?'<div class="a real" style="background-image:url('+pimg+')"></div>':'<div class="a">'+cur.emo+'</div>';
+    return '<div class="var'+(recc?" sel hasrec":"")+'">'+(recc?'<span class="rec">推荐方案</span>':"")+
       '<div class="vp v'+i+'"><div class="h" style="background:'+c+'">WARISAN GRILL · HALAL ✓</div>'+
       art+'<div class="t">'+TT[i]+'</div>'+
       '<div class="pr num" style="color:'+c+'">RM '+cur.price+' <s style="font-size:10px;color:#9A9184">原 RM '+cur.orig+'</s></div>'+
@@ -1275,6 +1404,7 @@ document.getElementById("kpiInbox").addEventListener("click",function(){ documen
   }
   livePrev();
   document.getElementById("wbGo").addEventListener("click",function(){
+    hvTrack("generate_concepts",{style:cur.sty,pref:cur.pref,price:cur.price});
     document.getElementById("wbOut").hidden=false;
     document.getElementById("wbEdit").hidden=false;
     document.getElementById("wbTip").hidden=true;
@@ -1291,6 +1421,7 @@ document.getElementById("kpiInbox").addEventListener("click",function(){ documen
   document.addEventListener("click",function(e){
     var ed=e.target.closest("[data-ed]"); if(ed){
       var k=ed.getAttribute("data-ed");
+      hvTrack("edit_action",{action:k});
       if(k==="price"){ cur.price=(cur.price==="38"?"32":"38"); render(); toast("价格改为 RM "+cur.price+"（老板指令 · Gate 重核 ✓）"); }
       else if(k==="img"){ var ring=["🥭","🍹","🍝","🍢"]; cur.emo=ring[(ring.indexOf(cur.emo)+1)%4]; render(); toast("已换主图"); }
       else if(k==="color"){ var ks=["a","b","c"]; cur.sty=ks[(ks.indexOf(cur.sty)+1)%3];
@@ -1301,6 +1432,7 @@ document.getElementById("kpiInbox").addEventListener("click",function(){ documen
       return;
     }
     var ex=e.target.closest("[data-ex]"); if(ex){
+      hvTrack("export",{size:ex.getAttribute("data-ex")});
       if(ex.getAttribute("data-a4")){
         var cv=document.createElement("canvas"); cv.width=480; cv.height=640;
         var g=cv.getContext("2d"), c=STY[cur.sty].c;
@@ -1407,6 +1539,7 @@ document.getElementById("rcAdd").addEventListener("click",function(){
       else cb();
     }
     function handle(msg){
+      hvTrack("chat_message",{len:msg.length});
       say("me",msg);
       var _t=typing();
       setTimeout(function(){_t.remove();

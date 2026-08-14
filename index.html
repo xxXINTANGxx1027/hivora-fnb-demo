@@ -15,7 +15,7 @@
 :root{
   --bg:#F6F7F9; --surface:#FFFFFF; --surface2:#F1F3F6;
   --line:#E5E8EE; --line2:#EEF0F4;
-  --ink:#0F172A; --ink2:#334155; --mut:#64748B; --faint:#94A3B8;
+  --ink:#0F172A; --ink2:#334155; --mut:#576273; --faint:#8792A3;
   --blue:#2563EB; --blue-soft:#EEF4FF; --blue-line:#C6D8FD;
   --green:#0F7B41; --green-soft:#E8F6EE;
   --amber:#B45309; --amber-soft:#FCF4E3;
@@ -129,6 +129,80 @@ h2{font-family:var(--sans);font-size:clamp(22px,2.4vw,27px);letter-spacing:-.02e
 .chip{font-size:11px;font-weight:700;padding:4px 10px;border-radius:8px;border:1px solid var(--line);color:var(--mut)}
 .chip.rd{background:var(--red-soft);border-color:#F2C7C2;color:var(--red)}
 .chip.am{background:var(--amber-soft);border-color:#F1DFBB;color:var(--amber)}
+/* ═══ Home v9 ═══ */
+.kpis.k4{grid-template-columns:repeat(4,minmax(0,1fr))}
+@media(max-width:1060px){.kpis.k4{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.kpi .ksub{display:block;font-size:10.8px;color:var(--mut);margin-top:3px}
+.kic{width:34px;height:34px;border-radius:10px;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;flex-shrink:0}
+.kimg{width:42px;height:42px;border-radius:10px;background-size:cover;background-position:center;flex-shrink:0}
+.ins3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+@media(max-width:1060px){.ins3{grid-template-columns:1fr}}
+.ins{border:1px solid var(--line);border-radius:12px;padding:11px 12px;display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+.ins b{font-size:12.8px}
+.ins>s{font-size:11.4px;color:var(--mut);line-height:1.5;flex:1}
+.chip.bl{background:var(--blue-soft);border-color:var(--blue-line);color:var(--blue)}
+.chip.gn{background:#F0FDF4;border-color:#BBF7D0;color:#15803D}
+.qk6{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.qk{border:1px solid var(--line);border-radius:12px;padding:12px 8px;display:flex;flex-direction:column;align-items:center;gap:5px;text-align:center;transition:.15s}
+.qk:hover{border-color:var(--blue-line);background:var(--blue-soft)}
+.qk:active{transform:scale(.97)}
+.qk i{width:34px;height:34px;border-radius:10px;background:var(--surface2);display:grid;place-items:center}
+.qk b{font-size:12.2px}
+.qk s{font-size:10.4px;color:var(--mut)}
+.bnr{display:flex;align-items:center;gap:12px;background:var(--surface2);border:1px solid var(--line);border-radius:14px;padding:13px 16px}
+.bnr>span:last-of-type b{display:block;font-size:13.3px}
+.bnr>span:last-of-type s{font-size:11.6px;color:var(--mut)}
+.bnr .btn{margin-left:auto;flex-shrink:0}
+.st5 .s5{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line2)}
+.st5 .s5:last-child{border-bottom:0}
+.s5 i{width:24px;height:24px;border-radius:50%;background:var(--surface2);color:var(--mut);display:grid;place-items:center;font-size:11.5px;font-weight:700;font-style:normal;flex-shrink:0}
+.s5.done i{background:var(--green);color:#fff}
+.s5.cur i{background:var(--ink);color:#fff}
+.s5>span{flex:1;min-width:0}
+.s5 b{font-size:12.5px;display:block}
+.s5 s{font-size:10.8px;color:var(--mut)}
+.sug .sgi{display:flex;gap:9px;align-items:flex-start;width:100%;text-align:left;padding:8px 0;border-bottom:1px dashed var(--line2);font-size:12.2px;line-height:1.45;color:var(--ink2)}
+.sug .sgi:last-child{border-bottom:0}
+.pr{flex-shrink:0;font-size:10px;font-weight:800;font-style:normal;border-radius:6px;padding:2px 7px;margin-top:1px}
+.pr.hi{background:#FEF2F2;color:#B91C1C;border:1px solid #FECACA}
+.pr.md{background:#FFFBEB;color:#B45309;border:1px solid #FDE68A}
+.pr.lo{background:var(--surface2);color:var(--mut);border:1px solid var(--line)}
+/* ═══ Store details v9 ═══ */
+.aud{display:flex;align-items:center;gap:10px;padding:7px 0}
+.aud .ai2{width:30px;height:30px;border-radius:9px;background:var(--surface2);display:grid;place-items:center;flex-shrink:0}
+.aud>span:last-child{flex:1;min-width:0}
+.aud .ai2{flex:0 0 30px}
+.aud b{font-size:12.5px;display:flex;justify-content:space-between}
+.aud b em{font-style:normal;font-family:Outfit,sans-serif}
+.abar{height:6px;background:var(--surface2);border-radius:99px;margin-top:4px;overflow:hidden}
+.abar i{display:block;height:100%;border-radius:99px;background:var(--blue)}
+.fchips{display:flex;flex-wrap:wrap;gap:5px;padding-top:2px}
+.fchips .stc{cursor:default}
+
+/* ═══ Mobile pass v9 ═══ */
+@media(max-width:640px){
+  .kpis.k4{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .kpi .num{font-size:19px}
+  .kpi .ksub{font-size:10px}
+  .socrow{display:flex;overflow-x:auto;padding-bottom:4px;-webkit-overflow-scrolling:touch}
+  .socrow .soc{flex:0 0 96px}
+  .ins3,.qk6{grid-template-columns:1fr 1fr}
+  .bnr{flex-wrap:wrap}
+  .bnr .btn{margin-left:0;width:100%;justify-content:center}
+  .steps-r{overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .steps-r .stp s{display:none}
+  .steps-r .stp{min-width:56px}
+  .mtabs2{display:flex;width:100%}
+  .mtabs2 button{flex:1}
+  .bchat{height:calc(100dvh - 220px);min-height:380px}
+  .chatmode #bLiveP{grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+  .vlab{font-size:9.5px}
+  .acts{flex-wrap:wrap}
+  .acts .btn{flex:1;justify-content:center}
+}
+
+
+
 .task .meta{font-size:11.5px;color:var(--faint)}
 .task h3{font-size:15px;font-weight:700;letter-spacing:-.01em;margin:9px 0 8px}
 .task .tags{display:flex;gap:6px;flex-wrap:wrap;align-items:center}
@@ -387,7 +461,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .vp .a{display:grid;place-items:center;font-size:42px;padding:16px 0 4px}
 .vp .t{text-align:center;font-weight:800;font-size:12.5px;padding:4px 8px 0}
 .vp .pr{text-align:center;font-weight:800;font-size:16px;padding:4px 0 2px}
-.vp .f{display:flex;justify-content:space-between;align-items:center;font-size:7.5px;color:#8A8071;padding:6px 9px;border-top:1px solid #EFE6D5;margin-top:6px}
+.vp .f{display:flex;justify-content:space-between;align-items:center;font-size:8px;color:#8A8071;padding:6px 9px;border-top:1px solid #EFE6D5;margin-top:6px}
 .vp .qrp{width:22px;height:22px;border-radius:4px}
 .gen-load .a{animation:pulse 1s ease infinite}
 .edbar{display:flex;gap:7px;flex-wrap:wrap}
@@ -561,6 +635,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
 @keyframes tp{0%,60%,100%{opacity:.25}30%{opacity:1}}
 .wb3:not(.chatmode) #bLive{display:none}
 #bLiveP .var{max-width:210px;margin:8px auto 2px}
+.var.hasrec .vp .h{padding-top:16px}
 .wb3.chatmode{align-items:stretch}
 .chatmode #wbCol3{display:flex;flex-direction:column;min-height:0}
 .chatmode #bLive:not([hidden]){flex:1;display:flex;flex-direction:column}
@@ -573,7 +648,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .vp.v1 .pr{font-size:20px;letter-spacing:-.01em}
 .vp.v1 .a.real{min-height:92px}
 .vp.v1 .t{font-size:12px}
-.vp.v1 .f{font-size:7px}
+.vp.v1 .f{font-size:7.5px}
 .vp.v2 .t{font-size:16px;line-height:1.15;padding-top:10px}
 .vp.v2 .a.real{min-height:82px}
 .vp.v2 .pr{font-size:13px}
@@ -627,7 +702,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
     <button class="nv" data-p="5"><i data-i="bulb"></i>Recipe Lab</button>
     <button class="nv" data-p="7"><i data-i="share"></i>Social Hub</button>
     <div class="ngrp">System</div>
-    <button class="nv" data-p="6"><i data-i="gear"></i>Settings</button>
+    <button class="nv" data-p="6"><i data-i="gear"></i>Store details</button>
   </nav>
 </aside>
 <main class="main">
@@ -638,37 +713,39 @@ td b.pr2{font-variant-numeric:tabular-nums}
   <section class="panel on" id="p0">
     <div style="margin-bottom:16px"><div class="eyebrow">Warisan Grill · Kuala Lumpur</div>
       <h2>Good morning</h2>
-      <p class="sub">Decisions first. Everything the AI did, on the right.</p></div>
+      <p class="sub">Decisions first — the AI preps, you approve.</p></div>
+
+    <div class="kpis k4">
+      <button class="kpi" data-p="2"><span class="r1"><s>Today's sales</s><span class="tag gn">+6.4%</span></span>
+        <span class="r2"><b class="num">RM 2,140</b><i class="kic" data-i="chart"></i></span><span class="ksub">vs yesterday · 128 orders</span></button>
+      <button class="kpi" data-p="2"><span class="r1"><s>This week</s><span class="tag gn">+8.1%</span></span>
+        <span class="r2"><b class="num">RM 13,867</b><i class="kic" data-i="activity"></i></span><span class="ksub">625 orders · Saturday peaks</span></button>
+      <button class="kpi" data-p="2"><span class="r1"><s>Avg spend</s><span class="tag gn">+5.1%</span></span>
+        <span class="r2"><b class="num">RM 16.70</b><i class="kic" data-i="tagT"></i></span><span class="ksub">per order today</span></button>
+      <button class="kpi" data-p="3"><span class="r1"><s>Best seller</s><span class="tag bl">56 sold</span></span>
+        <span class="r2"><b style="font-size:15px">Mango Sticky Rice</b><span class="kimg" style="background-image:url(img/mango.jpg)"></span></span><span class="ksub">today · RM 14.00</span></button>
+    </div>
+
+    <div class="card" style="margin-bottom:16px">
+      <div class="chd"><i data-i="share"></i><b>Social at a glance</b><s>Official platform data</s><span class="sp"></span><button class="btn sm" data-p="7">Details →</button></div>
+      <div class="socwrap">
+        <button class="socbig" data-p="7">
+          <s>Reach this week</s><b class="num">103.2k</b><em class="tag gn">+18% vs last week</em>
+          <span>62% short-video · 5 platforms</span>
+        </button>
+        <div class="socrow">
+          <button class="soc" data-p="7"><span class="ii" style="background:#1877F2">f</span><b class="num">12.4k</b><s class="up">+2.1%</s></button>
+          <button class="soc" data-p="7"><span class="ii" style="background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF)">Ig</span><b class="num">8,930</b><s class="up">+4.8%</s></button>
+          <button class="soc" data-p="7"><span class="ii" style="background:#FE2C55">小</span><b class="num">1,204</b><s class="up">+12.3%</s></button>
+          <button class="soc" data-p="7"><span class="ii" style="background:#111">Tk</span><b class="num">3,481</b><s class="up">+6.9%</s></button>
+          <button class="soc" data-p="7"><span class="ii" style="background:#25D366">Wa</span><b class="num">248</b><s>opt-in</s></button>
+        </div>
+      </div>
+    </div>
+
     <div class="two">
     <div>
-      <div class="kpis">
-        <button class="kpi"><span class="r1"><s>Yesterday</s><span class="tag gn">+6.4%</span></span>
-          <span class="r2"><b class="num">RM 2,140</b><span class="mini"><i style="height:40%"></i><i style="height:55%"></i><i style="height:34%"></i><i style="height:68%"></i><i style="height:57%"></i><i class="hi" style="height:92%"></i><i style="height:74%"></i></span></span></button>
-        <button class="kpi"><span class="r1"><s>This week · 625 orders</s><span class="tag gn">+8.1%</span></span>
-          <span class="r2"><b class="num">RM 13,867</b><span class="mini"><i style="height:30%"></i><i style="height:45%"></i><i style="height:26%"></i><i style="height:52%"></i><i style="height:70%"></i><i class="hi" style="height:96%"></i><i style="height:84%"></i></span></span></button>
-        <button class="kpi" id="kpiInbox"><span class="r1"><s>Needs your call</s><span class="tag am">Today</span></span>
-          <span class="r2"><b class="num" id="inboxN">2</b><span class="avs"><span style="background:#B4451F">D</span><span style="background:#2563EB">A</span></span></span></button>
-      </div>
-
-      <div class="card" style="margin-bottom:16px">
-        <div class="chd"><i data-i="share"></i><b>Social at a glance</b><s>Official platform data</s><span class="sp"></span><button class="btn sm" data-p="7">Details →</button></div>
-        <div class="socwrap">
-          <button class="socbig" data-p="7">
-            <s>Reach this week</s><b class="num">103.2k</b><em class="tag gn">+18% vs last week</em>
-            <span>62% short-video · 5 platforms</span>
-          </button>
-          <div class="socrow">
-            <button class="soc" data-p="7"><span class="ii" style="background:#1877F2">f</span><b class="num">12.4k</b><s class="up">+2.1%</s></button>
-            <button class="soc" data-p="7"><span class="ii" style="background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF)">Ig</span><b class="num">8,930</b><s class="up">+4.8%</s></button>
-            <button class="soc" data-p="7"><span class="ii" style="background:#FE2C55">小</span><b class="num">1,204</b><s class="up">+12.3%</s></button>
-            <button class="soc" data-p="7"><span class="ii" style="background:#111">Tk</span><b class="num">3,481</b><s class="up">+6.9%</s></button>
-            <button class="soc" data-p="7"><span class="ii" style="background:#25D366">Wa</span><b class="num">248</b><s>opt-in</s></button>
-          </div>
-        </div>
-        <div class="cnote">Top post: Merdeka teaser reel, <b class="num">18.7k</b> reach. Video outperforms stills <b>2.9×</b> — next week defaults to video-first.<button class="lnk" data-p="7">All content →</button></div>
-      </div>
-
-      <div class="shead"><b>To decide today</b><button class="btn sm">View all →</button></div>
+      <div class="shead"><b>To decide today</b><span class="tag am" style="margin-left:8px">2 waiting</span><span class="sp"></span><button class="btn sm" data-p="1">View all →</button></div>
       <div id="taskList">
         <div class="task">
           <div class="tr1"><span class="chip am">Suggested run Aug 12 · 2 weeks out</span><span class="meta">Poster v1 attached</span></div>
@@ -686,47 +763,61 @@ td b.pr2{font-variant-numeric:tabular-nums}
       <div class="note" style="margin-top:4px">The AI has no publish button. It files a request here — <b>nothing runs until you approve</b>.</div>
 
       <div class="card mt">
-        <div class="chd"><i data-i="chart"></i><b>Daily sales</b><s>Saturday peaks · Wednesday dips</s><span class="sp"></span><button class="btn sm" data-p="2">Analytics →</button></div>
-        <div class="bars">
-          <div class="bcol"><s>M</s><i style="height:38%"></i></div>
-          <div class="bcol"><s>T</s><i style="height:44%"></i></div>
-          <div class="bcol lo"><s>W</s><i style="height:26%"></i></div>
-          <div class="bcol"><s>T</s><i style="height:52%"></i></div>
-          <div class="bcol"><s>F</s><i style="height:68%"></i></div>
-          <div class="bcol hi"><span class="tip num">RM 2,860</span><s>S</s><i style="height:100%"></i></div>
-          <div class="bcol"><s>S</s><i style="height:84%"></i></div>
+        <div class="chd"><i data-i="bulb"></i><b>AI business insights</b><s>From your own data</s><span class="sp"></span><button class="btn sm" data-p="2">All insights →</button></div>
+        <div class="ins3">
+          <div class="ins"><span class="chip am">Sales opportunity</span><b>Lunch window undersold</b><s>Lunch is only 43% of revenue despite strong 11:30–13:30 walk-ins. A lunch add-on set lifts ticket size.</s><button class="btn sm" data-p="1">See the plan →</button></div>
+          <div class="ins"><span class="chip bl">Customer insight</span><b>Regulars are slipping</b><s>Repeat rate 31%, below peers. 23 members quiet for 14 days — a win-back message is drafted.</s><button class="btn sm" data-p="8">View win-back →</button></div>
+          <div class="ins"><span class="chip gn">Menu health</span><b>8 dishes selling slow</b><s>Low sales 14 days straight. Trim them or bundle behind top sellers before the next print.</s><button class="btn sm" data-p="3">Menu analysis →</button></div>
         </div>
-        <div class="cnote">That short Wednesday bar is why the AI drafted a satay promo.<button class="lnk" data-p="1">View draft →</button></div>
       </div>
 
+      <div class="card mt">
+        <div class="chd"><i data-i="spark"></i><b>Quick start</b><s>Pick a job — the AI takes it from there</s></div>
+        <div class="qk6">
+          <button class="qk" data-p="1"><i data-i="imgT"></i><b>Design poster</b><s>AI layout + copy</s></button>
+          <button class="qk" data-p="1"><i data-i="typeT"></i><b>Write copy</b><s>3 languages</s></button>
+          <button class="qk" data-p="2"><i data-i="chart"></i><b>Upload sales file</b><s>Weekly report out</s></button>
+          <button class="qk" data-p="3"><i data-i="camera"></i><b>Enhance photos</b><s>Menu-ready shots</s></button>
+          <button class="qk" data-p="3"><i data-i="list"></i><b>Generate menu</b><s>Print-ready PNG</s></button>
+          <button class="qk" data-p="8"><i data-i="users"></i><b>Member marketing</b><s>Win-back · birthdays</s></button>
+        </div>
+      </div>
 
+      <div class="bnr mt">
+        <span class="ag-av" style="width:38px;height:38px;font-size:15px;flex-shrink:0">D</span>
+        <span><b>Boss — leave the busywork to the AI team.</b><s>Posters, analysis, calendar. Nothing goes out without your OK.</s></span>
+        <button class="btn pri" data-p="1">Start with a chat</button>
+      </div>
     </div>
+
     <aside class="rail">
       <div class="card">
-        <div class="chd"><i data-i="bell"></i><b>Watchlist</b><s>The AI keeps watch</s><span class="sp"></span><span class="tag am">4</span></div>
-        <div class="seg"><div class="s1"><s>Profile completeness</s><b>72%</b></div>
-          <div class="segbar"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i><i></i><i></i></div>
-          <div class="s2">Menu ✓ · Integrations ✓ · Photos 12/19 · Brand kit: font missing</div></div>
+        <div class="chd"><i data-i="gauge"></i><b>Follow the steps, get results</b></div>
+        <div class="st5">
+          <div class="s5 done"><i>✓</i><span><b>Pick a goal</b><s>Lift lunch sales — set</s></span><em class="tag gn">Done</em></div>
+          <div class="s5 cur"><i>2</i><span><b>Upload your data</b><s>Sales file · dish photos</s></span><button class="btn sm" data-p="2">Upload →</button></div>
+          <div class="s5"><i>3</i><span><b>AI analyzes & generates</b><s>Concepts + copy</s></span><em class="tag">Next</em></div>
+          <div class="s5"><i>4</i><span><b>Fine-tune</b><s>Price · image · tone</s></span></div>
+          <div class="s5"><i>5</i><span><b>Publish</b><s>Only after your approval</s></span></div>
+        </div>
+        <div class="cnote">Best results come in order — the AI keeps your place.</div>
+      </div>
+
+      <div class="card mt">
+        <div class="chd"><i data-i="bulb"></i><b>This week's suggestions</b><span class="sp"></span><button class="btn sm" data-p="2">More →</button></div>
+        <div class="sug">
+          <button class="sgi" data-p="1"><i class="pr hi">High</i><span>Launch a weekday lunch set — lift the 43% lunch share</span></button>
+          <button class="sgi" data-p="7"><i class="pr md">Med</i><span>Post the making-of video — video reaches 2.9× stills</span></button>
+          <button class="sgi" data-p="3"><i class="pr md">Med</i><span>Trim the 8 slow dishes before the Merdeka menu print</span></button>
+          <button class="sgi" data-p="8"><i class="pr lo">Low</i><span>Member day: double points to lift the 31% repeat rate</span></button>
+        </div>
+      </div>
+
+      <div class="card mt">
+        <div class="chd"><i data-i="bell"></i><b>Watchlist</b><span class="sp"></span><span class="tag am">3</span></div>
         <div class="al am"><span>Brand kit is missing the <b>font file</b> — posters use a default face.<button class="lnk" data-p="6">Upload →</button></span></div>
-        <div class="al"><span><b>7 dishes</b> still lack real photos — posters fall back to placeholders.<button class="lnk" data-p="3">Review →</button></span></div>
         <div class="al rd"><span>Coconut milk runs out <b>by Friday</b> at this pace — projected from sales.</span></div>
         <div class="al"><span><b>Malaysia Day, Sep 16</b> — 50 days out. Print lock by Aug 16.<button class="lnk" data-p="1">Prepare →</button></span></div>
-      </div>
-      <div class="card">
-        <div class="chd"><i data-i="users"></i><b>AI Team</b><span class="sp"></span><span class="tag gn">On duty</span></div>
-        <div class="tm"><span class="ta" style="background:#0F172A">O</span><span><b>Orchestrator</b><s>Waiting on your Lunch Flash call</s></span><i class="dot" style="background:var(--amber)"></i></div>
-        <div class="tm"><span class="ta" style="background:#B4451F">D</span><span><b>Designer</b><s>Rendering Merdeka poster v2</s></span><i class="dot" style="background:var(--blue)"></i></div>
-        <div class="tm"><span class="ta" style="background:#2563EB">A</span><span><b>Analyst</b><s>Margin check done · 61% ✓</s></span><i class="dot" style="background:var(--green)"></i></div>
-        <div class="tm"><span class="ta" style="background:#64748B">S</span><span><b>Data Steward</b><s>Idle · books closed 08:02</s></span><i class="dot" style="background:var(--faint)"></i></div>
-      </div>
-      <div class="card">
-        <div class="chd"><i data-i="activity"></i><b>Just now</b><span class="sp"></span><span class="tag bl">Live</span></div>
-        <div class="feed">
-          <div><span>Poster v2 out — price set to RM 32 as requested</span><time>09:41</time></div>
-          <div><span>Lunch Flash margin recheck: <b>61% ✓</b> above floor</span><time>09:40</time></div>
-          <div><span>Sales data cleaned: <b>625 rows · 0 errors</b></span><time>08:02</time></div>
-        </div>
-        <div class="insight"><span><b>Wednesday has been slowest for 4 straight weeks.</b> Satay 15% off drafted.</span><button class="btn sm" data-p="1" style="margin-left:auto">View →</button></div>
       </div>
     </aside>
     </div>
@@ -831,7 +922,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
               <p class="hash">#KLEats #LunchDeal #WarisanGrill #HalalFood #MakanTime</p>
               <p class="cta">CTA: <b>Order now · Learn more</b></p>
               <div class="mrow" style="margin-top:11px">
-                <button class="btn pri" id="wbPub" style="width:100%;justify-content:center">Submit for approval</button>
+                <button class="btn pri" id="wbPub" style="width:100%;justify-content:center" onclick="hvTrack('submit_approval',{price:window.__wb.price})">Submit for approval</button>
               </div>
               <div class="pubq" id="wbQ" hidden>
                 <div><span>Facebook + Instagram</span><span class="st" style="color:var(--green)">Queued ✓</span></div>
@@ -1005,28 +1096,57 @@ td b.pr2{font-variant-numeric:tabular-nums}
 
   <!-- ═══════════ P6 店面与接入 ═══════════ -->
   <section class="panel" id="p6">
-    <div style="margin-bottom:16px"><div class="eyebrow">Store & Integrations</div>
+    <div style="margin-bottom:16px"><div class="eyebrow">Store details</div>
       <h2>Set it once, used everywhere</h2>
-      <p class="sub">Store details feed poster footers, the brand kit governs look and type, integrations handle publishing.</p></div>
+      <p class="sub">These details feed posters, menus and social automatically — no retyping, brand stays consistent.</p></div>
     <div class="grid2">
       <div class="card">
-        <div class="chd"><i data-i="gear"></i><b>Store profile</b><s>Feeds poster footers and menu headers</s></div>
-        <div class="form2">
+        <div class="chd"><i data-i="gear"></i><b>Store profile</b><s>Auto-applied to every module</s><span class="sp"></span><span class="tag gn">Saved</span></div>
+        <div class="intg"><span class="ii" style="background:#B4451F">W</span><span><b>Logo</b><s>warisan-logo.png · transparent</s></span><button class="btn sm">Replace</button></div>
+        <div class="intg"><span class="ii" style="background:linear-gradient(135deg,#B4451F,#1F2937)">C</span><span><b>Brand colors</b><span class="swatch" style="margin-top:4px"><i style="background:#B4451F"></i><i style="background:#1F2937"></i><i style="background:#F5EFE6"></i><i style="background:#3F7D4E"></i></span></span><span class="st tag gn">Set</span></div>
+        <div class="intg"><span class="ii" style="background:#64748B">Aa</span><span><b>Type</b><s>Poppins display · Noto Sans body</s></span><span class="st tag am">Font file missing</span></div>
+        <div class="form2" style="margin-top:12px">
           <div class="fld"><label>Name</label><input value="Warisan Grill"></div>
           <div class="fld"><label>Certification</label><input value="Halal ✓ · JAKIM 2024-11"></div>
           <div class="fld"><label>Address</label><input value="Jalan Ampang, Kuala Lumpur"></div>
+          <div class="fld"><label>Google Maps</label><input value="maps.app.goo.gl/warisan"></div>
+          <div class="fld"><label>Hours</label><input value="11:00 – 22:00 · daily"></div>
+          <div class="fld"><label>Phone</label><input value="+60 3-2161 0088"></div>
           <div class="fld"><label>WhatsApp</label><input value="+60 12-345 6789"></div>
-          <div class="fld"><label>Hours</label><input value="11:00 – 22:00"></div>
-          <div class="fld"><label>Avg. spend</label><input value="RM 22 – 35"></div>
+          <div class="fld"><label>Restaurant type</label><input value="Halal grill · casual dining"></div>
+          <div class="fld"><label>Facebook</label><input value="facebook.com/warisangrillkl"></div>
+          <div class="fld"><label>Instagram</label><input value="@warisangrill"></div>
         </div>
-        <div class="cnote">Footfall insights come from <b>your own POS data</b> — we don’t promise third-party “big data” nobody can actually get.</div>
+        <div class="fld" style="margin-top:10px"><label>Main audience</label>
+          <div class="fchips"><span class="stc">Office workers</span><span class="stc">Families</span><span class="stc">Students</span></div></div>
+        <div class="fld" style="margin-top:8px"><label>Price band</label>
+          <div class="fchips"><span class="stc">$$ · RM 15 – 35 per head</span></div></div>
+        <div class="mrow" style="margin-top:13px"><button class="btn pri" id="stSave">Save details</button><button class="btn">Reset</button></div>
+        <div class="cnote">Reused across Design Studio, menus, QR page and social posts — edit here, updated everywhere.</div>
       </div>
       <div>
         <div class="card">
-          <div class="chd"><i data-i="palette"></i><b>Brand Kit</b><s>1 item missing: font file</s></div>
-          <div class="intg"><span class="ii" style="background:#B4451F">W</span><span><b>Logo</b><s>warisan-logo.png · transparent</s></span><span class="st tag gn">Uploaded</span></div>
-          <div class="intg"><span class="ii" style="background:linear-gradient(135deg,#B4451F,#1F2937)">C</span><span><b>Brand colors</b><span class="swatch" style="margin-top:4px"><i style="background:#B4451F"></i><i style="background:#1F2937"></i><i style="background:#F5EFE6"></i><i style="background:#3F7D4E"></i></span></span><span class="st tag gn">Set</span></div>
-          <div class="intg"><span class="ii" style="background:#64748B">Aa</span><span><b>Type</b><s>Poppins display · Noto Sans body</s></span><span class="st tag am">File missing</span></div>
+          <div class="chd"><i data-i="imgT"></i><b>Brand preview</b><s>How these details show up</s></div>
+          <div style="display:grid;grid-template-columns:130px 1fr;gap:12px;align-items:start">
+            <div class="vp" style="border-radius:10px"><div class="h" style="background:#B4451F">WARISAN GRILL · HALAL ✓</div>
+              <div class="a real" style="height:74px;background-image:url(img/mango.jpg);background-size:cover;background-position:center"></div>
+              <div class="t" style="font-size:10px">Lunch Flash · RM 38</div>
+              <div class="f" style="font-size:6.5px"><span>Jalan Ampang · 11:00–22:00</span><span class="qrp" style="width:14px;height:14px"></span></div></div>
+            <div>
+              <div class="strow" style="font-size:12px"><b>Menu header</b></div>
+              <div class="strow">Warisan Grill · Halal ✓ · 11:00–22:00</div>
+              <div class="strow" style="margin-top:6px;font-size:12px"><b>Social bio</b></div>
+              <div class="strow">Halal grill in KL · WhatsApp +60 12-345 6789</div>
+            </div>
+          </div>
+        </div>
+        <div class="card mt">
+          <div class="chd"><i data-i="users"></i><b>Audience mix</b><s>Your estimate — editable</s><span class="sp"></span><span class="tag">No tracking · PDPA</span></div>
+          <div class="aud"><span class="ai2">💼</span><span><b>Office workers <em>42%</em></b><span class="abar"><i style="width:42%"></i></span></span></div>
+          <div class="aud"><span class="ai2">👨‍👩‍👧</span><span><b>Families <em>28%</em></b><span class="abar"><i style="width:28%"></i></span></span></div>
+          <div class="aud"><span class="ai2">🎓</span><span><b>Students <em>18%</em></b><span class="abar"><i style="width:18%"></i></span></span></div>
+          <div class="aud"><span class="ai2">🧳</span><span><b>Tourists <em>12%</em></b><span class="abar"><i style="width:12%"></i></span></span></div>
+          <div class="cnote">Entered by you, refined by your own POS patterns — we don’t buy or scrape third-party “footfall data”.</div>
         </div>
         <div class="card mt">
           <div class="chd"><i data-i="link"></i><b>Publishing</b><s>Every outbound action clears your approval first</s></div>
@@ -1107,7 +1227,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
       <button class="kpi"><span class="r1"><s>Repeat rate</s><span class="tag bl">1.8× walk-ins</span></span>
         <span class="r2"><b class="num">46.7%</b><s style="font-size:11px;color:var(--mut)">walk-ins: 26%</s></span></button>
       <button class="kpi"><span class="r1"><s>Redemptions</s><span class="tag am">RM 215 cost</span></span>
-        <span class="r2"><b class="num">43 次</b><s style="font-size:11px;color:var(--mut)">drove RM 1,872 spend</s></span></button>
+        <span class="r2"><b class="num">43</b><s style="font-size:11px;color:var(--mut)">drove RM 1,872 spend</s></span></button>
     </div>
     <div class="grid2">
       <div>
@@ -1161,7 +1281,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
   <div class="agq"><button data-agq="b1">Make it buy-1-free-1</button><button data-agq="p32">Price to 32</button><button data-agq="satay">Use the satay</button></div>
   <form class="agin" id="agForm"><input id="agIn" placeholder="Type an instruction…" autocomplete="off"><button type="submit">Send</button></form>
 </div>
-<div class="toast" id="toast"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 <script>
 /* ═══ icons ═══ */
 (function(){
@@ -1194,8 +1314,13 @@ td b.pr2{font-variant-numeric:tabular-nums}
   document.querySelectorAll("[data-i]").forEach(function(el){ el.innerHTML=I[el.getAttribute("data-i")]||""; });
 })();
 /* ═══ nav ═══ */
-var TITLES=["Home","Design Studio","Analytics","Menu & Food","Customers","Recipe Lab","Settings","Social Hub","Loyalty"];
+var TITLES=["Home","Design Studio","Analytics","Menu & Food","Customers","Recipe Lab","Store details","Social Hub","Loyalty"];
+window.hvTrack=function(ev,props){try{var a=JSON.parse(localStorage.getItem("hv_events")||"[]");
+  a.push({e:ev,p:props||{},t:Date.now()});if(a.length>500)a=a.slice(-500);
+  localStorage.setItem("hv_events",JSON.stringify(a));}catch(_){}
+  if(window.console&&console.debug)console.debug("[hv]",ev,props||{});};
 function go(i){
+  hvTrack("page_view",{page:i});
   document.querySelectorAll(".panel").forEach(function(p,k){p.classList.toggle("on",k===i);});
   document.querySelectorAll(".side .nv").forEach(function(n){n.setAttribute("aria-current",n.getAttribute("data-p")==String(i));});
   document.getElementById("ptitle").textContent=TITLES[i];
@@ -1211,6 +1336,7 @@ function toast(m){ var t=document.getElementById("toast"); t.textContent=m; t.cl
 /* ═══ 总览：任务批复 ═══ */
 document.addEventListener("click",function(e){
   var ok=e.target.closest(".ok1"), no=e.target.closest(".no1");
+  if(ok)hvTrack("decision",{a:"approve"}); if(no)hvTrack("decision",{a:"reject"});
   if(!ok&&!no) return;
   var card=e.target.closest(".task"); card.classList.add("done");
   var b=document.createElement("div"); b.className="donebadge";
@@ -1221,7 +1347,8 @@ document.addEventListener("click",function(e){
   document.getElementById("inboxN").textContent=left;
   toast(ok?"Approved — slot written to the calendar":"Rejected");
 });
-document.getElementById("kpiInbox").addEventListener("click",function(){ document.getElementById("taskList").scrollIntoView({behavior:"smooth",block:"center"}); });
+var _ss=document.getElementById("stSave"); if(_ss)_ss.addEventListener("click",function(){hvTrack("store_save");toast("Saved — applied to posters, menus and social");});
+var _kib=document.getElementById("kpiInbox"); if(_kib)_kib.addEventListener("click",function(){ document.getElementById("taskList").scrollIntoView({behavior:"smooth",block:"center"}); });
 /* ═══ 宣传设计工作台 ═══ */
 (function(){
   var STY={a:{c:"#B4451F",n:"Bold promo"},b:{c:"#1F2937",n:"Clean & classy"},c:{c:"#3F7D4E",n:"Warm & family"}};
@@ -1235,13 +1362,13 @@ document.getElementById("kpiInbox").addEventListener("click",function(){ documen
       if(!document.getElementById("wbOut").hidden) render(); livePrev(); return;}
     var d=e.target.closest(".dch"); if(d){d.setAttribute("aria-pressed",d.getAttribute("aria-pressed")!=="true");
       var on=document.querySelector('.dch[aria-pressed="true"]'); if(on) cur.emo=on.getAttribute("data-emo")||cur.emo; var s3b=document.getElementById("st3");s3b&&s3b.classList.add("on"); livePrev(); return;}
-    var lp=e.target.closest(".langp"); if(lp){lp.classList.toggle("on");
+    var lp=e.target.closest(".langp"); if(lp){lp.classList.toggle("on");hvTrack("lang_version_toggle",{on:lp.classList.contains("on")});
       var _n=document.querySelectorAll(".langp.on").length;
       var _c=document.getElementById("lpCnt"); if(_c) _c.textContent=_n+"/3 selected · "+(_n?"going to approval":"none — pick at least one");
       return;}
     var v=e.target.closest(".var");
     if(v&&v.closest("#bLiveP")){var _ii=[].indexOf.call(document.getElementById("bLiveP").children,v);
-      if(_ii>-1){cur.pref=_ii;livePrev(); if(!document.getElementById("wbOut").hidden) render();
+      if(_ii>-1){cur.pref=_ii;hvTrack("direction_pick",{dir:_ii});livePrev(); if(!document.getElementById("wbOut").hidden) render();
         toast("Direction set: "+VL[_ii]+" — Generate will recommend this");}
       return;}
     if(v&&!v.closest("#bLiveP")){[].forEach.call(document.querySelectorAll(".var"),function(x){x.classList.remove("sel");});v.classList.add("sel");
@@ -1259,8 +1386,10 @@ document.getElementById("kpiInbox").addEventListener("click",function(){ documen
   var VL=["Photo-led","Price-led","Copy-led"];
   function poster(i,recc){
     var c=STY[cur.sty].c;
-    var art=IMGS[cur.emo]?'<div class="a real" style="background-image:url('+IMGS[cur.emo]+')"></div>':'<div class="a">'+cur.emo+'</div>';
-    return '<div class="var'+(recc?" sel":"")+'">'+(recc?'<span class="rec">Recommended</span>':"")+
+    var VIMG=["img/mango2.jpg","img/mango.jpg","img/mango3.jpg"];
+    var pimg=(cur.emo==="🥭"?VIMG[i]:IMGS[cur.emo]);
+    var art=pimg?'<div class="a real" style="background-image:url('+pimg+')"></div>':'<div class="a">'+cur.emo+'</div>';
+    return '<div class="var'+(recc?" sel hasrec":"")+'">'+(recc?'<span class="rec">Recommended</span>':"")+
       '<div class="vp v'+i+'"><div class="h" style="background:'+c+'">WARISAN GRILL · HALAL ✓</div>'+
       art+'<div class="t">'+TT[i]+'</div>'+
       '<div class="pr num" style="color:'+c+'">RM '+cur.price+' <s style="font-size:10px;color:#9A9184">was RM '+cur.orig+'</s></div>'+
@@ -1278,6 +1407,7 @@ document.getElementById("kpiInbox").addEventListener("click",function(){ documen
   }
   livePrev();
   document.getElementById("wbGo").addEventListener("click",function(){
+    hvTrack("generate_concepts",{style:cur.sty,pref:cur.pref,price:cur.price});
     document.getElementById("wbOut").hidden=false;
     document.getElementById("wbEdit").hidden=false;
     document.getElementById("wbTip").hidden=true;
@@ -1294,6 +1424,7 @@ document.getElementById("kpiInbox").addEventListener("click",function(){ documen
   document.addEventListener("click",function(e){
     var ed=e.target.closest("[data-ed]"); if(ed){
       var k=ed.getAttribute("data-ed");
+      hvTrack("edit_action",{action:k});
       if(k==="price"){ cur.price=(cur.price==="38"?"32":"38"); render(); toast("Price set to RM "+cur.price+" — gate re-checked ✓"); }
       else if(k==="img"){ var ring=["🥭","🍹","🍝","🍢"]; cur.emo=ring[(ring.indexOf(cur.emo)+1)%4]; render(); toast("Hero image swapped"); }
       else if(k==="color"){ var ks=["a","b","c"]; cur.sty=ks[(ks.indexOf(cur.sty)+1)%3];
@@ -1304,6 +1435,7 @@ document.getElementById("kpiInbox").addEventListener("click",function(){ documen
       return;
     }
     var ex=e.target.closest("[data-ex]"); if(ex){
+      hvTrack("export",{size:ex.getAttribute("data-ex")});
       if(ex.getAttribute("data-a4")){
         var cv=document.createElement("canvas"); cv.width=480; cv.height=640;
         var g=cv.getContext("2d"), c=STY[cur.sty].c;
@@ -1410,6 +1542,7 @@ document.getElementById("rcAdd").addEventListener("click",function(){
       else cb();
     }
     function handle(msg){
+      hvTrack("chat_message",{len:msg.length});
       say("me",msg);
       var _t=typing();
       setTimeout(function(){_t.remove();
