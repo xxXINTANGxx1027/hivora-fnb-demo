@@ -513,6 +513,15 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .agin input{flex:1;border:1px solid var(--line);border-radius:10px;padding:8px 12px;font-size:12.6px;background:var(--surface)}
 .agin button{background:var(--ink);color:#fff;border-radius:10px;padding:8px 14px;font-weight:650;font-size:12.5px}
 
+
+/* 页内 agent 输入条 */
+.agline{display:flex;gap:10px;align-items:center;padding:11px 13px;margin-bottom:12px}
+.agline form{flex:1;display:flex;gap:8px}
+.agline input{flex:1;border:1px solid var(--line);border-radius:10px;padding:9px 13px;font-size:12.8px;background:var(--surface)}
+.agline input:focus{outline:2px solid var(--blue-line)}
+.inline-reply{margin:-4px 0 12px 44px;max-width:none;display:block}
+.inline-reply[hidden]{display:none}
+
 </style>
 <script>try{if(localStorage.getItem("hv_lang")==="zh"&&location.search.indexOf("stay")<0)location.replace("zh.html");}catch(e){}</script></head>
 <body>
@@ -708,6 +717,11 @@ td b.pr2{font-variant-numeric:tabular-nums}
       </div>
       <!-- 栏3 结果+编辑导出+文案 -->
       <div>
+        <div class="card agline">
+          <span class="ag-av">D</span>
+          <form id="agInlineForm"><input id="agInlineIn" placeholder="Tell the designer: “price to 32” · “use the satay” · “buy-1-free-1”…" autocomplete="off"><button class="btn pri sm" type="submit">Send</button></form>
+        </div>
+        <div class="agm ai inline-reply" id="agInlineR" hidden></div>
         <div class="card" id="wbOut" hidden>
           <div class="chd"><b>4 · Concepts</b><s id="mkVer">pick one · Gate re-runs each time</s><span class="sp"></span>
             <button class="btn sm" data-ed="re">Regenerate</button><span class="tag gn">Gate 6/6</span></div>
@@ -1291,7 +1305,8 @@ document.getElementById("rcAdd").addEventListener("click",function(){
     fab.addEventListener("click",function(){panel.hidden=!panel.hidden;});
     document.getElementById("agX").addEventListener("click",function(){panel.hidden=true;});
     var log=document.getElementById("agLog");
-    function say(who,txt){var d=document.createElement("div");d.className="agm "+who;d.textContent=txt;log.appendChild(d);log.scrollTop=log.scrollHeight;}
+    function say(who,txt){var d=document.createElement("div");d.className="agm "+who;d.textContent=txt;log.appendChild(d);log.scrollTop=log.scrollHeight;
+      if(who==="ai"){var ir=document.getElementById("agInlineR");if(ir){ir.textContent=txt;ir.hidden=false;}}}
     function ensureGen(cb){
       if(document.getElementById("wbOut").hidden){document.querySelector('.nv[data-p="1"]').click();document.getElementById("wbGo").click();setTimeout(cb,1200);}
       else cb();
@@ -1313,6 +1328,11 @@ document.getElementById("rcAdd").addEventListener("click",function(){
         } else { say("ai","Noted. Say things like “price to 32”, “use the satay”, or “buy-1-free-1” and I’ll redo the concepts."); }
       },450);
     }
+    window.__agHandle=handle;
+    var inf=document.getElementById("agInlineForm");
+    if(inf){inf.addEventListener("submit",function(e){e.preventDefault();
+      var v=document.getElementById("agInlineIn").value.trim(); if(!v)return;
+      document.getElementById("agInlineIn").value=""; handle(v);});}
     document.getElementById("agForm").addEventListener("submit",function(e){e.preventDefault();
       var v=document.getElementById("agIn").value.trim(); if(!v)return;
       document.getElementById("agIn").value=""; handle(v);});
