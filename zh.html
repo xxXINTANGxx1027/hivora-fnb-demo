@@ -425,6 +425,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .photo.real.enh:after{display:block;content:"已美化"}
 .vp .a.real{height:112px;background-size:cover;background-position:center;padding:0}
 
+.langbtn{width:34px;height:34px;border:1px solid var(--line);border-radius:10px;display:grid;place-items:center;color:var(--mut);text-decoration:none;transition:.15s}.langbtn:hover{border-color:var(--blue-line);color:var(--blue)}
 </style>
 </head>
 <body>
@@ -465,7 +466,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
 </aside>
 <main class="main">
   <div class="top"><h1 id="ptitle">总览</h1><span class="crumb" id="pcrumb">2026-07-28 周二</span><span class="sp"></span>
-    <div class="srch">⌕ 搜方案 · 物料 · 客户…</div><a class="btn sm" href="./?stay=1" style="text-decoration:none" onclick="try{localStorage.setItem('hv_lang','en')}catch(e){}">EN</a><span class="avat">W</span></div>
+    <div class="srch">⌕ 搜方案 · 物料 · 客户…</div><a class="langbtn" href="./?stay=1" aria-label="Switch to English" title="English" onclick="try{localStorage.setItem('hv_lang','en')}catch(e){}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" aria-hidden="true" style="width:17px;height:17px;display:block"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c2.5 2.6 3.8 5.7 3.8 9S14.5 18.4 12 21c-2.5-2.6-3.8-5.7-3.8-9S9.5 5.6 12 3Z"/></svg></a><span class="avat">W</span></div>
 
   <!-- ═══════════ P0 总览 ═══════════ -->
   <section class="panel on" id="p0">
