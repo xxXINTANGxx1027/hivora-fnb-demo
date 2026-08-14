@@ -430,12 +430,23 @@ td b.pr2{font-variant-numeric:tabular-nums}
 
 .langbtn{width:34px;height:34px;border:1px solid var(--line);border-radius:10px;display:grid;place-items:center;color:var(--mut);text-decoration:none;transition:.15s}.langbtn:hover{border-color:var(--blue-line);color:var(--blue)}
 
-/* 方案卡 9:16 竖版 */
-.vp{aspect-ratio:9/16;display:flex;flex-direction:column}
+/* 方案卡 竖版 */
+.vp{display:flex;flex-direction:column}
 .vp .a,.vp .a.real{flex:1;min-height:0;height:auto}
 .vp .t{font-size:13.5px;padding-top:8px}
 .vp .pr{font-size:18px}
 .vp .f{margin-top:auto}
+
+
+/* 4:5 竖版（尺寸回收）+ 3语言行 */
+.vp{aspect-ratio:4/5}
+.var{max-width:232px;margin:0 auto;width:100%}
+.langrow{display:grid;grid-template-columns:repeat(3,minmax(0,150px));gap:10px;margin-top:10px}
+.langp{border:1px solid var(--line);border-radius:11px;overflow:hidden;background:#FFFDF8;position:relative}
+.langp .li{height:96px;background-size:cover;background-position:center}
+.langp .lt{font-size:10.5px;font-weight:800;text-align:center;padding:6px 6px 1px;color:#241F18}
+.langp .lp{font-size:12px;font-weight:800;text-align:center;color:#B4451F;padding-bottom:7px}
+.langp .lb{position:absolute;top:6px;left:6px;background:var(--ink);color:#fff;font-size:9px;font-weight:700;padding:2px 7px;border-radius:99px}
 
 </style>
 <script>try{if(localStorage.getItem("hv_lang")==="zh"&&location.search.indexOf("stay")<0)location.replace("zh.html");}catch(e){}</script></head>
@@ -633,6 +644,10 @@ td b.pr2{font-variant-numeric:tabular-nums}
         <div class="card" id="wbOut" hidden>
           <div class="chd"><b>4 · Concepts</b><s>3 generated · pick one · ~8s each</s><span class="sp"></span><span class="tag gn">Gate passed 6/6</span></div>
           <div class="vars" id="wbVars"></div>
+          <div id="wbLang" hidden style="margin-top:13px;padding-top:12px;border-top:1px solid var(--line2)">
+            <div class="chd" style="margin-bottom:8px"><b style="font-size:12.5px">Localized versions</b><s>same image, same price — targeted by audience</s></div>
+            <div class="langrow" id="wbLangRow"></div>
+          </div>
           <div class="cnote">Hard checks: price from menu ✓ · Halal mark ✓ · QR via template ✓ · dietary rules ✓ — anything that fails never reaches you.</div>
         </div>
         <div class="card mt" id="wbEdit" hidden>
@@ -1049,7 +1064,15 @@ document.getElementById("kpiInbox").addEventListener("click",function(){ documen
       if(!document.getElementById("wbOut").hidden) render(); return;}
     var d=e.target.closest(".dch"); if(d){d.setAttribute("aria-pressed",d.getAttribute("aria-pressed")!=="true");
       var on=document.querySelector('.dch[aria-pressed="true"] span'); if(on) cur.emo=on.textContent; return;}
-    var v=e.target.closest(".var"); if(v){[].forEach.call(document.querySelectorAll(".var"),function(x){x.classList.remove("sel");});v.classList.add("sel");return;}
+    var v=e.target.closest(".var"); if(v){[].forEach.call(document.querySelectorAll(".var"),function(x){x.classList.remove("sel");});v.classList.add("sel");
+      var L=[["中文","午市快闪 · 甜蜜加价购"],["EN","Lunch Flash · Sweet Add-on"],["BM","Kilat Tengah Hari · Tambahan Manis"]];
+      var img=IMGS[cur.emo]||"img/mango.jpg";
+      document.getElementById("wbLangRow").innerHTML=L.map(function(l){
+        return '<div class="langp"><span class="lb">'+l[0]+'</span><div class="li" style="background-image:url('+img+')"></div>'+
+          '<div class="lt">'+l[1]+'</div><div class="lp num">RM '+cur.price+'</div></div>';}).join("");
+      document.getElementById("wbLang").hidden=false;
+      toast("Concept selected — 3 language versions ready");
+      return;}
   });
   var IMGS={"🥭":"img/mango.jpg","🍹":"img/cooler.jpg","🍝":"img/pasta.jpg","🍢":"img/satay.jpg"};
   function poster(i,recc){
