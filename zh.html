@@ -557,13 +557,12 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .agm.tpg i:nth-child(3){animation-delay:.36s}
 @keyframes tp{0%,60%,100%{opacity:.25}30%{opacity:1}}
 .wb3:not(.chatmode) #bLive{display:none}
-#bLiveP .var{max-width:210px;margin:8px auto 2px;cursor:default}
-#bLiveP .var:hover{border-color:transparent}
+#bLiveP .var{max-width:210px;margin:8px auto 2px}
 .wb3.chatmode{align-items:stretch}
 .chatmode #wbCol3{display:flex;flex-direction:column;min-height:0}
 .chatmode #bLive:not([hidden]){flex:1;display:flex;flex-direction:column}
-.chatmode #bLiveP{flex:1;display:flex;align-items:center;justify-content:center}
-.chatmode #bLiveP .var{max-width:238px;width:100%}
+.chatmode #bLiveP{flex:1;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-content:center}
+.chatmode #bLiveP .var{max-width:none;width:100%;cursor:pointer}
 .chatmode #wbTip{display:none}
 .vp.v0 .a.real{min-height:148px}
 .vp.v0 .t{font-size:11.5px;font-weight:700}
@@ -576,7 +575,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .vp.v2 .a.real{min-height:82px}
 .vp.v2 .pr{font-size:13px}
 .vlab{text-align:center;font-size:10.5px;color:var(--mut);font-weight:650;margin-top:6px}
-#bLiveP .vlab{display:none}
+
 .bc-hd{display:flex;align-items:center;gap:9px;padding:12px 15px;border-bottom:1px solid var(--line);background:var(--surface2)}
 .bc-log{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:9px}
 .bc-in{display:flex;gap:8px;padding:12px 14px;border-top:1px solid var(--line)}
@@ -777,9 +776,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
             <div class="chd" style="margin-bottom:6px"><b style="font-size:12px">店铺资料 · 已自动填入</b><span class="sp"></span><button class="lnk" data-p="6" style="font-size:11.5px">编辑</button></div>
             <div class="stchips"><span class="stc">Warisan Grill · Halal ✓</span><span class="stc"><i class="sw"></i>#B4451F</span><span class="stc">📍 Jalan Ampang</span><span class="stc">💬 +60 12-345 6789</span></div>
           </div>
-        </div>
-        <div class="card mt">
-          <div class="chd"><b>3 · 选择设计风格</b></div>
+          <div class="chd" style="margin:14px 0 10px;padding-top:13px;border-top:1px solid var(--line2)"><b>3 · 选择设计风格</b></div>
           <div class="sthumbs">
             <button class="sty" data-sty="a" aria-pressed="true"><span class="sth"><span class="sth-h" style="background:#B4451F"></span><span class="sth-i" style="background-image:url(img/mango.jpg)"></span></span><b>活力促销风</b><s>色彩鲜明 · 吸引眼球</s></button>
             <button class="sty" data-sty="b" aria-pressed="false"><span class="sth"><span class="sth-h" style="background:#1F2937"></span><span class="sth-i" style="background-image:url(img/pasta.jpg)"></span></span><b>高级简约风</b><s>干净留白 · 质感优先</s></button>
@@ -793,7 +790,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
         <div class="card" id="bLive">
           <div class="chd"><b>实时预览</b><span class="sp"></span><s id="bLiveS">边聊边更新</s></div>
           <div id="bLiveP"></div>
-          <div class="cnote">草稿排版 —— 价格、Halal 标记、QR 由 Gate 锁定；点「生成」才出正式方案。</div>
+          <div class="cnote">三个草稿方向 —— 点选你偏好的一版；价格、Halal 标记、QR 由 Gate 锁定。</div>
         </div>
         <div class="card" id="wbOut" hidden>
           <div class="chd"><b>4 · AI 生成结果</b><s id="mkVer">点选一个 · 每次生成 Gate 复查</s><span class="sp"></span>
@@ -1225,7 +1222,7 @@ document.getElementById("kpiInbox").addEventListener("click",function(){ documen
 /* ═══ 宣传设计工作台 ═══ */
 (function(){
   var STY={a:{c:"#B4451F",n:"活力促销"},b:{c:"#1F2937",n:"高级简约"},c:{c:"#3F7D4E",n:"家庭亲和"}};
-  var cur=window.__wb={sty:"a",price:"38",orig:"45",emo:"🥭",v:1};
+  var cur=window.__wb={sty:"a",price:"38",orig:"45",emo:"🥭",v:1,pref:1};
   var TT=["午餐能量满满当当","午市时刻 · 美味加油站","好好吃饭 · 午餐更满足"];
   function sel(group,btn){[].forEach.call(document.querySelectorAll(group),function(x){x.setAttribute("aria-pressed","false");});btn.setAttribute("aria-pressed","true");}
   document.addEventListener("click",function(e){
@@ -1239,7 +1236,12 @@ document.getElementById("kpiInbox").addEventListener("click",function(){ documen
       var _n=document.querySelectorAll(".langp.on").length;
       var _c=document.getElementById("lpCnt"); if(_c) _c.textContent=(_n?"已选 "+_n+"/3 · 进入审批":"一个都没选 — 至少留一个");
       return;}
-    var v=e.target.closest(".var"); if(v&&!v.closest("#bLiveP")){[].forEach.call(document.querySelectorAll(".var"),function(x){x.classList.remove("sel");});v.classList.add("sel");
+    var v=e.target.closest(".var");
+    if(v&&v.closest("#bLiveP")){var _ii=[].indexOf.call(document.getElementById("bLiveP").children,v);
+      if(_ii>-1){cur.pref=_ii;livePrev(); if(!document.getElementById("wbOut").hidden) render();
+        toast("已选方向："+VL[_ii]+" —— 生成时优先推荐这版");}
+      return;}
+    if(v&&!v.closest("#bLiveP")){[].forEach.call(document.querySelectorAll(".var"),function(x){x.classList.remove("sel");});v.classList.add("sel");
       var L=[["中文","午市快闪 · 甜蜜加价购"],["EN","Lunch Flash · Sweet Add-on"],["BM","Kilat Tengah Hari · Tambahan Manis"]];
       var img=IMGS[cur.emo]||"img/mango.jpg";
       document.getElementById("wbLangRow").innerHTML=L.map(function(l){
@@ -1263,10 +1265,10 @@ document.getElementById("kpiInbox").addEventListener("click",function(){ documen
   }
   function render(){
     var vs=document.getElementById("wbVars");
-    vs.innerHTML=poster(0,false)+poster(1,true)+poster(2,false);
+    vs.innerHTML=poster(0,cur.pref===0)+poster(1,cur.pref===1)+poster(2,cur.pref===2);
   }
   function livePrev(){var el=document.getElementById("bLiveP"); if(!el) return;
-    el.innerHTML=poster(1,false);
+    el.innerHTML=poster(0,cur.pref===0)+poster(1,cur.pref===1)+poster(2,cur.pref===2);
     var s=document.getElementById("bLiveS"),g=document.querySelector('.goal[aria-pressed="true"] b');
     var n=document.querySelectorAll('.dch[aria-pressed="true"]').length;
     if(s) s.textContent=(g?g.textContent:"—")+" · "+n+" 道菜 · "+STY[cur.sty].n;
