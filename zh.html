@@ -345,6 +345,12 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .ing[aria-pressed="true"]{background:var(--blue-soft);border-color:var(--blue-line);color:var(--blue)}
 .rcp{border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:var(--surface)}
 .rcimg{height:150px;border-radius:12px;background-size:cover;background-position:center;margin-bottom:11px}
+.panel{max-width:1560px;margin:0 auto}
+.glab{display:flex;align-items:baseline;gap:7px;font-size:11.5px;font-weight:800;color:var(--ink2);margin:14px 0 7px}
+.glab s{font-weight:500;font-size:11px;color:var(--faint)}
+.rcfoot{display:flex;align-items:center;gap:10px;margin-top:15px;padding-top:14px;border-top:1px solid var(--line2);flex-wrap:wrap}
+.rcfoot label{font-size:11.5px;font-weight:700;color:var(--mut)}
+.rcfoot .btn{margin-left:auto}
 .costr{padding:2px 0 9px}
 .costr b{font-size:11.5px;display:flex;justify-content:space-between;font-weight:650}
 .costr em{font-style:normal}
@@ -1072,30 +1078,32 @@ td b.pr2{font-variant-numeric:tabular-nums}
     <div class="two">
     <div>
       <div class="card" style="margin-bottom:16px">
-        <div class="chd"><i data-i="bulb"></i><b>今天有什么？</b><s>点选即可</s><span class="sp"></span><span class="tag">店型来自店面资料</span></div>
-        <div class="ingrow">
+        <div class="chd"><i data-i="bulb"></i><b>今天有什么？</b><s>点选即可 —— 下面每一项都会影响出菜</s></div>
+        <div class="glab">现有食材</div>
+        <div class="ingrow" style="margin:0">
           <button class="ing" aria-pressed="true">椰浆</button><button class="ing" aria-pressed="true">鸡腿肉</button>
           <button class="ing" aria-pressed="false">香茅</button><button class="ing" aria-pressed="true">青柠</button>
           <button class="ing" aria-pressed="false">花生</button><button class="ing" aria-pressed="false">芒果</button>
           <button class="ing" aria-pressed="false">薄荷</button><button class="ing" aria-pressed="false">糯米</button>
           <button class="ing" aria-pressed="false">黄瓜</button><button class="ing" aria-pressed="false">辣椒</button>
         </div>
-        <div class="chd" style="margin:10px 0 6px"><b style="font-size:12px">时令 · 天气</b><s>按预报自动带入 —— 点选可改</s></div>
-        <div class="ingrow" style="margin:0 0 6px">
+        <div class="glab">时令 · 天气 <s>按预报自动带入 · 点选可改</s></div>
+        <div class="ingrow" style="margin:0">
           <button class="ing" aria-pressed="true">炎热 · 33°C</button>
           <button class="ing" aria-pressed="false" id="wRain">接下来有雨</button>
           <button class="ing" aria-pressed="false">Merdeka 临近</button>
           <button class="ing" aria-pressed="true">芒果当季</button>
         </div>
-        <div class="chd" style="margin:10px 0 6px"><b style="font-size:12px">顾客最近在说</b><s>来自 Google 评论 · WhatsApp —— 只看内容不存个人（PDPA）</s></div>
-        <div class="ingrow" style="margin:0 0 6px">
+        <div class="glab">顾客最近在说 <s>Google 评论 · WhatsApp —— 只看内容不存个人（PDPA）</s></div>
+        <div class="ingrow" style="margin:0">
           <button class="ing" aria-pressed="true">「可以不那么辣吗」×3</button>
           <button class="ing" aria-pressed="false">「有椰子冰沙吗？」×2</button>
           <button class="ing" aria-pressed="false">「汤有点少」</button>
         </div>
-        <div class="fchips" style="margin:2px 0 4px"><span class="stc">食材成本 ≤ 30%</span><span class="stc">备餐 ≤ 15 分钟</span><span class="stc">无牛肉 · 全族群可吃 ✓</span></div>
-        <div class="mrow" style="margin-top:10px"><select class="msel"><option>马来西亚 Halal 烧烤 · 中端</option><option>咖啡馆 / 早午餐</option><option>夜市档口</option></select>
-          <span class="sp" style="flex:1"></span><button class="btn pri" id="rcGo">AI 出菜</button></div>
+        <div class="glab">硬约束 <s>Gate 锁定 —— 永不越线</s></div>
+        <div class="fchips"><span class="stc">食材成本 ≤ 30%</span><span class="stc">备餐 ≤ 15 分钟</span><span class="stc">无牛肉 · 全族群可吃 ✓</span></div>
+        <div class="rcfoot"><label>店型 · 来自店面资料</label><select class="msel"><option>马来西亚 Halal 烧烤 · 中端</option><option>咖啡馆 / 早午餐</option><option>夜市档口</option></select>
+          <button class="btn pri" id="rcGo">AI 出菜</button></div>
       </div>
       <div id="rcOut" hidden>
         <div class="shead"><b>从你的食材里出了 2 道</b><span class="tag gn" style="margin-left:8px">族群规则已检查 ✓</span><span class="sp"></span><button class="btn sm" id="rcRe">换一批</button></div>
