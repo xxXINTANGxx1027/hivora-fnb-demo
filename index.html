@@ -344,6 +344,11 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .ing{border:1px solid var(--line);border-radius:99px;padding:6px 14px;font-size:12.6px;font-weight:600;background:var(--surface)}
 .ing[aria-pressed="true"]{background:var(--blue-soft);border-color:var(--blue-line);color:var(--blue)}
 .rcp{border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:var(--surface)}
+.rcimg{height:150px;border-radius:12px;background-size:cover;background-position:center;margin-bottom:11px}
+.costr{padding:2px 0 9px}
+.costr b{font-size:11.5px;display:flex;justify-content:space-between;font-weight:650}
+.costr em{font-style:normal}
+.costr .abar{display:block;margin-top:4px}
 .rcp h3{font-size:15.5px;letter-spacing:-.01em}
 .rcp .rmeta{display:flex;gap:6px;margin:8px 0 10px;flex-wrap:wrap}
 .rcp ol{padding-left:18px;font-size:12.8px;color:var(--ink2)}
@@ -1066,31 +1071,66 @@ td b.pr2{font-variant-numeric:tabular-nums}
   <section class="panel" id="p5">
     <div style="margin-bottom:16px"><div class="eyebrow">Recipe Lab</div>
       <h2>Tell it what’s in the kitchen</h2>
-      <p class="sub">New-dish ideas tuned to your concept — with estimated cost and method included.</p></div>
-    <div class="card" style="margin-bottom:16px">
-      <div class="chd"><i data-i="bulb"></i><b>What do you have today?</b><s>Tap to select</s></div>
-      <div class="ingrow">
-        <button class="ing" aria-pressed="true">Coconut milk</button><button class="ing" aria-pressed="true">Chicken thigh</button>
-        <button class="ing" aria-pressed="false">Lemongrass</button><button class="ing" aria-pressed="true">Lime</button>
-        <button class="ing" aria-pressed="false">Peanut</button><button class="ing" aria-pressed="false">Mango</button>
-        <button class="ing" aria-pressed="false">Mint</button>
+      <p class="sub">Say what you have — the AI designs new dishes around your concept, with cost and method worked out.</p></div>
+    <div class="two">
+    <div>
+      <div class="card" style="margin-bottom:16px">
+        <div class="chd"><i data-i="bulb"></i><b>What do you have today?</b><s>Tap to select</s><span class="sp"></span><span class="tag">Concept from Store details</span></div>
+        <div class="ingrow">
+          <button class="ing" aria-pressed="true">Coconut milk</button><button class="ing" aria-pressed="true">Chicken thigh</button>
+          <button class="ing" aria-pressed="false">Lemongrass</button><button class="ing" aria-pressed="true">Lime</button>
+          <button class="ing" aria-pressed="false">Peanut</button><button class="ing" aria-pressed="false">Mango</button>
+          <button class="ing" aria-pressed="false">Mint</button><button class="ing" aria-pressed="false">Sticky rice</button>
+          <button class="ing" aria-pressed="false">Cucumber</button><button class="ing" aria-pressed="false">Chili</button>
+        </div>
+        <div class="fchips" style="margin:2px 0 4px"><span class="stc">Food cost ≤ 30%</span><span class="stc">Prep ≤ 15 min</span><span class="stc">No beef · safe for all diets ✓</span></div>
+        <div class="mrow" style="margin-top:10px"><select class="msel"><option>Malaysian halal grill · mid-range</option><option>Café / brunch</option><option>Night-market stall</option></select>
+          <span class="sp" style="flex:1"></span><button class="btn pri" id="rcGo">Suggest dishes</button></div>
       </div>
-      <div class="mrow"><select class="msel"><option>Malaysian halal grill · mid-range</option><option>Café / brunch</option><option>Night-market stall</option></select>
-        <span class="sp" style="flex:1"></span><button class="btn pri" id="rcGo">Suggest dishes</button></div>
+      <div id="rcOut" hidden>
+        <div class="shead"><b>2 ideas from your pantry</b><span class="tag gn" style="margin-left:8px">Dietary rules checked ✓</span><span class="sp"></span><button class="btn sm" id="rcRe">Another batch</button></div>
+        <div class="grid2">
+        <div class="rcp">
+          <div class="rcimg" style="background-image:url(img/percik.jpg)"></div>
+          <h3>Lime-Coconut Grilled Chicken · Ayam Percik, reworked</h3>
+          <div class="rmeta"><span class="tag gn">Est. FC 31%</span><span class="tag">Suggested RM 16.90</span><span class="tag">Prep 12 min</span><span class="tag">No beef · all diets</span></div>
+          <div class="costr"><b><span>Cost RM 5.20 → sell RM 16.90</span><em class="num">69% margin</em></b><span class="abar"><i style="width:69%;background:var(--green)"></i></span></div>
+          <ol><li>Marinate thighs in coconut milk, lime and spices, 2 hrs</li><li>Char-grill 8 min, basting with coconut glaze</li><li>Finish with lime and cucumber — runs on your existing grill line</li></ol>
+          <div class="cnote">Why this: your grill line sits idle 3–5pm, and satay buyers cross-order chicken 2.3×.
+            <div style="display:flex;gap:8px;margin-top:9px"><button class="btn pri sm" id="rcAdd">Add to menu</button><button class="btn sm" data-p="1">Make poster →</button></div></div>
+        </div>
+        <div class="rcp">
+          <div class="rcimg" style="background-image:url(img/cooler.jpg)"></div>
+          <h3>Lime-Mint Coconut Cooler · drinks gap-filler</h3>
+          <div class="rmeta"><span class="tag gn">Est. FC 22%</span><span class="tag">Suggested RM 6.50</span><span class="tag">10-sec serve</span><span class="tag am">Built for the 3–5pm dip</span></div>
+          <div class="costr"><b><span>Cost RM 1.40 → sell RM 6.50</span><em class="num">78% margin</em></b><span class="abar"><i style="width:78%;background:var(--green)"></i></span></div>
+          <ol><li>Shake coconut milk, lime and syrup</li><li>Mint-rubbed glass, crushed ice</li><li>Ten seconds to serve — perfect teatime bait</li></ol>
+          <div class="cnote">Why this: teatime sales dip 38% below lunch — a fast drink fills the gap with zero kitchen load.
+            <div style="display:flex;gap:8px;margin-top:9px"><button class="btn sm" data-p="1">Make assets →</button></div></div>
+        </div>
+        </div>
+      </div>
     </div>
-    <div class="grid2" id="rcOut" hidden>
-      <div class="rcp">
-        <h3>Lime-Coconut Grilled Chicken · Ayam Percik, reworked</h3>
-        <div class="rmeta"><span class="tag gn">Est. FC 31%</span><span class="tag">Suggested RM 16.90</span><span class="tag">No beef · all diets</span></div>
-        <ol><li>Marinate thighs in coconut milk, lime and spices, 2 hrs</li><li>Char-grill 8 min, basting with coconut glaze</li><li>Finish with lime and cucumber — runs on your existing grill line</li></ol>
-        <div class="cnote">Bundle with the Nasi Lemak Set to lift ticket size.<button class="btn pri sm" style="margin-left:8px" id="rcAdd">Add to menu</button></div>
+    <aside class="rail">
+      <div class="card">
+        <div class="chd"><i data-i="gauge"></i><b>How it works</b></div>
+        <div class="st5">
+          <div class="s5 done"><i>1</i><span><b>Pick what you have</b><s>Ingredients on hand today</s></span></div>
+          <div class="s5 done"><i>2</i><span><b>AI fits your concept</b><s>Type &amp; price band from Store details</s></span></div>
+          <div class="s5"><i>3</i><span><b>Ship it</b><s>Add to menu · poster in Design Studio</s></span></div>
+        </div>
       </div>
-      <div class="rcp">
-        <h3>Lime-Mint Coconut Cooler · drinks gap-filler</h3>
-        <div class="rmeta"><span class="tag gn">Est. FC 22%</span><span class="tag">Suggested RM 6.50</span><span class="tag am">Built for the 3–5pm dip</span></div>
-        <ol><li>Shake coconut milk, lime and syrup</li><li>Mint-rubbed glass, crushed ice</li><li>Ten seconds to serve — perfect teatime bait</li></ol>
-        <div class="cnote">Pairs with the teatime poster you already have.<button class="lnk" data-p="1">Make assets →</button></div>
+      <div class="card mt">
+        <div class="chd"><i data-i="bell"></i><b>Kitchen watch</b></div>
+        <div class="al rd"><span>Coconut milk runs out <b>by Friday</b> — both ideas use it. Restock before launch.</span></div>
+        <div class="al am"><span><b>3–5pm sales dip 38%</b> — that’s why teatime items rank first.</span></div>
+        <div class="al"><span>Mango overstock from the lunch promo — a dessert special would clear it.</span></div>
       </div>
+      <div class="card mt">
+        <div class="chd"><i data-i="gear"></i><b>Your recipes stay yours</b></div>
+        <div class="note">Only the ingredients you type here are used for ideas. <b>Your existing recipes are never fed to the AI</b> — that switch stays with you.</div>
+      </div>
+    </aside>
     </div>
   </section>
 
@@ -1519,9 +1559,11 @@ document.querySelectorAll(".ing").forEach(function(b){
   b.addEventListener("click",function(){b.setAttribute("aria-pressed",b.getAttribute("aria-pressed")!=="true");});
 });
 document.getElementById("rcGo").addEventListener("click",function(){
+  hvTrack("recipe_suggest");
   var o=document.getElementById("rcOut"); o.hidden=false; o.scrollIntoView({behavior:"smooth",block:"center"});
   toast("2 ideas from your pantry and concept");
 });
+var _rr=document.getElementById("rcRe"); if(_rr)_rr.addEventListener("click",function(){hvTrack("recipe_regen");toast("Another 2 ideas ready (demo)");});
 document.getElementById("rcAdd").addEventListener("click",function(){
   toast("Added to menu (draft) — cost auto-checked");
 });

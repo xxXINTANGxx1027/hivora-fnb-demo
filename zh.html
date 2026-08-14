@@ -344,6 +344,11 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .ing{border:1px solid var(--line);border-radius:99px;padding:6px 14px;font-size:12.6px;font-weight:600;background:var(--surface)}
 .ing[aria-pressed="true"]{background:var(--blue-soft);border-color:var(--blue-line);color:var(--blue)}
 .rcp{border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:var(--surface)}
+.rcimg{height:150px;border-radius:12px;background-size:cover;background-position:center;margin-bottom:11px}
+.costr{padding:2px 0 9px}
+.costr b{font-size:11.5px;display:flex;justify-content:space-between;font-weight:650}
+.costr em{font-style:normal}
+.costr .abar{display:block;margin-top:4px}
 .rcp h3{font-size:15.5px;letter-spacing:-.01em}
 .rcp .rmeta{display:flex;gap:6px;margin:8px 0 10px;flex-wrap:wrap}
 .rcp ol{padding-left:18px;font-size:12.8px;color:var(--ink2)}
@@ -1061,33 +1066,68 @@ td b.pr2{font-variant-numeric:tabular-nums}
 
   <!-- ═══════════ P5 新菜灵感 ═══════════ -->
   <section class="panel" id="p5">
-    <div style="margin-bottom:16px"><div class="eyebrow">Recipe Lab</div>
-      <h2>报几样食材，出一道新菜</h2>
-      <p class="sub">按你的餐厅类型（马来西亚 Halal 烧烤）出建议，连成本和做法一起。</p></div>
-    <div class="card" style="margin-bottom:16px">
-      <div class="chd"><i data-i="bulb"></i><b>今天有什么食材？</b><s>点选或自己输入</s></div>
-      <div class="ingrow">
-        <button class="ing" aria-pressed="true">椰浆</button><button class="ing" aria-pressed="true">鸡腿肉</button>
-        <button class="ing" aria-pressed="false">香茅</button><button class="ing" aria-pressed="true">青柠</button>
-        <button class="ing" aria-pressed="false">花生</button><button class="ing" aria-pressed="false">芒果</button>
-        <button class="ing" aria-pressed="false">薄荷</button>
+    <div style="margin-bottom:16px"><div class="eyebrow">新菜灵感</div>
+      <h2>告诉它后厨有什么</h2>
+      <p class="sub">说出你手上的食材 —— AI 按你的店型设计新菜，成本和做法都算好。</p></div>
+    <div class="two">
+    <div>
+      <div class="card" style="margin-bottom:16px">
+        <div class="chd"><i data-i="bulb"></i><b>今天有什么？</b><s>点选即可</s><span class="sp"></span><span class="tag">店型来自店面资料</span></div>
+        <div class="ingrow">
+          <button class="ing" aria-pressed="true">椰浆</button><button class="ing" aria-pressed="true">鸡腿肉</button>
+          <button class="ing" aria-pressed="false">香茅</button><button class="ing" aria-pressed="true">青柠</button>
+          <button class="ing" aria-pressed="false">花生</button><button class="ing" aria-pressed="false">芒果</button>
+          <button class="ing" aria-pressed="false">薄荷</button><button class="ing" aria-pressed="false">糯米</button>
+          <button class="ing" aria-pressed="false">黄瓜</button><button class="ing" aria-pressed="false">辣椒</button>
+        </div>
+        <div class="fchips" style="margin:2px 0 4px"><span class="stc">食材成本 ≤ 30%</span><span class="stc">备餐 ≤ 15 分钟</span><span class="stc">无牛肉 · 全族群可吃 ✓</span></div>
+        <div class="mrow" style="margin-top:10px"><select class="msel"><option>马来西亚 Halal 烧烤 · 中端</option><option>咖啡馆 / 早午餐</option><option>夜市档口</option></select>
+          <span class="sp" style="flex:1"></span><button class="btn pri" id="rcGo">AI 出菜</button></div>
       </div>
-      <div class="mrow"><select class="msel"><option>马来西亚 Halal 烧烤 · 中档</option><option>咖啡简餐</option><option>夜市摊</option></select>
-        <span class="sp" style="flex:1"></span><button class="btn pri" id="rcGo">出主意</button></div>
+      <div id="rcOut" hidden>
+        <div class="shead"><b>从你的食材里出了 2 道</b><span class="tag gn" style="margin-left:8px">族群规则已检查 ✓</span><span class="sp"></span><button class="btn sm" id="rcRe">换一批</button></div>
+        <div class="grid2">
+        <div class="rcp">
+          <div class="rcimg" style="background-image:url(img/percik.jpg)"></div>
+          <h3>青柠椰香烤鸡 · Ayam Percik 新做法</h3>
+          <div class="rmeta"><span class="tag gn">预估成本 31%</span><span class="tag">建议售 RM 16.90</span><span class="tag">备餐 12 分钟</span><span class="tag">无牛肉 · 全族群</span></div>
+          <div class="costr"><b><span>成本 RM 5.20 → 卖 RM 16.90</span><em class="num">毛利 69%</em></b><span class="abar"><i style="width:69%;background:var(--green)"></i></span></div>
+          <ol><li>鸡腿用椰浆、青柠和香料腌 2 小时</li><li>炭烤 8 分钟，边烤边刷椰香酱</li><li>青柠黄瓜收尾 —— 用你现有烤线就能做</li></ol>
+          <div class="cnote">为什么推它：你的烤线 3–5pm 闲置，而买沙爹的客人交叉点鸡肉的概率高 2.3 倍。
+            <div style="display:flex;gap:8px;margin-top:9px"><button class="btn pri sm" id="rcAdd">加进菜单</button><button class="btn sm" data-p="1">做海报 →</button></div></div>
+        </div>
+        <div class="rcp">
+          <div class="rcimg" style="background-image:url(img/cooler.jpg)"></div>
+          <h3>青柠薄荷椰风 · 下午茶饱和档</h3>
+          <div class="rmeta"><span class="tag gn">预估成本 22%</span><span class="tag">建议售 RM 6.50</span><span class="tag">10 秒出杯</span><span class="tag am">专治 3–5pm 低谷</span></div>
+          <div class="costr"><b><span>成本 RM 1.40 → 卖 RM 6.50</span><em class="num">毛利 78%</em></b><span class="abar"><i style="width:78%;background:var(--green)"></i></span></div>
+          <ol><li>椰浆、青柠、糖浆摇匀</li><li>薄荷擦杯，加碎冰</li><li>十秒出杯 —— 下午茶引流神器</li></ol>
+          <div class="cnote">为什么推它：下午茶时段销量比午市低 38% —— 一杯快手饮品零后厨负担就能填上。
+            <div style="display:flex;gap:8px;margin-top:9px"><button class="btn sm" data-p="1">做物料 →</button></div></div>
+        </div>
+        </div>
+      </div>
     </div>
-    <div class="grid2" id="rcOut" hidden>
-      <div class="rcp">
-        <h3>青柠椰浆烤鸡腿 · Ayam Percik 改良版</h3>
-        <div class="rmeta"><span class="tag gn">估算 FC 31%</span><span class="tag">建议售价 RM 16.90</span><span class="tag">全族群可推（无牛）</span></div>
-        <ol><li>鸡腿肉用椰浆 + 青柠汁 + 香料腌 2 小时</li><li>炭烤 8 分钟，边烤边刷椰浆酱</li><li>起锅挤青柠、配黄瓜片 —— 和你现有炭烤线共用设备</li></ol>
-        <div class="cnote">和「椰浆饭套餐」组套餐可拉客单。<button class="btn pri sm" style="margin-left:8px" id="rcAdd">加进菜单</button></div>
+    <aside class="rail">
+      <div class="card">
+        <div class="chd"><i data-i="gauge"></i><b>怎么用</b></div>
+        <div class="st5">
+          <div class="s5 done"><i>1</i><span><b>选今天有的食材</b><s>后厨现有的就行</s></span></div>
+          <div class="s5 done"><i>2</i><span><b>AI 按店型出菜</b><s>店型与价位来自店面资料</s></span></div>
+          <div class="s5"><i>3</i><span><b>落地</b><s>加菜单 · 去宣传设计做海报</s></span></div>
+        </div>
       </div>
-      <div class="rcp">
-        <h3>青柠薄荷椰香冰 · 饮品线补位</h3>
-        <div class="rmeta"><span class="tag gn">估算 FC 22%</span><span class="tag">建议售价 RM 6.50</span><span class="tag am">下午 3–5 点低谷专用</span></div>
-        <ol><li>椰浆 + 青柠汁 + 糖浆打匀</li><li>杯壁抹薄荷叶，加碎冰</li><li>10 秒出杯 —— 下午茶引流神器</li></ol>
-        <div class="cnote">正好接上「下午茶引流」那张海报。<button class="lnk" data-p="1">去出物料 →</button></div>
+      <div class="card mt">
+        <div class="chd"><i data-i="bell"></i><b>后厨提醒</b></div>
+        <div class="al rd"><span>椰浆<b>周五前见底</b> —— 两道新菜都要用，上菜前先补货。</span></div>
+        <div class="al am"><span><b>3–5pm 销量低 38%</b> —— 所以下午茶品项排在前面。</span></div>
+        <div class="al"><span>午市促销剩了不少芒果 —— 出个甜品特价能清掉。</span></div>
       </div>
+      <div class="card mt">
+        <div class="chd"><i data-i="gear"></i><b>配方保密</b></div>
+        <div class="note">只有你在这里输入的食材会参与建议。<b>你的老配方永远不喂给 AI</b> —— 这个开关在你手里。</div>
+      </div>
+    </aside>
     </div>
   </section>
 
@@ -1516,9 +1556,11 @@ document.querySelectorAll(".ing").forEach(function(b){
   b.addEventListener("click",function(){b.setAttribute("aria-pressed",b.getAttribute("aria-pressed")!=="true");});
 });
 document.getElementById("rcGo").addEventListener("click",function(){
+  hvTrack("recipe_suggest");
   var o=document.getElementById("rcOut"); o.hidden=false; o.scrollIntoView({behavior:"smooth",block:"center"});
   toast("按你的食材和店型出了 2 个主意");
 });
+var _rr=document.getElementById("rcRe"); if(_rr)_rr.addEventListener("click",function(){hvTrack("recipe_regen");toast("已换一批（demo）");});
 document.getElementById("rcAdd").addEventListener("click",function(){
   toast("已加进菜单（草稿）—— 成本按供货价自动核");
 });
