@@ -351,6 +351,18 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .rcfoot{display:flex;align-items:center;gap:10px;margin-top:15px;padding-top:14px;border-top:1px solid var(--line2);flex-wrap:wrap}
 .rcfoot label{font-size:11.5px;font-weight:700;color:var(--mut)}
 .rcfoot .btn{margin-left:auto}
+/* ═══ Analytics 双模式 ═══ */
+#p2 .posonly{display:none}
+#p2.posmode .posonly{display:block}
+#p2.posmode .manonly{display:none}
+.posbar{display:flex;align-items:center;gap:12px;padding:13px 16px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:14px;flex-wrap:wrap}
+.posbar .pdot{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(22,163,74,.15);animation:pulse 2s infinite}
+.posbar b{font-size:13px}
+.posbar s{font-size:11.8px;color:var(--mut)}
+.posbar .btn{margin-left:auto}
+.livechip{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:800;color:#15803D;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:99px;padding:2px 8px}
+.livechip i{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+
 .costr{padding:2px 0 9px}
 .costr b{font-size:11.5px;display:flex;justify-content:space-between;font-weight:650}
 .costr em{font-style:normal}
@@ -950,11 +962,20 @@ td b.pr2{font-variant-numeric:tabular-nums}
 
   <!-- ═══════════ P2 销售分析 ═══════════ -->
   <section class="panel" id="p2">
-    <div style="margin-bottom:16px"><div class="eyebrow">Sales Intelligence</div>
+    <div style="margin-bottom:16px;display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap"><div style="flex:1;min-width:260px"><div class="eyebrow">Sales Intelligence</div>
       <h2>卖最好的，不等于最赚钱的</h2>
       <p class="sub">数字全是代码算的，AI 只负责解释 —— 它想编也编不了。</p></div>
-    <div class="card" style="margin-bottom:16px">
+      <div class="mtabs2" style="margin-bottom:4px"><button id="anMan" aria-pressed="true">手动上传</button><button id="anPos" aria-pressed="false">POS 直连</button></div></div>
+    <div class="card manonly" style="margin-bottom:16px">
       <div class="drop" id="drop">把 POS 导出的销售表拖进来（xlsx / csv）—— 或点这里选择文件</div>
+    </div>
+    <div class="posonly" style="margin-bottom:16px">
+      <div class="posbar"><span class="pdot"></span><b>StoreHub POS · 已连接</b><s>每 15 分钟自动同步 · 最后同步 12:45 · 今日 128 单</s><button class="btn sm">立即同步</button></div>
+      <div class="kpis" style="margin:12px 0 0">
+        <button class="kpi"><span class="r1"><s>今日 · 实时</s><span class="livechip"><i></i>LIVE</span></span><span class="r2"><b class="num">RM 2,140</b></span><span class="ksub">128 单 · 截至 12:45</span></button>
+        <button class="kpi"><span class="r1"><s>平均客单</s><span class="tag gn">+5.1%</span></span><span class="r2"><b class="num">RM 16.70</b></span><span class="ksub">对比昨天同一时间</span></button>
+        <button class="kpi"><span class="r1"><s>此刻在卖</s><span class="tag bl">午市高峰</span></span><span class="r2"><b style="font-size:15px">咖喱鸡饭</b></span><span class="ksub">11:30 起已出 31 份</span></button>
+      </div>
     </div>
     <div class="grid2">
       <div class="card">
@@ -1454,6 +1475,10 @@ document.addEventListener("click",function(e){
   document.getElementById("inboxN").textContent=left;
   toast(ok?"已批 —— 档期已写进营销日历":"已退回");
 });
+var _am=document.getElementById("anMan"),_ap=document.getElementById("anPos");
+if(_am&&_ap){var _p2=document.getElementById("p2");
+  _am.addEventListener("click",function(){_p2.classList.remove("posmode");_am.setAttribute("aria-pressed","true");_ap.setAttribute("aria-pressed","false");hvTrack("analytics_mode",{pos:false});});
+  _ap.addEventListener("click",function(){_p2.classList.add("posmode");_ap.setAttribute("aria-pressed","true");_am.setAttribute("aria-pressed","false");hvTrack("analytics_mode",{pos:true});toast("POS 实时视图 —— 12:45 已同步，9 分钟后再同步");});}
 var _qt=document.getElementById("qrTent"); if(_qt)_qt.addEventListener("click",function(){hvTrack("qr_print",{t:"tent"});toast("桌卡 A6 已导出（demo）");});
 var _qs=document.getElementById("qrStand"); if(_qs)_qs.addEventListener("click",function(){hvTrack("qr_print",{t:"stand"});toast("立牌 A4 已导出（demo）");});
 var _ss=document.getElementById("stSave"); if(_ss)_ss.addEventListener("click",function(){hvTrack("store_save");toast("已保存 —— 海报、菜单、社媒同步更新");});

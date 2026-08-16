@@ -351,6 +351,18 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .rcfoot{display:flex;align-items:center;gap:10px;margin-top:15px;padding-top:14px;border-top:1px solid var(--line2);flex-wrap:wrap}
 .rcfoot label{font-size:11.5px;font-weight:700;color:var(--mut)}
 .rcfoot .btn{margin-left:auto}
+/* ═══ Analytics 双模式 ═══ */
+#p2 .posonly{display:none}
+#p2.posmode .posonly{display:block}
+#p2.posmode .manonly{display:none}
+.posbar{display:flex;align-items:center;gap:12px;padding:13px 16px;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:14px;flex-wrap:wrap}
+.posbar .pdot{width:9px;height:9px;border-radius:50%;background:var(--green);box-shadow:0 0 0 4px rgba(22,163,74,.15);animation:pulse 2s infinite}
+.posbar b{font-size:13px}
+.posbar s{font-size:11.8px;color:var(--mut)}
+.posbar .btn{margin-left:auto}
+.livechip{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:800;color:#15803D;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:99px;padding:2px 8px}
+.livechip i{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+
 .costr{padding:2px 0 9px}
 .costr b{font-size:11.5px;display:flex;justify-content:space-between;font-weight:650}
 .costr em{font-style:normal}
@@ -953,11 +965,20 @@ td b.pr2{font-variant-numeric:tabular-nums}
 
   <!-- ═══════════ P2 销售分析 ═══════════ -->
   <section class="panel" id="p2">
-    <div style="margin-bottom:16px"><div class="eyebrow">Sales Intelligence</div>
+    <div style="margin-bottom:16px;display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap"><div style="flex:1;min-width:260px"><div class="eyebrow">Sales Intelligence</div>
       <h2>Best-selling is not best-earning</h2>
       <p class="sub">Every number is computed in code. The AI only explains — it cannot invent figures.</p></div>
-    <div class="card" style="margin-bottom:16px">
+      <div class="mtabs2" style="margin-bottom:4px"><button id="anMan" aria-pressed="true">Manual upload</button><button id="anPos" aria-pressed="false">POS connected</button></div></div>
+    <div class="card manonly" style="margin-bottom:16px">
       <div class="drop" id="drop">Drop your POS sales export here (xlsx / csv) — or click to browse</div>
+    </div>
+    <div class="posonly" style="margin-bottom:16px">
+      <div class="posbar"><span class="pdot"></span><b>StoreHub POS · connected</b><s>Auto-sync every 15 min · last sync 12:45 · 128 orders today</s><button class="btn sm">Sync now</button></div>
+      <div class="kpis" style="margin:12px 0 0">
+        <button class="kpi"><span class="r1"><s>Today · live</s><span class="livechip"><i></i>LIVE</span></span><span class="r2"><b class="num">RM 2,140</b></span><span class="ksub">128 orders · to 12:45</span></button>
+        <button class="kpi"><span class="r1"><s>Avg ticket</s><span class="tag gn">+5.1%</span></span><span class="r2"><b class="num">RM 16.70</b></span><span class="ksub">vs yesterday same time</span></button>
+        <button class="kpi"><span class="r1"><s>Now selling</s><span class="tag bl">Lunch peak</span></span><span class="r2"><b style="font-size:15px">Curry Chicken Rice</b></span><span class="ksub">31 units since 11:30</span></button>
+      </div>
     </div>
     <div class="grid2">
       <div class="card">
@@ -1457,6 +1478,10 @@ document.addEventListener("click",function(e){
   document.getElementById("inboxN").textContent=left;
   toast(ok?"Approved — slot written to the calendar":"Rejected");
 });
+var _am=document.getElementById("anMan"),_ap=document.getElementById("anPos");
+if(_am&&_ap){var _p2=document.getElementById("p2");
+  _am.addEventListener("click",function(){_p2.classList.remove("posmode");_am.setAttribute("aria-pressed","true");_ap.setAttribute("aria-pressed","false");hvTrack("analytics_mode",{pos:false});});
+  _ap.addEventListener("click",function(){_p2.classList.add("posmode");_ap.setAttribute("aria-pressed","true");_am.setAttribute("aria-pressed","false");hvTrack("analytics_mode",{pos:true});toast("POS live view — synced 12:45, next sync in 9 min");});}
 var _qt=document.getElementById("qrTent"); if(_qt)_qt.addEventListener("click",function(){hvTrack("qr_print",{t:"tent"});toast("Table tent A6 exported (demo)");});
 var _qs=document.getElementById("qrStand"); if(_qs)_qs.addEventListener("click",function(){hvTrack("qr_print",{t:"stand"});toast("Counter stand A4 exported (demo)");});
 var _ss=document.getElementById("stSave"); if(_ss)_ss.addEventListener("click",function(){hvTrack("store_save");toast("Saved — applied to posters, menus and social");});
