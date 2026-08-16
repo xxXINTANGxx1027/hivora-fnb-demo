@@ -1043,33 +1043,73 @@ td b.pr2{font-variant-numeric:tabular-nums}
     <div style="margin-bottom:16px"><div class="eyebrow">Customers · PDPA built-in</div>
       <h2>A list that grows itself</h2>
       <p class="sub">Scan-to-join is consent by design. Every opt-in is logged; every opt-out is final. No bought lists, no scraping.</p></div>
-    <div class="card" style="margin-bottom:16px">
-      <div class="chd"><i data-i="link"></i><b>QR signup page</b><s>Print it on table tents and the counter stand</s><span class="sp"></span><button class="btn sm" id="qrCopy">Copy link</button></div>
-      <div class="qr3">
-        <div><div class="qrbig"></div><div class="qlink num">hivora.my/warisan-join</div></div>
-        <div class="phone"><div class="pb"></div><b>Warisan Grill Club</b><span class="ps">Leave your details — perks first.</span>
-          <div class="pf">Name</div><div class="pf">Phone (WhatsApp)</div><div class="pf">Birthday · a treat in your month</div>
-          <div class="pgo">Join · I agree to receive offers</div><span class="pnote">Reply STOP anytime to opt out</span></div>
-        <div>
-          <div class="al"><span><b>Scan = consent</b> — time and source logged automatically</span></div>
-          <div class="al"><span><b>Birthday field</b> feeds the birthday-month campaign list</span></div>
-          <div class="al"><span>Outreach runs on <b>WhatsApp</b> — cheaper than SMS in Malaysia, better open rates</span></div>
-          <div class="al am"><span><b>18 joined</b> by QR this week · <b class="num">248</b> members, all opted in</span></div>
+
+    <div class="kpis k4">
+      <button class="kpi" ><span class="r1"><s>Members · all opted in</s><span class="tag gn">+18 this week</span></span>
+        <span class="r2"><b class="num">248</b><i class="kic" data-i="users"></i></span><span class="ksub">via QR, ordering &amp; WhatsApp</span></button>
+      <button class="kpi" data-p="8"><span class="r1"><s>Birthday month</s><span class="tag bl">Treats drafted</span></span>
+        <span class="r2"><b class="num">6</b><i class="kic" data-i="star"></i></span><span class="ksub">double points + voucher queued</span></button>
+      <button class="kpi" data-p="8"><span class="r1"><s>Quiet 14 days</s><span class="tag am">Win-back ready</span></span>
+        <span class="r2"><b class="num">23</b><i class="kic" data-i="bell"></i></span><span class="ksub">draft awaits your approval</span></button>
+      <button class="kpi" data-p="8"><span class="r1"><s>VIP · top spenders</s><span class="tag gn">18% of revenue</span></span>
+        <span class="r2"><b class="num">11</b><i class="kic" data-i="spark"></i></span><span class="ksub">personal note suggested</span></button>
+    </div>
+
+    <div class="two">
+    <div>
+      <div class="card" style="margin-bottom:16px">
+        <div class="chd"><i data-i="link"></i><b>QR signup page</b><s>Print it on table tents and the counter stand</s><span class="sp"></span><button class="btn sm" id="qrCopy">Copy link</button></div>
+        <div class="qr3">
+          <div><div class="qrbig"></div><div class="qlink num">hivora.my/warisan-join</div></div>
+          <div class="phone"><div class="pb"></div><b>Warisan Grill Club</b><span class="ps">Leave your details — perks first.</span>
+            <div class="pf">Name</div><div class="pf">Phone (WhatsApp)</div><div class="pf">Birthday · a treat in your month</div>
+            <div class="pgo">Join · I agree to receive offers</div><span class="pnote">Reply STOP anytime to opt out</span></div>
+          <div>
+            <div class="st5">
+              <div class="s5 done"><i>1</i><span><b>Guest scans at the table</b><s>Consent, time &amp; source logged automatically</s></span></div>
+              <div class="s5 done"><i>2</i><span><b>Birthday joins the campaign list</b><s>Treat drafts queue for their month</s></span></div>
+              <div class="s5 done"><i>3</i><span><b>Outreach runs on WhatsApp</b><s>Cheaper than SMS in Malaysia · better open rates</s></span></div>
+            </div>
+            <div class="al am" style="margin-top:10px"><span><b>18 joined</b> by QR this week · <b class="num">248</b> members, all opted in</span></div>
+            <div style="display:flex;gap:8px;margin-top:10px"><button class="btn sm" id="qrTent">Table tent A6 →</button><button class="btn sm" id="qrStand">Counter stand A4 →</button></div>
+          </div>
         </div>
       </div>
+
+      <div class="card">
+        <div class="chd"><i data-i="users"></i><b>Members</b><s>Demo data · opted-out members are never contacted</s><span class="sp"></span><span class="tag">Search &amp; export in the full build</span></div>
+        <table>
+          <thead><tr><th>Name</th><th>Phone</th><th>Birthday</th><th>Profile</th><th>Source</th><th>Status</th><th style="text-align:right">Visits</th></tr></thead>
+          <tbody>
+            <tr><td>Tan Wei Ming 陈伟明</td><td class="num">+60 12-338 4921</td><td class="num">03-14</td><td>Chinese · ZH</td><td><span class="tag">QR ordering</span></td><td><span class="tag gn">Opt-in ✓</span></td><td style="text-align:right" class="num">23</td></tr>
+            <tr><td>Siti Nurhaliza</td><td class="num">+60 13-772 0856</td><td class="num">08-22</td><td>Malay · BM</td><td><span class="tag">WhatsApp</span></td><td><span class="tag gn">Opt-in ✓</span></td><td style="text-align:right" class="num">18</td></tr>
+            <tr><td>Priya Raghavan</td><td class="num">+60 16-204 7733</td><td class="num">11-02</td><td>Indian · EN</td><td><span class="tag">QR signup</span></td><td><span class="tag gn">Opt-in ✓</span></td><td style="text-align:right" class="num">11</td></tr>
+            <tr><td>Lim Jia Hui 林佳慧</td><td class="num">+60 11-560 2280</td><td class="num">08-09</td><td>Chinese · ZH</td><td><span class="tag bl">Birthday month</span></td><td><span class="tag gn">Opt-in ✓</span></td><td style="text-align:right" class="num">9</td></tr>
+            <tr style="opacity:.55"><td>Ahmad Faizal</td><td class="num">+60 19-882 0417</td><td class="num">05-30</td><td>Malay · BM</td><td><span class="tag">WhatsApp</span></td><td><span class="tag rd">STOP · never contacted</span></td><td style="text-align:right" class="num">4</td></tr>
+          </tbody>
+        </table>
+        <div class="cnote">Jia Hui’s birthday month is here — the birthday treat draft is waiting for your approval.<button class="lnk" data-p="1">Review →</button></div>
+      </div>
     </div>
-    <div class="card">
-      <div class="chd"><i data-i="users"></i><b>Members</b><s>Demo data · opted-out members are never contacted</s></div>
-      <table>
-        <thead><tr><th>Name</th><th>Phone</th><th>Birthday</th><th>Profile</th><th>Source</th><th style="text-align:right">Visits</th></tr></thead>
-        <tbody>
-          <tr><td>Tan Wei Ming 陈伟明</td><td class="num">+60 12-338 4921</td><td class="num">03-14</td><td>Chinese · ZH</td><td><span class="tag">QR ordering</span></td><td style="text-align:right" class="num">23</td></tr>
-          <tr><td>Siti Nurhaliza</td><td class="num">+60 13-772 0856</td><td class="num">08-22</td><td>Malay · BM</td><td><span class="tag">WhatsApp</span></td><td style="text-align:right" class="num">18</td></tr>
-          <tr><td>Priya Raghavan</td><td class="num">+60 16-204 7733</td><td class="num">11-02</td><td>Indian · EN</td><td><span class="tag">QR signup</span></td><td style="text-align:right" class="num">11</td></tr>
-          <tr><td>Lim Jia Hui 林佳慧</td><td class="num">+60 11-560 2280</td><td class="num">08-09</td><td>Chinese · ZH</td><td><span class="tag bl">Birthday month</span></td><td style="text-align:right" class="num">9</td></tr>
-        </tbody>
-      </table>
-      <div class="cnote">Jia Hui’s birthday month is here — the birthday treat draft is waiting for your approval.<button class="lnk" data-p="1">Review →</button></div>
+
+    <aside class="rail">
+      <div class="card">
+        <div class="chd"><i data-i="grid"></i><b>Segments</b><s>Auto-grouped · always current</s></div>
+        <div class="sug">
+          <button class="sgi" data-p="8"><i class="pr hi">6</i><span><b>Birthday month</b> — treats queued for approval</span></button>
+          <button class="sgi" data-p="8"><i class="pr md">23</i><span><b>Quiet 14 days</b> — “we miss you” draft ready</span></button>
+          <button class="sgi" data-p="8"><i class="pr md">11</i><span><b>VIP</b> — 18% of revenue, personal note suggested</span></button>
+          <button class="sgi" data-p="1"><i class="pr lo">31</i><span><b>New in 30 days</b> — second-visit nudge fits here</span></button>
+        </div>
+      </div>
+      <div class="card mt">
+        <div class="chd"><i data-i="gear"></i><b>PDPA, by design</b></div>
+        <div class="al"><span><b>Consent logged</b> — who, when, from which QR</span></div>
+        <div class="al"><span><b>STOP works instantly</b> — opt-out is final, no re-adds</span></div>
+        <div class="al"><span><b>No bought lists, no scraping</b> — the list only grows from real guests</span></div>
+        <div class="note" style="margin-top:10px">Every outbound message clears your approval first — same rule as everywhere else.</div>
+      </div>
+    </aside>
     </div>
   </section>
 
@@ -1417,6 +1457,8 @@ document.addEventListener("click",function(e){
   document.getElementById("inboxN").textContent=left;
   toast(ok?"Approved — slot written to the calendar":"Rejected");
 });
+var _qt=document.getElementById("qrTent"); if(_qt)_qt.addEventListener("click",function(){hvTrack("qr_print",{t:"tent"});toast("Table tent A6 exported (demo)");});
+var _qs=document.getElementById("qrStand"); if(_qs)_qs.addEventListener("click",function(){hvTrack("qr_print",{t:"stand"});toast("Counter stand A4 exported (demo)");});
 var _ss=document.getElementById("stSave"); if(_ss)_ss.addEventListener("click",function(){hvTrack("store_save");toast("Saved — applied to posters, menus and social");});
 var _kib=document.getElementById("kpiInbox"); if(_kib)_kib.addEventListener("click",function(){ document.getElementById("taskList").scrollIntoView({behavior:"smooth",block:"center"}); });
 /* ═══ 宣传设计工作台 ═══ */

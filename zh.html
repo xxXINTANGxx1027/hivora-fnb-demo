@@ -1040,33 +1040,73 @@ td b.pr2{font-variant-numeric:tabular-nums}
     <div style="margin-bottom:16px"><div class="eyebrow">Customers · PDPA 内建</div>
       <h2>客户库自己长</h2>
       <p class="sub">扫码即 opt-in，同意来源自动存证；退订即停。不买名单、不爬数据。</p></div>
-    <div class="card" style="margin-bottom:16px">
-      <div class="chd"><i data-i="link"></i><b>QR 收客页</b><s>桌卡 / 收银台立牌都印这个码</s><span class="sp"></span><button class="btn sm" id="qrCopy">复制链接</button></div>
-      <div class="qr3">
-        <div><div class="qrbig"></div><div class="qlink num">hivora.my/warisan-join</div></div>
-        <div class="phone"><div class="pb"></div><b>Warisan Grill 会员</b><span class="ps">留个资料，好康先通知你</span>
-          <div class="pf">名字</div><div class="pf">电话（WhatsApp）</div><div class="pf">生日 · 生日月有惊喜</div>
-          <div class="pgo">加入 · 同意接收优惠通知</div><span class="pnote">随时回复 STOP 退订</span></div>
-        <div>
-          <div class="al"><span><b>扫码即同意</b> —— 同意时间与来源自动存证</span></div>
-          <div class="al"><span><b>生日字段</b> → 生日月自动进促销候选</span></div>
-          <div class="al"><span>触达走 <b>WhatsApp</b>（马来西亚比 SMS 便宜且高打开率）</span></div>
-          <div class="al am"><span>本周扫码进来 <b>18 人</b> · 客户库共 <b class="num">248</b> 人全部 opt-in</span></div>
+
+    <div class="kpis k4">
+      <button class="kpi"><span class="r1"><s>会员 · 全部 opt-in</s><span class="tag gn">本周 +18</span></span>
+        <span class="r2"><b class="num">248</b><i class="kic" data-i="users"></i></span><span class="ksub">来自扫码、点餐与 WhatsApp</span></button>
+      <button class="kpi" data-p="8"><span class="r1"><s>生日月</s><span class="tag bl">惊喜已草拟</span></span>
+        <span class="r2"><b class="num">6</b><i class="kic" data-i="star"></i></span><span class="ksub">双倍积分 + 甜品券排队中</span></button>
+      <button class="kpi" data-p="8"><span class="r1"><s>沉默 14 天</s><span class="tag am">唤回稿就绪</span></span>
+        <span class="r2"><b class="num">23</b><i class="kic" data-i="bell"></i></span><span class="ksub">等你审批后才发</span></button>
+      <button class="kpi" data-p="8"><span class="r1"><s>VIP · 高消费</s><span class="tag gn">占营收 18%</span></span>
+        <span class="r2"><b class="num">11</b><i class="kic" data-i="spark"></i></span><span class="ksub">建议手写一句私信</span></button>
+    </div>
+
+    <div class="two">
+    <div>
+      <div class="card" style="margin-bottom:16px">
+        <div class="chd"><i data-i="link"></i><b>QR 收客页</b><s>桌卡 / 收银台立牌都印这个码</s><span class="sp"></span><button class="btn sm" id="qrCopy">复制链接</button></div>
+        <div class="qr3">
+          <div><div class="qrbig"></div><div class="qlink num">hivora.my/warisan-join</div></div>
+          <div class="phone"><div class="pb"></div><b>Warisan Grill 会员</b><span class="ps">留个资料，好康先通知你</span>
+            <div class="pf">名字</div><div class="pf">电话（WhatsApp）</div><div class="pf">生日 · 生日月有惊喜</div>
+            <div class="pgo">加入 · 同意接收优惠通知</div><span class="pnote">随时回复 STOP 退订</span></div>
+          <div>
+            <div class="st5">
+              <div class="s5 done"><i>1</i><span><b>客人在桌上扫码</b><s>同意、时间与来源自动存证</s></span></div>
+              <div class="s5 done"><i>2</i><span><b>生日自动进促销候选</b><s>生日月的惊喜稿提前排好</s></span></div>
+              <div class="s5 done"><i>3</i><span><b>触达走 WhatsApp</b><s>马来西亚比 SMS 便宜 · 打开率更高</s></span></div>
+            </div>
+            <div class="al am" style="margin-top:10px"><span>本周扫码进来 <b>18 人</b> · 客户库共 <b class="num">248</b> 人全部 opt-in</span></div>
+            <div style="display:flex;gap:8px;margin-top:10px"><button class="btn sm" id="qrTent">桌卡 A6 →</button><button class="btn sm" id="qrStand">立牌 A4 →</button></div>
+          </div>
         </div>
       </div>
+
+      <div class="card">
+        <div class="chd"><i data-i="users"></i><b>客户资料</b><s>演示数据 · 已退订的不再发</s><span class="sp"></span><span class="tag">正式版支持搜索导出</span></div>
+        <table>
+          <thead><tr><th>名字</th><th>电话</th><th>生日</th><th>族群 · 语言</th><th>来源</th><th>状态</th><th style="text-align:right">到店</th></tr></thead>
+          <tbody>
+            <tr><td>Tan Wei Ming 陈伟明</td><td class="num">+60 12-338 4921</td><td class="num">03-14</td><td>华人 · 中文</td><td><span class="tag">扫码点餐</span></td><td><span class="tag gn">Opt-in ✓</span></td><td style="text-align:right" class="num">23</td></tr>
+            <tr><td>Siti Nurhaliza</td><td class="num">+60 13-772 0856</td><td class="num">08-22</td><td>马来 · BM</td><td><span class="tag">WhatsApp</span></td><td><span class="tag gn">Opt-in ✓</span></td><td style="text-align:right" class="num">18</td></tr>
+            <tr><td>Priya Raghavan</td><td class="num">+60 16-204 7733</td><td class="num">11-02</td><td>印度裔 · EN</td><td><span class="tag">QR 收客页</span></td><td><span class="tag gn">Opt-in ✓</span></td><td style="text-align:right" class="num">11</td></tr>
+            <tr><td>Lim Jia Hui 林佳慧</td><td class="num">+60 11-560 2280</td><td class="num">08-09</td><td>华人 · 中文</td><td><span class="tag bl">生日月 🎂</span></td><td><span class="tag gn">Opt-in ✓</span></td><td style="text-align:right" class="num">9</td></tr>
+            <tr style="opacity:.55"><td>Ahmad Faizal</td><td class="num">+60 19-882 0417</td><td class="num">05-30</td><td>马来 · BM</td><td><span class="tag">WhatsApp</span></td><td><span class="tag rd">STOP · 永不再发</span></td><td style="text-align:right" class="num">4</td></tr>
+          </tbody>
+        </table>
+        <div class="cnote">生日月的林佳慧已进「生日惊喜」候选 —— 群发稿在营销生成里等你批。<button class="lnk" data-p="1">去看 →</button></div>
+      </div>
     </div>
-    <div class="card">
-      <div class="chd"><i data-i="users"></i><b>客户资料</b><s>演示数据 · 已退订的不再发</s></div>
-      <table>
-        <thead><tr><th>名字</th><th>电话</th><th>生日</th><th>族群 · 语言</th><th>来源</th><th style="text-align:right">到店</th></tr></thead>
-        <tbody>
-          <tr><td>Tan Wei Ming 陈伟明</td><td class="num">+60 12-338 4921</td><td class="num">03-14</td><td>华人 · 中文</td><td><span class="tag">扫码点餐</span></td><td style="text-align:right" class="num">23</td></tr>
-          <tr><td>Siti Nurhaliza</td><td class="num">+60 13-772 0856</td><td class="num">08-22</td><td>马来 · BM</td><td><span class="tag">WhatsApp</span></td><td style="text-align:right" class="num">18</td></tr>
-          <tr><td>Priya Raghavan</td><td class="num">+60 16-204 7733</td><td class="num">11-02</td><td>印度裔 · EN</td><td><span class="tag">QR 收客页</span></td><td style="text-align:right" class="num">11</td></tr>
-          <tr><td>Lim Jia Hui 林佳慧</td><td class="num">+60 11-560 2280</td><td class="num">08-09</td><td>华人 · 中文</td><td><span class="tag bl">生日月 🎂</span></td><td style="text-align:right" class="num">9</td></tr>
-        </tbody>
-      </table>
-      <div class="cnote">生日月的林佳慧已进「生日惊喜」候选 —— 群发稿在营销生成里等你批。<button class="lnk" data-p="1">去看 →</button></div>
+
+    <aside class="rail">
+      <div class="card">
+        <div class="chd"><i data-i="grid"></i><b>自动分群</b><s>随时是最新的</s></div>
+        <div class="sug">
+          <button class="sgi" data-p="8"><i class="pr hi">6</i><span><b>生日月</b> —— 惊喜稿排队等审批</span></button>
+          <button class="sgi" data-p="8"><i class="pr md">23</i><span><b>沉默 14 天</b> —— 「想你了」唤回稿已备好</span></button>
+          <button class="sgi" data-p="8"><i class="pr md">11</i><span><b>VIP</b> —— 占营收 18%，建议私信一句</span></button>
+          <button class="sgi" data-p="1"><i class="pr lo">31</i><span><b>30 天新客</b> —— 第二次到店是留客关键</span></button>
+        </div>
+      </div>
+      <div class="card mt">
+        <div class="chd"><i data-i="gear"></i><b>PDPA 内建</b></div>
+        <div class="al"><span><b>同意有存证</b> —— 谁、几点、扫的哪个码</span></div>
+        <div class="al"><span><b>STOP 即时生效</b> —— 退订永久，不会被加回来</span></div>
+        <div class="al"><span><b>不买名单不爬数据</b> —— 客户库只从真实到店客人长出来</span></div>
+        <div class="note" style="margin-top:10px">所有对外消息先过你审批 —— 跟全站同一条规矩。</div>
+      </div>
+    </aside>
     </div>
   </section>
 
@@ -1414,6 +1454,8 @@ document.addEventListener("click",function(e){
   document.getElementById("inboxN").textContent=left;
   toast(ok?"已批 —— 档期已写进营销日历":"已退回");
 });
+var _qt=document.getElementById("qrTent"); if(_qt)_qt.addEventListener("click",function(){hvTrack("qr_print",{t:"tent"});toast("桌卡 A6 已导出（demo）");});
+var _qs=document.getElementById("qrStand"); if(_qs)_qs.addEventListener("click",function(){hvTrack("qr_print",{t:"stand"});toast("立牌 A4 已导出（demo）");});
 var _ss=document.getElementById("stSave"); if(_ss)_ss.addEventListener("click",function(){hvTrack("store_save");toast("已保存 —— 海报、菜单、社媒同步更新");});
 var _kib=document.getElementById("kpiInbox"); if(_kib)_kib.addEventListener("click",function(){ document.getElementById("taskList").scrollIntoView({behavior:"smooth",block:"center"}); });
 /* ═══ 宣传设计工作台 ═══ */
