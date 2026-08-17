@@ -362,6 +362,18 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .posbar .btn{margin-left:auto}
 .livechip{display:inline-flex;align-items:center;gap:5px;font-size:10px;font-weight:800;color:#15803D;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:99px;padding:2px 8px}
 .livechip i{width:6px;height:6px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
+/* ═══ 版本号 + changelog ═══ */
+.verwrap{position:absolute;left:14px;right:14px;bottom:12px}
+.verbtn{display:inline-flex;align-items:center;gap:6px;font-size:10.5px;font-weight:700;color:var(--faint);border:1px solid var(--line);border-radius:99px;padding:4px 10px;background:var(--surface);transition:.15s}
+.verbtn:hover{color:var(--mut);border-color:var(--blue-line)}
+.verbtn i{width:6px;height:6px;border-radius:50%;background:var(--green);display:inline-block}
+.chlog{position:absolute;left:0;bottom:34px;width:238px;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:11px 13px;box-shadow:0 10px 30px rgba(15,23,42,.12);z-index:60}
+.chlog h5{font-size:11px;font-weight:800;margin:0 0 7px;color:var(--ink2)}
+.chlog div{display:flex;gap:8px;font-size:10.8px;color:var(--mut);padding:3.5px 0;line-height:1.45;border-bottom:1px dashed var(--line2)}
+.chlog div:last-child{border-bottom:0}
+.chlog b{color:var(--ink2);font-family:Outfit,sans-serif;flex-shrink:0;font-weight:700}
+@media(max-width:900px){.verwrap{display:none}}
+
 
 .costr{padding:2px 0 9px}
 .costr b{font-size:11.5px;display:flex;justify-content:space-between;font-weight:650}
@@ -727,6 +739,19 @@ td b.pr2{font-variant-numeric:tabular-nums}
     <div class="ngrp">System</div>
     <button class="nv" data-p="6"><i data-i="gear"></i>Store details</button>
   </nav>
+  <div class="verwrap">
+    <div class="chlog" id="chlog" hidden>
+      <h5>What’s new</h5>
+      <div><b>v9.6</b><span>Changelog panel · shareable build</span></div>
+      <div><b>v9.5</b><span>Analytics: manual / POS-connected toggle</span></div>
+      <div><b>v9.4</b><span>Customers: segments, PDPA table, print QR</span></div>
+      <div><b>v9.3</b><span>Recipe Lab regrouped · width capped</span></div>
+      <div><b>v9.2</b><span>Recipes react to weather &amp; reviews</span></div>
+      <div><b>v9.0</b><span>Home &amp; Store details rebuilt to client ref</span></div>
+      <div><b>v8.x</b><span>Create-by-chat studio · 3 distinct concepts</span></div>
+    </div>
+    <button class="verbtn" id="verBtn"><i></i>v9.6 · What’s new</button>
+  </div>
 </aside>
 <main class="main">
   <div class="top"><h1 id="ptitle">Home</h1><span class="crumb" id="pcrumb">Tue · Jul 28, 2026</span><span class="sp"></span>
@@ -1478,6 +1503,9 @@ document.addEventListener("click",function(e){
   document.getElementById("inboxN").textContent=left;
   toast(ok?"Approved — slot written to the calendar":"Rejected");
 });
+var _vb=document.getElementById("verBtn"),_cl=document.getElementById("chlog");
+if(_vb&&_cl){_vb.addEventListener("click",function(e){e.stopPropagation();_cl.hidden=!_cl.hidden;if(!_cl.hidden)hvTrack("changelog_open");});
+  document.addEventListener("click",function(e){if(!e.target.closest(".verwrap"))_cl.hidden=true;});}
 var _am=document.getElementById("anMan"),_ap=document.getElementById("anPos");
 if(_am&&_ap){var _p2=document.getElementById("p2");
   _am.addEventListener("click",function(){_p2.classList.remove("posmode");_am.setAttribute("aria-pressed","true");_ap.setAttribute("aria-pressed","false");hvTrack("analytics_mode",{pos:false});});
