@@ -373,6 +373,33 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .chlog div:last-child{border-bottom:0}
 .chlog b{color:var(--ink2);font-family:Outfit,sans-serif;flex-shrink:0;font-weight:700}
 @media(max-width:900px){.verwrap{display:none}}
+/* ═══ v9.7 AI 团队 ═══ */
+.ownr{margin-left:9px;font-size:10px;font-weight:700;color:var(--mut);background:var(--surface2);border:1px solid var(--line);border-radius:99px;padding:2px 9px;letter-spacing:0;text-transform:none;vertical-align:2px}
+.ceohero{display:flex;align-items:center;gap:14px;background:var(--ink);color:#fff;border-radius:16px;padding:18px 20px;flex-wrap:wrap}
+.ceohero .ca{width:44px;height:44px;border-radius:12px;background:#fff;color:var(--ink);display:grid;place-items:center;font-weight:800;font-size:18px;flex-shrink:0}
+.ceohero b{display:block;font-size:15px}
+.ceohero s{font-size:12px;opacity:.75}
+.ceohero .btn{margin-left:auto;background:#fff;color:var(--ink)}
+.team4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:14px 0}
+@media(max-width:1060px){.team4{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.team4{grid-template-columns:1fr}}
+.tmr{border:1px solid var(--line);border-radius:14px;padding:14px;background:var(--surface);display:flex;flex-direction:column;gap:7px;align-items:flex-start}
+.tmr .ta2{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;font-size:17px;color:#fff}
+.tmr b{font-size:13.5px}
+.tmr b s{display:block;font-size:10.5px;color:var(--mut);font-weight:600}
+.tmr p{font-size:11.6px;color:var(--mut);line-height:1.5;flex:1;margin:0}
+.tmr .tfeed{font-size:10.5px;color:var(--blue);font-weight:650}
+.fline{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:7px 0;font-size:12px}
+.fb{border:1.5px solid var(--line);border-radius:10px;padding:5px 11px;font-weight:700;font-size:11.5px;background:var(--surface)}
+.fb.dk{background:var(--ink);color:#fff;border-color:var(--ink)}
+.fb.tl{border-style:dashed;color:var(--mut)}
+.farr{color:var(--faint);font-weight:700}
+.fnote{font-size:10.8px;color:var(--faint)}
+.ghost{border:1.5px dashed var(--line);border-radius:14px;padding:13px 15px;color:var(--mut);font-size:12px;display:flex;align-items:center;gap:10px}
+.ceoq{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}
+.ceoq button{font-size:12px;font-weight:700;border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:99px;padding:6px 14px;transition:.15s}
+.ceoq button:hover{background:#fff;color:var(--ink)}
+
 
 
 .costr{padding:2px 0 9px}
@@ -733,12 +760,14 @@ td b.pr2{font-variant-numeric:tabular-nums}
     <button class="nv" data-p="8"><i data-i="star"></i>会员 · Loyalty</button>
     <button class="nv" data-p="5"><i data-i="bulb"></i>新菜灵感</button>
     <button class="nv" data-p="7"><i data-i="share"></i>社媒中心</button>
+    <button class="nv" data-p="9"><i data-i="grid"></i>AI 团队</button>
     <div class="ngrp">配置</div>
     <button class="nv" data-p="6"><i data-i="gear"></i>店面资料</button>
   </nav>
   <div class="verwrap">
     <div class="chlog" id="chlog" hidden>
       <h5>更新日志</h5>
+      <div><b>v9.7</b><span>AI 团队页 · v2.8 角色对齐 · CEO 问诊</span></div>
       <div><b>v9.6</b><span>更新日志入口 · 可外发版本</span></div>
       <div><b>v9.5</b><span>销售分析：手动 / POS 直连切换</span></div>
       <div><b>v9.4</b><span>客户页：分群、PDPA 状态表、印码</span></div>
@@ -747,7 +776,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
       <div><b>v9.0</b><span>总览与店面资料照 client 参考重做</span></div>
       <div><b>v8.x</b><span>对话式创建工作台 · 三方案差异化</span></div>
     </div>
-    <button class="verbtn" id="verBtn"><i></i>v9.6 · 更新日志</button>
+    <button class="verbtn" id="verBtn"><i></i>v9.7 · 更新日志</button>
   </div>
 </aside>
 <main class="main">
@@ -756,7 +785,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
 
   <!-- ═══════════ P0 总览 ═══════════ -->
   <section class="panel on" id="p0">
-    <div style="margin-bottom:16px"><div class="eyebrow">Warisan Grill · 吉隆坡</div>
+    <div style="margin-bottom:16px"><div class="eyebrow">Warisan Grill · 吉隆坡<span class="ownr">🧭 CEO</span></div>
       <h2>早上好</h2>
       <p class="sub">决策优先 —— AI 备好一切，你只管拍板。</p></div>
 
@@ -828,10 +857,15 @@ td b.pr2{font-variant-numeric:tabular-nums}
         </div>
       </div>
 
-      <div class="bnr mt">
-        <span class="ag-av" style="width:38px;height:38px;font-size:15px;flex-shrink:0">D</span>
-        <span><b>老板，杂活交给 AI 团队。</b><s>海报、分析、日历都包了 —— 但你不点头，一样都不会发出去。</s></span>
-        <button class="btn pri" data-p="1">聊着做一张</button>
+      <div class="ceohero mt">
+        <span class="ca">C</span>
+        <span><b>CEO —— 这周不知道该推什么？</b><s>选个目标，我把数字备好，给你 3 个选项拍板。</s>
+          <span class="ceoq">
+            <button onclick="hvTrack('ceo_probe',{g:'traffic'})" data-p="7">要客流</button>
+            <button onclick="hvTrack('ceo_probe',{g:'ticket'})" data-p="1">要客单</button>
+            <button onclick="hvTrack('ceo_probe',{g:'cost'})" data-p="2">要省成本</button>
+          </span></span>
+        <button class="btn" data-p="9">认识团队 →</button>
       </div>
     </div>
 
@@ -871,7 +905,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
   <!-- ═══════════ P1 营销生成 ═══════════ -->
   <section class="panel" id="p1">
     <div class="wbhead">
-      <div><div class="eyebrow">AI 设计工作台</div><h2 style="font-size:22px">宣传设计工作台</h2>
+      <div><div class="eyebrow">AI 设计工作台<span class="ownr">🖨️ 设计师</span></div><h2 style="font-size:22px">宣传设计工作台</h2>
         <p class="sub" style="margin-top:3px;font-size:12.6px">跟着流程一步步完成海报、社交贴文与宣传文案。</p></div>
       <div class="steps steps-r">
         <span class="stp on"><i>1</i><b>选择目标</b><s>明确宣传目的</s></span><em></em>
@@ -987,7 +1021,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
 
   <!-- ═══════════ P2 销售分析 ═══════════ -->
   <section class="panel" id="p2">
-    <div style="margin-bottom:16px;display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap"><div style="flex:1;min-width:260px"><div class="eyebrow">Sales Intelligence</div>
+    <div style="margin-bottom:16px;display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap"><div style="flex:1;min-width:260px"><div class="eyebrow">Sales Intelligence<span class="ownr">📥 运营</span></div>
       <h2>卖最好的，不等于最赚钱的</h2>
       <p class="sub">数字全是代码算的，AI 只负责解释 —— 它想编也编不了。</p></div>
       <div class="mtabs2" style="margin-bottom:4px"><button id="anMan" aria-pressed="true">手动上传</button><button id="anPos" aria-pressed="false">POS 直连</button></div></div>
@@ -1040,7 +1074,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
 
   <!-- ═══════════ P3 菜品与菜单 ═══════════ -->
   <section class="panel" id="p3">
-    <div style="margin-bottom:16px"><div class="eyebrow">Food Library</div>
+    <div style="margin-bottom:16px"><div class="eyebrow">Food Library<span class="ownr">🖨️ 设计师</span></div>
       <h2>菜品、照片、菜单，一处管齐</h2>
       <p class="sub">拍得不好没关系 —— 点一张照片试试 AI 美化；菜单一键排成能印的版。</p></div>
     <div class="grid2">
@@ -1083,7 +1117,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
 
   <!-- ═══════════ P4 客户 ═══════════ -->
   <section class="panel" id="p4">
-    <div style="margin-bottom:16px"><div class="eyebrow">Customers · PDPA 内建</div>
+    <div style="margin-bottom:16px"><div class="eyebrow">Customers · PDPA 内建<span class="ownr">📣 营销</span></div>
       <h2>客户库自己长</h2>
       <p class="sub">扫码即 opt-in，同意来源自动存证；退订即停。不买名单、不爬数据。</p></div>
 
@@ -1158,7 +1192,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
 
   <!-- ═══════════ P5 新菜灵感 ═══════════ -->
   <section class="panel" id="p5">
-    <div style="margin-bottom:16px"><div class="eyebrow">新菜灵感</div>
+    <div style="margin-bottom:16px"><div class="eyebrow">新菜灵感<span class="ownr">👨‍🍳 主厨助手</span></div>
       <h2>告诉它后厨有什么</h2>
       <p class="sub">说出你手上的食材 —— AI 按你的店型设计新菜，成本和做法都算好。</p></div>
     <div class="two">
@@ -1314,7 +1348,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
 
   <!-- ═══════════ P7 社媒中心（AiToEarn 引擎）═══════════ -->
   <section class="panel" id="p7">
-    <div style="margin-bottom:16px"><div class="eyebrow">Social Hub · Powered by AiToEarn</div>
+    <div style="margin-bottom:16px"><div class="eyebrow">Social Hub · Powered by AiToEarn<span class="ownr">📣 营销</span></div>
       <h2>五个账号，一处看齐</h2>
       <p class="sub">数据来自各平台<b>官方 API</b>（小红书/TikTok 手动同步）—— AI 不编数字。发布由 AiToEarn 执行，永远先过你的审批。</p></div>
 
@@ -1369,7 +1403,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
 
   <!-- ═══════════ P8 会员 · Loyalty ═══════════ -->
   <section class="panel" id="p8">
-    <div style="margin-bottom:16px"><div class="eyebrow">Loyalty · 让客人再来一次</div>
+    <div style="margin-bottom:16px"><div class="eyebrow">Loyalty · 让客人再来一次<span class="ownr">📣 营销</span></div>
       <h2>会员与积分</h2>
       <p class="sub">扫码入会 → 消费攒分 → 到点唤回。全部 opt-in，退订即停。</p></div>
     <div class="kpis" style="grid-template-columns:repeat(4,minmax(0,1fr))">
@@ -1423,6 +1457,41 @@ td b.pr2{font-variant-numeric:tabular-nums}
       </div>
     </div>
   </section>
+  <section class="panel" id="p9">
+    <div style="margin-bottom:16px"><div class="eyebrow">你的 AI 公司 · v2.8</div>
+      <h2>五个人，一个老板 —— 你</h2>
+      <p class="sub">所有事都经 CEO 中转；你不点头，什么都不会发出去。</p></div>
+
+    <div class="ceohero">
+      <span class="ca">C</span>
+      <span><b>CEO —— 每天的早报和拍板</b><s>8:00 早报 · 每天只让你拍 1–3 件事 · 你迷茫时它先问对问题</s></span>
+      <button class="btn" data-p="0">看今天的早报 →</button>
+    </div>
+
+    <div class="team4">
+      <div class="tmr"><span class="ta2" style="background:#2563EB">📥</span><b>Operations<s>运营</s></b><p>清洗销售表、算清每个数字、盯食材消耗。全团队唯一的数据出处。</p><span class="tfeed">供情报 → 营销 &amp; 主厨</span><button class="btn sm" data-p="2">销售分析 →</button></div>
+      <div class="tmr"><span class="ta2" style="background:#B4451F">📣</span><b>Marketing<s>营销</s></b><p>每个 idea 都挂着你的数字。生日、voucher、促销 —— 按 campaign 批一次，只发 opt-in。</p><span class="tfeed">经 AiToEarn 分发（工具）</span><button class="btn sm" data-p="7">社媒中心 →</button></div>
+      <div class="tmr"><span class="ta2" style="background:#0F172A">🖨️</span><b>Designer<s>设计师</s></b><p>海报、菜单、全尺寸（社媒/印刷），永远 follow Brand Kit；价格与 Halal 由 Gate 锁定。</p><span class="tfeed">接营销的 brief 干活</span><button class="btn sm" data-p="1">宣传设计 →</button></div>
+      <div class="tmr"><span class="ta2" style="background:#3F7D4E">👨‍🍳</span><b>Chef Assistant<s>主厨助手</s></b><p>按后厨现有食材出新菜 —— 库存、族群规则、天气、顾客反馈都算进去。</p><span class="tfeed">库存数据来自运营</span><button class="btn sm" data-p="5">新菜灵感 →</button></div>
+    </div>
+
+    <div class="grid2">
+      <div class="card">
+        <div class="chd"><i data-i="activity"></i><b>活是怎么流转的</b><s>专员之间从不直连</s></div>
+        <div class="fline"><span class="fb dk">👔 你</span><span class="farr">⇄</span><span class="fb dk">🧭 CEO</span><span class="farr">→</span><span class="fb">📥 运营</span><span class="fb">📣 营销</span><span class="fb">🖨️ 设计师</span><span class="fb">👨‍🍳 主厨</span></div>
+        <div class="fline"><span class="fnote">情报</span><span class="fb">📥 运营</span><span class="farr">⇢</span><span class="fb">📣 营销</span><span class="farr">⇢</span><span class="fb">👨‍🍳 主厨</span><span class="fnote">低谷 · 反馈 · 食材余量</span></div>
+        <div class="fline"><span class="fnote">工具</span><span class="fb">📣 营销</span><span class="farr">→</span><span class="fb tl">🔧 AiToEarn · Create + Publish · Engage 永不开启</span></div>
+        <div class="cnote">所有真实动作 —— 发布、群发、印刷、改价 —— 都要先到你桌上。</div>
+      </div>
+      <div>
+        <div class="card">
+          <div class="chd"><i data-i="gear"></i><b>家规</b><s>写进每个 agent 的红线</s></div>
+          <div class="fchips"><span class="stc">先审批后出门 ✓</span><span class="stc">只发 opt-in · STOP 即永久 ✓</span><span class="stc">族群饮食规则 ✓</span><span class="stc">老板配方不喂 AI ✓</span></div>
+        </div>
+        <div class="ghost" style="margin-top:14px"><span style="font-size:17px">💰</span><span><b>Accountant · Phase 2</b> —— 成本、对账、报税准备。等运营数据跑顺就入职。</span></div>
+      </div>
+    </div>
+  </section>
 
 </main>
 </div>
@@ -1467,7 +1536,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
   document.querySelectorAll("[data-i]").forEach(function(el){ el.innerHTML=I[el.getAttribute("data-i")]||""; });
 })();
 /* ═══ nav ═══ */
-var TITLES=["总览","宣传设计","销售分析","菜品与菜单","客户","新菜灵感","店面资料","社媒中心","会员 · Loyalty"];
+var TITLES=["总览","宣传设计","销售分析","菜品与菜单","客户","新菜灵感","店面资料","社媒中心","会员 · Loyalty","AI 团队"];
 window.hvTrack=function(ev,props){try{var a=JSON.parse(localStorage.getItem("hv_events")||"[]");
   a.push({e:ev,p:props||{},t:Date.now()});if(a.length>500)a=a.slice(-500);
   localStorage.setItem("hv_events",JSON.stringify(a));}catch(_){}
