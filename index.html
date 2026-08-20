@@ -894,6 +894,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
     <div class="chlog" id="chlog" hidden>
       <h5>What’s new</h5>
       <div><b>v9.9</b><span>Agent floor on Home · live desks + team chat</span></div>
+      <div><b>v10.2</b><span>Floor follows you: Home ↔ AI Team</span></div>
       <div><b>v10.1</b><span>Agent chips · Edit agent profile (SOUL · tools)</span></div>
       <div><b>v10.0</b><span>Pixel agent floor on Home · click anyone, chat with history</span></div>
       <div><b>v9.8</b><span>Agent handbook &amp; hand-off matrix on AI Team</span></div>
@@ -906,7 +907,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
       <div><b>v9.0</b><span>Home &amp; Store details rebuilt to client ref</span></div>
       <div><b>v8.x</b><span>Create-by-chat studio · 3 distinct concepts</span></div>
     </div>
-    <button class="verbtn" id="verBtn"><i></i>v10.1 · What’s new</button>
+    <button class="verbtn" id="verBtn"><i></i>v10.2 · What’s new</button>
   </div>
 </aside>
 <main class="main">
@@ -1031,6 +1032,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
     </aside>
     </div>
 
+    <div id="floorSlot0"></div>
     <div class="card mt" id="floorCard">
       <div class="chd"><i data-i="users"></i><b>Agent floor</b><s>Live · what everyone is doing right now</s><span class="sp"></span><button class="btn sm" data-p="9">Meet the team →</button></div>
       <div class="flbar">
@@ -1633,6 +1635,8 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
       <div class="tmr"><span class="ta2" style="background:#3F7D4E">👨‍🍳</span><b>Chef Assistant<s>主厨助手</s></b><p>New-dish ideas from what’s in your kitchen — inventory, dietary rules, weather, reviews.</p><span class="tfeed">Reads inventory from Operations</span><button class="btn sm" data-p="5">Recipe Lab →</button></div>
     </div>
 
+    <div id="floorSlot9"></div>
+
     <div class="grid2">
       <div class="card">
         <div class="chd"><i data-i="activity"></i><b>How work flows</b><s>Specialists never talk to each other directly</s></div>
@@ -2058,8 +2062,15 @@ function __initAgentProfile(){
 if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",__initAgentProfile);
 else __initAgentProfile();
 
+function relocFloor(i){
+  var c=document.getElementById("floorCard"); if(!c) return;
+  var h=document.getElementById(i===9?"floorSlot9":"floorSlot0");
+  if(h&&c.parentNode!==h) h.appendChild(c);
+  var e=document.getElementById("flLog"); if(e) e.scrollTop=e.scrollHeight;
+}
 function go(i){
   hvTrack("page_view",{page:i});
+  relocFloor(i);
   document.querySelectorAll(".panel").forEach(function(p,k){p.classList.toggle("on",k===i);});
   document.querySelectorAll(".side .nv").forEach(function(n){n.setAttribute("aria-current",n.getAttribute("data-p")==String(i));});
   document.getElementById("ptitle").textContent=TITLES[i];

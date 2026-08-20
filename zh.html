@@ -891,6 +891,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
     <div class="chlog" id="chlog" hidden>
       <h5>更新日志</h5>
       <div><b>v9.9</b><span>总览加 Agent Floor · 工位实况 + 团队聊天</span></div>
+      <div><b>v10.2</b><span>工位跟着你走：总览 ↔ AI 团队 两页都在</span></div>
       <div><b>v10.1</b><span>工位加状态 chips · 编辑 agent 档案（SOUL · 工具白名单）</span></div>
       <div><b>v10.0</b><span>总览加像素工位 · 点小人看在干嘛 · 带历史的团队对话</span></div>
       <div><b>v9.8</b><span>AI 团队页加工作手册与关系表</span></div>
@@ -903,7 +904,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
       <div><b>v9.0</b><span>总览与店面资料照 client 参考重做</span></div>
       <div><b>v8.x</b><span>对话式创建工作台 · 三方案差异化</span></div>
     </div>
-    <button class="verbtn" id="verBtn"><i></i>v10.1 · 更新日志</button>
+    <button class="verbtn" id="verBtn"><i></i>v10.2 · 更新日志</button>
   </div>
 </aside>
 <main class="main">
@@ -1028,6 +1029,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
     </aside>
     </div>
 
+    <div id="floorSlot0"></div>
     <div class="card mt" id="floorCard">
       <div class="chd"><i data-i="users"></i><b>Agent Floor</b><s>实时 · 每个人此刻在干嘛</s><span class="sp"></span><button class="btn sm" data-p="9">认识团队 →</button></div>
       <div class="flbar">
@@ -1630,6 +1632,8 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
       <div class="tmr"><span class="ta2" style="background:#3F7D4E">👨‍🍳</span><b>Chef Assistant<s>主厨助手</s></b><p>按后厨现有食材出新菜 —— 库存、族群规则、天气、顾客反馈都算进去。</p><span class="tfeed">库存数据来自运营</span><button class="btn sm" data-p="5">新菜灵感 →</button></div>
     </div>
 
+    <div id="floorSlot9"></div>
+
     <div class="grid2">
       <div class="card">
         <div class="chd"><i data-i="activity"></i><b>活是怎么流转的</b><s>专员之间从不直连</s></div>
@@ -2055,8 +2059,15 @@ function __initAgentProfile(){
 if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",__initAgentProfile);
 else __initAgentProfile();
 
+function relocFloor(i){
+  var c=document.getElementById("floorCard"); if(!c) return;
+  var h=document.getElementById(i===9?"floorSlot9":"floorSlot0");
+  if(h&&c.parentNode!==h) h.appendChild(c);
+  var e=document.getElementById("flLog"); if(e) e.scrollTop=e.scrollHeight;
+}
 function go(i){
   hvTrack("page_view",{page:i});
+  relocFloor(i);
   document.querySelectorAll(".panel").forEach(function(p,k){p.classList.toggle("on",k===i);});
   document.querySelectorAll(".side .nv").forEach(function(n){n.setAttribute("aria-current",n.getAttribute("data-p")==String(i));});
   document.getElementById("ptitle").textContent=TITLES[i];
