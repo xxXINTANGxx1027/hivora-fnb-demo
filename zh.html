@@ -16,7 +16,12 @@
   --bg:#F6F7F9; --surface:#FFFFFF; --surface2:#F1F3F6;
   --line:#E5E8EE; --line2:#EEF0F4;
   --ink:#0F172A; --ink2:#334155; --mut:#576273; --faint:#8792A3;
-  --blue:#2563EB; --blue-soft:#EEF4FF; --blue-line:#C6D8FD;
+  /* accent = 青绿 teal（对齐 client 参考）；--blue* 名称沿用，值已换 */
+  --blue:#0E8F6F; --blue-soft:#E7F5F0; --blue-line:#A9DDCB;
+  --deep:#12352A; --deep2:#1B4A3A; --deep-line:rgba(255,255,255,.10);
+  --p1:#E7F5F0; --p1i:#0E8F6F; --p2:#EFF1FE; --p2i:#4F46E5;
+  --p3:#FDF1E7; --p3i:#B4451F; --p4:#FCF4E3; --p4i:#B45309;
+  --p5:#F2EDFB; --p5i:#7C3AED; --p6:#FDECEF; --p6i:#BE3B31;
   --green:#0F7B41; --green-soft:#E8F6EE;
   --amber:#B45309; --amber-soft:#FCF4E3;
   --red:#BE3B31; --red-soft:#FCEDEB;
@@ -412,6 +417,68 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .chlog div:last-child{border-bottom:0}
 .chlog b{color:var(--ink2);font-family:Outfit,sans-serif;flex-shrink:0;font-weight:700}
 @media(max-width:900px){.verwrap{display:none}}
+/* ═══ v12 深绿侧栏（参考同款）═══ */
+.side{background:var(--deep);border-right:0;color:#E8F1ED}
+.side .brand b{color:#fff}
+.side .brand s{color:rgba(232,241,237,.62)}
+.side .brand .bx{background:rgba(255,255,255,.12);color:#fff}
+.side .sec{color:rgba(232,241,237,.42)}
+.nv{color:rgba(232,241,237,.78)}
+.nv i{color:rgba(232,241,237,.6)}
+.nv:hover{background:rgba(255,255,255,.07);color:#fff}
+.nv:hover i{color:#fff}
+.nv[aria-current="true"]{background:rgba(255,255,255,.13);color:#fff;box-shadow:inset 3px 0 0 #4ADE9B}
+.nv[aria-current="true"] i{color:#4ADE9B}
+.nv .bd{background:#4ADE9B;color:var(--deep)}
+.verbtn{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14);color:rgba(232,241,237,.7)}
+.verbtn:hover{background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.2)}
+.verbtn i{background:#4ADE9B}
+.chlog{background:var(--deep2);border-color:rgba(255,255,255,.12);box-shadow:0 12px 34px rgba(0,0,0,.4)}
+.chlog h5{color:rgba(232,241,237,.55)}
+.chlog div{color:rgba(232,241,237,.6);border-bottom-color:rgba(255,255,255,.08)}
+.chlog b{color:#fff}
+@media(max-width:900px){.side{border-bottom:1px solid rgba(255,255,255,.1)}}
+/* pastel 图标块（参考里的彩色小方块）*/
+.itile.p1{background:var(--p1);color:var(--p1i)} .itile.p2{background:var(--p2);color:var(--p2i)}
+.itile.p3{background:var(--p3);color:var(--p3i)} .itile.p4{background:var(--p4);color:var(--p4i)}
+.itile.p5{background:var(--p5);color:var(--p5i)} .itile.p6{background:var(--p6);color:var(--p6i)}
+.kic.p1{background:var(--p1);color:var(--p1i)} .kic.p2{background:var(--p2);color:var(--p2i)}
+.kic.p3{background:var(--p3);color:var(--p3i)} .kic.p4{background:var(--p4);color:var(--p4i)}
+.qk i.p1{background:var(--p1);color:var(--p1i)} .qk i.p2{background:var(--p2);color:var(--p2i)}
+.qk i.p3{background:var(--p3);color:var(--p3i)} .qk i.p4{background:var(--p4);color:var(--p4i)}
+.qk i.p5{background:var(--p5);color:var(--p5i)} .qk i.p6{background:var(--p6);color:var(--p6i)}
+/* 步骤虚线连接（参考里的 1-2-3-4-5）*/
+.st5{position:relative}
+.st5 .s5{position:relative}
+.st5 .s5:not(:last-child)::after{content:"";position:absolute;left:11.5px;top:34px;bottom:-2px;width:0;border-left:2px dotted var(--line);z-index:0}
+.st5 .s5 i{position:relative;z-index:1}
+/* 带配图的建议卡 */
+.sugwrap{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}
+.sugpic{height:104px;border-radius:12px;background-size:cover;background-position:center}
+.postrow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin-bottom:12px}
+.post{aspect-ratio:4/3;border-radius:10px;background-size:cover;background-position:center;position:relative;overflow:hidden}
+.post span{position:absolute;left:6px;bottom:6px;font-size:10.5px;font-weight:800;color:#fff;background:rgba(15,23,42,.55);border-radius:6px;padding:1px 7px;backdrop-filter:blur(2px)}
+@media(max-width:640px){.postrow{grid-template-columns:1fr 1fr}}
+.loypic{height:118px;border-radius:12px;background-size:cover;background-position:center;margin:12px 0 0;position:relative}
+.loypic span{position:absolute;left:10px;bottom:9px;font-size:11px;font-weight:700;color:#fff;text-shadow:0 1px 6px rgba(0,0,0,.6)}
+/* 快速开始压成一行 */
+.qk6{grid-template-columns:repeat(6,minmax(0,1fr));gap:8px}
+.qk{flex-direction:row;align-items:center;gap:9px;text-align:left;padding:10px 11px}
+.qk i{width:30px;height:30px;border-radius:9px}
+.qk i svg{width:16px;height:16px}
+.qk b{font-size:12.2px;line-height:1.25}
+.qk s{display:none}
+@media(max-width:1180px){.qk6{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:640px){.qk6{grid-template-columns:1fr 1fr}}
+/* 成本体检条 */
+.fcrow{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px dashed var(--line2)}
+.fcrow:last-child{border-bottom:0}
+.fcrow .fcn{font-size:12.4px;flex:0 0 108px;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.fcrow .fcb{flex:1;height:8px;border-radius:99px;background:var(--surface2);overflow:hidden}
+.fcrow .fcb i{display:block;height:100%;border-radius:99px}
+.fcrow .fcv{font-family:var(--sans);font-weight:800;font-size:12px;font-variant-numeric:tabular-nums;flex:0 0 42px;text-align:right}
+
+
 /* ═══ v9.7 AI 团队 ═══ */
 .ownr{margin-left:9px;font-size:10px;font-weight:700;color:var(--mut);background:var(--surface2);border:1px solid var(--line);border-radius:99px;padding:2px 9px;letter-spacing:0;text-transform:none;vertical-align:2px}
 .ceohero{display:flex;align-items:center;gap:14px;background:var(--ink);color:#fff;border-radius:16px;padding:18px 20px;flex-wrap:wrap}
@@ -945,6 +1012,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
     <div class="chlog" id="chlog" hidden>
       <h5>更新日志</h5>
       <div><b>v9.9</b><span>总览加 Agent Floor · 工位实况 + 团队聊天</span></div>
+      <div><b>v12.0</b><span>青绿配色 + 深绿侧栏 —— 对齐 client 参考</span></div>
       <div><b>v11.0</b><span>全站减字 —— 换成图标与图片</span></div>
       <div><b>v10.3</b><span>AI 团队页去重 —— 一个信源</span></div>
       <div><b>v10.2</b><span>工位跟着你走：总览 ↔ AI 团队 两页都在</span></div>
@@ -960,7 +1028,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
       <div><b>v9.0</b><span>总览与店面资料照 client 参考重做</span></div>
       <div><b>v8.x</b><span>对话式创建工作台 · 三方案差异化</span></div>
     </div>
-    <button class="verbtn" id="verBtn"><i></i>v11.0 · 更新日志</button>
+    <button class="verbtn" id="verBtn"><i></i>v12.0 · 更新日志</button>
   </div>
 </aside>
 <main class="main">
@@ -975,11 +1043,11 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
 
     <div class="kpis k4">
       <button class="kpi" data-p="2"><span class="r1"><s>今日销售额</s><span class="tag gn">+6.4%</span></span>
-        <span class="r2"><b class="num">RM 2,140</b><i class="kic" data-i="chart"></i></span><span class="ksub">较昨日 · 128 单</span></button>
+        <span class="r2"><b class="num">RM 2,140</b><i class="kic p1" data-i="chart"></i></span><span class="ksub">较昨日 · 128 单</span></button>
       <button class="kpi" data-p="2"><span class="r1"><s>本周</s><span class="tag gn">+8.1%</span></span>
-        <span class="r2"><b class="num">RM 13,867</b><i class="kic" data-i="activity"></i></span><span class="ksub">625 单 · 周六最旺</span></button>
+        <span class="r2"><b class="num">RM 13,867</b><i class="kic p2" data-i="activity"></i></span><span class="ksub">625 单 · 周六最旺</span></button>
       <button class="kpi" data-p="2"><span class="r1"><s>平均客单</s><span class="tag gn">+5.1%</span></span>
-        <span class="r2"><b class="num">RM 16.70</b><i class="kic" data-i="tagT"></i></span><span class="ksub">今日每单</span></button>
+        <span class="r2"><b class="num">RM 16.70</b><i class="kic p4" data-i="tagT"></i></span><span class="ksub">今日每单</span></button>
       <button class="kpi" data-p="3"><span class="r1"><s>最畅销</s><span class="tag bl">今日 56 份</span></span>
         <span class="r2"><b style="font-size:15px">芒果糯米饭</b><span class="kimg" style="background-image:url(img/mango.jpg)"></span></span><span class="ksub">RM 14.00</span></button>
     </div>
@@ -1023,11 +1091,11 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
       <div class="card mt">
         <div class="chd"><i data-i="bulb"></i><b>AI 经营洞察</b><s>来自你自己的数据</s><span class="sp"></span><button class="btn sm" data-p="2">全部洞察 →</button></div>
         <div class="ins3">
-          <div class="ins"><span class="insh"><i class="itile am" data-i="trend"></i><span class="chip am">销售机会</span></span>
+          <div class="ins"><span class="insh"><i class="itile p4" data-i="trend"></i><span class="chip am">销售机会</span></span>
             <b class="insm">43%</b><s>营收才来自午市 —— 最弱的时段</s><button class="btn sm" data-p="1">看方案 →</button></div>
-          <div class="ins"><span class="insh"><i class="itile bl" data-i="users"></i><span class="chip bl">顾客洞察</span></span>
+          <div class="ins"><span class="insh"><i class="itile p2" data-i="users"></i><span class="chip bl">顾客洞察</span></span>
             <b class="insm">23</b><s>位会员 14 天没来 —— 唤回稿已备好</s><button class="btn sm" data-p="8">看唤回 →</button></div>
-          <div class="ins"><span class="insh"><i class="itile gn" data-i="bowl"></i><span class="chip gn">菜单健康</span></span>
+          <div class="ins"><span class="insh"><i class="itile p1" data-i="bowl"></i><span class="chip gn">菜单健康</span></span>
             <b class="insm">8</b><s>道菜连续 14 天卖不动 —— 印菜单前处理</s><button class="btn sm" data-p="3">菜单分析 →</button></div>
         </div>
       </div>
@@ -1035,12 +1103,12 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
       <div class="card mt">
         <div class="chd"><i data-i="spark"></i><b>快速开始</b><s>挑一件事 —— 剩下的交给 AI</s></div>
         <div class="qk6">
-          <button class="qk" data-p="1"><i data-i="imgT"></i><b>设计海报</b><s>AI 排版 + 文案</s></button>
-          <button class="qk" data-p="1"><i data-i="typeT"></i><b>生成文案</b><s>3 种语言</s></button>
-          <button class="qk" data-p="2"><i data-i="chart"></i><b>上传销售表</b><s>出周报</s></button>
-          <button class="qk" data-p="3"><i data-i="camera"></i><b>美化食物照</b><s>菜单级出片</s></button>
-          <button class="qk" data-p="3"><i data-i="list"></i><b>生成菜单</b><s>可印 PNG</s></button>
-          <button class="qk" data-p="8"><i data-i="users"></i><b>会员营销</b><s>唤回 · 生日</s></button>
+          <button class="qk" data-p="1"><i class="p1" data-i="imgT"></i><b>设计海报</b><s>AI 排版 + 文案</s></button>
+          <button class="qk" data-p="1"><i class="p5" data-i="typeT"></i><b>生成文案</b><s>3 种语言</s></button>
+          <button class="qk" data-p="2"><i class="p2" data-i="chart"></i><b>上传销售表</b><s>出周报</s></button>
+          <button class="qk" data-p="3"><i class="p3" data-i="camera"></i><b>美化食物照</b><s>菜单级出片</s></button>
+          <button class="qk" data-p="3"><i class="p4" data-i="list"></i><b>生成菜单</b><s>可印 PNG</s></button>
+          <button class="qk" data-p="8"><i class="p6" data-i="users"></i><b>会员营销</b><s>唤回 · 生日</s></button>
         </div>
       </div>
 
@@ -1071,6 +1139,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
 
       <div class="card mt">
         <div class="chd"><i data-i="bulb"></i><b>本周经营建议</b><span class="sp"></span><button class="btn sm" data-p="2">更多 →</button></div>
+        <div class="sugpic" style="background-image:url(img/shop.jpg)" title="Merdeka 档期 · 8/16 锁印刷"></div>
         <div class="sug">
           <button class="sgi" data-p="1"><i class="sgico" data-i="trend"></i><i class="pr hi">高</i><span>推「工作日午市套餐」—— 把 43% 的午市份额拉上来</span></button>
           <button class="sgi" data-p="7"><i class="sgico" data-i="video"></i><i class="pr md">中</i><span>发新菜制作过程视频 —— 视频触达是图片的 2.9 倍</span></button>
@@ -1322,6 +1391,15 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
             <div class="photo real" style="background-image:url(img/cooler.jpg)"><small>薄荷饮</small></div>
             <div class="photo real" style="background-image:url(img/pasta.jpg)"><small>松露意面</small></div>
           </div>
+        <div class="card mt">
+          <div class="chd"><i data-i="coins"></i><b>成本体检</b><s>food cost 对着 35% 这条线</s><span class="sp"></span><span class="tag gn">5 道过 4 道</span></div>
+          <div class="fcrow"><span class="fcn">柠檬薄荷饮</span><span class="fcb"><i style="width:27%;background:var(--green)"></i></span><span class="fcv">27%</span></div>
+          <div class="fcrow"><span class="fcn">芒果糯米饭</span><span class="fcb"><i style="width:31%;background:var(--green)"></i></span><span class="fcv">31%</span></div>
+          <div class="fcrow"><span class="fcn">椰浆饭套餐</span><span class="fcb"><i style="width:33%;background:var(--green)"></i></span><span class="fcv">33%</span></div>
+          <div class="fcrow"><span class="fcn">Chicken Satay</span><span class="fcb"><i style="width:40%;background:var(--amber)"></i></span><span class="fcv">40%</span></div>
+          <div class="fcrow"><span class="fcn">炭烤牛肋排</span><span class="fcb"><i style="width:44%;background:var(--red)"></i></span><span class="fcv">44%</span></div>
+          <div class="cnote">超过 35% 就吃毛利 —— 牛肋排只有进套餐才划算。</div>
+        </div>
         </div>
         <div class="card mt" id="mgWrap" hidden>
           <div class="chd"><i data-i="printer"></i><b>菜单预览</b><s>数据实时来自菜单总表</s><span class="sp"></span><button class="btn pri sm" id="mgDl">下载 PNG</button></div>
@@ -1584,7 +1662,8 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
     <div class="grid2">
       <div class="card">
         <div class="chd"><i data-i="chart"></i><b>本周内容表现</b><s>全部由 AI 生成 · 你批了才发的</s></div>
-        <table>
+        <div class="postrow"><div class="post" style="background-image:url(img/satay.jpg)"><span>18.7k</span></div><div class="post" style="background-image:url(img/mango.jpg)"><span>6.4k</span></div><div class="post" style="background-image:url(img/social.jpg)"><span>2.8k</span></div><div class="post" style="background-image:url(img/curry.jpg)"><span>—</span></div></div>
+          <table>
           <thead><tr><th>内容</th><th>平台</th><th style="text-align:right">曝光</th><th style="text-align:right">互动</th><th>状态</th></tr></thead>
           <tbody>
             <tr><td>Merdeka 倒数 · 松露意面短片</td><td>TikTok + IG Reels</td><td style="text-align:right" class="num"><b>18,732</b></td><td style="text-align:right" class="num">1,294</td><td><span class="tag gn">本周最佳</span></td></tr>
@@ -1641,6 +1720,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
             <span class="stamp on">5</span><span class="stamp on">6</span><span class="stamp on">7</span><span class="stamp on">8</span>
             <span class="stamp">9</span><span class="stamp gift"><i data-i="gift"></i></span>
           </div>
+          <div class="loypic" style="background-image:url(img/shop.jpg)"><span>午市常客 · 248 位会员全部 opt-in</span></div>
           <div class="cnote">第 10 章送「椰浆饭套餐」一份（成本 RM 5.10，换回一次到店 · 平均带朋友 1.6 人）。</div>
         </div>
         <div class="card mt">
