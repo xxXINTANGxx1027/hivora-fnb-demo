@@ -154,6 +154,33 @@ h2{font-family:var(--sans);font-size:clamp(22px,2.4vw,27px);letter-spacing:-.02e
 .ins>s{font-size:11.6px;color:var(--mut);line-height:1.45;flex:1}
 .task{position:relative}
 .tthumb{position:absolute;right:15px;top:15px;width:82px;height:82px;border-radius:12px;background-size:cover;background-position:center;box-shadow:0 1px 3px rgba(15,23,42,.12)}
+/* ═══ v13 首页信息密度（对齐参考：两栏均衡 + 紧凑卡）═══ */
+.two{grid-template-columns:minmax(0,1.26fr) minmax(0,1fr);gap:14px}
+@media(max-width:1180px){.two{grid-template-columns:1fr}}
+.rail{display:block}
+/* 待拍板：一行式紧凑卡 */
+.task.tc{display:flex;align-items:center;gap:12px;padding:11px 13px;margin-bottom:8px}
+.task.tc .tthumb{position:static;width:56px;height:56px;border-radius:10px;flex-shrink:0}
+.task.tc .tmain{flex:1;min-width:0}
+.task.tc h3{font-size:14px;margin:5px 0 0;padding:0}
+.task.tc .trow{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+.task.tc .tacts{display:flex;gap:6px;flex-shrink:0}
+.task.tc .tacts .btn{padding:6px 12px;font-size:12.2px}
+@media(max-width:760px){.task.tc{flex-wrap:wrap}.task.tc .tacts{width:100%;padding-top:9px;border-top:1px dashed var(--line2)}}
+/* 社媒条塞进右栏 */
+.socmini{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin-top:9px}
+.socmini button{display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 3px;border:1px solid var(--line);border-radius:10px;transition:.15s}
+.socmini button:hover{border-color:var(--blue-line);background:var(--blue-soft)}
+.socmini .ii{width:20px;height:20px;border-radius:6px;font-size:9px}
+.socmini b{font-size:11.6px;font-variant-numeric:tabular-nums}
+.socmini s{font-size:9.5px;color:var(--green);text-decoration:none}
+.reachrow{display:flex;align-items:baseline;gap:8px}
+.reachrow b{font-family:var(--sans);font-size:24px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+/* 建议：参考里的编号方块 */
+.sgi{align-items:center !important}
+.sgn{width:22px;height:22px;border-radius:7px;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;font-size:11px;font-weight:800;flex-shrink:0;font-family:var(--sans)}
+.sgi .chev2{margin-left:auto;color:var(--faint);flex-shrink:0;font-style:normal}
+
 .task h3,.task .tags{padding-right:96px}
 @media(max-width:620px){.tthumb{display:none}.task h3,.task .tags{padding-right:0}}
 .sgi .sgico{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;flex-shrink:0;background:var(--surface2);color:var(--mut)}
@@ -992,6 +1019,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
     <div class="chlog" id="chlog" hidden>
       <h5>What’s new</h5>
       <div><b>v9.9</b><span>Agent floor on Home · live desks + team chat</span></div>
+      <div><b>v13.0</b><span>Home rebuilt for density — one screen answers a boss</span></div>
       <div><b>v12.1</b><span>Reference layout kept, original blue palette restored</span></div>
       <div><b>v11.0</b><span>Less text, more icons &amp; photos across the dashboard</span></div>
       <div><b>v10.3</b><span>AI Team page de-duplicated — one source of truth</span></div>
@@ -1008,7 +1036,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
       <div><b>v9.0</b><span>Home &amp; Store details rebuilt to client ref</span></div>
       <div><b>v8.x</b><span>Create-by-chat studio · 3 distinct concepts</span></div>
     </div>
-    <button class="verbtn" id="verBtn"><i></i>v12.1 · What’s new</button>
+    <button class="verbtn" id="verBtn"><i></i>v13.0 · What’s new</button>
   </div>
 </aside>
 <main class="main">
@@ -1032,38 +1060,25 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
         <span class="r2"><b style="font-size:15px">Mango Sticky Rice</b><span class="kimg" style="background-image:url(img/mango.jpg)"></span></span><span class="ksub">today · RM 14.00</span></button>
     </div>
 
-    <div class="card" style="margin-bottom:16px">
-      <div class="chd"><i data-i="share"></i><b>Social at a glance</b><s>Official platform data</s><span class="sp"></span><button class="btn sm" data-p="7">Details →</button></div>
-      <div class="socwrap">
-        <button class="socbig" data-p="7">
-          <s>Reach this week</s><b class="num">103.2k</b><em class="tag gn">+18% vs last week</em>
-          <span>62% short-video · 5 platforms</span>
-        </button>
-        <div class="socrow">
-          <button class="soc" data-p="7"><span class="ii" style="background:#1877F2">f</span><b class="num">12.4k</b><s class="up">+2.1%</s></button>
-          <button class="soc" data-p="7"><span class="ii" style="background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF)">Ig</span><b class="num">8,930</b><s class="up">+4.8%</s></button>
-          <button class="soc" data-p="7"><span class="ii" style="background:#FE2C55">小</span><b class="num">1,204</b><s class="up">+12.3%</s></button>
-          <button class="soc" data-p="7"><span class="ii" style="background:#111">Tk</span><b class="num">3,481</b><s class="up">+6.9%</s></button>
-          <button class="soc" data-p="7"><span class="ii" style="background:#25D366">Wa</span><b class="num">248</b><s>opt-in</s></button>
-        </div>
-      </div>
-    </div>
-
     <div class="two">
     <div>
       <div class="shead"><b>To decide today</b><span class="tag am" style="margin-left:8px">2 waiting</span><span class="sp"></span><button class="btn sm" data-p="1">View all →</button></div>
       <div id="taskList">
-        <div class="task">
-          <span class="tthumb" style="background-image:url(img/mango.jpg)"></span><div class="tr1"><span class="chip am">Suggested run Aug 12 · 2 weeks out</span><span class="meta">Poster v1 attached</span></div>
-          <h3>Lunch Flash poster is ready. Publish it?</h3>
-          <div class="tags"><span class="tag gn">✓ Halal</span><span class="tag am">Pending</span><span class="tag">Add-on set RM 38 · 61% margin</span></div>
-          <div class="acts"><button class="btn pri ok1">Publish</button><button class="btn" data-p="1">Review / edit</button><button class="btn gho no1">Reject</button></div>
+                <div class="task tc">
+          <span class="tthumb" style="background-image:url(img/mango.jpg)"></span>
+          <div class="tmain">
+            <div class="trow"><span class="chip am">Run Aug 12</span><span class="tag gn">Halal ✓</span><span class="tag">RM 38 · 61% margin</span></div>
+            <h3>Lunch Flash poster is ready. Publish it?</h3>
+          </div>
+          <div class="tacts"><button class="btn pri ok1">Publish</button><button class="btn" data-p="1">Edit</button><button class="btn gho no1">Reject</button></div>
         </div>
-        <div class="task">
-          <span class="tthumb" style="background-image:url(img/satay.jpg)"></span><div class="tr1"><span class="chip rd">Print deadline Aug 1 · 4 days left</span><span class="meta">Schedule attached</span></div>
-          <h3>Lock the Merdeka schedule? Runs Aug 19</h3>
-          <div class="tags"><span class="tag">Merdeka · Aug 31</span><span class="tag am">Pending</span><span class="tag am">Print needs 1-month lead</span></div>
-          <div class="acts"><button class="btn pri ok1">Lock it in</button><button class="btn" data-p="2">See analytics</button><button class="btn gho no1">Reject</button></div>
+        <div class="task tc">
+          <span class="tthumb" style="background-image:url(img/satay.jpg)"></span>
+          <div class="tmain">
+            <div class="trow"><span class="chip rd">Print by Aug 1 · 4 days</span><span class="tag">Merdeka · Aug 31</span><span class="tag am">1-month print lead</span></div>
+            <h3>Lock the Merdeka schedule? Runs Aug 19</h3>
+          </div>
+          <div class="tacts"><button class="btn pri ok1">Lock it</button><button class="btn" data-p="2">Analytics</button><button class="btn gho no1">Reject</button></div>
         </div>
       </div>
       <div class="note" style="margin-top:4px">The AI has no publish button. It files a request here — <b>nothing runs until you approve</b>.</div>
@@ -1106,6 +1121,18 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
 
     <aside class="rail">
       <div class="card">
+        <div class="chd"><i data-i="share"></i><b>Social</b><s>official data</s><span class="sp"></span><button class="btn sm" data-p="7">Details →</button></div>
+        <div class="reachrow"><b class="num">103.2k</b><span class="tag gn">+18%</span><s style="font-size:11px;color:var(--mut)">reach this week</s></div>
+        <div class="socmini">
+          <button data-p="7"><span class="ii" style="background:#1877F2">f</span><b>12.4k</b><s>+2.1%</s></button>
+          <button data-p="7"><span class="ii" style="background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF)">Ig</span><b>8,930</b><s>+4.8%</s></button>
+          <button data-p="7"><span class="ii" style="background:#FE2C55">小</span><b>1,204</b><s>+12.3%</s></button>
+          <button data-p="7"><span class="ii" style="background:#111">Tk</span><b>3,481</b><s>+6.9%</s></button>
+          <button data-p="7"><span class="ii" style="background:#25D366">Wa</span><b>248</b><s style="color:var(--mut)">opt-in</s></button>
+        </div>
+      </div>
+
+      <div class="card">
         <div class="chd"><i data-i="gauge"></i><b>Follow the steps, get results</b></div>
         <div class="st5">
           <div class="s5 done"><i>✓</i><span><b>Pick a goal</b><s>Lift lunch sales — set</s></span><em class="tag gn">Done</em></div>
@@ -1121,10 +1148,10 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
         <div class="chd"><i data-i="bulb"></i><b>This week's suggestions</b><span class="sp"></span><button class="btn sm" data-p="2">More →</button></div>
         <div class="sugpic" style="background-image:url(img/shop.jpg)" title="Merdeka window · print locks Aug 16"></div>
         <div class="sug">
-          <button class="sgi" data-p="1"><i class="sgico" data-i="trend"></i><i class="pr hi">High</i><span>Launch a weekday lunch set — lift the 43% lunch share</span></button>
-          <button class="sgi" data-p="7"><i class="sgico" data-i="video"></i><i class="pr md">Med</i><span>Post the making-of video — video reaches 2.9× stills</span></button>
-          <button class="sgi" data-p="3"><i class="sgico" data-i="scissors"></i><i class="pr md">Med</i><span>Trim the 8 slow dishes before the Merdeka menu print</span></button>
-          <button class="sgi" data-p="8"><i class="sgico" data-i="gift"></i><i class="pr lo">Low</i><span>Member day: double points to lift the 31% repeat rate</span></button>
+          <button class="sgi" data-p="1"><span class="sgn">1</span><i class="pr hi">High</i><span>Launch a weekday lunch set — lift the 43% lunch share</span><i class="chev2">›</i></button>
+          <button class="sgi" data-p="7"><span class="sgn">2</span><i class="pr md">Med</i><span>Post the making-of video — video reaches 2.9× stills</span><i class="chev2">›</i></button>
+          <button class="sgi" data-p="3"><span class="sgn">3</span><i class="pr md">Med</i><span>Trim the 8 slow dishes before the Merdeka menu print</span><i class="chev2">›</i></button>
+          <button class="sgi" data-p="8"><span class="sgn">4</span><i class="pr lo">Low</i><span>Member day: double points to lift the 31% repeat rate</span><i class="chev2">›</i></button>
         </div>
       </div>
 
@@ -1447,10 +1474,10 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
       <div class="card">
         <div class="chd"><i data-i="grid"></i><b>Segments</b><s>Auto-grouped · always current</s></div>
         <div class="sug">
-          <button class="sgi" data-p="8"><i class="pr hi">6</i><span><b>Birthday month</b> — treats queued for approval</span></button>
-          <button class="sgi" data-p="8"><i class="pr md">23</i><span><b>Quiet 14 days</b> — “we miss you” draft ready</span></button>
-          <button class="sgi" data-p="8"><i class="pr md">11</i><span><b>VIP</b> — 18% of revenue, personal note suggested</span></button>
-          <button class="sgi" data-p="1"><i class="pr lo">31</i><span><b>New in 30 days</b> — second-visit nudge fits here</span></button>
+          <button class="sgi" data-p="8"><i class="pr hi">6</i><span><b>Birthday month</b> — treats queued for approval</span><i class="chev2">›</i></button>
+          <button class="sgi" data-p="8"><i class="pr md">23</i><span><b>Quiet 14 days</b> — “we miss you” draft ready</span><i class="chev2">›</i></button>
+          <button class="sgi" data-p="8"><i class="pr md">11</i><span><b>VIP</b> — 18% of revenue, personal note suggested</span><i class="chev2">›</i></button>
+          <button class="sgi" data-p="1"><i class="pr lo">31</i><span><b>New in 30 days</b> — second-visit nudge fits here</span><i class="chev2">›</i></button>
         </div>
       </div>
       <div class="card mt">
@@ -2197,7 +2224,9 @@ document.addEventListener("click",function(e){
   b.textContent=ok?"✓ Approved — on the calendar, executing":"✕ Rejected — stopped";
   card.appendChild(b);
   var left=document.querySelectorAll(".task:not(.done)").length;
-  document.getElementById("inboxN").textContent=left;
+  var _ib=document.getElementById("inboxN"); if(_ib)_ib.textContent=left;
+  var _hd=document.querySelector("#p0 .shead .tag.am");
+  if(_hd)_hd.textContent=left?"{n} waiting".replace("{n}",left):"All clear ✓";
   toast(ok?"Approved — slot written to the calendar":"Rejected");
 });
 var _vb=document.getElementById("verBtn"),_cl=document.getElementById("chlog");

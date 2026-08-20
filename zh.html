@@ -154,6 +154,33 @@ h2{font-family:var(--sans);font-size:clamp(22px,2.4vw,27px);letter-spacing:-.02e
 .ins>s{font-size:11.6px;color:var(--mut);line-height:1.45;flex:1}
 .task{position:relative}
 .tthumb{position:absolute;right:15px;top:15px;width:82px;height:82px;border-radius:12px;background-size:cover;background-position:center;box-shadow:0 1px 3px rgba(15,23,42,.12)}
+/* ═══ v13 首页信息密度（对齐参考：两栏均衡 + 紧凑卡）═══ */
+.two{grid-template-columns:minmax(0,1.26fr) minmax(0,1fr);gap:14px}
+@media(max-width:1180px){.two{grid-template-columns:1fr}}
+.rail{display:block}
+/* 待拍板：一行式紧凑卡 */
+.task.tc{display:flex;align-items:center;gap:12px;padding:11px 13px;margin-bottom:8px}
+.task.tc .tthumb{position:static;width:56px;height:56px;border-radius:10px;flex-shrink:0}
+.task.tc .tmain{flex:1;min-width:0}
+.task.tc h3{font-size:14px;margin:5px 0 0;padding:0}
+.task.tc .trow{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+.task.tc .tacts{display:flex;gap:6px;flex-shrink:0}
+.task.tc .tacts .btn{padding:6px 12px;font-size:12.2px}
+@media(max-width:760px){.task.tc{flex-wrap:wrap}.task.tc .tacts{width:100%;padding-top:9px;border-top:1px dashed var(--line2)}}
+/* 社媒条塞进右栏 */
+.socmini{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px;margin-top:9px}
+.socmini button{display:flex;flex-direction:column;align-items:center;gap:3px;padding:7px 3px;border:1px solid var(--line);border-radius:10px;transition:.15s}
+.socmini button:hover{border-color:var(--blue-line);background:var(--blue-soft)}
+.socmini .ii{width:20px;height:20px;border-radius:6px;font-size:9px}
+.socmini b{font-size:11.6px;font-variant-numeric:tabular-nums}
+.socmini s{font-size:9.5px;color:var(--green);text-decoration:none}
+.reachrow{display:flex;align-items:baseline;gap:8px}
+.reachrow b{font-family:var(--sans);font-size:24px;font-weight:800;letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+/* 建议：参考里的编号方块 */
+.sgi{align-items:center !important}
+.sgn{width:22px;height:22px;border-radius:7px;background:var(--blue-soft);color:var(--blue);display:grid;place-items:center;font-size:11px;font-weight:800;flex-shrink:0;font-family:var(--sans)}
+.sgi .chev2{margin-left:auto;color:var(--faint);flex-shrink:0;font-style:normal}
+
 .task h3,.task .tags{padding-right:96px}
 @media(max-width:620px){.tthumb{display:none}.task h3,.task .tags{padding-right:0}}
 .sgi .sgico{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;flex-shrink:0;background:var(--surface2);color:var(--mut)}
@@ -989,6 +1016,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
     <div class="chlog" id="chlog" hidden>
       <h5>更新日志</h5>
       <div><b>v9.9</b><span>总览加 Agent Floor · 工位实况 + 团队聊天</span></div>
+      <div><b>v13.0</b><span>首页按信息密度重排 —— 一屏answer老板三个问题</span></div>
       <div><b>v12.1</b><span>保留参考的排版结构 · 配色换回原来的蓝白</span></div>
       <div><b>v11.0</b><span>全站减字 —— 换成图标与图片</span></div>
       <div><b>v10.3</b><span>AI 团队页去重 —— 一个信源</span></div>
@@ -1005,7 +1033,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
       <div><b>v9.0</b><span>总览与店面资料照 client 参考重做</span></div>
       <div><b>v8.x</b><span>对话式创建工作台 · 三方案差异化</span></div>
     </div>
-    <button class="verbtn" id="verBtn"><i></i>v12.1 · 更新日志</button>
+    <button class="verbtn" id="verBtn"><i></i>v13.0 · 更新日志</button>
   </div>
 </aside>
 <main class="main">
@@ -1029,38 +1057,25 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
         <span class="r2"><b style="font-size:15px">芒果糯米饭</b><span class="kimg" style="background-image:url(img/mango.jpg)"></span></span><span class="ksub">RM 14.00</span></button>
     </div>
 
-    <div class="card" style="margin-bottom:16px">
-      <div class="chd"><i data-i="share"></i><b>社媒总览</b><s>官方平台数据</s><span class="sp"></span><button class="btn sm" data-p="7">详情 →</button></div>
-      <div class="socwrap">
-        <button class="socbig" data-p="7">
-          <s>本周触达</s><b class="num">103.2k</b><em class="tag gn">较上周 +18%</em>
-          <span>62% 短视频 · 5 个平台</span>
-        </button>
-        <div class="socrow">
-          <button class="soc" data-p="7"><span class="ii" style="background:#1877F2">f</span><b class="num">12.4k</b><s class="up">+2.1%</s></button>
-          <button class="soc" data-p="7"><span class="ii" style="background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF)">Ig</span><b class="num">8,930</b><s class="up">+4.8%</s></button>
-          <button class="soc" data-p="7"><span class="ii" style="background:#FE2C55">小</span><b class="num">1,204</b><s class="up">+12.3%</s></button>
-          <button class="soc" data-p="7"><span class="ii" style="background:#111">Tk</span><b class="num">3,481</b><s class="up">+6.9%</s></button>
-          <button class="soc" data-p="7"><span class="ii" style="background:#25D366">Wa</span><b class="num">248</b><s>已订阅</s></button>
-        </div>
-      </div>
-    </div>
-
     <div class="two">
     <div>
       <div class="shead"><b>今天要拍板</b><span class="tag am" style="margin-left:8px">2 件待定</span><span class="sp"></span><button class="btn sm" data-p="1">查看全部 →</button></div>
       <div id="taskList">
-        <div class="task">
-          <span class="tthumb" style="background-image:url(img/mango.jpg)"></span><div class="tr1"><span class="chip am">建议 8/12 上线 · 还有 2 周</span><span class="meta">海报 v1 已附</span></div>
-          <h3>午市快闪海报做好了，发吗？</h3>
-          <div class="tags"><span class="tag gn">✓ Halal</span><span class="tag am">待审批</span><span class="tag">加购套餐 RM 38 · 毛利 61%</span></div>
-          <div class="acts"><button class="btn pri ok1">发布</button><button class="btn" data-p="1">先看看 / 改</button><button class="btn gho no1">不要</button></div>
+                <div class="task tc">
+          <span class="tthumb" style="background-image:url(img/mango.jpg)"></span>
+          <div class="tmain">
+            <div class="trow"><span class="chip am">建议 8/12 上线</span><span class="tag gn">Halal ✓</span><span class="tag">RM 38 · 毛利 61%</span></div>
+            <h3>午市快闪海报做好了，发吗？</h3>
+          </div>
+          <div class="tacts"><button class="btn pri ok1">发布</button><button class="btn" data-p="1">改</button><button class="btn gho no1">不要</button></div>
         </div>
-        <div class="task">
-          <span class="tthumb" style="background-image:url(img/satay.jpg)"></span><div class="tr1"><span class="chip rd">印刷截止 8/1 · 剩 4 天</span><span class="meta">排期已附</span></div>
-          <h3>Merdeka 档期锁定吗？8/19 开跑</h3>
-          <div class="tags"><span class="tag">Merdeka · 8/31</span><span class="tag am">待审批</span><span class="tag am">印刷要提前 1 个月</span></div>
-          <div class="acts"><button class="btn pri ok1">锁定</button><button class="btn" data-p="2">看分析</button><button class="btn gho no1">不要</button></div>
+        <div class="task tc">
+          <span class="tthumb" style="background-image:url(img/satay.jpg)"></span>
+          <div class="tmain">
+            <div class="trow"><span class="chip rd">印刷截止 8/1 · 剩 4 天</span><span class="tag">Merdeka · 8/31</span><span class="tag am">印刷提前 1 个月</span></div>
+            <h3>Merdeka 档期锁定吗？8/19 开跑</h3>
+          </div>
+          <div class="tacts"><button class="btn pri ok1">锁定</button><button class="btn" data-p="2">看分析</button><button class="btn gho no1">不要</button></div>
         </div>
       </div>
       <div class="note" style="margin-top:4px">AI 没有发布按钮，只能把请求放到这里 —— <b>你不点头，什么都不会发生</b>。</div>
@@ -1103,6 +1118,18 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
 
     <aside class="rail">
       <div class="card">
+        <div class="chd"><i data-i="share"></i><b>社媒</b><s>官方数据</s><span class="sp"></span><button class="btn sm" data-p="7">详情 →</button></div>
+        <div class="reachrow"><b class="num">103.2k</b><span class="tag gn">+18%</span><s style="font-size:11px;color:var(--mut)">本周触达</s></div>
+        <div class="socmini">
+          <button data-p="7"><span class="ii" style="background:#1877F2">f</span><b>12.4k</b><s>+2.1%</s></button>
+          <button data-p="7"><span class="ii" style="background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF)">Ig</span><b>8,930</b><s>+4.8%</s></button>
+          <button data-p="7"><span class="ii" style="background:#FE2C55">小</span><b>1,204</b><s>+12.3%</s></button>
+          <button data-p="7"><span class="ii" style="background:#111">Tk</span><b>3,481</b><s>+6.9%</s></button>
+          <button data-p="7"><span class="ii" style="background:#25D366">Wa</span><b>248</b><s style="color:var(--mut)">已订阅</s></button>
+        </div>
+      </div>
+
+      <div class="card">
         <div class="chd"><i data-i="gauge"></i><b>跟着步骤走，就有结果</b></div>
         <div class="st5">
           <div class="s5 done"><i>✓</i><span><b>选目标</b><s>提升午市销量 —— 已定</s></span><em class="tag gn">完成</em></div>
@@ -1118,10 +1145,10 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
         <div class="chd"><i data-i="bulb"></i><b>本周经营建议</b><span class="sp"></span><button class="btn sm" data-p="2">更多 →</button></div>
         <div class="sugpic" style="background-image:url(img/shop.jpg)" title="Merdeka 档期 · 8/16 锁印刷"></div>
         <div class="sug">
-          <button class="sgi" data-p="1"><i class="sgico" data-i="trend"></i><i class="pr hi">高</i><span>推「工作日午市套餐」—— 把 43% 的午市份额拉上来</span></button>
-          <button class="sgi" data-p="7"><i class="sgico" data-i="video"></i><i class="pr md">中</i><span>发新菜制作过程视频 —— 视频触达是图片的 2.9 倍</span></button>
-          <button class="sgi" data-p="3"><i class="sgico" data-i="scissors"></i><i class="pr md">中</i><span>Merdeka 菜单付印前，清掉 8 道低销菜</span></button>
-          <button class="sgi" data-p="8"><i class="sgico" data-i="gift"></i><i class="pr lo">低</i><span>会员日双倍积分 —— 把 31% 复购率抬起来</span></button>
+          <button class="sgi" data-p="1"><span class="sgn">1</span><i class="pr hi">高</i><span>推「工作日午市套餐」—— 把 43% 的午市份额拉上来</span><i class="chev2">›</i></button>
+          <button class="sgi" data-p="7"><span class="sgn">2</span><i class="pr md">中</i><span>发新菜制作过程视频 —— 视频触达是图片的 2.9 倍</span><i class="chev2">›</i></button>
+          <button class="sgi" data-p="3"><span class="sgn">3</span><i class="pr md">中</i><span>Merdeka 菜单付印前，清掉 8 道低销菜</span><i class="chev2">›</i></button>
+          <button class="sgi" data-p="8"><span class="sgn">4</span><i class="pr lo">低</i><span>会员日双倍积分 —— 把 31% 复购率抬起来</span><i class="chev2">›</i></button>
         </div>
       </div>
 
@@ -1444,10 +1471,10 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
       <div class="card">
         <div class="chd"><i data-i="grid"></i><b>自动分群</b><s>随时是最新的</s></div>
         <div class="sug">
-          <button class="sgi" data-p="8"><i class="pr hi">6</i><span><b>生日月</b> —— 惊喜稿排队等审批</span></button>
-          <button class="sgi" data-p="8"><i class="pr md">23</i><span><b>沉默 14 天</b> —— 「想你了」唤回稿已备好</span></button>
-          <button class="sgi" data-p="8"><i class="pr md">11</i><span><b>VIP</b> —— 占营收 18%，建议私信一句</span></button>
-          <button class="sgi" data-p="1"><i class="pr lo">31</i><span><b>30 天新客</b> —— 第二次到店是留客关键</span></button>
+          <button class="sgi" data-p="8"><i class="pr hi">6</i><span><b>生日月</b> —— 惊喜稿排队等审批</span><i class="chev2">›</i></button>
+          <button class="sgi" data-p="8"><i class="pr md">23</i><span><b>沉默 14 天</b> —— 「想你了」唤回稿已备好</span><i class="chev2">›</i></button>
+          <button class="sgi" data-p="8"><i class="pr md">11</i><span><b>VIP</b> —— 占营收 18%，建议私信一句</span><i class="chev2">›</i></button>
+          <button class="sgi" data-p="1"><i class="pr lo">31</i><span><b>30 天新客</b> —— 第二次到店是留客关键</span><i class="chev2">›</i></button>
         </div>
       </div>
       <div class="card mt">
@@ -2194,7 +2221,9 @@ document.addEventListener("click",function(e){
   b.textContent=ok?"✓ 已批 · 已进日历，系统开始执行":"✕ 已退回，流程停止";
   card.appendChild(b);
   var left=document.querySelectorAll(".task:not(.done)").length;
-  document.getElementById("inboxN").textContent=left;
+  var _ib=document.getElementById("inboxN"); if(_ib)_ib.textContent=left;
+  var _hd=document.querySelector("#p0 .shead .tag.am");
+  if(_hd)_hd.textContent=left?"{n} 件待定".replace("{n}",left):"都清空了 ✓";
   toast(ok?"已批 —— 档期已写进营销日历":"已退回");
 });
 var _vb=document.getElementById("verBtn"),_cl=document.getElementById("chlog");
