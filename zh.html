@@ -334,6 +334,19 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .photo{aspect-ratio:1;border-radius:12px;border:1px solid var(--line);background:linear-gradient(145deg,var(--blue-soft),var(--surface2));
   display:grid;place-items:center;font-size:30px;cursor:pointer;position:relative;transition:.2s}
 .photo small{font-size:10px;color:var(--mut)}
+.photo.need{background:var(--surface2);border-style:dashed;color:var(--faint);gap:5px}
+.photo.need i{width:20px;height:20px;display:grid;place-items:center}
+.photo.need i svg{width:20px;height:20px}
+.ownr i{width:13px;height:13px;display:inline-grid;place-items:center;vertical-align:-2px;margin-right:4px}
+.ownr i svg{width:13px;height:13px}
+.stc i[data-i]{width:12px;height:12px;display:inline-grid;place-items:center;vertical-align:-1px;margin-right:3px}
+.stc i[data-i] svg{width:12px;height:12px}
+.aud .ai2 i{display:grid;place-items:center;color:var(--mut)}
+.aud .ai2 svg{width:16px;height:16px}
+.stamp.gift i{display:grid;place-items:center}
+.stamp.gift svg{width:18px;height:18px}
+.btn i[data-i] svg{width:14px;height:14px}
+.pxhint i[data-i] svg{width:14px;height:14px}
 .photo:hover{transform:translateY(-2px);box-shadow:var(--sh)}
 .photo.enh{background:linear-gradient(145deg,#FFF6E8,#FDEBDD 60%,#FCE8EF);border-color:#F0D3AE}
 .photo.enh:after{content:"已美化";position:absolute;top:6px;right:6px;font-size:9px;font-weight:700;background:var(--ink);color:#fff;padding:2px 7px;border-radius:99px}
@@ -417,6 +430,11 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .tmr .tfeed{font-size:10.5px;color:var(--blue);font-weight:650}
 .fline{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:7px 0;font-size:12px}
 .fb{border:1.5px solid var(--line);border-radius:10px;padding:5px 11px;font-weight:700;font-size:11.5px;background:var(--surface)}
+.fb i[data-i]{width:14px;height:14px;display:inline-grid;place-items:center;vertical-align:-2px;margin-right:5px;color:var(--mut)}
+.fb i[data-i] svg{width:14px;height:14px}
+.fb.dk i[data-i]{color:rgba(255,255,255,.8)}
+.mdl{width:15px;height:15px;display:inline-grid;place-items:center;vertical-align:-3px;color:var(--amber)}
+.mdl svg{width:15px;height:15px}
 .fb.dk{background:var(--ink);color:#fff;border-color:var(--ink)}
 .fb.tl{border-style:dashed;color:var(--mut)}
 .farr{color:var(--faint);font-weight:700}
@@ -951,7 +969,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
 
   <!-- ═══════════ P0 总览 ═══════════ -->
   <section class="panel on" id="p0">
-    <div style="margin-bottom:16px"><div class="eyebrow">Warisan Grill · 吉隆坡<span class="ownr">🧭 CEO</span></div>
+    <div style="margin-bottom:16px"><div class="eyebrow">Warisan Grill · 吉隆坡<span class="ownr"><i data-i="gauge"></i></span></div>
       <h2>早上好</h2>
       <p class="sub">决策优先 —— AI 备好一切，你只管拍板。</p></div>
 
@@ -1075,12 +1093,12 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
       <div class="chd"><i data-i="users"></i><b>Agent Floor</b><s>实时 · 每个人此刻在干嘛</s><span class="sp"></span><button class="btn sm" data-p="9">认识团队 →</button></div>
       <div class="flbar">
         <div class="achips" id="aChips"></div>
-        <button class="btn sm" id="btnEditAgent">⚙️ 编辑 agent</button>
+        <button class="btn sm" id="btnEditAgent"><i data-i="gear" style="width:14px;height:14px;display:inline-grid;place-items:center;vertical-align:-2px;margin-right:5px"></i>编辑 agent</button>
       </div>
       <div class="flwrap">
         <div class="pxbox">
           <div class="pxscroll"><canvas id="floorCv" aria-label="像素办公室：AI 团队工位"></canvas></div>
-          <div class="pxhint">🖱️ <b>点小人</b>看他现在在干嘛 · 有活的坐在工位干，空闲的才会到处逛</div>
+          <div class="pxhint"><i data-i="hand" style="width:14px;height:14px;display:inline-grid;place-items:center;color:var(--blue)"></i> <b>点小人</b>看他现在在干嘛 · 有活的坐在工位干，空闲的才会到处逛</div>
         </div>
         <div class="flchat">
           <div class="flhd"><span class="cav">C</span>团队对话<span class="sp"></span><span class="tag gn">保留历史</span></div>
@@ -1103,7 +1121,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
   <!-- ═══════════ P1 营销生成 ═══════════ -->
   <section class="panel" id="p1">
     <div class="wbhead">
-      <div><div class="eyebrow">AI 设计工作台<span class="ownr">🖨️ 设计师</span></div><h2 style="font-size:22px">宣传设计工作台</h2>
+      <div><div class="eyebrow">AI 设计工作台<span class="ownr"><i data-i="printer"></i></span></div><h2 style="font-size:22px">宣传设计工作台</h2>
         <p class="sub" style="margin-top:3px;font-size:12.6px">跟着流程一步步完成海报、社交贴文与宣传文案。</p></div>
       <div class="steps steps-r">
         <span class="stp on"><i>1</i><b>选择目标</b><s>明确宣传目的</s></span><em></em>
@@ -1145,7 +1163,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
           </div>
           <div class="store">
             <div class="chd" style="margin-bottom:6px"><b style="font-size:12px">店铺资料 · 已自动填入</b><span class="sp"></span><button class="lnk" data-p="6" style="font-size:11.5px">编辑</button></div>
-            <div class="stchips"><span class="stc">Warisan Grill · Halal ✓</span><span class="stc"><i class="sw"></i>#B4451F</span><span class="stc">📍 Jalan Ampang</span><span class="stc">💬 +60 12-345 6789</span></div>
+            <div class="stchips"><span class="stc">Warisan Grill · Halal ✓</span><span class="stc"><i class="sw"></i>#B4451F</span><span class="stc"><i data-i="pin"></i>Jalan Ampang</span><span class="stc"><i data-i="chat"></i>+60 12-345 6789</span></div>
           </div>
           <div class="chd" style="margin:14px 0 10px;padding-top:13px;border-top:1px solid var(--line2)"><b>3 · 选择设计风格</b></div>
           <div class="sthumbs">
@@ -1219,7 +1237,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
 
   <!-- ═══════════ P2 销售分析 ═══════════ -->
   <section class="panel" id="p2">
-    <div style="margin-bottom:16px;display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap"><div style="flex:1;min-width:260px"><div class="eyebrow">Sales Intelligence<span class="ownr">📥 运营</span></div>
+    <div style="margin-bottom:16px;display:flex;align-items:flex-end;gap:16px;flex-wrap:wrap"><div style="flex:1;min-width:260px"><div class="eyebrow">Sales Intelligence<span class="ownr"><i data-i="chart"></i></span></div>
       <h2>卖最好的，不等于最赚钱的</h2>
       <p class="sub">数字全是代码算的，AI 只负责解释 —— 它想编也编不了。</p></div>
       <div class="mtabs2" style="margin-bottom:4px"><button id="anMan" aria-pressed="true">手动上传</button><button id="anPos" aria-pressed="false">POS 直连</button></div></div>
@@ -1272,7 +1290,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
 
   <!-- ═══════════ P3 菜品与菜单 ═══════════ -->
   <section class="panel" id="p3">
-    <div style="margin-bottom:16px"><div class="eyebrow">Food Library<span class="ownr">🖨️ 设计师</span></div>
+    <div style="margin-bottom:16px"><div class="eyebrow">Food Library<span class="ownr"><i data-i="printer"></i></span></div>
       <h2>菜品、照片、菜单，一处管齐</h2>
       <p class="sub">拍得不好没关系 —— 点一张照片试试 AI 美化；菜单一键排成能印的版。</p></div>
     <div class="grid2">
@@ -1295,10 +1313,10 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
         <div class="card">
           <div class="chd"><i data-i="camera"></i><b>菜品照</b><s>点一张试试 AI 美化</s><span class="sp"></span><s>12 / 19</s></div>
           <div class="photos">
-            <div class="photo">🍜<small>海鲜炒面</small></div>
-            <div class="photo">🍛<small>咖喱鸡饭</small></div>
-            <div class="photo">🥩<small>牛肋排</small></div>
-            <div class="photo">🍚<small>椰浆饭</small></div>
+            <div class="photo need"><i data-i="camera"></i><small>海鲜炒面</small></div>
+            <div class="photo real" style="background-image:url(img/curry.jpg)"><small>咖喱鸡饭</small></div>
+            <div class="photo need"><i data-i="camera"></i><small>牛肋排</small></div>
+            <div class="photo real" style="background-image:url(img/nasi.jpg)"><small>椰浆饭</small></div>
             <div class="photo real" style="background-image:url(img/mango.jpg)"><small>芒果糯米饭</small></div>
             <div class="photo real" style="background-image:url(img/satay.jpg)"><small>Satay</small></div>
             <div class="photo real" style="background-image:url(img/cooler.jpg)"><small>薄荷饮</small></div>
@@ -1315,7 +1333,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
 
   <!-- ═══════════ P4 客户 ═══════════ -->
   <section class="panel" id="p4">
-    <div style="margin-bottom:16px"><div class="eyebrow">Customers · PDPA 内建<span class="ownr">📣 营销</span></div>
+    <div style="margin-bottom:16px"><div class="eyebrow">Customers · PDPA 内建<span class="ownr"><i data-i="share"></i></span></div>
       <h2>客户库自己长</h2>
       <p class="sub">扫码即 opt-in，同意来源自动存证；退订即停。不买名单、不爬数据。</p></div>
 
@@ -1359,7 +1377,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
             <tr><td>Tan Wei Ming 陈伟明</td><td class="num">+60 12-338 4921</td><td class="num">03-14</td><td>华人 · 中文</td><td><span class="tag">扫码点餐</span></td><td><span class="tag gn">Opt-in ✓</span></td><td style="text-align:right" class="num">23</td></tr>
             <tr><td>Siti Nurhaliza</td><td class="num">+60 13-772 0856</td><td class="num">08-22</td><td>马来 · BM</td><td><span class="tag">WhatsApp</span></td><td><span class="tag gn">Opt-in ✓</span></td><td style="text-align:right" class="num">18</td></tr>
             <tr><td>Priya Raghavan</td><td class="num">+60 16-204 7733</td><td class="num">11-02</td><td>印度裔 · EN</td><td><span class="tag">QR 收客页</span></td><td><span class="tag gn">Opt-in ✓</span></td><td style="text-align:right" class="num">11</td></tr>
-            <tr><td>Lim Jia Hui 林佳慧</td><td class="num">+60 11-560 2280</td><td class="num">08-09</td><td>华人 · 中文</td><td><span class="tag bl">生日月 🎂</span></td><td><span class="tag gn">Opt-in ✓</span></td><td style="text-align:right" class="num">9</td></tr>
+            <tr><td>Lim Jia Hui 林佳慧</td><td class="num">+60 11-560 2280</td><td class="num">08-09</td><td>华人 · 中文</td><td><span class="tag bl">生日月 <i class="mdl" data-i="cake"></i></span></td><td><span class="tag gn">Opt-in ✓</span></td><td style="text-align:right" class="num">9</td></tr>
             <tr style="opacity:.55"><td>Ahmad Faizal</td><td class="num">+60 19-882 0417</td><td class="num">05-30</td><td>马来 · BM</td><td><span class="tag">WhatsApp</span></td><td><span class="tag rd">STOP · 永不再发</span></td><td style="text-align:right" class="num">4</td></tr>
           </tbody>
         </table>
@@ -1390,7 +1408,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
 
   <!-- ═══════════ P5 新菜灵感 ═══════════ -->
   <section class="panel" id="p5">
-    <div style="margin-bottom:16px"><div class="eyebrow">新菜灵感<span class="ownr">👨‍🍳 主厨助手</span></div>
+    <div style="margin-bottom:16px"><div class="eyebrow">新菜灵感<span class="ownr"><i data-i="bowl"></i></span></div>
       <h2>告诉它后厨有什么</h2>
       <p class="sub">说出你手上的食材 —— AI 按你的店型设计新菜，成本和做法都算好。</p></div>
     <div class="two">
@@ -1527,10 +1545,10 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
         </div>
         <div class="card mt">
           <div class="chd"><i data-i="users"></i><b>客群构成</b><s>你自己的估算 · 可编辑</s><span class="sp"></span><span class="tag">不追踪 · PDPA</span></div>
-          <div class="aud"><span class="ai2">💼</span><span><b>上班族 <em>42%</em></b><span class="abar"><i style="width:42%"></i></span></span></div>
-          <div class="aud"><span class="ai2">👨‍👩‍👧</span><span><b>家庭 <em>28%</em></b><span class="abar"><i style="width:28%"></i></span></span></div>
-          <div class="aud"><span class="ai2">🎓</span><span><b>学生 <em>18%</em></b><span class="abar"><i style="width:18%"></i></span></span></div>
-          <div class="aud"><span class="ai2">🧳</span><span><b>游客 <em>12%</em></b><span class="abar"><i style="width:12%"></i></span></span></div>
+          <div class="aud"><span class="ai2"><i data-i="briefcase"></i></span><span><b>上班族 <em>42%</em></b><span class="abar"><i style="width:42%"></i></span></span></div>
+          <div class="aud"><span class="ai2"><i data-i="users"></i></span><span><b>家庭 <em>28%</em></b><span class="abar"><i style="width:28%"></i></span></span></div>
+          <div class="aud"><span class="ai2"><i data-i="cap"></i></span><span><b>学生 <em>18%</em></b><span class="abar"><i style="width:18%"></i></span></span></div>
+          <div class="aud"><span class="ai2"><i data-i="luggage"></i></span><span><b>游客 <em>12%</em></b><span class="abar"><i style="width:12%"></i></span></span></div>
           <div class="cnote">由你填写、再用自家 POS 规律校准 —— 不买也不爬第三方"人潮数据"。</div>
         </div>
         <div class="card mt">
@@ -1546,7 +1564,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
 
   <!-- ═══════════ P7 社媒中心（AiToEarn 引擎）═══════════ -->
   <section class="panel" id="p7">
-    <div style="margin-bottom:16px"><div class="eyebrow">Social Hub · Powered by AiToEarn<span class="ownr">📣 营销</span></div>
+    <div style="margin-bottom:16px"><div class="eyebrow">Social Hub · Powered by AiToEarn<span class="ownr"><i data-i="share"></i></span></div>
       <h2>五个账号，一处看齐</h2>
       <p class="sub">数据来自各平台<b>官方 API</b>（小红书/TikTok 手动同步）—— AI 不编数字。发布由 AiToEarn 执行，永远先过你的审批。</p></div>
 
@@ -1601,7 +1619,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
 
   <!-- ═══════════ P8 会员 · Loyalty ═══════════ -->
   <section class="panel" id="p8">
-    <div style="margin-bottom:16px"><div class="eyebrow">Loyalty · 让客人再来一次<span class="ownr">📣 营销</span></div>
+    <div style="margin-bottom:16px"><div class="eyebrow">Loyalty · 让客人再来一次<span class="ownr"><i data-i="share"></i></span></div>
       <h2>会员与积分</h2>
       <p class="sub">扫码入会 → 消费攒分 → 到点唤回。全部 opt-in，退订即停。</p></div>
     <div class="kpis" style="grid-template-columns:repeat(4,minmax(0,1fr))">
@@ -1621,7 +1639,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
           <div class="stamps">
             <span class="stamp on">1</span><span class="stamp on">2</span><span class="stamp on">3</span><span class="stamp on">4</span>
             <span class="stamp on">5</span><span class="stamp on">6</span><span class="stamp on">7</span><span class="stamp on">8</span>
-            <span class="stamp">9</span><span class="stamp gift">🎁</span>
+            <span class="stamp">9</span><span class="stamp gift"><i data-i="gift"></i></span>
           </div>
           <div class="cnote">第 10 章送「椰浆饭套餐」一份（成本 RM 5.10，换回一次到店 · 平均带朋友 1.6 人）。</div>
         </div>
@@ -1638,9 +1656,9 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
           <table>
             <thead><tr><th>等级</th><th>门槛</th><th>人数</th><th>权益</th></tr></thead>
             <tbody>
-              <tr><td><b>🥉 常客</b></td><td class="num">入会即是</td><td class="num">193</td><td>积分 + 生日双倍</td></tr>
-              <tr><td><b>🥈 熟客</b></td><td class="num">RM 500</td><td class="num">44</td><td>+ 每月 1 次饮品半价</td></tr>
-              <tr><td><b>🥇 贵客</b></td><td class="num">RM 1,500</td><td class="num">11</td><td>+ 新菜免费试吃 · 免排队</td></tr>
+              <tr><td><b><i class="mdl" data-i="medal"></i> 常客</b></td><td class="num">入会即是</td><td class="num">193</td><td>积分 + 生日双倍</td></tr>
+              <tr><td><b><i class="mdl" data-i="medal"></i> 熟客</b></td><td class="num">RM 500</td><td class="num">44</td><td>+ 每月 1 次饮品半价</td></tr>
+              <tr><td><b><i class="mdl" data-i="medal"></i> 贵客</b></td><td class="num">RM 1,500</td><td class="num">11</td><td>+ 新菜免费试吃 · 免排队</td></tr>
             </tbody>
           </table>
           <div class="cnote">11 位贵客贡献了 <b class="num">18%</b> 的营收 —— 他们值得一条专属 WhatsApp 问候。<button class="lnk" data-p="1">去写 →</button></div>
@@ -1673,9 +1691,9 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
     <div class="grid2">
       <div class="card">
         <div class="chd"><i data-i="activity"></i><b>活是怎么流转的</b><s>专员之间从不直连</s></div>
-        <div class="fline"><span class="fb dk">👔 你</span><span class="farr">⇄</span><span class="fb dk">🧭 CEO</span><span class="farr">→</span><span class="fb">📥 运营</span><span class="fb">📣 营销</span><span class="fb">🖨️ 设计师</span><span class="fb">👨‍🍳 主厨</span></div>
-        <div class="fline"><span class="fnote">情报</span><span class="fb">📥 运营</span><span class="farr">⇢</span><span class="fb">📣 营销</span><span class="farr">⇢</span><span class="fb">👨‍🍳 主厨</span><span class="fnote">低谷 · 反馈 · 食材余量</span></div>
-        <div class="fline"><span class="fnote">工具</span><span class="fb">📣 营销</span><span class="farr">→</span><span class="fb tl">🔧 AiToEarn · Create + Publish · Engage 永不开启</span></div>
+        <div class="fline"><span class="fb dk"><i data-i="shield"></i>你</span><span class="farr">⇄</span><span class="fb dk"><i data-i="gauge"></i>CEO</span><span class="farr">→</span><span class="fb"><i data-i="chart"></i>运营</span><span class="fb"><i data-i="share"></i>营销</span><span class="fb"><i data-i="printer"></i>设计师</span><span class="fb"><i data-i="bowl"></i>主厨</span></div>
+        <div class="fline"><span class="fnote">情报</span><span class="fb"><i data-i="chart"></i>运营</span><span class="farr">⇢</span><span class="fb"><i data-i="share"></i>营销</span><span class="farr">⇢</span><span class="fb"><i data-i="bowl"></i>主厨</span><span class="fnote">低谷 · 反馈 · 食材余量</span></div>
+        <div class="fline"><span class="fnote">工具</span><span class="fb"><i data-i="share"></i>营销</span><span class="farr">→</span><span class="fb tl"><i data-i="link"></i>AiToEarn · Create + Publish · Engage 永不开启</span></div>
         <div class="cnote">所有真实动作 —— 发布、群发、印刷、改价 —— 都要先到你桌上。</div>
       </div>
       <div>
@@ -1683,12 +1701,12 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
           <div class="chd"><i data-i="gear"></i><b>家规</b><s>写进每个 agent 的红线</s></div>
           <div class="fchips"><span class="stc">先审批后出门 ✓</span><span class="stc">只发 opt-in · STOP 即永久 ✓</span><span class="stc">族群饮食规则 ✓</span><span class="stc">老板配方不喂 AI ✓</span></div>
         </div>
-        <div class="ghost" style="margin-top:14px"><span style="font-size:17px">💰</span><span><b>Accountant · Phase 2</b> —— 成本、对账、报税准备。等运营数据跑顺就入职。</span></div>
+        <div class="ghost" style="margin-top:14px"><i class="itile nt" data-i="coins"></i><span><b>Accountant · Phase 2</b> —— 成本、对账、报税准备。等运营数据跑顺就入职。</span></div>
       </div>
     </div>
 
     <details class="agd" style="margin-top:14px">
-      <summary><span class="av2" style="background:#64748B">🔀</span><b>展开完整交接矩阵 —— 谁给谁什么</b><s></s><i class="chev">›</i></summary>
+      <summary><span class="av2" style="background:#64748B"><i data-i="grid"></i></span><b>展开完整交接矩阵 —— 谁给谁什么</b><s></s><i class="chev">›</i></summary>
       <div class="agd-b">
       <div style="overflow-x:auto"><table>
         <thead><tr><th>从 \ 到</th><th>CEO</th><th>运营</th><th>营销</th><th>设计师</th><th>主厨</th><th>你</th></tr></thead>
@@ -1728,6 +1746,14 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
 
     palette:s('<path d="M12 3a9 9 0 1 0 0 18c1.4 0 2-.9 2-1.8 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-.9.8-1.6 1.7-1.6H16a5 5 0 0 0 5-5c0-3.9-4-7.2-9-7.2Z"/><circle cx="7.7" cy="11.3" r="1.1" fill="currentColor" stroke="none"/><circle cx="10.4" cy="7.4" r="1.1" fill="currentColor" stroke="none"/><circle cx="15.3" cy="7.9" r="1.1" fill="currentColor" stroke="none"/>'),
     calendar:s('<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><circle cx="8.5" cy="14.5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="14.5" r="1" fill="currentColor" stroke="none"/>'),
+    medal:s('<circle cx="12" cy="15" r="6"/><path d="M12 12.6l.9 1.8 2 .3-1.45 1.4.34 2L12 17.15 10.2 18.1l.34-2L9.1 14.7l2-.3Z"/><path d="M8.5 9.4 6 3h4l2 3.4L14 3h4l-2.5 6.4"/>'),
+    cake:s('<path d="M4 20h16v-6.5c0-1-.8-1.8-1.8-1.8H5.8c-1 0-1.8.8-1.8 1.8Z"/><path d="M4 16.2c1.4 0 1.4-1.2 2.7-1.2s1.3 1.2 2.6 1.2 1.4-1.2 2.7-1.2 1.3 1.2 2.6 1.2 1.4-1.2 2.7-1.2 1.3 1.2 2.7 1.2"/><path d="M8 11.7V9.4M12 11.7V9M16 11.7V9.4"/><circle cx="8" cy="7.6" r="1"/><circle cx="12" cy="7.2" r="1"/><circle cx="16" cy="7.6" r="1"/>'),
+    briefcase:s('<rect x="3" y="7.5" width="18" height="12.5" rx="2"/><path d="M9 7.5V6a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v1.5M3 13h18"/>'),
+    cap:s('<path d="M2.5 9 12 5l9.5 4-9.5 4Z"/><path d="M6.5 11v4.2c0 1.3 2.5 2.3 5.5 2.3s5.5-1 5.5-2.3V11"/>'),
+    luggage:s('<rect x="5" y="7" width="14" height="14" rx="2"/><path d="M9 7V4.5h6V7M9.5 11v6M14.5 11v6"/>'),
+    pin:s('<path d="M12 21s7-5.6 7-11a7 7 0 1 0-14 0c0 5.4 7 11 7 11Z"/><circle cx="12" cy="10" r="2.6"/>'),
+    chat:s('<path d="M20.5 12c0 4.1-3.8 7.5-8.5 7.5-1 0-2-.2-2.9-.5L4 20.5l1.4-3.6C4.2 15.6 3.5 13.9 3.5 12 3.5 7.9 7.3 4.5 12 4.5s8.5 3.4 8.5 7.5Z"/>'),
+    plus:s('<path d="M12 5v14M5 12h14"/>'),
     calendar2:s('<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>'),
     trend:s('<path d="M3 17l6-6 4 4 7-7"/><path d="M17 8h4v4"/>'),
     video:s('<rect x="2.5" y="6" width="13" height="12" rx="2.5"/><path d="M15.5 10.5 21.5 7v10l-6-3.5"/>'),
