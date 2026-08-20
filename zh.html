@@ -138,6 +138,32 @@ h2{font-family:var(--sans);font-size:clamp(22px,2.4vw,27px);letter-spacing:-.02e
 .ins3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 @media(max-width:1060px){.ins3{grid-template-columns:1fr}}
 .ins{border:1px solid var(--line);border-radius:12px;padding:11px 12px;display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+/* ═══ v11 视觉减字：图标块 + 大数字 + 缩略图 ═══ */
+.itile{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex-shrink:0}
+.itile svg{width:18px;height:18px}
+.itile.am{background:var(--amber-soft);color:var(--amber)}
+.itile.bl{background:var(--blue-soft);color:var(--blue)}
+.itile.gn{background:var(--green-soft);color:var(--green)}
+.itile.rd{background:var(--red-soft);color:var(--red)}
+.itile.nt{background:var(--surface2);color:var(--mut)}
+.insh{display:flex;align-items:center;gap:9px;width:100%}
+.ins .insm{font-family:var(--sans);font-size:29px;font-weight:800;letter-spacing:-.02em;line-height:1.05;font-variant-numeric:tabular-nums;margin-top:2px}
+.ins>s{font-size:11.6px;color:var(--mut);line-height:1.45;flex:1}
+.task{position:relative}
+.tthumb{position:absolute;right:15px;top:15px;width:82px;height:82px;border-radius:12px;background-size:cover;background-position:center;box-shadow:0 1px 3px rgba(15,23,42,.12)}
+.task h3,.task .tags{padding-right:96px}
+@media(max-width:620px){.tthumb{display:none}.task h3,.task .tags{padding-right:0}}
+.sgi .sgico{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;flex-shrink:0;background:var(--surface2);color:var(--mut)}
+.sgi .sgico svg{width:15px;height:15px}
+.al .alico{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;flex-shrink:0;color:var(--mut)}
+.al .alico svg{width:15px;height:15px}
+.al.am .alico{color:var(--amber)} .al.rd .alico{color:var(--red)}
+.hrule{display:inline-flex;align-items:center;gap:6px}
+.hrule i{width:15px;height:15px;color:var(--green);flex-shrink:0}
+.hrule i svg{width:15px;height:15px}
+.av2 svg{width:18px;height:18px}
+.dav svg,.ca svg{width:17px;height:17px}
+
 .ins b{font-size:12.8px}
 .ins>s{font-size:11.4px;color:var(--mut);line-height:1.5;flex:1}
 .chip.bl{background:var(--blue-soft);border-color:var(--blue-line);color:var(--blue)}
@@ -455,6 +481,11 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .achip:hover{border-color:var(--blue)}
 .achip[aria-current="true"]{border-color:var(--blue);background:var(--blue-soft);color:var(--blue)}
 .achip i{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.achip .cic{display:grid;place-items:center;width:15px;height:15px;flex-shrink:0}
+.achip .cic svg{width:15px;height:15px}
+.am-list .em{display:grid;place-items:center;width:18px;height:18px}
+.am-list .em svg{width:18px;height:18px}
+.ag-em svg{width:26px;height:26px}
 .achip s{font-family:ui-monospace,Menlo,monospace;font-size:9.5px;letter-spacing:.06em;text-decoration:none;opacity:.75}
 .flbar .btn{margin-left:auto}
 dialog.amodal{position:fixed;inset:0;margin:auto;border:0;border-radius:15px;padding:0;width:min(940px,calc(100% - 32px));
@@ -896,6 +927,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
     <div class="chlog" id="chlog" hidden>
       <h5>更新日志</h5>
       <div><b>v9.9</b><span>总览加 Agent Floor · 工位实况 + 团队聊天</span></div>
+      <div><b>v11.0</b><span>全站减字 —— 换成图标与图片</span></div>
       <div><b>v10.3</b><span>AI 团队页去重 —— 一个信源</span></div>
       <div><b>v10.2</b><span>工位跟着你走：总览 ↔ AI 团队 两页都在</span></div>
       <div><b>v10.1</b><span>工位加状态 chips · 编辑 agent 档案（SOUL · 工具白名单）</span></div>
@@ -910,7 +942,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
       <div><b>v9.0</b><span>总览与店面资料照 client 参考重做</span></div>
       <div><b>v8.x</b><span>对话式创建工作台 · 三方案差异化</span></div>
     </div>
-    <button class="verbtn" id="verBtn"><i></i>v10.3 · 更新日志</button>
+    <button class="verbtn" id="verBtn"><i></i>v11.0 · 更新日志</button>
   </div>
 </aside>
 <main class="main">
@@ -956,13 +988,13 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
       <div class="shead"><b>今天要拍板</b><span class="tag am" style="margin-left:8px">2 件待定</span><span class="sp"></span><button class="btn sm" data-p="1">查看全部 →</button></div>
       <div id="taskList">
         <div class="task">
-          <div class="tr1"><span class="chip am">建议 8/12 上线 · 还有 2 周</span><span class="meta">海报 v1 已附</span></div>
+          <span class="tthumb" style="background-image:url(img/mango.jpg)"></span><div class="tr1"><span class="chip am">建议 8/12 上线 · 还有 2 周</span><span class="meta">海报 v1 已附</span></div>
           <h3>午市快闪海报做好了，发吗？</h3>
           <div class="tags"><span class="tag gn">✓ Halal</span><span class="tag am">待审批</span><span class="tag">加购套餐 RM 38 · 毛利 61%</span></div>
           <div class="acts"><button class="btn pri ok1">发布</button><button class="btn" data-p="1">先看看 / 改</button><button class="btn gho no1">不要</button></div>
         </div>
         <div class="task">
-          <div class="tr1"><span class="chip rd">印刷截止 8/1 · 剩 4 天</span><span class="meta">排期已附</span></div>
+          <span class="tthumb" style="background-image:url(img/satay.jpg)"></span><div class="tr1"><span class="chip rd">印刷截止 8/1 · 剩 4 天</span><span class="meta">排期已附</span></div>
           <h3>Merdeka 档期锁定吗？8/19 开跑</h3>
           <div class="tags"><span class="tag">Merdeka · 8/31</span><span class="tag am">待审批</span><span class="tag am">印刷要提前 1 个月</span></div>
           <div class="acts"><button class="btn pri ok1">锁定</button><button class="btn" data-p="2">看分析</button><button class="btn gho no1">不要</button></div>
@@ -973,9 +1005,12 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
       <div class="card mt">
         <div class="chd"><i data-i="bulb"></i><b>AI 经营洞察</b><s>来自你自己的数据</s><span class="sp"></span><button class="btn sm" data-p="2">全部洞察 →</button></div>
         <div class="ins3">
-          <div class="ins"><span class="chip am">销售机会</span><b>午市还有很大空间</b><s>午市只占营收 43%，但 11:30–13:30 客流不差。推一个午市加购套餐能拉客单。</s><button class="btn sm" data-p="1">看方案 →</button></div>
-          <div class="ins"><span class="chip bl">顾客洞察</span><b>老顾客在流失</b><s>复购率 31%，低于同行。23 位会员 14 天没来 —— 唤回消息已草拟好。</s><button class="btn sm" data-p="8">看唤回 →</button></div>
-          <div class="ins"><span class="chip gn">菜单健康</span><b>8 道菜卖不动</b><s>连续 14 天低销量。下次印菜单前，砍掉或捆绑到畅销款后面。</s><button class="btn sm" data-p="3">菜单分析 →</button></div>
+          <div class="ins"><span class="insh"><i class="itile am" data-i="trend"></i><span class="chip am">销售机会</span></span>
+            <b class="insm">43%</b><s>营收才来自午市 —— 最弱的时段</s><button class="btn sm" data-p="1">看方案 →</button></div>
+          <div class="ins"><span class="insh"><i class="itile bl" data-i="users"></i><span class="chip bl">顾客洞察</span></span>
+            <b class="insm">23</b><s>位会员 14 天没来 —— 唤回稿已备好</s><button class="btn sm" data-p="8">看唤回 →</button></div>
+          <div class="ins"><span class="insh"><i class="itile gn" data-i="bowl"></i><span class="chip gn">菜单健康</span></span>
+            <b class="insm">8</b><s>道菜连续 14 天卖不动 —— 印菜单前处理</s><button class="btn sm" data-p="3">菜单分析 →</button></div>
         </div>
       </div>
 
@@ -1019,18 +1054,18 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
       <div class="card mt">
         <div class="chd"><i data-i="bulb"></i><b>本周经营建议</b><span class="sp"></span><button class="btn sm" data-p="2">更多 →</button></div>
         <div class="sug">
-          <button class="sgi" data-p="1"><i class="pr hi">高</i><span>推「工作日午市套餐」—— 把 43% 的午市份额拉上来</span></button>
-          <button class="sgi" data-p="7"><i class="pr md">中</i><span>发新菜制作过程视频 —— 视频触达是图片的 2.9 倍</span></button>
-          <button class="sgi" data-p="3"><i class="pr md">中</i><span>Merdeka 菜单付印前，清掉 8 道低销菜</span></button>
-          <button class="sgi" data-p="8"><i class="pr lo">低</i><span>会员日双倍积分 —— 把 31% 复购率抬起来</span></button>
+          <button class="sgi" data-p="1"><i class="sgico" data-i="trend"></i><i class="pr hi">高</i><span>推「工作日午市套餐」—— 把 43% 的午市份额拉上来</span></button>
+          <button class="sgi" data-p="7"><i class="sgico" data-i="video"></i><i class="pr md">中</i><span>发新菜制作过程视频 —— 视频触达是图片的 2.9 倍</span></button>
+          <button class="sgi" data-p="3"><i class="sgico" data-i="scissors"></i><i class="pr md">中</i><span>Merdeka 菜单付印前，清掉 8 道低销菜</span></button>
+          <button class="sgi" data-p="8"><i class="sgico" data-i="gift"></i><i class="pr lo">低</i><span>会员日双倍积分 —— 把 31% 复购率抬起来</span></button>
         </div>
       </div>
 
       <div class="card mt">
         <div class="chd"><i data-i="bell"></i><b>盯梢清单</b><span class="sp"></span><span class="tag am">3</span></div>
-        <div class="al am"><span>品牌包缺<b>字体文件</b> —— 海报暂用默认字体。<button class="lnk" data-p="6">上传 →</button></span></div>
-        <div class="al rd"><span>照这个卖法，椰浆<b>周五前</b>见底 —— 按销量推算。</span></div>
-        <div class="al"><span><b>Malaysia Day 9/16</b> —— 还有 50 天，8/16 前锁印刷。<button class="lnk" data-p="1">准备 →</button></span></div>
+        <div class="al am"><i class="alico" data-i="palette"></i><span>品牌包缺<b>字体文件</b> —— 海报暂用默认字体。<button class="lnk" data-p="6">上传 →</button></span></div>
+        <div class="al rd"><i class="alico" data-i="box"></i><span>照这个卖法，椰浆<b>周五前</b>见底 —— 按销量推算。</span></div>
+        <div class="al"><i class="alico" data-i="calendar2"></i><span><b>Malaysia Day 9/16</b> —— 还有 50 天，8/16 前锁印刷。<button class="lnk" data-p="1">准备 →</button></span></div>
       </div>
     </aside>
     </div>
@@ -1632,7 +1667,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
     </div>
 
     <div id="floorSlot9"></div>
-    <div class="flnote">👆 <b>点 chips 或点工位上的小人</b> —— 打开完整档案：工作步骤、不能碰什么、工具白名单。</div>
+    <div class="flnote"><i class="alico" data-i="hand" style="color:var(--blue)"></i> <b>点 chips 或点工位上的小人</b> —— 打开完整档案：工作步骤、不能碰什么、工具白名单。</div>
 
 
     <div class="grid2">
@@ -1691,6 +1726,18 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
     imgT:s('<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="m5 18 5-5 3 3 3-3 3 3"/>'),
     refT:s('<path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 3v4h-4"/>'),
 
+    palette:s('<path d="M12 3a9 9 0 1 0 0 18c1.4 0 2-.9 2-1.8 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-.9.8-1.6 1.7-1.6H16a5 5 0 0 0 5-5c0-3.9-4-7.2-9-7.2Z"/><circle cx="7.7" cy="11.3" r="1.1" fill="currentColor" stroke="none"/><circle cx="10.4" cy="7.4" r="1.1" fill="currentColor" stroke="none"/><circle cx="15.3" cy="7.9" r="1.1" fill="currentColor" stroke="none"/>'),
+    calendar:s('<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><circle cx="8.5" cy="14.5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="14.5" r="1" fill="currentColor" stroke="none"/>'),
+    calendar2:s('<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>'),
+    trend:s('<path d="M3 17l6-6 4 4 7-7"/><path d="M17 8h4v4"/>'),
+    video:s('<rect x="2.5" y="6" width="13" height="12" rx="2.5"/><path d="M15.5 10.5 21.5 7v10l-6-3.5"/>'),
+    scissors:s('<circle cx="6" cy="6" r="2.6"/><circle cx="6" cy="18" r="2.6"/><path d="M20 4 8.6 15.4M20 20 8.6 8.6"/>'),
+    gift:s('<rect x="3" y="8" width="18" height="12" rx="2"/><path d="M3 12h18M12 8v12"/><path d="M12 8S10.5 4 8.5 4a2 2 0 0 0 0 4Zm0 0s1.5-4 3.5-4a2 2 0 0 1 0 4Z"/>'),
+    clock:s('<circle cx="12" cy="12" r="9"/><path d="M12 7v5.2l3.2 2"/>'),
+    box:s('<path d="M12 3 3.5 7.5v9L12 21l8.5-4.5v-9Z"/><path d="M3.5 7.5 12 12l8.5-4.5M12 12v9"/>'),
+    coins:s('<ellipse cx="12" cy="6.5" rx="7.5" ry="3.2"/><path d="M4.5 6.5v5c0 1.8 3.4 3.2 7.5 3.2s7.5-1.4 7.5-3.2v-5"/><path d="M4.5 11.5v5c0 1.8 3.4 3.2 7.5 3.2s7.5-1.4 7.5-3.2v-5"/>'),
+    shield:s('<path d="M12 3 5 6v6c0 4.2 2.9 7.6 7 9 4.1-1.4 7-4.8 7-9V6Z"/><path d="m9.2 12.2 2 2 3.6-3.8"/>'),
+    hand:s('<path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V12"/><path d="M11 11.5V4.8a1.5 1.5 0 0 1 3 0V12"/><path d="M14 11.8V6.8a1.5 1.5 0 0 1 3 0V14c0 4-2.6 7-6.5 7S5 18.4 5 15.2l-.6-2.4a1.5 1.5 0 0 1 2.7-1.2L8 13"/>'),
     home:s('<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/>'),
     spark:s('<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8Z"/><path d="M18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8Z"/>'),
     chart:s('<path d="M4 20V10M10 20V4M16 20v-7M21 20H3"/>'),
@@ -1710,6 +1757,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
     share:s('<circle cx="6" cy="12" r="2.5"/><circle cx="17.5" cy="5.5" r="2.5"/><circle cx="17.5" cy="18.5" r="2.5"/><path d="m8.3 10.7 7-3.9M8.3 13.3l7 3.9"/>'),
     star:s('<path d="m12 3 2.7 5.7 6.3.8-4.6 4.3 1.2 6.2L12 17l-5.6 3 1.2-6.2L3 9.5l6.3-.8Z"/>')
   };
+  window.__I=I;
   document.querySelectorAll("[data-i]").forEach(function(el){ el.innerHTML=I[el.getAttribute("data-i")]||""; });
 })();
 /* ═══ nav ═══ */
@@ -1959,7 +2007,7 @@ var FLL={rm1:"运营 · 数据区",rm2:"营销 · 设计区",rm3:"CEO 调度中�
 var T={IN:"输入",DO:"它做什么",OUT:"产出",CAN:"能做",CANT:"不能做",PERM:"工具白名单 · 最小权限",MODEL:"模型",SOUL:"人设",MEM:"知识"};
 
 /* ═══ Agent 档案（第一版界面：chips + Edit Agent + 弹窗）═══ */
-var AGT={"ceo": {"em": "🧭", "short": "CEO", "name": "CEO · 总管", "role": "唯一入口 · 早报 · 派活 · 验收", "model": "hivora-main", "st": ["等你拍板", "WAITING", "#B45309"], "tot": 22, "io": ["老板的消息 · 专员交回的成品", "问诊 → 认路由 → 派活 → 验收", "8:00 早报 · ≤3 件待拍板 · 成品"], "can": ["每天 8:00 带着昨日数字出早报", "你说不清要什么时，先问诊再给选项", "派工：单一 agent · 单一交付物", "不达标退回重做（≤3 次）"], "cant": ["自己分析数据", "自己写文案 / 出图", "直接对外发布", "代你拍板"], "on": ["delegate_task", "morning_brief", "worklog", "collect", "ask_owner_confirm"], "off": ["change_price", "send_whatsapp_blast", "publish_social_post", "send_to_printer"], "soul": "我只调度，不亲自分析、不写文案、不出图。\n收老板的话 → 认路由 → 派给对的 agent → 收成品 → 验收 → 呈老板。\n\n无状态：进度写工单，崩了读回接着干。\n同一 agent 最多重试 3 次；done 的绝不重派。\n真实动作（发布/群发/印刷/改价）一律先老板确认。", "mem": "# 团队花名册\n运营 = 清洗 + 算数 + 出情报\n营销 = idea + 日历 + 触达\n设计师 = 文案 + 物料\n主厨 = 按食材出新菜\n\n# 节奏\n8:00 早报 · 每天 ≤3 件拍板 · campaign 批一次\n\n# 三条铁律\n族群饮食规则 · Brand Kit · 马来西亚节假日", "steps": ["收你的消息 → 判断：拍板 / 提问 / 迷茫 / 闲聊", "迷茫就问诊：要客流、客单还是省成本 → 预算限制 → 硬节点", "派运营取数 → 给你 ≤3 个选项，每个都带数字", "你拍板 → 派工：单一 agent · 单一交付物 · 附验收标准", "验收每份交付：产出≠原料 · 数字有出处 · 红线逐条过 → 回报你"]}, "ops": {"em": "📥", "short": "运营", "name": "运营 Operations · 数据与情报", "role": "两条流水线：接入 + 分析", "model": "hivora-main", "st": ["已关账", "DONE", "#15803D"], "tot": 22, "io": ["销售表（任意格式）/ POS · 每周盘点", "清洗 → 入库 → 四象限 · 时段 · 库存推算", "数字给 CEO · 情报给营销与主厨"], "can": ["认得出并清洗任何销售导出", "算毛利四象限（代码算，不是猜）", "从销量倒推食材消耗", "低于阈值就报预警"], "cant": ["编一个算不出来的数字", "替老板做决策", "碰客户名单（PDPA）", "对外发布"], "on": ["parse_upload", "validate_schema", "get_margin_quadrant", "get_daypart_peaks", "stock_forecast", "get_menu_cost"], "off": ["change_price", "publish_social_post", "query_customer_db", "send_whatsapp_blast"], "soul": "我做采集 + 清洗 + 计算，不做决策。\n\n拿不准这份是什么数据 → 问老板，不猜。\n字段缺 → 标「待补」，绝不瞎填。\n坏行跳过 + 告警，不卡死整批。\n我报的每个数字都带出处。", "mem": "# 口径\n毛利 = 售价 − 食材成本（套餐单独算）\n四象限：food cost ≤35% = 高毛利；销量 > 本周中位数 = 高销量\n\n# 库存\n消耗从销量倒推；老板每周确认 3 样关键食材\n低于阈值 → 报 CEO", "steps": ["流水线A 接入：收文件 → 清洗 → 报告「625 行 · 0 错误」→ 入库", "流水线B 分析：四象限（FC≤35% · 销量>中位数）· 时段 · 周对比", "每周合并盘点 → 更新台账 → 低于阈值 → 报 CEO"]}, "mkt": {"em": "📣", "short": "营销", "name": "营销 Marketing · 增长", "role": "idea · 日历 · opt-in 触达", "model": "hivora-main", "st": ["排期中", "WORKING", "#B45309"], "tot": 22, "io": ["运营情报 + 老板的 campaign 审批", "idea → brief → 排日历 → 分发", "提案 · 有据可查的触达 · 回流数据"], "can": ["每个 idea 都挂一个真实数字", "批准后在时间窗内自动跑", "排日历时留足印刷提前量", "经 AiToEarn 分发到各平台"], "cant": ["无审批发出任何一条", "发给没 opt-in 的人", "开自动私信 / 自动回复（Engage）", "改价格"], "on": ["gen_idea", "calendar_slot", "aitoearn_publish", "send_wa_template", "check_race_rule", "get_holidays"], "off": ["engage_autoreply", "scrape_followers", "change_price", "publish_without_approval"], "soul": "我提的每个 idea 都挂着运营给的数字 —— 不拍脑袋。\n\nCampaign 批一次：内容 + 名单范围 + 时间窗。\n窗内我跑，窗外我停。\nSTOP 即刻生效且永久。只发 opt-in，永远。\n小红书没有官方 API —— 我把内容备好，人工发。", "mem": "# 触达\n只发 opt-in 名单（248 人）· STOP 永久\n生日 / 唤回模板：批一次，长期有效\n\n# 时机\n印刷类要提前约 1 个月\nAiToEarn：Create + Publish 开，Engage 永不开", "steps": ["收情报出 idea —— 必须挂一个数字", "你按 campaign 批一次：内容 + 名单范围 + 时间窗", "brief 给设计师 → 物料回来排日历（印刷提前 1 个月）", "AiToEarn 分发：FB/IG/WA 官方 API · 小红书备好人工发", "数据回流运营 → 进下一次提案"]}, "dsn": {"em": "🖨️", "short": "设计师", "name": "设计师 Designer · 品牌与物料", "role": "海报 · 菜单 · 全尺寸", "model": "hivora-claude-main", "st": ["出稿中", "WORKING", "#2563EB"], "tot": 22, "io": ["brief（经 CEO）+ 老板原图 + Brand Kit", "3 方向 → 全尺寸 → 三语言 → Gate", "物料包（社媒 / 印刷 / 菜单）"], "can": ["给 3 个真方向，不是 3 个换色", "出全部尺寸 + 中 / EN / BM", "每张都套 Brand Kit", "自检 6 项 Gate 规则"], "cant": ["虚构价格或菜品", "直接送印刷", "直接发布", "看客户名单（PDPA）"], "on": ["gen_copy", "gen_image", "apply_template", "get_brand_kit", "gate_check", "get_menu_cost"], "off": ["change_price", "send_to_printer", "publish_social_post", "query_customer_db"], "soul": "我做营销文案 + 设计，不只是排版美工。\n一切套 Brand Kit。\n\n价格 / 日期来自数据 —— 我不凭记忆写，也不许改。\n必备元素缺一不放行。\nAI 负责把菜画得好吃，价格和二维码由模板精确叠上去。", "mem": "# 必备元素（缺一不放行）\n店名 · 地址 · 价格 · 有效期 · Halal 标 · 二维码 · 社媒 + WhatsApp · 营业时间\n\n# 印刷规格\n出血 3mm · CMYK · 300dpi · PDF/X 字体转曲\n\n# 定向\n牛肉物料不做印度裔 / 素食版本", "steps": ["brief + 你的原图进 → 出 3 方向：图为主 / 价格为主 / 文案为主", "你选定 → 全尺寸：IG/FB/XHS/A4 印刷 + 中/EN/BM", "每张过 Gate：价格来自菜单 · Halal 标 · QR 模板 · 族群规则", "Gate 不过 → 自动重做 ≤3 次 → 仍不过 → 报 CEO"]}, "chef": {"em": "👨‍🍳", "short": "主厨", "name": "主厨助手 Chef · 新菜研发", "role": "进食材，出菜谱建议", "model": "hivora-main", "st": ["盯库存", "IDLE", "#94A3B8"], "tot": 22, "io": ["当天食材 + 库存台账 + 天气与评论", "过成本 / 族群 / 天气约束 → 算成本", "2–3 张新菜卡，每张都带理由"], "can": ["按后厨现有的东西出菜", "算清成本并给建议售价", "按天气换品类（热饮 / 冰饮）", "把「为什么值得试」说清楚"], "cant": ["读老板的配方库", "自己改菜单", "建议违反 Halal / 族群规则的菜", "把菜单送去印刷"], "on": ["read_stock", "calc_food_cost", "check_race_rule", "get_weather", "read_review_text"], "off": ["read_recipe_vault", "change_menu", "send_to_printer", "query_customer_db"], "soul": "我给建议，厨房拍板。\n每张卡先讲为什么 —— 烤线空着、库存要清、三条评论求少辣。\n\n食材成本 ≤30%，全族群可吃的优先，Halal 必须。\n你的老配方永远不进我的上下文 —— 我只看你今天输入的食材。", "mem": "# 五个输入\n当天食材 · 库存台账 · 族群规则 · 天气 · 评论内容\n\n# 硬约束\nFC ≤30% · 备餐 ≤15 分钟 · 有全族群选项时优先不用牛肉\n\n# 天气\n下雨 → 暖饮；天热 → 冰饮", "steps": ["收食材 → 查台账余量 → 过约束：FC≤30% · 全族群优先 · Halal 必须", "出 2–3 张卡：菜名 / 成本 / 售价 / 毛利 / 备餐 / 3 步做法 / 为什么推", "下雨换暖饮 · 天热换冰饮 · 评论求少辣就默认微辣", "你点头 → 菜单卡和海报经 CEO 转设计师接力"]}, "boss": {"em": "👔", "short": "老板", "name": "老板 · 审批台", "role": "唯一能放行真实动作的地方", "model": "—（这不是 agent，是你）", "st": ["2 件待确认", "WAITING", "#B45309"], "tot": 3, "io": ["团队交上来的申请单", "确认 · 改 · 退", "放行 → executor 才执行"], "can": ["确认 → 印刷 / 发布放行", "打回重做（带修改意见）", "直接退掉，流程停止", "定 offer 力度与活动"], "cant": ["自己算数字", "自己写文案", "自己排日历", "自己记印刷截止"], "on": ["approve", "request_change", "reject"], "off": [], "soul": "agent 只能产出申请单。我按下确认之后，\n才由独立的 executor 去执行 —— 印刷、群发、发布、改价。\n\n三个键：确认 · 改 · 退。", "mem": "# 我是谁\n餐厅老板。唯一拍板人。\n\n# 我的收件箱\n今天要拍板的都在总览 —— 现在有两件。", "steps": ["申请单落在总览 —— 每天最多 3 件", "确认 · 带意见打回 · 或直接退", "确认后由独立 executor 执行（印刷 / 群发 / 发布 / 改价）"]}};
+var AGT={"ceo": {"em": "🧭", "short": "CEO", "name": "CEO · 总管", "role": "唯一入口 · 早报 · 派活 · 验收", "model": "hivora-main", "st": ["等你拍板", "WAITING", "#B45309"], "tot": 22, "io": ["老板的消息 · 专员交回的成品", "问诊 → 认路由 → 派活 → 验收", "8:00 早报 · ≤3 件待拍板 · 成品"], "can": ["每天 8:00 带着昨日数字出早报", "你说不清要什么时，先问诊再给选项", "派工：单一 agent · 单一交付物", "不达标退回重做（≤3 次）"], "cant": ["自己分析数据", "自己写文案 / 出图", "直接对外发布", "代你拍板"], "on": ["delegate_task", "morning_brief", "worklog", "collect", "ask_owner_confirm"], "off": ["change_price", "send_whatsapp_blast", "publish_social_post", "send_to_printer"], "soul": "我只调度，不亲自分析、不写文案、不出图。\n收老板的话 → 认路由 → 派给对的 agent → 收成品 → 验收 → 呈老板。\n\n无状态：进度写工单，崩了读回接着干。\n同一 agent 最多重试 3 次；done 的绝不重派。\n真实动作（发布/群发/印刷/改价）一律先老板确认。", "mem": "# 团队花名册\n运营 = 清洗 + 算数 + 出情报\n营销 = idea + 日历 + 触达\n设计师 = 文案 + 物料\n主厨 = 按食材出新菜\n\n# 节奏\n8:00 早报 · 每天 ≤3 件拍板 · campaign 批一次\n\n# 三条铁律\n族群饮食规则 · Brand Kit · 马来西亚节假日", "steps": ["收你的消息 → 判断：拍板 / 提问 / 迷茫 / 闲聊", "迷茫就问诊：要客流、客单还是省成本 → 预算限制 → 硬节点", "派运营取数 → 给你 ≤3 个选项，每个都带数字", "你拍板 → 派工：单一 agent · 单一交付物 · 附验收标准", "验收每份交付：产出≠原料 · 数字有出处 · 红线逐条过 → 回报你"], "ic": "gauge", "bg": "#4F46E5"}, "ops": {"em": "📥", "short": "运营", "name": "运营 Operations · 数据与情报", "role": "两条流水线：接入 + 分析", "model": "hivora-main", "st": ["已关账", "DONE", "#15803D"], "tot": 22, "io": ["销售表（任意格式）/ POS · 每周盘点", "清洗 → 入库 → 四象限 · 时段 · 库存推算", "数字给 CEO · 情报给营销与主厨"], "can": ["认得出并清洗任何销售导出", "算毛利四象限（代码算，不是猜）", "从销量倒推食材消耗", "低于阈值就报预警"], "cant": ["编一个算不出来的数字", "替老板做决策", "碰客户名单（PDPA）", "对外发布"], "on": ["parse_upload", "validate_schema", "get_margin_quadrant", "get_daypart_peaks", "stock_forecast", "get_menu_cost"], "off": ["change_price", "publish_social_post", "query_customer_db", "send_whatsapp_blast"], "soul": "我做采集 + 清洗 + 计算，不做决策。\n\n拿不准这份是什么数据 → 问老板，不猜。\n字段缺 → 标「待补」，绝不瞎填。\n坏行跳过 + 告警，不卡死整批。\n我报的每个数字都带出处。", "mem": "# 口径\n毛利 = 售价 − 食材成本（套餐单独算）\n四象限：food cost ≤35% = 高毛利；销量 > 本周中位数 = 高销量\n\n# 库存\n消耗从销量倒推；老板每周确认 3 样关键食材\n低于阈值 → 报 CEO", "steps": ["流水线A 接入：收文件 → 清洗 → 报告「625 行 · 0 错误」→ 入库", "流水线B 分析：四象限（FC≤35% · 销量>中位数）· 时段 · 周对比", "每周合并盘点 → 更新台账 → 低于阈值 → 报 CEO"], "ic": "chart", "bg": "#2563EB"}, "mkt": {"em": "📣", "short": "营销", "name": "营销 Marketing · 增长", "role": "idea · 日历 · opt-in 触达", "model": "hivora-main", "st": ["排期中", "WORKING", "#B45309"], "tot": 22, "io": ["运营情报 + 老板的 campaign 审批", "idea → brief → 排日历 → 分发", "提案 · 有据可查的触达 · 回流数据"], "can": ["每个 idea 都挂一个真实数字", "批准后在时间窗内自动跑", "排日历时留足印刷提前量", "经 AiToEarn 分发到各平台"], "cant": ["无审批发出任何一条", "发给没 opt-in 的人", "开自动私信 / 自动回复（Engage）", "改价格"], "on": ["gen_idea", "calendar_slot", "aitoearn_publish", "send_wa_template", "check_race_rule", "get_holidays"], "off": ["engage_autoreply", "scrape_followers", "change_price", "publish_without_approval"], "soul": "我提的每个 idea 都挂着运营给的数字 —— 不拍脑袋。\n\nCampaign 批一次：内容 + 名单范围 + 时间窗。\n窗内我跑，窗外我停。\nSTOP 即刻生效且永久。只发 opt-in，永远。\n小红书没有官方 API —— 我把内容备好，人工发。", "mem": "# 触达\n只发 opt-in 名单（248 人）· STOP 永久\n生日 / 唤回模板：批一次，长期有效\n\n# 时机\n印刷类要提前约 1 个月\nAiToEarn：Create + Publish 开，Engage 永不开", "steps": ["收情报出 idea —— 必须挂一个数字", "你按 campaign 批一次：内容 + 名单范围 + 时间窗", "brief 给设计师 → 物料回来排日历（印刷提前 1 个月）", "AiToEarn 分发：FB/IG/WA 官方 API · 小红书备好人工发", "数据回流运营 → 进下一次提案"], "ic": "share", "bg": "#B4451F"}, "dsn": {"em": "🖨️", "short": "设计师", "name": "设计师 Designer · 品牌与物料", "role": "海报 · 菜单 · 全尺寸", "model": "hivora-claude-main", "st": ["出稿中", "WORKING", "#2563EB"], "tot": 22, "io": ["brief（经 CEO）+ 老板原图 + Brand Kit", "3 方向 → 全尺寸 → 三语言 → Gate", "物料包（社媒 / 印刷 / 菜单）"], "can": ["给 3 个真方向，不是 3 个换色", "出全部尺寸 + 中 / EN / BM", "每张都套 Brand Kit", "自检 6 项 Gate 规则"], "cant": ["虚构价格或菜品", "直接送印刷", "直接发布", "看客户名单（PDPA）"], "on": ["gen_copy", "gen_image", "apply_template", "get_brand_kit", "gate_check", "get_menu_cost"], "off": ["change_price", "send_to_printer", "publish_social_post", "query_customer_db"], "soul": "我做营销文案 + 设计，不只是排版美工。\n一切套 Brand Kit。\n\n价格 / 日期来自数据 —— 我不凭记忆写，也不许改。\n必备元素缺一不放行。\nAI 负责把菜画得好吃，价格和二维码由模板精确叠上去。", "mem": "# 必备元素（缺一不放行）\n店名 · 地址 · 价格 · 有效期 · Halal 标 · 二维码 · 社媒 + WhatsApp · 营业时间\n\n# 印刷规格\n出血 3mm · CMYK · 300dpi · PDF/X 字体转曲\n\n# 定向\n牛肉物料不做印度裔 / 素食版本", "steps": ["brief + 你的原图进 → 出 3 方向：图为主 / 价格为主 / 文案为主", "你选定 → 全尺寸：IG/FB/XHS/A4 印刷 + 中/EN/BM", "每张过 Gate：价格来自菜单 · Halal 标 · QR 模板 · 族群规则", "Gate 不过 → 自动重做 ≤3 次 → 仍不过 → 报 CEO"], "ic": "printer", "bg": "#334155"}, "chef": {"em": "👨‍🍳", "short": "主厨", "name": "主厨助手 Chef · 新菜研发", "role": "进食材，出菜谱建议", "model": "hivora-main", "st": ["盯库存", "IDLE", "#94A3B8"], "tot": 22, "io": ["当天食材 + 库存台账 + 天气与评论", "过成本 / 族群 / 天气约束 → 算成本", "2–3 张新菜卡，每张都带理由"], "can": ["按后厨现有的东西出菜", "算清成本并给建议售价", "按天气换品类（热饮 / 冰饮）", "把「为什么值得试」说清楚"], "cant": ["读老板的配方库", "自己改菜单", "建议违反 Halal / 族群规则的菜", "把菜单送去印刷"], "on": ["read_stock", "calc_food_cost", "check_race_rule", "get_weather", "read_review_text"], "off": ["read_recipe_vault", "change_menu", "send_to_printer", "query_customer_db"], "soul": "我给建议，厨房拍板。\n每张卡先讲为什么 —— 烤线空着、库存要清、三条评论求少辣。\n\n食材成本 ≤30%，全族群可吃的优先，Halal 必须。\n你的老配方永远不进我的上下文 —— 我只看你今天输入的食材。", "mem": "# 五个输入\n当天食材 · 库存台账 · 族群规则 · 天气 · 评论内容\n\n# 硬约束\nFC ≤30% · 备餐 ≤15 分钟 · 有全族群选项时优先不用牛肉\n\n# 天气\n下雨 → 暖饮；天热 → 冰饮", "steps": ["收食材 → 查台账余量 → 过约束：FC≤30% · 全族群优先 · Halal 必须", "出 2–3 张卡：菜名 / 成本 / 售价 / 毛利 / 备餐 / 3 步做法 / 为什么推", "下雨换暖饮 · 天热换冰饮 · 评论求少辣就默认微辣", "你点头 → 菜单卡和海报经 CEO 转设计师接力"], "ic": "bowl", "bg": "#3F7D4E"}, "boss": {"em": "👔", "short": "老板", "name": "老板 · 审批台", "role": "唯一能放行真实动作的地方", "model": "—（这不是 agent，是你）", "st": ["2 件待确认", "WAITING", "#B45309"], "tot": 3, "io": ["团队交上来的申请单", "确认 · 改 · 退", "放行 → executor 才执行"], "can": ["确认 → 印刷 / 发布放行", "打回重做（带修改意见）", "直接退掉，流程停止", "定 offer 力度与活动"], "cant": ["自己算数字", "自己写文案", "自己排日历", "自己记印刷截止"], "on": ["approve", "request_change", "reject"], "off": [], "soul": "agent 只能产出申请单。我按下确认之后，\n才由独立的 executor 去执行 —— 印刷、群发、发布、改价。\n\n三个键：确认 · 改 · 退。", "mem": "# 我是谁\n餐厅老板。唯一拍板人。\n\n# 我的收件箱\n今天要拍板的都在总览 —— 现在有两件。", "steps": ["申请单落在总览 —— 每天最多 3 件", "确认 · 带意见打回 · 或直接退", "确认后由独立 executor 执行（印刷 / 群发 / 发布 / 改价）"], "ic": "shield", "bg": "#111827"}};
 function __initAgentProfile(){
   var box=document.getElementById("aChips"); if(!box||box.children.length) return;
   var dlg=document.getElementById("agentModal"), list=document.getElementById("amList"),
@@ -1968,12 +2016,12 @@ function __initAgentProfile(){
   KS.forEach(function(k){
     var a=AGT[k], b=document.createElement("button");
     b.className="achip"; b.setAttribute("data-agent",k); b.setAttribute("aria-current","false");
-    b.innerHTML='<i style="background:'+a.st[2]+'"></i><span>'+a.em+' '+a.short+'</span><s>'+a.st[1]+'</s>';
+    b.innerHTML='<i style="background:'+a.st[2]+'"></i><span class="cic" style="color:'+a.bg+'">'+(window.__I?__I[a.ic]:"")+'</span><span>'+a.short+'</span><s>'+a.st[1]+'</s>';
     b.addEventListener("click",function(){ if(window.__flPick)__flPick(k); openA(k); });
     box.appendChild(b);
     var l=document.createElement("button");
     l.setAttribute("data-agent",k); l.setAttribute("role","tab"); l.setAttribute("aria-selected","false");
-    l.innerHTML='<span class="em">'+a.em+'</span><span>'+a.short+'</span>';
+    l.innerHTML='<span class="em" style="color:'+a.bg+'">'+(window.__I?__I[a.ic]:"")+'</span><span>'+a.short+'</span>';
     l.addEventListener("click",function(){show(k);});
     list.appendChild(l);
   });
@@ -1990,7 +2038,7 @@ function __initAgentProfile(){
     markChip(k);
     var pct=a.tot?Math.round(a.on.length/a.tot*100):0;
     det.innerHTML=
-      '<div class="ag-hd2"><span class="ag-em">'+a.em+'</span><span class="ag-id"><b>'+a.name+'</b><span>'+a.role+'</span></span>'+
+      '<div class="ag-hd2"><span class="ag-em" style="background:'+a.bg+';color:#fff">'+(window.__I?__I[a.ic]:"")+'</span><span class="ag-id"><b>'+a.name+'</b><span>'+a.role+'</span></span>'+
       '<span class="ag-stat"><i style="background:'+a.st[2]+'"></i>'+a.st[0]+' <s>'+a.st[1]+'</s></span></div>'+
       '<div class="ag-flow"><div class="fl in"><div class="lab">'+T.IN+'</div>'+a.io[0]+'</div><div class="fl-ar">→</div>'+
       '<div class="fl do"><div class="lab">'+T.DO+'</div>'+a.io[1]+'</div><div class="fl-ar">→</div>'+

@@ -138,6 +138,32 @@ h2{font-family:var(--sans);font-size:clamp(22px,2.4vw,27px);letter-spacing:-.02e
 .ins3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 @media(max-width:1060px){.ins3{grid-template-columns:1fr}}
 .ins{border:1px solid var(--line);border-radius:12px;padding:11px 12px;display:flex;flex-direction:column;gap:6px;align-items:flex-start}
+/* ═══ v11 视觉减字：图标块 + 大数字 + 缩略图 ═══ */
+.itile{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;flex-shrink:0}
+.itile svg{width:18px;height:18px}
+.itile.am{background:var(--amber-soft);color:var(--amber)}
+.itile.bl{background:var(--blue-soft);color:var(--blue)}
+.itile.gn{background:var(--green-soft);color:var(--green)}
+.itile.rd{background:var(--red-soft);color:var(--red)}
+.itile.nt{background:var(--surface2);color:var(--mut)}
+.insh{display:flex;align-items:center;gap:9px;width:100%}
+.ins .insm{font-family:var(--sans);font-size:29px;font-weight:800;letter-spacing:-.02em;line-height:1.05;font-variant-numeric:tabular-nums;margin-top:2px}
+.ins>s{font-size:11.6px;color:var(--mut);line-height:1.45;flex:1}
+.task{position:relative}
+.tthumb{position:absolute;right:15px;top:15px;width:82px;height:82px;border-radius:12px;background-size:cover;background-position:center;box-shadow:0 1px 3px rgba(15,23,42,.12)}
+.task h3,.task .tags{padding-right:96px}
+@media(max-width:620px){.tthumb{display:none}.task h3,.task .tags{padding-right:0}}
+.sgi .sgico{width:26px;height:26px;border-radius:8px;display:grid;place-items:center;flex-shrink:0;background:var(--surface2);color:var(--mut)}
+.sgi .sgico svg{width:15px;height:15px}
+.al .alico{width:24px;height:24px;border-radius:7px;display:grid;place-items:center;flex-shrink:0;color:var(--mut)}
+.al .alico svg{width:15px;height:15px}
+.al.am .alico{color:var(--amber)} .al.rd .alico{color:var(--red)}
+.hrule{display:inline-flex;align-items:center;gap:6px}
+.hrule i{width:15px;height:15px;color:var(--green);flex-shrink:0}
+.hrule i svg{width:15px;height:15px}
+.av2 svg{width:18px;height:18px}
+.dav svg,.ca svg{width:17px;height:17px}
+
 .ins b{font-size:12.8px}
 .ins>s{font-size:11.4px;color:var(--mut);line-height:1.5;flex:1}
 .chip.bl{background:var(--blue-soft);border-color:var(--blue-line);color:var(--blue)}
@@ -455,6 +481,11 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .achip:hover{border-color:var(--blue)}
 .achip[aria-current="true"]{border-color:var(--blue);background:var(--blue-soft);color:var(--blue)}
 .achip i{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.achip .cic{display:grid;place-items:center;width:15px;height:15px;flex-shrink:0}
+.achip .cic svg{width:15px;height:15px}
+.am-list .em{display:grid;place-items:center;width:18px;height:18px}
+.am-list .em svg{width:18px;height:18px}
+.ag-em svg{width:26px;height:26px}
 .achip s{font-family:ui-monospace,Menlo,monospace;font-size:9.5px;letter-spacing:.06em;text-decoration:none;opacity:.75}
 .flbar .btn{margin-left:auto}
 dialog.amodal{position:fixed;inset:0;margin:auto;border:0;border-radius:15px;padding:0;width:min(940px,calc(100% - 32px));
@@ -899,6 +930,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
     <div class="chlog" id="chlog" hidden>
       <h5>What’s new</h5>
       <div><b>v9.9</b><span>Agent floor on Home · live desks + team chat</span></div>
+      <div><b>v11.0</b><span>Less text, more icons &amp; photos across the dashboard</span></div>
       <div><b>v10.3</b><span>AI Team page de-duplicated — one source of truth</span></div>
       <div><b>v10.2</b><span>Floor follows you: Home ↔ AI Team</span></div>
       <div><b>v10.1</b><span>Agent chips · Edit agent profile (SOUL · tools)</span></div>
@@ -913,7 +945,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
       <div><b>v9.0</b><span>Home &amp; Store details rebuilt to client ref</span></div>
       <div><b>v8.x</b><span>Create-by-chat studio · 3 distinct concepts</span></div>
     </div>
-    <button class="verbtn" id="verBtn"><i></i>v10.3 · What’s new</button>
+    <button class="verbtn" id="verBtn"><i></i>v11.0 · What’s new</button>
   </div>
 </aside>
 <main class="main">
@@ -959,13 +991,13 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
       <div class="shead"><b>To decide today</b><span class="tag am" style="margin-left:8px">2 waiting</span><span class="sp"></span><button class="btn sm" data-p="1">View all →</button></div>
       <div id="taskList">
         <div class="task">
-          <div class="tr1"><span class="chip am">Suggested run Aug 12 · 2 weeks out</span><span class="meta">Poster v1 attached</span></div>
+          <span class="tthumb" style="background-image:url(img/mango.jpg)"></span><div class="tr1"><span class="chip am">Suggested run Aug 12 · 2 weeks out</span><span class="meta">Poster v1 attached</span></div>
           <h3>Lunch Flash poster is ready. Publish it?</h3>
           <div class="tags"><span class="tag gn">✓ Halal</span><span class="tag am">Pending</span><span class="tag">Add-on set RM 38 · 61% margin</span></div>
           <div class="acts"><button class="btn pri ok1">Publish</button><button class="btn" data-p="1">Review / edit</button><button class="btn gho no1">Reject</button></div>
         </div>
         <div class="task">
-          <div class="tr1"><span class="chip rd">Print deadline Aug 1 · 4 days left</span><span class="meta">Schedule attached</span></div>
+          <span class="tthumb" style="background-image:url(img/satay.jpg)"></span><div class="tr1"><span class="chip rd">Print deadline Aug 1 · 4 days left</span><span class="meta">Schedule attached</span></div>
           <h3>Lock the Merdeka schedule? Runs Aug 19</h3>
           <div class="tags"><span class="tag">Merdeka · Aug 31</span><span class="tag am">Pending</span><span class="tag am">Print needs 1-month lead</span></div>
           <div class="acts"><button class="btn pri ok1">Lock it in</button><button class="btn" data-p="2">See analytics</button><button class="btn gho no1">Reject</button></div>
@@ -976,9 +1008,12 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
       <div class="card mt">
         <div class="chd"><i data-i="bulb"></i><b>AI business insights</b><s>From your own data</s><span class="sp"></span><button class="btn sm" data-p="2">All insights →</button></div>
         <div class="ins3">
-          <div class="ins"><span class="chip am">Sales opportunity</span><b>Lunch window undersold</b><s>Lunch is only 43% of revenue despite strong 11:30–13:30 walk-ins. A lunch add-on set lifts ticket size.</s><button class="btn sm" data-p="1">See the plan →</button></div>
-          <div class="ins"><span class="chip bl">Customer insight</span><b>Regulars are slipping</b><s>Repeat rate 31%, below peers. 23 members quiet for 14 days — a win-back message is drafted.</s><button class="btn sm" data-p="8">View win-back →</button></div>
-          <div class="ins"><span class="chip gn">Menu health</span><b>8 dishes selling slow</b><s>Low sales 14 days straight. Trim them or bundle behind top sellers before the next print.</s><button class="btn sm" data-p="3">Menu analysis →</button></div>
+          <div class="ins"><span class="insh"><i class="itile am" data-i="trend"></i><span class="chip am">Sales opportunity</span></span>
+            <b class="insm">43%</b><s>of revenue comes from lunch — the weakest slot</s><button class="btn sm" data-p="1">See the plan →</button></div>
+          <div class="ins"><span class="insh"><i class="itile bl" data-i="users"></i><span class="chip bl">Customer insight</span></span>
+            <b class="insm">23</b><s>members quiet for 14 days — win-back drafted</s><button class="btn sm" data-p="8">View win-back →</button></div>
+          <div class="ins"><span class="insh"><i class="itile gn" data-i="bowl"></i><span class="chip gn">Menu health</span></span>
+            <b class="insm">8</b><s>dishes slow for 14 days straight — trim before print</s><button class="btn sm" data-p="3">Menu analysis →</button></div>
         </div>
       </div>
 
@@ -1022,18 +1057,18 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
       <div class="card mt">
         <div class="chd"><i data-i="bulb"></i><b>This week's suggestions</b><span class="sp"></span><button class="btn sm" data-p="2">More →</button></div>
         <div class="sug">
-          <button class="sgi" data-p="1"><i class="pr hi">High</i><span>Launch a weekday lunch set — lift the 43% lunch share</span></button>
-          <button class="sgi" data-p="7"><i class="pr md">Med</i><span>Post the making-of video — video reaches 2.9× stills</span></button>
-          <button class="sgi" data-p="3"><i class="pr md">Med</i><span>Trim the 8 slow dishes before the Merdeka menu print</span></button>
-          <button class="sgi" data-p="8"><i class="pr lo">Low</i><span>Member day: double points to lift the 31% repeat rate</span></button>
+          <button class="sgi" data-p="1"><i class="sgico" data-i="trend"></i><i class="pr hi">High</i><span>Launch a weekday lunch set — lift the 43% lunch share</span></button>
+          <button class="sgi" data-p="7"><i class="sgico" data-i="video"></i><i class="pr md">Med</i><span>Post the making-of video — video reaches 2.9× stills</span></button>
+          <button class="sgi" data-p="3"><i class="sgico" data-i="scissors"></i><i class="pr md">Med</i><span>Trim the 8 slow dishes before the Merdeka menu print</span></button>
+          <button class="sgi" data-p="8"><i class="sgico" data-i="gift"></i><i class="pr lo">Low</i><span>Member day: double points to lift the 31% repeat rate</span></button>
         </div>
       </div>
 
       <div class="card mt">
         <div class="chd"><i data-i="bell"></i><b>Watchlist</b><span class="sp"></span><span class="tag am">3</span></div>
-        <div class="al am"><span>Brand kit is missing the <b>font file</b> — posters use a default face.<button class="lnk" data-p="6">Upload →</button></span></div>
-        <div class="al rd"><span>Coconut milk runs out <b>by Friday</b> at this pace — projected from sales.</span></div>
-        <div class="al"><span><b>Malaysia Day, Sep 16</b> — 50 days out. Print lock by Aug 16.<button class="lnk" data-p="1">Prepare →</button></span></div>
+        <div class="al am"><i class="alico" data-i="palette"></i><span>Brand kit is missing the <b>font file</b> — posters use a default face.<button class="lnk" data-p="6">Upload →</button></span></div>
+        <div class="al rd"><i class="alico" data-i="box"></i><span>Coconut milk runs out <b>by Friday</b> at this pace — projected from sales.</span></div>
+        <div class="al"><i class="alico" data-i="calendar2"></i><span><b>Malaysia Day, Sep 16</b> — 50 days out. Print lock by Aug 16.<button class="lnk" data-p="1">Prepare →</button></span></div>
       </div>
     </aside>
     </div>
@@ -1635,7 +1670,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
     </div>
 
     <div id="floorSlot9"></div>
-    <div class="flnote">👆 <b>Click a chip or anyone on the floor</b> — full profile opens: what they do step by step, what they cannot touch, and their tool whitelist.</div>
+    <div class="flnote"><i class="alico" data-i="hand" style="color:var(--blue)"></i> <b>Click a chip or anyone on the floor</b> — full profile opens: what they do step by step, what they cannot touch, and their tool whitelist.</div>
 
 
     <div class="grid2">
@@ -1694,6 +1729,18 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
     imgT:s('<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="m5 18 5-5 3 3 3-3 3 3"/>'),
     refT:s('<path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 3v4h-4"/>'),
 
+    palette:s('<path d="M12 3a9 9 0 1 0 0 18c1.4 0 2-.9 2-1.8 0-.5-.2-.9-.5-1.2-.3-.3-.5-.7-.5-1.2 0-.9.8-1.6 1.7-1.6H16a5 5 0 0 0 5-5c0-3.9-4-7.2-9-7.2Z"/><circle cx="7.7" cy="11.3" r="1.1" fill="currentColor" stroke="none"/><circle cx="10.4" cy="7.4" r="1.1" fill="currentColor" stroke="none"/><circle cx="15.3" cy="7.9" r="1.1" fill="currentColor" stroke="none"/>'),
+    calendar:s('<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/><circle cx="8.5" cy="14.5" r="1" fill="currentColor" stroke="none"/><circle cx="12" cy="14.5" r="1" fill="currentColor" stroke="none"/>'),
+    calendar2:s('<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/>'),
+    trend:s('<path d="M3 17l6-6 4 4 7-7"/><path d="M17 8h4v4"/>'),
+    video:s('<rect x="2.5" y="6" width="13" height="12" rx="2.5"/><path d="M15.5 10.5 21.5 7v10l-6-3.5"/>'),
+    scissors:s('<circle cx="6" cy="6" r="2.6"/><circle cx="6" cy="18" r="2.6"/><path d="M20 4 8.6 15.4M20 20 8.6 8.6"/>'),
+    gift:s('<rect x="3" y="8" width="18" height="12" rx="2"/><path d="M3 12h18M12 8v12"/><path d="M12 8S10.5 4 8.5 4a2 2 0 0 0 0 4Zm0 0s1.5-4 3.5-4a2 2 0 0 1 0 4Z"/>'),
+    clock:s('<circle cx="12" cy="12" r="9"/><path d="M12 7v5.2l3.2 2"/>'),
+    box:s('<path d="M12 3 3.5 7.5v9L12 21l8.5-4.5v-9Z"/><path d="M3.5 7.5 12 12l8.5-4.5M12 12v9"/>'),
+    coins:s('<ellipse cx="12" cy="6.5" rx="7.5" ry="3.2"/><path d="M4.5 6.5v5c0 1.8 3.4 3.2 7.5 3.2s7.5-1.4 7.5-3.2v-5"/><path d="M4.5 11.5v5c0 1.8 3.4 3.2 7.5 3.2s7.5-1.4 7.5-3.2v-5"/>'),
+    shield:s('<path d="M12 3 5 6v6c0 4.2 2.9 7.6 7 9 4.1-1.4 7-4.8 7-9V6Z"/><path d="m9.2 12.2 2 2 3.6-3.8"/>'),
+    hand:s('<path d="M8 13V5.5a1.5 1.5 0 0 1 3 0V12"/><path d="M11 11.5V4.8a1.5 1.5 0 0 1 3 0V12"/><path d="M14 11.8V6.8a1.5 1.5 0 0 1 3 0V14c0 4-2.6 7-6.5 7S5 18.4 5 15.2l-.6-2.4a1.5 1.5 0 0 1 2.7-1.2L8 13"/>'),
     home:s('<path d="M3 10.5 12 3l9 7.5"/><path d="M5 9.5V21h14V9.5"/><path d="M9.5 21v-6h5v6"/>'),
     spark:s('<path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8Z"/><path d="M18.5 15.5l.8 2.2 2.2.8-2.2.8-.8 2.2-.8-2.2-2.2-.8 2.2-.8Z"/>'),
     chart:s('<path d="M4 20V10M10 20V4M16 20v-7M21 20H3"/>'),
@@ -1713,6 +1760,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
     share:s('<circle cx="6" cy="12" r="2.5"/><circle cx="17.5" cy="5.5" r="2.5"/><circle cx="17.5" cy="18.5" r="2.5"/><path d="m8.3 10.7 7-3.9M8.3 13.3l7 3.9"/>'),
     star:s('<path d="m12 3 2.7 5.7 6.3.8-4.6 4.3 1.2 6.2L12 17l-5.6 3 1.2-6.2L3 9.5l6.3-.8Z"/>')
   };
+  window.__I=I;
   document.querySelectorAll("[data-i]").forEach(function(el){ el.innerHTML=I[el.getAttribute("data-i")]||""; });
 })();
 /* ═══ nav ═══ */
@@ -1962,7 +2010,7 @@ var FLL={rm1:"Operations · data",rm2:"Marketing · design",rm3:"CEO desk · dis
 var T={IN:"IN",DO:"DOES",OUT:"OUT",CAN:"CAN DO",CANT:"CANNOT",PERM:"Tool whitelist · least privilege",MODEL:"Model",SOUL:"who it is",MEM:"what it knows"};
 
 /* ═══ Agent 档案（第一版界面：chips + Edit Agent + 弹窗）═══ */
-var AGT={"ceo": {"em": "🧭", "short": "CEO", "name": "CEO · Orchestrator", "role": "Only entry point · brief · dispatch · QA", "model": "hivora-main", "st": ["Waiting on you", "WAITING", "#B45309"], "tot": 22, "io": ["Your messages · deliverables from the floor", "Probe → route → dispatch → QA", "8:00 brief · ≤3 calls · finished work"], "can": ["Send the 8:00 brief with yesterday’s numbers", "Probe when you’re not sure what you want", "Dispatch: one agent, one deliverable", "Send work back if it misses the mark (≤3)"], "cant": ["Analyse data itself", "Write copy or make images itself", "Publish anything directly", "Decide in your place"], "on": ["delegate_task", "morning_brief", "worklog", "collect", "ask_owner_confirm"], "off": ["change_price", "send_whatsapp_blast", "publish_social_post", "send_to_printer"], "soul": "I dispatch — I don’t analyse, write or design.\nRead the boss → route → hand to the right agent → collect → QA → report.\n\nStateless: progress lives in the work log; if I crash I read it back.\nSame agent retried 3 times max; done is never re-dispatched.\nReal-world actions (publish / blast / print / price) always wait for the boss.", "mem": "# Roster\nOperations = clean + compute + intel\nMarketing = ideas + calendar + outreach\nDesigner = copy + artwork\nChef = new dishes from stock\n\n# Cadence\n8:00 brief · ≤3 calls a day · campaign approved once\n\n# Three hard rules\nDietary rules by audience · Brand Kit · Malaysian holidays", "steps": ["Read your message → route it: approval / question / lost / chat", "Lost? Probe: traffic, ticket or cost → budget limits → hard dates", "Send Operations for numbers → hand you ≤3 options, each with figures", "You decide → dispatch: one agent, one deliverable, acceptance criteria", "QA every deliverable: output ≠ input · numbers sourced · red lines → report back"]}, "ops": {"em": "📥", "short": "Operations", "name": "Operations · Data & Insight", "role": "Two pipelines: intake + analysis", "model": "hivora-main", "st": ["Books closed", "DONE", "#15803D"], "tot": 22, "io": ["Sales files (any format) / POS · weekly stock note", "Clean → store → quadrant · dayparts · stock burn", "Numbers to CEO · intel to Marketing & Chef"], "can": ["Recognise and clean any sales export", "Compute the margin quadrant (in code)", "Project ingredient burn from sales", "Alert when stock drops below threshold"], "cant": ["Invent a number it cannot compute", "Make business decisions", "Touch the customer list (PDPA)", "Publish anything"], "on": ["parse_upload", "validate_schema", "get_margin_quadrant", "get_daypart_peaks", "stock_forecast", "get_menu_cost"], "off": ["change_price", "publish_social_post", "query_customer_db", "send_whatsapp_blast"], "soul": "I collect, clean and compute. I don’t decide.\n\nNot sure what a file is → ask, never guess.\nMissing field → mark “to fill”, never invent.\nBad rows skipped and reported, the batch still runs.\nEvery figure I report carries its source.", "mem": "# Definitions\nMargin = price − food cost (sets computed separately)\nQuadrant: food cost ≤35% = high margin; volume > weekly median = high volume\n\n# Stock\nBurn projected from sales; boss confirms 3 key items weekly\nBelow threshold → alert the CEO", "steps": ["Pipeline A — intake: receive file → clean → report “625 rows · 0 errors” → store", "Pipeline B — analysis: quadrant (FC≤35% · volume>median) · dayparts · week-over-week", "Reconcile the weekly stock note → update the ledger → below threshold → alert CEO"]}, "mkt": {"em": "📣", "short": "Marketing", "name": "Marketing · Growth", "role": "Ideas · calendar · opt-in outreach", "model": "hivora-main", "st": ["Scheduling", "WORKING", "#B45309"], "tot": 22, "io": ["Ops intel + your campaign approval", "Idea → brief → calendar → distribute", "Proposals · sends with receipts · results"], "can": ["Pitch ideas pinned to a real number", "Run an approved campaign inside its window", "Slot the calendar with print lead time", "Distribute through AiToEarn"], "cant": ["Send anything without approval", "Message people who never opted in", "Turn on auto-replies / DMs (Engage)", "Change a price"], "on": ["gen_idea", "calendar_slot", "aitoearn_publish", "send_wa_template", "check_race_rule", "get_holidays"], "off": ["engage_autoreply", "scrape_followers", "change_price", "publish_without_approval"], "soul": "Every idea I bring carries a number from Operations — never a hunch.\n\nOne approval per campaign: content + audience + window.\nInside the window I run; outside it I stop.\nSTOP is final and permanent. Opt-in only, always.\nXiaohongshu has no official API — I prepare, a human posts.", "mem": "# Outreach\nOpt-in list only (248) · STOP is final\nBirthday & win-back templates: approved once, run long\n\n# Timing\nPrint jobs need ~1 month lead\nAiToEarn: Create + Publish on, Engage never on", "steps": ["Get intel → pitch an idea, always pinned to a number", "You approve once per campaign: content + audience + time window", "Brief Designer → assets back → slot the calendar (print jobs 1 month ahead)", "AiToEarn distributes: FB/IG/WA official APIs · XHS prepped, posted manually", "Results flow back to Operations → next proposal"]}, "dsn": {"em": "🖨️", "short": "Designer", "name": "Designer · Brand & Artwork", "role": "Posters · menus · every size", "model": "hivora-claude-main", "st": ["Rendering", "WORKING", "#2563EB"], "tot": 22, "io": ["Brief (via CEO) + your photos + Brand Kit", "3 directions → full pack → 3 languages → Gate", "Asset pack (social / print / menu)"], "can": ["Give 3 real directions, not 3 recolours", "Output every size + 中/EN/BM", "Hold the Brand Kit on every piece", "Self-check all 6 Gate rules"], "cant": ["Invent a price or a dish", "Send straight to the printer", "Publish directly", "See the customer list (PDPA)"], "on": ["gen_copy", "gen_image", "apply_template", "get_brand_kit", "gate_check", "get_menu_cost"], "off": ["change_price", "send_to_printer", "publish_social_post", "query_customer_db"], "soul": "I do the copy and the design, not just the layout.\nEverything follows the Brand Kit.\n\nPrice and dates come from the data — I never type them from memory.\nMissing a required element = the piece does not ship.\nAI draws the appetite; the template lays the exact price and QR on top.", "mem": "# Required on every piece\nStore name · address · price · validity · Halal mark · QR · socials + WhatsApp · hours\n\n# Print spec\n3mm bleed · CMYK · 300dpi · PDF/X, fonts outlined\n\n# Targeting\nNo beef artwork for Indian / vegetarian audiences", "steps": ["Brief + your photos in → 3 directions out: photo-led / price-led / copy-led", "You pick one → full pack: IG/FB/XHS/A4 print + 中/EN/BM", "Every piece passes the Gate: price from menu · Halal · QR template · dietary rules", "Gate fails → auto-redo ≤3 → still failing → escalate to CEO"]}, "chef": {"em": "👨‍🍳", "short": "Chef", "name": "Chef Assistant · R&D", "role": "Ingredients in, dish ideas out", "model": "hivora-main", "st": ["Watching stock", "IDLE", "#94A3B8"], "tot": 22, "io": ["Today’s ingredients + stock ledger + weather & reviews", "Filter by cost, diet, weather → cost it", "2–3 dish cards with the reason attached"], "can": ["Build dishes from what the kitchen has", "Cost each idea and price it", "Swap the category by weather (warm / iced)", "Say plainly why it is worth trying"], "cant": ["Read your recipe vault", "Change the menu on its own", "Suggest anything against Halal / dietary rules", "Send a menu to print"], "on": ["read_stock", "calc_food_cost", "check_race_rule", "get_weather", "read_review_text"], "off": ["read_recipe_vault", "change_menu", "send_to_printer", "query_customer_db"], "soul": "I suggest, the kitchen decides.\nEvery card leads with why — idle grill hours, a stock surplus, three reviews asking for less spice.\n\nFood cost ≤30%, all-diet options first, Halal always.\nYour existing recipes never enter my context — only what you type today.", "mem": "# Five inputs\nToday’s ingredients · stock ledger · dietary rules · weather · review content\n\n# Hard limits\nFC ≤30% · prep ≤15 min · no beef when an all-diet option exists\n\n# Weather\nRain → warm drinks · heat → coolers", "steps": ["Ingredients in → check the ledger → filter: FC≤30% · all-diet first · Halal always", "Serve 2–3 cards: name / cost / price / margin / prep / 3 steps / why-this", "Rain swaps in warm drinks · heat swaps in coolers · reviews tune the spice", "You nod → menu card and poster go to Designer via the CEO"]}, "boss": {"em": "👔", "short": "You", "name": "You · The approval desk", "role": "The only place real actions clear", "model": "— (this is you, not an agent)", "st": ["2 waiting", "WAITING", "#B45309"], "tot": 3, "io": ["Requests the floor files for you", "Approve · change · reject", "Cleared → the executor runs it"], "can": ["Approve → print / publish goes ahead", "Send it back with notes", "Kill it outright", "Set the offer depth"], "cant": ["Do the maths yourself", "Write the copy yourself", "Keep the calendar yourself", "Remember print deadlines"], "on": ["approve", "request_change", "reject"], "off": [], "soul": "Agents can only file a request. Nothing runs until I press approve —\nthen a separate executor does it: print, blast, publish, price.\n\nThree buttons: approve · change · reject.", "mem": "# Who I am\nRestaurant owner. The only one who decides.\n\n# My inbox\nToday’s calls sit on Home — two of them right now.", "steps": ["Requests land on Home — at most 3 a day", "Approve · send back with notes · or kill it", "Approved → a separate executor runs it (print / blast / publish / price)"]}};
+var AGT={"ceo": {"em": "🧭", "short": "CEO", "name": "CEO · Orchestrator", "role": "Only entry point · brief · dispatch · QA", "model": "hivora-main", "st": ["Waiting on you", "WAITING", "#B45309"], "tot": 22, "io": ["Your messages · deliverables from the floor", "Probe → route → dispatch → QA", "8:00 brief · ≤3 calls · finished work"], "can": ["Send the 8:00 brief with yesterday’s numbers", "Probe when you’re not sure what you want", "Dispatch: one agent, one deliverable", "Send work back if it misses the mark (≤3)"], "cant": ["Analyse data itself", "Write copy or make images itself", "Publish anything directly", "Decide in your place"], "on": ["delegate_task", "morning_brief", "worklog", "collect", "ask_owner_confirm"], "off": ["change_price", "send_whatsapp_blast", "publish_social_post", "send_to_printer"], "soul": "I dispatch — I don’t analyse, write or design.\nRead the boss → route → hand to the right agent → collect → QA → report.\n\nStateless: progress lives in the work log; if I crash I read it back.\nSame agent retried 3 times max; done is never re-dispatched.\nReal-world actions (publish / blast / print / price) always wait for the boss.", "mem": "# Roster\nOperations = clean + compute + intel\nMarketing = ideas + calendar + outreach\nDesigner = copy + artwork\nChef = new dishes from stock\n\n# Cadence\n8:00 brief · ≤3 calls a day · campaign approved once\n\n# Three hard rules\nDietary rules by audience · Brand Kit · Malaysian holidays", "steps": ["Read your message → route it: approval / question / lost / chat", "Lost? Probe: traffic, ticket or cost → budget limits → hard dates", "Send Operations for numbers → hand you ≤3 options, each with figures", "You decide → dispatch: one agent, one deliverable, acceptance criteria", "QA every deliverable: output ≠ input · numbers sourced · red lines → report back"], "ic": "gauge", "bg": "#4F46E5"}, "ops": {"em": "📥", "short": "Operations", "name": "Operations · Data & Insight", "role": "Two pipelines: intake + analysis", "model": "hivora-main", "st": ["Books closed", "DONE", "#15803D"], "tot": 22, "io": ["Sales files (any format) / POS · weekly stock note", "Clean → store → quadrant · dayparts · stock burn", "Numbers to CEO · intel to Marketing & Chef"], "can": ["Recognise and clean any sales export", "Compute the margin quadrant (in code)", "Project ingredient burn from sales", "Alert when stock drops below threshold"], "cant": ["Invent a number it cannot compute", "Make business decisions", "Touch the customer list (PDPA)", "Publish anything"], "on": ["parse_upload", "validate_schema", "get_margin_quadrant", "get_daypart_peaks", "stock_forecast", "get_menu_cost"], "off": ["change_price", "publish_social_post", "query_customer_db", "send_whatsapp_blast"], "soul": "I collect, clean and compute. I don’t decide.\n\nNot sure what a file is → ask, never guess.\nMissing field → mark “to fill”, never invent.\nBad rows skipped and reported, the batch still runs.\nEvery figure I report carries its source.", "mem": "# Definitions\nMargin = price − food cost (sets computed separately)\nQuadrant: food cost ≤35% = high margin; volume > weekly median = high volume\n\n# Stock\nBurn projected from sales; boss confirms 3 key items weekly\nBelow threshold → alert the CEO", "steps": ["Pipeline A — intake: receive file → clean → report “625 rows · 0 errors” → store", "Pipeline B — analysis: quadrant (FC≤35% · volume>median) · dayparts · week-over-week", "Reconcile the weekly stock note → update the ledger → below threshold → alert CEO"], "ic": "chart", "bg": "#2563EB"}, "mkt": {"em": "📣", "short": "Marketing", "name": "Marketing · Growth", "role": "Ideas · calendar · opt-in outreach", "model": "hivora-main", "st": ["Scheduling", "WORKING", "#B45309"], "tot": 22, "io": ["Ops intel + your campaign approval", "Idea → brief → calendar → distribute", "Proposals · sends with receipts · results"], "can": ["Pitch ideas pinned to a real number", "Run an approved campaign inside its window", "Slot the calendar with print lead time", "Distribute through AiToEarn"], "cant": ["Send anything without approval", "Message people who never opted in", "Turn on auto-replies / DMs (Engage)", "Change a price"], "on": ["gen_idea", "calendar_slot", "aitoearn_publish", "send_wa_template", "check_race_rule", "get_holidays"], "off": ["engage_autoreply", "scrape_followers", "change_price", "publish_without_approval"], "soul": "Every idea I bring carries a number from Operations — never a hunch.\n\nOne approval per campaign: content + audience + window.\nInside the window I run; outside it I stop.\nSTOP is final and permanent. Opt-in only, always.\nXiaohongshu has no official API — I prepare, a human posts.", "mem": "# Outreach\nOpt-in list only (248) · STOP is final\nBirthday & win-back templates: approved once, run long\n\n# Timing\nPrint jobs need ~1 month lead\nAiToEarn: Create + Publish on, Engage never on", "steps": ["Get intel → pitch an idea, always pinned to a number", "You approve once per campaign: content + audience + time window", "Brief Designer → assets back → slot the calendar (print jobs 1 month ahead)", "AiToEarn distributes: FB/IG/WA official APIs · XHS prepped, posted manually", "Results flow back to Operations → next proposal"], "ic": "share", "bg": "#B4451F"}, "dsn": {"em": "🖨️", "short": "Designer", "name": "Designer · Brand & Artwork", "role": "Posters · menus · every size", "model": "hivora-claude-main", "st": ["Rendering", "WORKING", "#2563EB"], "tot": 22, "io": ["Brief (via CEO) + your photos + Brand Kit", "3 directions → full pack → 3 languages → Gate", "Asset pack (social / print / menu)"], "can": ["Give 3 real directions, not 3 recolours", "Output every size + 中/EN/BM", "Hold the Brand Kit on every piece", "Self-check all 6 Gate rules"], "cant": ["Invent a price or a dish", "Send straight to the printer", "Publish directly", "See the customer list (PDPA)"], "on": ["gen_copy", "gen_image", "apply_template", "get_brand_kit", "gate_check", "get_menu_cost"], "off": ["change_price", "send_to_printer", "publish_social_post", "query_customer_db"], "soul": "I do the copy and the design, not just the layout.\nEverything follows the Brand Kit.\n\nPrice and dates come from the data — I never type them from memory.\nMissing a required element = the piece does not ship.\nAI draws the appetite; the template lays the exact price and QR on top.", "mem": "# Required on every piece\nStore name · address · price · validity · Halal mark · QR · socials + WhatsApp · hours\n\n# Print spec\n3mm bleed · CMYK · 300dpi · PDF/X, fonts outlined\n\n# Targeting\nNo beef artwork for Indian / vegetarian audiences", "steps": ["Brief + your photos in → 3 directions out: photo-led / price-led / copy-led", "You pick one → full pack: IG/FB/XHS/A4 print + 中/EN/BM", "Every piece passes the Gate: price from menu · Halal · QR template · dietary rules", "Gate fails → auto-redo ≤3 → still failing → escalate to CEO"], "ic": "printer", "bg": "#334155"}, "chef": {"em": "👨‍🍳", "short": "Chef", "name": "Chef Assistant · R&D", "role": "Ingredients in, dish ideas out", "model": "hivora-main", "st": ["Watching stock", "IDLE", "#94A3B8"], "tot": 22, "io": ["Today’s ingredients + stock ledger + weather & reviews", "Filter by cost, diet, weather → cost it", "2–3 dish cards with the reason attached"], "can": ["Build dishes from what the kitchen has", "Cost each idea and price it", "Swap the category by weather (warm / iced)", "Say plainly why it is worth trying"], "cant": ["Read your recipe vault", "Change the menu on its own", "Suggest anything against Halal / dietary rules", "Send a menu to print"], "on": ["read_stock", "calc_food_cost", "check_race_rule", "get_weather", "read_review_text"], "off": ["read_recipe_vault", "change_menu", "send_to_printer", "query_customer_db"], "soul": "I suggest, the kitchen decides.\nEvery card leads with why — idle grill hours, a stock surplus, three reviews asking for less spice.\n\nFood cost ≤30%, all-diet options first, Halal always.\nYour existing recipes never enter my context — only what you type today.", "mem": "# Five inputs\nToday’s ingredients · stock ledger · dietary rules · weather · review content\n\n# Hard limits\nFC ≤30% · prep ≤15 min · no beef when an all-diet option exists\n\n# Weather\nRain → warm drinks · heat → coolers", "steps": ["Ingredients in → check the ledger → filter: FC≤30% · all-diet first · Halal always", "Serve 2–3 cards: name / cost / price / margin / prep / 3 steps / why-this", "Rain swaps in warm drinks · heat swaps in coolers · reviews tune the spice", "You nod → menu card and poster go to Designer via the CEO"], "ic": "bowl", "bg": "#3F7D4E"}, "boss": {"em": "👔", "short": "You", "name": "You · The approval desk", "role": "The only place real actions clear", "model": "— (this is you, not an agent)", "st": ["2 waiting", "WAITING", "#B45309"], "tot": 3, "io": ["Requests the floor files for you", "Approve · change · reject", "Cleared → the executor runs it"], "can": ["Approve → print / publish goes ahead", "Send it back with notes", "Kill it outright", "Set the offer depth"], "cant": ["Do the maths yourself", "Write the copy yourself", "Keep the calendar yourself", "Remember print deadlines"], "on": ["approve", "request_change", "reject"], "off": [], "soul": "Agents can only file a request. Nothing runs until I press approve —\nthen a separate executor does it: print, blast, publish, price.\n\nThree buttons: approve · change · reject.", "mem": "# Who I am\nRestaurant owner. The only one who decides.\n\n# My inbox\nToday’s calls sit on Home — two of them right now.", "steps": ["Requests land on Home — at most 3 a day", "Approve · send back with notes · or kill it", "Approved → a separate executor runs it (print / blast / publish / price)"], "ic": "shield", "bg": "#111827"}};
 function __initAgentProfile(){
   var box=document.getElementById("aChips"); if(!box||box.children.length) return;
   var dlg=document.getElementById("agentModal"), list=document.getElementById("amList"),
@@ -1971,12 +2019,12 @@ function __initAgentProfile(){
   KS.forEach(function(k){
     var a=AGT[k], b=document.createElement("button");
     b.className="achip"; b.setAttribute("data-agent",k); b.setAttribute("aria-current","false");
-    b.innerHTML='<i style="background:'+a.st[2]+'"></i><span>'+a.em+' '+a.short+'</span><s>'+a.st[1]+'</s>';
+    b.innerHTML='<i style="background:'+a.st[2]+'"></i><span class="cic" style="color:'+a.bg+'">'+(window.__I?__I[a.ic]:"")+'</span><span>'+a.short+'</span><s>'+a.st[1]+'</s>';
     b.addEventListener("click",function(){ if(window.__flPick)__flPick(k); openA(k); });
     box.appendChild(b);
     var l=document.createElement("button");
     l.setAttribute("data-agent",k); l.setAttribute("role","tab"); l.setAttribute("aria-selected","false");
-    l.innerHTML='<span class="em">'+a.em+'</span><span>'+a.short+'</span>';
+    l.innerHTML='<span class="em" style="color:'+a.bg+'">'+(window.__I?__I[a.ic]:"")+'</span><span>'+a.short+'</span>';
     l.addEventListener("click",function(){show(k);});
     list.appendChild(l);
   });
@@ -1993,7 +2041,7 @@ function __initAgentProfile(){
     markChip(k);
     var pct=a.tot?Math.round(a.on.length/a.tot*100):0;
     det.innerHTML=
-      '<div class="ag-hd2"><span class="ag-em">'+a.em+'</span><span class="ag-id"><b>'+a.name+'</b><span>'+a.role+'</span></span>'+
+      '<div class="ag-hd2"><span class="ag-em" style="background:'+a.bg+';color:#fff">'+(window.__I?__I[a.ic]:"")+'</span><span class="ag-id"><b>'+a.name+'</b><span>'+a.role+'</span></span>'+
       '<span class="ag-stat"><i style="background:'+a.st[2]+'"></i>'+a.st[0]+' <s>'+a.st[1]+'</s></span></div>'+
       '<div class="ag-flow"><div class="fl in"><div class="lab">'+T.IN+'</div>'+a.io[0]+'</div><div class="fl-ar">→</div>'+
       '<div class="fl do"><div class="lab">'+T.DO+'</div>'+a.io[1]+'</div><div class="fl-ar">→</div>'+
