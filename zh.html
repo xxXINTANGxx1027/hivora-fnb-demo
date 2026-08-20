@@ -16,10 +16,8 @@
   --bg:#F6F7F9; --surface:#FFFFFF; --surface2:#F1F3F6;
   --line:#E5E8EE; --line2:#EEF0F4;
   --ink:#0F172A; --ink2:#334155; --mut:#576273; --faint:#8792A3;
-  /* accent = 青绿 teal（对齐 client 参考）；--blue* 名称沿用，值已换 */
-  --blue:#0E8F6F; --blue-soft:#E7F5F0; --blue-line:#A9DDCB;
-  --deep:#12352A; --deep2:#1B4A3A; --deep-line:rgba(255,255,255,.10);
-  --p1:#E7F5F0; --p1i:#0E8F6F; --p2:#EFF1FE; --p2i:#4F46E5;
+  --blue:#2563EB; --blue-soft:#EEF4FF; --blue-line:#C6D8FD;
+  --p1:#EEF4FF; --p1i:#2563EB; --p2:#F2EDFB; --p2i:#7C3AED;
   --p3:#FDF1E7; --p3i:#B4451F; --p4:#FCF4E3; --p4i:#B45309;
   --p5:#F2EDFB; --p5i:#7C3AED; --p6:#FDECEF; --p6i:#BE3B31;
   --green:#0F7B41; --green-soft:#E8F6EE;
@@ -417,27 +415,6 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .chlog div:last-child{border-bottom:0}
 .chlog b{color:var(--ink2);font-family:Outfit,sans-serif;flex-shrink:0;font-weight:700}
 @media(max-width:900px){.verwrap{display:none}}
-/* ═══ v12 深绿侧栏（参考同款）═══ */
-.side{background:var(--deep);border-right:0;color:#E8F1ED}
-.side .brand b{color:#fff}
-.side .brand s{color:rgba(232,241,237,.62)}
-.side .brand .bx{background:rgba(255,255,255,.12);color:#fff}
-.side .sec{color:rgba(232,241,237,.42)}
-.nv{color:rgba(232,241,237,.78)}
-.nv i{color:rgba(232,241,237,.6)}
-.nv:hover{background:rgba(255,255,255,.07);color:#fff}
-.nv:hover i{color:#fff}
-.nv[aria-current="true"]{background:rgba(255,255,255,.13);color:#fff;box-shadow:inset 3px 0 0 #4ADE9B}
-.nv[aria-current="true"] i{color:#4ADE9B}
-.nv .bd{background:#4ADE9B;color:var(--deep)}
-.verbtn{background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.14);color:rgba(232,241,237,.7)}
-.verbtn:hover{background:rgba(255,255,255,.14);color:#fff;border-color:rgba(255,255,255,.2)}
-.verbtn i{background:#4ADE9B}
-.chlog{background:var(--deep2);border-color:rgba(255,255,255,.12);box-shadow:0 12px 34px rgba(0,0,0,.4)}
-.chlog h5{color:rgba(232,241,237,.55)}
-.chlog div{color:rgba(232,241,237,.6);border-bottom-color:rgba(255,255,255,.08)}
-.chlog b{color:#fff}
-@media(max-width:900px){.side{border-bottom:1px solid rgba(255,255,255,.1)}}
 /* pastel 图标块（参考里的彩色小方块）*/
 .itile.p1{background:var(--p1);color:var(--p1i)} .itile.p2{background:var(--p2);color:var(--p2i)}
 .itile.p3{background:var(--p3);color:var(--p3i)} .itile.p4{background:var(--p4);color:var(--p4i)}
@@ -1012,7 +989,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
     <div class="chlog" id="chlog" hidden>
       <h5>更新日志</h5>
       <div><b>v9.9</b><span>总览加 Agent Floor · 工位实况 + 团队聊天</span></div>
-      <div><b>v12.0</b><span>青绿配色 + 深绿侧栏 —— 对齐 client 参考</span></div>
+      <div><b>v12.1</b><span>保留参考的排版结构 · 配色换回原来的蓝白</span></div>
       <div><b>v11.0</b><span>全站减字 —— 换成图标与图片</span></div>
       <div><b>v10.3</b><span>AI 团队页去重 —— 一个信源</span></div>
       <div><b>v10.2</b><span>工位跟着你走：总览 ↔ AI 团队 两页都在</span></div>
@@ -1028,7 +1005,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
       <div><b>v9.0</b><span>总览与店面资料照 client 参考重做</span></div>
       <div><b>v8.x</b><span>对话式创建工作台 · 三方案差异化</span></div>
     </div>
-    <button class="verbtn" id="verBtn"><i></i>v12.0 · 更新日志</button>
+    <button class="verbtn" id="verBtn"><i></i>v12.1 · 更新日志</button>
   </div>
 </aside>
 <main class="main">
