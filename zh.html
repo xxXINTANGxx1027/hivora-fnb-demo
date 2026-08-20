@@ -447,6 +447,78 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .flsel{display:flex;align-items:center;gap:8px;padding:8px 13px;border-bottom:1px solid var(--line2);background:var(--blue-soft);font-size:11.5px;color:var(--ink2)}
 .flsel b{font-size:12px}
 .flsel .btn{margin-left:auto}
+/* ═══ v10.1 Agent chips + 档案弹窗（第一版界面）═══ */
+.flbar{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:0 0 11px}
+.achips{display:flex;gap:6px;flex-wrap:wrap}
+.achip{display:flex;align-items:center;gap:6px;padding:4px 10px;border-radius:8px;font-size:12px;
+  border:1px solid var(--line);background:var(--surface);color:var(--ink2);transition:.12s}
+.achip:hover{border-color:var(--blue)}
+.achip[aria-current="true"]{border-color:var(--blue);background:var(--blue-soft);color:var(--blue)}
+.achip i{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+.achip s{font-family:ui-monospace,Menlo,monospace;font-size:9.5px;letter-spacing:.06em;text-decoration:none;opacity:.75}
+.flbar .btn{margin-left:auto}
+dialog.amodal{position:fixed;inset:0;margin:auto;border:0;border-radius:15px;padding:0;width:min(940px,calc(100% - 32px));
+  max-height:86vh;height:fit-content;background:var(--surface);color:var(--ink);box-shadow:0 24px 70px rgba(15,23,42,.28)}
+dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
+.am-hd{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--line)}
+.am-hd b{font-size:15.5px}
+.am-hd .lab{margin-left:auto;font-size:11px;color:var(--faint)}
+.am-hd .x{font-size:17px;color:var(--mut);padding:2px 6px;border-radius:8px}
+.am-hd .x:hover{background:var(--surface2)}
+.am-body{display:grid;grid-template-columns:196px 1fr;min-height:0}
+.am-list{border-right:1px solid var(--line);padding:10px;display:flex;flex-direction:column;gap:3px;background:var(--surface2)}
+.am-list button{display:flex;align-items:center;gap:9px;text-align:left;padding:8px 10px;border-radius:9px;font-size:13px;color:var(--ink2);transition:.12s}
+.am-list button:hover{background:var(--surface)}
+.am-list button[aria-selected="true"]{background:var(--blue-soft);color:var(--blue);font-weight:650;box-shadow:inset 0 0 0 1px var(--blue-line)}
+.am-list .em{font-size:15px}
+.am-detail{padding:18px;overflow-y:auto;max-height:calc(86vh - 124px)}
+.ag-hd2{display:flex;align-items:center;gap:13px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.ag-em{width:56px;height:56px;border-radius:12px;background:var(--surface2);display:grid;place-items:center;font-size:26px;flex-shrink:0}
+.ag-id{flex:1;min-width:0}
+.ag-id b{font-size:16px;display:block;letter-spacing:-.02em}
+.ag-id span{font-size:12.5px;color:var(--mut)}
+.ag-stat{display:flex;align-items:center;gap:6px;font-size:12.5px;font-weight:650;white-space:nowrap}
+.ag-stat i{width:8px;height:8px;border-radius:50%}
+.ag-stat s{font-family:ui-monospace,Menlo,monospace;font-size:9.5px;letter-spacing:.06em;text-decoration:none;opacity:.7}
+.ag-flow{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:8px;align-items:stretch;margin-top:15px}
+.fl{padding:10px 12px;border-radius:9px;font-size:12.5px;line-height:1.5;color:var(--ink2)}
+.fl .lab{margin-bottom:5px;font-size:10px;font-weight:800;letter-spacing:.06em}
+.fl.in{background:var(--amber-soft)}.fl.in .lab{color:var(--amber)}
+.fl.do{background:var(--blue-soft)}.fl.do .lab{color:var(--blue)}
+.fl.out{background:var(--green-soft)}.fl.out .lab{color:var(--green)}
+.fl-ar{align-self:center;color:var(--faint);font-size:15px}
+@media(max-width:760px){.ag-flow{grid-template-columns:1fr}.fl-ar{transform:rotate(90deg);justify-self:center}}
+.ag-two{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+@media(max-width:620px){.ag-two{grid-template-columns:1fr}}
+.ag-can,.ag-cant{padding:12px 13px;border-radius:9px}
+.ag-can{background:var(--green-soft)}.ag-cant{background:var(--red-soft)}
+.ag-can .lab,.ag-cant .lab{font-size:10px;font-weight:800;letter-spacing:.06em}
+.ag-can .lab{color:var(--green)}.ag-cant .lab{color:var(--red)}
+.ag-two ul{list-style:none;margin:8px 0 0;padding:0;display:flex;flex-direction:column;gap:5px}
+.ag-two li{display:flex;gap:8px;align-items:flex-start;font-size:12.8px;color:var(--ink2);line-height:1.45}
+.ag-two i{font-style:normal;font-family:ui-monospace,Menlo,monospace;font-size:11px;flex-shrink:0;margin-top:1px}
+.ag-two i.y{color:var(--green)}.ag-two i.n{color:var(--red)}
+.ag-perm{margin-top:14px;padding:13px;border-radius:9px;background:var(--surface2)}
+.pm-hd{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;font-size:12px;font-weight:700}
+.pm-num{font-family:ui-monospace,Menlo,monospace;font-size:12px;color:var(--ink2);font-weight:650}
+.pm-bar{height:7px;border-radius:4px;background:var(--red-soft);overflow:hidden;margin-bottom:11px}
+.pm-bar i{display:block;height:100%;background:var(--green);border-radius:4px}
+.tls{display:flex;gap:5px;flex-wrap:wrap}
+.tl2{font-size:11px;font-family:ui-monospace,Menlo,monospace;border-radius:7px;padding:3px 8px;border:1px solid var(--line)}
+.tl2.y{background:var(--green-soft);color:#15803D;border-color:#BBF7D0}
+.tl2.n{background:var(--red-soft);color:#B91C1C;border-color:#FECACA;text-decoration:line-through;opacity:.75}
+.ag-soul{margin-top:14px}
+.ag-soul .lab,.ag-mem .lab{font-size:10px;font-weight:800;letter-spacing:.06em;color:var(--faint);display:block;margin-bottom:6px}
+.ag-soul textarea,.ag-mem textarea{width:100%;border:1px solid var(--line);border-radius:10px;padding:11px 13px;font-size:12.5px;
+  line-height:1.6;color:var(--ink2);background:var(--surface2);resize:vertical;font-family:inherit}
+.ag-soul textarea{min-height:118px}.ag-mem textarea{min-height:92px}
+.ag-mem{margin-top:12px}
+.am-foot{display:flex;align-items:center;gap:10px;padding:13px 18px;border-top:1px solid var(--line);background:var(--surface2)}
+.am-foot .lab{font-size:11px;color:var(--faint)}
+.am-foot .sp{flex:1}
+.savemsg{font-size:11.5px;color:var(--green);font-weight:700;opacity:0;transition:.2s}
+.savemsg.on{opacity:1}
+
 
 
 
@@ -819,6 +891,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
     <div class="chlog" id="chlog" hidden>
       <h5>更新日志</h5>
       <div><b>v9.9</b><span>总览加 Agent Floor · 工位实况 + 团队聊天</span></div>
+      <div><b>v10.1</b><span>工位加状态 chips · 编辑 agent 档案（SOUL · 工具白名单）</span></div>
       <div><b>v10.0</b><span>总览加像素工位 · 点小人看在干嘛 · 带历史的团队对话</span></div>
       <div><b>v9.8</b><span>AI 团队页加工作手册与关系表</span></div>
       <div><b>v9.7</b><span>AI 团队页 · v2.8 角色对齐 · CEO 问诊</span></div>
@@ -830,7 +903,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
       <div><b>v9.0</b><span>总览与店面资料照 client 参考重做</span></div>
       <div><b>v8.x</b><span>对话式创建工作台 · 三方案差异化</span></div>
     </div>
-    <button class="verbtn" id="verBtn"><i></i>v10.0 · 更新日志</button>
+    <button class="verbtn" id="verBtn"><i></i>v10.1 · 更新日志</button>
   </div>
 </aside>
 <main class="main">
@@ -957,6 +1030,10 @@ td b.pr2{font-variant-numeric:tabular-nums}
 
     <div class="card mt" id="floorCard">
       <div class="chd"><i data-i="users"></i><b>Agent Floor</b><s>实时 · 每个人此刻在干嘛</s><span class="sp"></span><button class="btn sm" data-p="9">认识团队 →</button></div>
+      <div class="flbar">
+        <div class="achips" id="aChips"></div>
+        <button class="btn sm" id="btnEditAgent">⚙️ 编辑 agent</button>
+      </div>
       <div class="flwrap">
         <div class="pxbox">
           <div class="pxscroll"><canvas id="floorCv" aria-label="像素办公室：AI 团队工位"></canvas></div>
@@ -1897,9 +1974,10 @@ var FLL={rm1:"运营 · 数据区",rm2:"营销 · 设计区",rm3:"CEO 调度中�
     var lg=document.getElementById("flLog");
     if(lg){var d=document.createElement("div");d.className="agm ai";d.textContent=info.line;
       lg.appendChild(d);lg.scrollTop=lg.scrollHeight;}
+    if(window.__flChip) __flChip(k);
     if(window.hvTrack) hvTrack("floor_pick",{who:k});
   }
-  cv.addEventListener("click",function(e){var k=hit(e); if(k) pick(k);});
+  cv.addEventListener("click",function(e){var k=hit(e); if(k){pick(k); if(window.__openAgent) window.__openAgent(k);}});
   cv.addEventListener("mousemove",function(e){hover=hit(e);cv.style.cursor=hover?"pointer":"default";});
   cv.addEventListener("mouseleave",function(){hover=null;});
   function _flBot(){var e=document.getElementById("flLog"); if(e) e.scrollTop=e.scrollHeight;}
@@ -1907,6 +1985,75 @@ var FLL={rm1:"运营 · 数据区",rm2:"营销 · 设计区",rm3:"CEO 调度中�
   window.__flPick=pick;
   window.__flState=function(){return "sel="+sel+" f="+f+" | "+P.map(function(p){return p.k+"("+Math.round(p.x)+","+Math.round(p.y)+","+p.mv+")";}).join(" ");};
 })();
+
+var T={IN:"输入",DO:"它做什么",OUT:"产出",CAN:"能做",CANT:"不能做",PERM:"工具白名单 · 最小权限",MODEL:"模型",SOUL:"人设",MEM:"知识"};
+
+/* ═══ Agent 档案（第一版界面：chips + Edit Agent + 弹窗）═══ */
+var AGT={"ceo": {"em": "🧭", "short": "CEO", "name": "CEO · 总管", "role": "唯一入口 · 早报 · 派活 · 验收", "model": "hivora-main", "st": ["等你拍板", "WAITING", "#B45309"], "tot": 22, "io": ["老板的消息 · 专员交回的成品", "问诊 → 认路由 → 派活 → 验收", "8:00 早报 · ≤3 件待拍板 · 成品"], "can": ["每天 8:00 带着昨日数字出早报", "你说不清要什么时，先问诊再给选项", "派工：单一 agent · 单一交付物", "不达标退回重做（≤3 次）"], "cant": ["自己分析数据", "自己写文案 / 出图", "直接对外发布", "代你拍板"], "on": ["delegate_task", "morning_brief", "worklog", "collect", "ask_owner_confirm"], "off": ["change_price", "send_whatsapp_blast", "publish_social_post", "send_to_printer"], "soul": "我只调度，不亲自分析、不写文案、不出图。\n收老板的话 → 认路由 → 派给对的 agent → 收成品 → 验收 → 呈老板。\n\n无状态：进度写工单，崩了读回接着干。\n同一 agent 最多重试 3 次；done 的绝不重派。\n真实动作（发布/群发/印刷/改价）一律先老板确认。", "mem": "# 团队花名册\n运营 = 清洗 + 算数 + 出情报\n营销 = idea + 日历 + 触达\n设计师 = 文案 + 物料\n主厨 = 按食材出新菜\n\n# 节奏\n8:00 早报 · 每天 ≤3 件拍板 · campaign 批一次\n\n# 三条铁律\n族群饮食规则 · Brand Kit · 马来西亚节假日"}, "ops": {"em": "📥", "short": "运营", "name": "运营 Operations · 数据与情报", "role": "两条流水线：接入 + 分析", "model": "hivora-main", "st": ["已关账", "DONE", "#15803D"], "tot": 22, "io": ["销售表（任意格式）/ POS · 每周盘点", "清洗 → 入库 → 四象限 · 时段 · 库存推算", "数字给 CEO · 情报给营销与主厨"], "can": ["认得出并清洗任何销售导出", "算毛利四象限（代码算，不是猜）", "从销量倒推食材消耗", "低于阈值就报预警"], "cant": ["编一个算不出来的数字", "替老板做决策", "碰客户名单（PDPA）", "对外发布"], "on": ["parse_upload", "validate_schema", "get_margin_quadrant", "get_daypart_peaks", "stock_forecast", "get_menu_cost"], "off": ["change_price", "publish_social_post", "query_customer_db", "send_whatsapp_blast"], "soul": "我做采集 + 清洗 + 计算，不做决策。\n\n拿不准这份是什么数据 → 问老板，不猜。\n字段缺 → 标「待补」，绝不瞎填。\n坏行跳过 + 告警，不卡死整批。\n我报的每个数字都带出处。", "mem": "# 口径\n毛利 = 售价 − 食材成本（套餐单独算）\n四象限：food cost ≤35% = 高毛利；销量 > 本周中位数 = 高销量\n\n# 库存\n消耗从销量倒推；老板每周确认 3 样关键食材\n低于阈值 → 报 CEO"}, "mkt": {"em": "📣", "short": "营销", "name": "营销 Marketing · 增长", "role": "idea · 日历 · opt-in 触达", "model": "hivora-main", "st": ["排期中", "WORKING", "#B45309"], "tot": 22, "io": ["运营情报 + 老板的 campaign 审批", "idea → brief → 排日历 → 分发", "提案 · 有据可查的触达 · 回流数据"], "can": ["每个 idea 都挂一个真实数字", "批准后在时间窗内自动跑", "排日历时留足印刷提前量", "经 AiToEarn 分发到各平台"], "cant": ["无审批发出任何一条", "发给没 opt-in 的人", "开自动私信 / 自动回复（Engage）", "改价格"], "on": ["gen_idea", "calendar_slot", "aitoearn_publish", "send_wa_template", "check_race_rule", "get_holidays"], "off": ["engage_autoreply", "scrape_followers", "change_price", "publish_without_approval"], "soul": "我提的每个 idea 都挂着运营给的数字 —— 不拍脑袋。\n\nCampaign 批一次：内容 + 名单范围 + 时间窗。\n窗内我跑，窗外我停。\nSTOP 即刻生效且永久。只发 opt-in，永远。\n小红书没有官方 API —— 我把内容备好，人工发。", "mem": "# 触达\n只发 opt-in 名单（248 人）· STOP 永久\n生日 / 唤回模板：批一次，长期有效\n\n# 时机\n印刷类要提前约 1 个月\nAiToEarn：Create + Publish 开，Engage 永不开"}, "dsn": {"em": "🖨️", "short": "设计师", "name": "设计师 Designer · 品牌与物料", "role": "海报 · 菜单 · 全尺寸", "model": "hivora-claude-main", "st": ["出稿中", "WORKING", "#2563EB"], "tot": 22, "io": ["brief（经 CEO）+ 老板原图 + Brand Kit", "3 方向 → 全尺寸 → 三语言 → Gate", "物料包（社媒 / 印刷 / 菜单）"], "can": ["给 3 个真方向，不是 3 个换色", "出全部尺寸 + 中 / EN / BM", "每张都套 Brand Kit", "自检 6 项 Gate 规则"], "cant": ["虚构价格或菜品", "直接送印刷", "直接发布", "看客户名单（PDPA）"], "on": ["gen_copy", "gen_image", "apply_template", "get_brand_kit", "gate_check", "get_menu_cost"], "off": ["change_price", "send_to_printer", "publish_social_post", "query_customer_db"], "soul": "我做营销文案 + 设计，不只是排版美工。\n一切套 Brand Kit。\n\n价格 / 日期来自数据 —— 我不凭记忆写，也不许改。\n必备元素缺一不放行。\nAI 负责把菜画得好吃，价格和二维码由模板精确叠上去。", "mem": "# 必备元素（缺一不放行）\n店名 · 地址 · 价格 · 有效期 · Halal 标 · 二维码 · 社媒 + WhatsApp · 营业时间\n\n# 印刷规格\n出血 3mm · CMYK · 300dpi · PDF/X 字体转曲\n\n# 定向\n牛肉物料不做印度裔 / 素食版本"}, "chef": {"em": "👨‍🍳", "short": "主厨", "name": "主厨助手 Chef · 新菜研发", "role": "进食材，出菜谱建议", "model": "hivora-main", "st": ["盯库存", "IDLE", "#94A3B8"], "tot": 22, "io": ["当天食材 + 库存台账 + 天气与评论", "过成本 / 族群 / 天气约束 → 算成本", "2–3 张新菜卡，每张都带理由"], "can": ["按后厨现有的东西出菜", "算清成本并给建议售价", "按天气换品类（热饮 / 冰饮）", "把「为什么值得试」说清楚"], "cant": ["读老板的配方库", "自己改菜单", "建议违反 Halal / 族群规则的菜", "把菜单送去印刷"], "on": ["read_stock", "calc_food_cost", "check_race_rule", "get_weather", "read_review_text"], "off": ["read_recipe_vault", "change_menu", "send_to_printer", "query_customer_db"], "soul": "我给建议，厨房拍板。\n每张卡先讲为什么 —— 烤线空着、库存要清、三条评论求少辣。\n\n食材成本 ≤30%，全族群可吃的优先，Halal 必须。\n你的老配方永远不进我的上下文 —— 我只看你今天输入的食材。", "mem": "# 五个输入\n当天食材 · 库存台账 · 族群规则 · 天气 · 评论内容\n\n# 硬约束\nFC ≤30% · 备餐 ≤15 分钟 · 有全族群选项时优先不用牛肉\n\n# 天气\n下雨 → 暖饮；天热 → 冰饮"}, "boss": {"em": "👔", "short": "老板", "name": "老板 · 审批台", "role": "唯一能放行真实动作的地方", "model": "—（这不是 agent，是你）", "st": ["2 件待确认", "WAITING", "#B45309"], "tot": 3, "io": ["团队交上来的申请单", "确认 · 改 · 退", "放行 → executor 才执行"], "can": ["确认 → 印刷 / 发布放行", "打回重做（带修改意见）", "直接退掉，流程停止", "定 offer 力度与活动"], "cant": ["自己算数字", "自己写文案", "自己排日历", "自己记印刷截止"], "on": ["approve", "request_change", "reject"], "off": [], "soul": "agent 只能产出申请单。我按下确认之后，\n才由独立的 executor 去执行 —— 印刷、群发、发布、改价。\n\n三个键：确认 · 改 · 退。", "mem": "# 我是谁\n餐厅老板。唯一拍板人。\n\n# 我的收件箱\n今天要拍板的都在总览 —— 现在有两件。"}};
+function __initAgentProfile(){
+  var box=document.getElementById("aChips"); if(!box||box.children.length) return;
+  var dlg=document.getElementById("agentModal"), list=document.getElementById("amList"),
+      det=document.getElementById("amDetail"), cur=null, EDITS={};
+  var KS=Object.keys(AGT);
+  KS.forEach(function(k){
+    var a=AGT[k], b=document.createElement("button");
+    b.className="achip"; b.setAttribute("data-agent",k); b.setAttribute("aria-current","false");
+    b.innerHTML='<i style="background:'+a.st[2]+'"></i><span>'+a.em+' '+a.short+'</span><s>'+a.st[1]+'</s>';
+    b.addEventListener("click",function(){ if(window.__flPick)__flPick(k); openA(k); });
+    box.appendChild(b);
+    var l=document.createElement("button");
+    l.setAttribute("data-agent",k); l.setAttribute("role","tab"); l.setAttribute("aria-selected","false");
+    l.innerHTML='<span class="em">'+a.em+'</span><span>'+a.short+'</span>';
+    l.addEventListener("click",function(){show(k);});
+    list.appendChild(l);
+  });
+  function markChip(k){
+    [].forEach.call(box.querySelectorAll(".achip"),function(c){
+      c.setAttribute("aria-current", c.getAttribute("data-agent")===k?"true":"false");});
+  }
+  window.__flChip=markChip;
+  function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;");}
+  function show(k){
+    cur=k; var a=AGT[k], e=EDITS[k]||(EDITS[k]={soul:a.soul,mem:a.mem});
+    [].forEach.call(list.querySelectorAll("button"),function(b){
+      b.setAttribute("aria-selected", b.getAttribute("data-agent")===k?"true":"false");});
+    markChip(k);
+    var pct=a.tot?Math.round(a.on.length/a.tot*100):0;
+    det.innerHTML=
+      '<div class="ag-hd2"><span class="ag-em">'+a.em+'</span><span class="ag-id"><b>'+a.name+'</b><span>'+a.role+'</span></span>'+
+      '<span class="ag-stat"><i style="background:'+a.st[2]+'"></i>'+a.st[0]+' <s>'+a.st[1]+'</s></span></div>'+
+      '<div class="ag-flow"><div class="fl in"><div class="lab">'+T.IN+'</div>'+a.io[0]+'</div><div class="fl-ar">→</div>'+
+      '<div class="fl do"><div class="lab">'+T.DO+'</div>'+a.io[1]+'</div><div class="fl-ar">→</div>'+
+      '<div class="fl out"><div class="lab">'+T.OUT+'</div>'+a.io[2]+'</div></div>'+
+      '<div class="ag-two"><div class="ag-can"><div class="lab">'+T.CAN+'</div><ul>'+
+        a.can.map(function(x){return '<li><i class="y">✓</i>'+x+'</li>';}).join("")+'</ul></div>'+
+      '<div class="ag-cant"><div class="lab">'+T.CANT+'</div><ul>'+
+        a.cant.map(function(x){return '<li><i class="n">✕</i>'+x+'</li>';}).join("")+'</ul></div></div>'+
+      '<div class="ag-perm"><div class="pm-hd"><span>'+T.PERM+'</span><span class="pm-num">'+a.on.length+' / '+a.tot+'</span></div>'+
+        '<div class="pm-bar"><i style="width:'+pct+'%"></i></div><div class="tls">'+
+        a.on.map(function(x){return '<span class="tl2 y">'+x+'</span>';}).join("")+
+        a.off.map(function(x){return '<span class="tl2 n">'+x+'</span>';}).join("")+'</div>'+
+        '<div class="pm-model" style="margin-top:10px;font-size:12px;color:var(--mut)">'+T.MODEL+'：<b>'+a.model+'</b></div></div>'+
+      '<div class="ag-soul"><span class="lab">SOUL · '+T.SOUL+'</span><textarea id="edSoul">'+esc(e.soul)+'</textarea></div>'+
+      '<div class="ag-mem"><span class="lab">MEMORY · '+T.MEM+'</span><textarea id="edMem">'+esc(e.mem)+'</textarea></div>';
+  }
+  function openA(k){ show(k||cur||KS[0]); if(!dlg.open) dlg.showModal(); if(window.hvTrack)hvTrack("agent_profile",{who:k||cur}); }
+  window.__openAgent=openA;
+  document.getElementById("btnEditAgent").addEventListener("click",function(){openA();});
+  document.getElementById("amClose").addEventListener("click",function(){dlg.close();});
+  dlg.addEventListener("click",function(e){ if(e.target===dlg) dlg.close(); });
+  document.getElementById("amSave").addEventListener("click",function(){
+    var e=EDITS[cur]; if(!e) return;
+    var s=det.querySelector("#edSoul"), m=det.querySelector("#edMem");
+    if(s)e.soul=s.value; if(m)e.mem=m.value;
+    var t=document.getElementById("amSaved"); t.classList.add("on"); setTimeout(function(){t.classList.remove("on");},1600);
+    if(window.hvTrack)hvTrack("agent_save",{who:cur});
+  });
+  document.getElementById("amReset").addEventListener("click",function(){ delete EDITS[cur]; show(cur); });
+  show(KS[0]); markChip("ceo");
+}
+if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",__initAgentProfile);
+else __initAgentProfile();
 
 function go(i){
   hvTrack("page_view",{page:i});
@@ -2238,5 +2385,11 @@ document.getElementById("rcAdd").addEventListener("click",function(){
     });
   })();
 </script>
+<dialog id="agentModal" class="amodal" aria-labelledby="amTitle">
+  <div class="am-hd"><b id="amTitle">Agent 档案</b><span class="lab">SOUL · 模型 · 工具白名单</span><button class="x" id="amClose" aria-label="关闭">✕</button></div>
+  <div class="am-body"><div class="am-list" id="amList" role="tablist"></div><div class="am-detail" id="amDetail"></div></div>
+  <div class="am-foot"><span class="lab">改动只存在本次演示 —— 不落库。</span><span class="sp"></span>
+    <span class="savemsg" id="amSaved">✓ 已保存</span><button class="btn" id="amReset">还原默认</button><button class="btn pri" id="amSave">保存</button></div>
+</dialog>
 </body>
 </html>
