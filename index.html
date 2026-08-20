@@ -435,6 +435,19 @@ td b.pr2{font-variant-numeric:tabular-nums}
 #flLog{flex:1;overflow-y:auto;padding:12px 14px;display:flex;flex-direction:column;gap:8px}
 #flLog::before{content:"";flex:1 0 6px}
 .fldate{align-self:center;font-size:10px;color:var(--faint);background:var(--surface2);border-radius:99px;padding:2px 10px}
+.flwrap{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:12px;align-items:start}
+@media(max-width:1100px){.flwrap{grid-template-columns:1fr}}
+.pxbox{border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#EFECE4}
+.pxscroll{overflow-x:auto;-webkit-overflow-scrolling:touch}
+#floorCv{width:100%;height:auto;display:block;image-rendering:pixelated;min-width:520px}
+.pxhint{display:flex;align-items:center;gap:7px;flex-wrap:wrap;padding:7px 12px;background:var(--surface);border-top:1px solid var(--line);font-size:11px;color:var(--mut)}
+.pxhint b{color:var(--ink2)}
+.flchat{margin-top:0;height:396px}
+@media(max-width:1100px){.flchat{margin-top:12px;height:330px}}
+.flsel{display:flex;align-items:center;gap:8px;padding:8px 13px;border-bottom:1px solid var(--line2);background:var(--blue-soft);font-size:11.5px;color:var(--ink2)}
+.flsel b{font-size:12px}
+.flsel .btn{margin-left:auto}
+
 
 
 
@@ -809,6 +822,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
     <div class="chlog" id="chlog" hidden>
       <h5>What’s new</h5>
       <div><b>v9.9</b><span>Agent floor on Home · live desks + team chat</span></div>
+      <div><b>v10.0</b><span>Pixel agent floor on Home · click anyone, chat with history</span></div>
       <div><b>v9.8</b><span>Agent handbook &amp; hand-off matrix on AI Team</span></div>
       <div><b>v9.7</b><span>AI Team page · v2.8 roles · CEO check-in</span></div>
       <div><b>v9.6</b><span>Changelog panel · shareable build</span></div>
@@ -819,7 +833,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
       <div><b>v9.0</b><span>Home &amp; Store details rebuilt to client ref</span></div>
       <div><b>v8.x</b><span>Create-by-chat studio · 3 distinct concepts</span></div>
     </div>
-    <button class="verbtn" id="verBtn"><i></i>v9.9 · What’s new</button>
+    <button class="verbtn" id="verBtn"><i></i>v10.0 · What’s new</button>
   </div>
 </aside>
 <main class="main">
@@ -946,21 +960,25 @@ td b.pr2{font-variant-numeric:tabular-nums}
 
     <div class="card mt" id="floorCard">
       <div class="chd"><i data-i="users"></i><b>Agent floor</b><s>Live · what everyone is doing right now</s><span class="sp"></span><button class="btn sm" data-p="9">Meet the team →</button></div>
-      <div class="floor5">
-<div class="desk"><span class="hd2"><span class="dav" style="background:#EEF2FF">🧭</span><b>CEO</b><i class="ddot" style="background:var(--amber)"></i></span><s>Waiting on your call — 2 items in today’s brief</s></div><div class="desk"><span class="hd2"><span class="dav" style="background:#EFF4FF">📥</span><b>Operations</b><i class="ddot" style="background:var(--green)"></i></span><s>Books closed 08:02 · 625 rows · 0 errors</s></div><div class="desk"><span class="hd2"><span class="dav" style="background:#FFF3EC">📣</span><b>Marketing</b><i class="ddot" style="background:var(--blue)"></i></span><s>Scheduling the Merdeka window · print lock Aug 16</s></div><div class="desk"><span class="hd2"><span class="dav" style="background:#F1F5F9">🖨️</span><b>Designer</b><i class="ddot" style="background:var(--blue)"></i></span><s>Rendering Merdeka v2 · size 3 of 6</s></div><div class="desk"><span class="hd2"><span class="dav" style="background:#F0FDF4">👨‍🍳</span><b>Chef</b><i class="ddot" style="background:var(--amber)"></i></span><s>Watching coconut milk — out by Friday at this pace</s></div>
-      </div>
-      <div class="flchat">
-        <div class="flhd"><span class="cav">C</span>Team chat — you talk to the CEO, the floor executes<span class="sp"></span><span class="tag gn">History kept</span></div>
-        <div id="flLog">
-          <span class="fldate">Yesterday 18:32</span>
-          <div class="agm me">Push the satay on Wednesday, price to 12.90</div>
-          <div class="agm ai">Done — Wednesday satay promo queued at RM 12.90, margin 54% ✓. Poster shipped after your OK.</div>
-          <span class="fldate">Today 08:00</span>
-          <div class="agm ai">Morning. Yesterday RM 2,140 (+6.4%). Two calls today: ① Lunch Flash poster — publish? ② Merdeka schedule — lock it?</div>
-          <div class="agm me">1 2</div>
-          <div class="agm ai">Both locked ✓ Designer is on it — I’ll ping you when the pack is ready for sign-off.</div>
+      <div class="flwrap">
+        <div class="pxbox">
+          <div class="pxscroll"><canvas id="floorCv" aria-label="Pixel office: your AI team at their desks"></canvas></div>
+          <div class="pxhint">🖱️ <b>Click anyone</b> to see what they are on right now · busy agents stay at their desk, idle ones wander</div>
         </div>
-        <form class="bc-in" id="flForm"><input id="flIn" placeholder="Tell the team… (“price to 32”, “use the satay”)" autocomplete="off"><button type="submit">Send</button></form>
+        <div class="flchat">
+          <div class="flhd"><span class="cav">C</span>Team chat<span class="sp"></span><span class="tag gn">History kept</span></div>
+          <div class="flsel" id="flSel"><b>CEO</b><span>Waiting on your call · 2 items today</span></div>
+          <div id="flLog">
+            <span class="fldate">Yesterday 18:32</span>
+            <div class="agm me">Push the satay on Wednesday, price to 12.90</div>
+            <div class="agm ai">Done — Wednesday satay promo queued at RM 12.90, margin 54% ✓. Poster ships after your OK.</div>
+            <span class="fldate">Today 08:00</span>
+            <div class="agm ai">Morning. Yesterday RM 2,140 (+6.4%). Two calls today: ① Lunch Flash poster — publish? ② Merdeka schedule — lock it?</div>
+            <div class="agm me">1 2</div>
+            <div class="agm ai">Both locked ✓ Designer is on it — I’ll ping you when the pack is ready for sign-off.</div>
+          </div>
+          <form class="bc-in" id="flForm"><input id="flIn" placeholder="Tell the CEO… (“price to 32”, “use the satay”)" autocomplete="off"><button type="submit">Send</button></form>
+        </div>
       </div>
     </div>
   </section>
@@ -1656,6 +1674,243 @@ window.hvTrack=function(ev,props){try{var a=JSON.parse(localStorage.getItem("hv_
   a.push({e:ev,p:props||{},t:Date.now()});if(a.length>500)a=a.slice(-500);
   localStorage.setItem("hv_events",JSON.stringify(a));}catch(_){}
   if(window.console&&console.debug)console.debug("[hv]",ev,props||{});};
+var FLL={rm1:"Operations · data",rm2:"Marketing · design",rm3:"CEO desk · dispatch",rm4:"Kitchen",rm5:"Boss office",
+  goto:"Open →",
+  nm:{ops:"Operations",mkt:"Marketing",dsn:"Designer",ceo:"CEO · hub",chef:"Chef",boss:"You"},
+  say:{ops:"625 rows, 0 errors",mkt:"Merdeka window set",dsn:"Gate 6/6 \u2713",ceo:"2 calls for you",chef:"Coconut milk: Friday",boss:"Let me see"},
+  info:{
+    ops:{n:"Operations",now:"Books closed 08:02 \u00b7 625 rows \u00b7 0 errors",p:2,line:"Operations closed the books at 08:02 — 625 rows, 0 errors. Lunch is 43% of revenue; that is the gap I flagged this morning."},
+    mkt:{n:"Marketing",now:"Scheduling Merdeka \u00b7 print lock Aug 16",p:7,line:"Marketing is holding the Merdeka window — print lock is Aug 16, so the artwork has to clear your desk by the 14th."},
+    dsn:{n:"Designer",now:"Rendering Merdeka v2 \u00b7 size 3 of 6",p:1,line:"Designer is on Merdeka v2, three of six sizes rendered. All six Gate checks pass so far."},
+    ceo:{n:"CEO",now:"Waiting on your call \u00b7 2 items today",p:null,line:"That is me. Two things need your call today — the Lunch Flash poster and the Merdeka schedule. Reply 1 or 2, or just tell me what to change."},
+    chef:{n:"Chef Assistant",now:"Watching coconut milk \u00b7 out by Friday",p:5,line:"Chef says coconut milk runs out Friday at this pace — both new dish ideas use it. Restock before we launch either one."},
+    boss:{n:"You",now:"The only one who approves anything",p:null,line:"That desk is yours. Nothing leaves this floor until you say so."}
+  }};
+
+/* ═══ Agent Floor · 像素办公室（v2.8 五人编制）═══ */
+(function(){
+  var cv=document.getElementById("floorCv"); if(!cv) return;
+  var ctx=cv.getContext("2d"), S=2, W=576, H=320, T=16;
+  cv.width=W*S; cv.height=H*S;
+  ctx.setTransform(S,0,0,S,0,0); ctx.imageSmoothingEnabled=false;
+  var reduce=matchMedia("(prefers-reduced-motion:reduce)").matches;
+
+  var C={wall:"#F2EFE8",wallD:"#B9B0A0",
+    rmA:"#D2DEEC",rmA2:"#CAD8E8", rmB:"#E4DAC7",rmB2:"#DED3BE",
+    rmC:"#DDE6F2",rmC2:"#D5E0EE", rmD:"#D9E7DC",rmD2:"#D1E1D5",
+    rmE:"#D8CDE6",rmE2:"#D1C4E2", rug:"#8FB8E8",rug2:"#7FACE2",
+    dsk:"#B98A5E",dskT:"#CE9E6F",dskD:"#8E6845",
+    mon:"#242C38",monB:"#39434F",on:"#5FB0F0",on2:"#3E8FD4",
+    kbd:"#CFD6E0",pap:"#FFFFFF",papL:"#E7EBF1",
+    pl1:"#3E8E5A",pl2:"#2F7147",pl3:"#57A96D",pot:"#AA6B45",potD:"#8A5436",
+    skin:"#F1C9A0",skinD:"#D8A67B",ink:"#161C25",shoe:"#3A3F4A",
+    sel:"#2563EB",shad:"rgba(20,26,34,.15)",
+    bub:"#1F2937",bubT:"#7CE8A8",bubW:"#E8EDF5",
+    wood:"#A9764C",woodD:"#875B38",metal:"#9AA5B4",metalD:"#79838F",
+    steel:"#B7C0CB",steelD:"#8C97A4",fire:"#F59E0B"};
+
+  var P=[
+    {k:"ops", x:110,y:118, c:"#2563EB",pants:"#2A3348",h:"#1C1C24", st:"type", spots:[[52,104],[188,104],[110,118]]},
+    {k:"mkt", x:360,y:118, c:"#B4451F",pants:"#4A3320",h:"#3A2A20", st:"busy", spots:[[318,104],[420,104],[360,118]]},
+    {k:"dsn", x:482,y:118, c:"#334155",pants:"#2B3444",h:"#241C1A", st:"type", spots:[[530,104],[440,104],[482,118]]},
+    {k:"ceo", x:288,y:214, c:"#4F46E5",pants:"#2E2A47",h:"#2A2230", st:"wait", spots:[[170,190],[410,190],[288,214]]},
+    {k:"chef",x:110,y:300, c:"#3F7D4E",pants:"#2C4A36",h:"#241A14", st:"idle", spots:[[62,296],[196,300],[110,300]]},
+    {k:"boss",x:452,y:290, c:"#111827",pants:"#1F2532",h:"#20160F", st:"wait", spots:[[366,300],[520,278],[452,290]]}
+  ];
+  P.forEach(function(p){p.hx=p.x;p.hy=p.y;p.sit=1;p.mv="sit";p.si=0;
+    p.wait=180+Math.floor(Math.random()*420);p.face=1;p.step=0;});
+
+  var sel="ceo",hover=null,f=0;
+  function r(x,y,w,h,c){ctx.fillStyle=c;ctx.fillRect(x,y,w,h);}
+  function room(x,y,w,h,c1,c2){for(var yy=y;yy<y+h;yy+=T)for(var xx=x;xx<x+w;xx+=T)
+    r(xx,yy,Math.min(T,x+w-xx),Math.min(T,y+h-yy),((xx/T+yy/T)%2)?c2:c1);}
+  function wallH(x,y,w){r(x,y,w,6,C.wall);r(x,y,w,1,C.wallD);r(x,y+5,w,1,C.wallD);}
+  function wallV(x,y,h){r(x,y,6,h,C.wall);r(x,y,1,h,C.wallD);r(x+5,y,1,h,C.wallD);}
+
+  function floorplan(){
+    r(0,0,W,H,"#EFECE4");
+    room(6,26,282,86,C.rmA,C.rmA2);
+    room(294,26,276,86,C.rmB,C.rmB2);
+    room(6,118,564,88,C.rmC,C.rmC2);
+    room(6,212,282,102,C.rmD,C.rmD2);
+    room(294,212,276,102,C.rmE,C.rmE2);
+    for(var yy=150;yy<190;yy+=8)for(var xx=232;xx<344;xx+=8)
+      r(xx,yy,8,8,((xx/8+yy/8)%2)?C.rug2:C.rug);
+    wallH(0,20,W); wallH(0,112,282); wallH(294,112,282);
+    wallH(0,206,282); wallH(294,206,282);
+    wallV(0,20,H-20); wallV(W-6,20,H-20); wallH(0,H-6,W);
+    wallV(288,26,86); wallV(288,212,102);
+    r(150,112,34,6,C.rmA2); r(420,112,34,6,C.rmB2);
+    r(130,206,34,6,C.rmD); r(430,206,34,6,C.rmE);
+    [40,120,340,460].forEach(function(wx){
+      r(wx,4,58,14,"#7C8797"); r(wx+2,6,54,10,"#AFCFEE");
+      r(wx+4,8,20,6,"#E4F1FF"); r(wx+28,6,2,10,"#7C8797");});
+    ctx.font="9px -apple-system,PingFang SC,sans-serif"; ctx.textAlign="left";
+    ctx.fillStyle="rgba(30,40,55,.5)";
+    ctx.fillText(FLL.rm1,14,40); ctx.fillText(FLL.rm2,302,40);
+    ctx.fillText(FLL.rm3,14,132); ctx.fillText(FLL.rm4,14,226); ctx.fillText(FLL.rm5,302,226);
+  }
+  function desk(cx,ty,w,lit){
+    r(cx-w/2,ty,w,12,C.dsk); r(cx-w/2,ty,w,2,C.dskT); r(cx-w/2,ty+12,w,3,C.dskD);
+    r(cx-10,ty-12,20,13,C.monB); r(cx-8,ty-10,16,9,lit?C.on:C.mon);
+    if(lit){r(cx-7,ty-9,7,2,C.on2);r(cx-7,ty-6,11,1,C.on2);r(cx-7,ty-4,5,1,C.on2);}
+    r(cx-3,ty+1,6,2,C.monB); r(cx-11,ty+4,22,4,C.kbd);
+    r(cx-19,ty+3,7,5,C.pap); r(cx-19,ty+3,7,1,C.papL);
+  }
+  function plant(x,y){r(x-5,y,11,9,C.pot);r(x-5,y,11,2,C.potD);
+    r(x-6,y-9,13,10,C.pl1);r(x-3,y-14,7,7,C.pl2);r(x+2,y-11,4,4,C.pl3);}
+  function shelf(x,y){r(x-14,y-34,28,34,C.wood);r(x-14,y-34,28,2,"#C08B5C");
+    ["#C0392B","#2563EB","#15803D","#B45309","#6D28D9"].forEach(function(cc,i){
+      r(x-12+i*5,y-30,4,9,cc);r(x-12+i*5,y-18,4,7,i%2?"#94A3B8":"#64748B");});
+    r(x-14,y-20,28,2,C.woodD);r(x-14,y-8,28,2,C.woodD);}
+  function printer(x,y){r(x-14,y,28,20,"#B6BEC9");r(x-14,y,28,3,"#CBD3DD");r(x-14,y+20,28,3,"#8E97A3");
+    r(x-10,y+6,20,6,"#3B434F");r(x-11,y-7,22,8,C.pap);r(x+7,y+14,4,3,C.on);
+    ctx.fillStyle="rgba(30,40,55,.5)";ctx.font="7px monospace";ctx.textAlign="center";
+    ctx.fillText("PRINT",x,y+32);}
+  function board(x,y){r(x-32,y,64,36,"#F7F8FA");r(x-32,y,64,3,"#B9C2CF");r(x-32,y+33,64,3,"#B9C2CF");
+    r(x-26,y+9,28,2,"#2563EB");r(x-26,y+15,36,2,"#B45309");r(x-26,y+21,20,2,"#15803D");
+    r(x+6,y+9,18,15,"#DCE7F8");}
+  function server(x,y){r(x-11,y-40,22,40,"#2B3440");r(x-11,y-40,22,2,"#465162");
+    for(var i=0;i<5;i++){r(x-8,y-36+i*8,16,5,"#1A212B");
+      var on=(!reduce&&(Math.floor(f/12)+i)%3)?C.bubT:"#3E5C48";
+      r(x+4,y-35+i*8,2,2,on);}}
+  function clock(x,y){r(x-8,y-8,16,16,"#F2EFE8");r(x-7,y-7,14,14,"#FFFFFF");
+    r(x-1,y-5,2,6,C.ink);r(x,y-1,5,2,C.ink);r(x-8,y-8,16,1,"#B9B0A0");}
+  function inbox(x,y){r(x-15,y,30,36,"#96A2B2");r(x-15,y,30,3,"#AAB5C4");r(x-15,y+36,30,2,"#7C8798");
+    r(x-12,y+6,24,7,C.pap);r(x-12,y+16,24,7,C.pap);r(x-12,y+26,24,6,"#F0B429");
+    ctx.fillStyle="rgba(30,40,55,.6)";ctx.font="7px monospace";ctx.textAlign="center";
+    ctx.fillText("INBOX",x,y-3);}
+  /* 后厨家具 */
+  function stove(x,y){
+    r(x-20,y-4,40,26,C.steel); r(x-20,y-4,40,3,"#CBD3DD"); r(x-20,y+22,40,3,C.steelD);
+    r(x-16,y+4,13,10,"#2B3440"); r(x+3,y+4,13,10,"#2B3440");
+    var lit=!reduce&&Math.floor(f/16)%2;
+    r(x-14,y+6,9,6,lit?C.fire:"#3E4652"); r(x+5,y+6,9,6,lit?"#EA580C":"#3E4652");
+    r(x-10,y-16,20,12,"#8E97A3"); r(x-10,y-16,20,2,"#AAB5C4");
+    if(!reduce&&Math.floor(f/24)%2){r(x-2,y-24,3,5,"rgba(200,210,225,.65)");r(x+1,y-30,2,4,"rgba(200,210,225,.45)");}
+  }
+  function fridge(x,y){r(x-12,y-44,24,44,"#CBD3DD");r(x-12,y-44,24,3,"#E2E8F0");
+    r(x-12,y-22,24,2,C.steelD);r(x+6,y-38,3,10,C.metalD);r(x+6,y-18,3,10,C.metalD);
+    r(x-9,y-41,8,5,"#F0B429");}
+  function counter(x,y,w){r(x-w/2,y,w,14,C.wood);r(x-w/2,y,w,3,"#C08B5C");r(x-w/2,y+14,w,3,C.woodD);
+    r(x-w/2+6,y-7,10,7,"#E8EDF5"); r(x+w/2-18,y-6,12,6,"#C0392B");
+    r(x-6,y-8,7,8,C.pl1); r(x-5,y-12,5,5,C.pl2);}
+  function sofa(x,y){r(x-26,y-14,52,18,"#5B7FA8");r(x-26,y-14,52,3,"#6E92BA");
+    r(x-30,y-16,7,20,"#4E6E93");r(x+23,y-16,7,20,"#4E6E93");
+    r(x-20,y-9,16,8,"#7FA0C4");r(x+4,y-9,16,8,"#7FA0C4");}
+  function nameplate(cx,ty,label){
+    ctx.font="9px -apple-system,PingFang SC,sans-serif";ctx.textAlign="center";
+    var w=ctx.measureText(label).width+12;
+    r(cx-w/2,ty,w,14,"rgba(255,255,255,.92)");r(cx-w/2,ty,w,1,"rgba(20,26,34,.14)");
+    ctx.fillStyle="#2A3442";ctx.fillText(label,cx,ty+10);}
+
+  var SPEED=0.42;
+  function move(p){
+    if(reduce) return;
+    var canRoam=(p.st==="idle"||p.st==="done");
+    if(!canRoam){
+      if(Math.round(p.x)===p.hx&&Math.round(p.y)===p.hy){p.x=p.hx;p.y=p.hy;p.sit=1;p.mv="sit";p.step=0;return;}
+      p.tx=p.hx;p.ty=p.hy;p.mv="walk";p.sit=0;
+    }else if(p.mv==="sit"||p.mv==="stand"){
+      if(--p.wait>0) return;
+      p.tx=p.spots[p.si][0];p.ty=p.spots[p.si][1];
+      p.si=(p.si+1)%p.spots.length;p.mv="walk";p.sit=0;return;
+    }
+    var dx=p.tx-p.x,dy=p.ty-p.y;
+    if(Math.abs(dx)>SPEED){p.x+=dx>0?SPEED:-SPEED;p.face=dx>0?1:-1;p.step++;return;}
+    p.x=p.tx;
+    if(Math.abs(dy)>SPEED){p.y+=dy>0?SPEED:-SPEED;p.step++;return;}
+    p.y=p.ty;p.step=0;
+    var home=(Math.round(p.x)===p.hx&&Math.round(p.y)===p.hy);
+    p.mv=home?"sit":"stand";p.sit=home?1:0;
+    p.wait=home?(300+Math.floor(Math.random()*480)):(80+Math.floor(Math.random()*130));
+  }
+  function person(p){
+    var x=p.x,base=p.y,bob=0;
+    if(!reduce){
+      if(p.mv==="walk") bob=(Math.floor(p.step/6)%2)?1:0;
+      else if(p.st==="idle") bob=(Math.floor(f/45)%2)?1:0;
+      else if(p.st==="busy") bob=(Math.floor(f/30)%2)?1:0;
+    }
+    var t=base-24+bob;
+    r(x-6,base+bob-1,12,3,C.shad);
+    if(sel===p.k||hover===p.k){ctx.strokeStyle=C.sel;ctx.lineWidth=1.5;
+      ctx.beginPath();ctx.ellipse(x,base+bob,12,5,0,0,6.3);ctx.stroke();}
+    if(!p.sit){
+      var wk=(p.mv==="walk"&&!reduce)?(Math.floor(p.step/6)%2):-1;
+      var l1=wk===0?1:0,l2=wk===1?1:0;
+      r(x-4,t+19-l1,3,5+l1,p.pants);r(x+1,t+19-l2,3,5+l2,p.pants);
+      r(x-5,t+24,4,1,C.shoe);r(x+1,t+24,4,1,C.shoe);
+    }
+    r(x-5,t+12,10,8,p.c);
+    var ao=(!reduce&&p.mv==="walk")?(Math.floor(p.step/6)%2)
+      :((!reduce&&p.st==="type"&&p.sit&&Math.floor(f/7)%2)?1:0);
+    r(x-7,t+12+ao,2,6,p.c);r(x+5,t+12+(1-ao),2,6,p.c);
+    r(x-7,t+18+ao,2,2,C.skin);r(x+5,t+18+(1-ao),2,2,C.skin);
+    if(p.k==="boss"){r(x-1,t+12,2,7,"#C0392B");}
+    if(p.k==="chef"){r(x-6,t-1,12,4,"#F8FAFC");r(x-5,t-5,10,5,"#F8FAFC");}
+    r(x-2,t+11,4,1,C.skinD);r(x-5,t+3,10,9,C.skin);
+    if(p.k!=="chef"){r(x-5,t+1,10,4,p.h);r(x-6,t+2,1,7,p.h);r(x+5,t+2,1,7,p.h);
+      r(x-5,t+4,3,2,p.h);r(x+2,t+4,3,2,p.h);}
+    else {r(x-5,t+2,10,3,p.h);}
+    r(x-3,t+7,2,2,C.ink);r(x+1,t+7,2,2,C.ink);r(x-1,t+10,2,1,C.skinD);
+  }
+  function bubble(p){
+    var say=FLL.say[p.k]; if(!say) return;
+    var show=reduce||((Math.floor(f/150)+p.x)%3!==2);
+    if(!show) return;
+    ctx.font="9px -apple-system,PingFang SC,monospace";ctx.textAlign="left";
+    var w=ctx.measureText(say).width+13,x=p.x+10,y=p.y-(p.k==="ceo"?64:46);
+    if(x<6)x=6; if(x+w>W-10)x=W-10-w;
+    r(x,y,w,15,C.bub);r(x+1,y-1,w-2,1,C.bub);r(x+1,y+15,w-2,1,C.bub);r(x+4,y+15,4,4,C.bub);
+    var col={type:C.bubT,idle:"#94A3B8",done:C.bubT,busy:"#93C5FD",wait:"#FCD34D"}[p.st]||C.bubW;
+    ctx.fillStyle=col;ctx.fillText(say,x+6,y+11);
+  }
+  function scene(){
+    floorplan();
+    shelf(30,108); server(258,70); board(120,32); clock(268,44);
+    desk(110,124,54,true);  nameplate(110,80,FLL.nm.ops);
+    desk(360,124,52,true);  nameplate(360,80,FLL.nm.mkt);
+    desk(482,124,52,true);  nameplate(482,80,FLL.nm.dsn);
+    printer(548,84); plant(310,108);
+    r(232,220,112,16,C.dsk);r(232,220,112,2,C.dskT);r(232,236,112,3,C.dskD);
+    r(252,208,18,12,C.monB);r(254,210,14,8,C.on);
+    r(306,208,18,12,C.monB);r(308,210,14,8,C.on);
+    nameplate(288,176,FLL.nm.ceo);
+    stove(110,286); fridge(34,300); counter(210,296,58); nameplate(110,240,FLL.nm.chef);
+    desk(452,296,48,false); nameplate(452,252,FLL.nm.boss); inbox(524,268); sofa(360,300); plant(320,306);
+    P.forEach(move); P.forEach(person); P.forEach(bubble);
+  }
+  function loop(){scene();f++;requestAnimationFrame(loop);}
+  if(reduce) scene(); else loop();
+
+  function hit(e){
+    var b=cv.getBoundingClientRect(),s=W/b.width;
+    var mx=(e.clientX-b.left)*s,my=(e.clientY-b.top)*s;
+    for(var i=0;i<P.length;i++){var p=P[i];
+      if(mx>p.x-13&&mx<p.x+13&&my>p.y-32&&my<p.y+6) return p.k;}
+    return null;
+  }
+  function pick(k){
+    sel=k;
+    var info=FLL.info[k]; if(!info) return;
+    var bar=document.getElementById("flSel");
+    if(bar){bar.innerHTML='<b>'+info.n+'</b><span>'+info.now+'</span>'+
+      (info.p!=null?'<button class="btn sm" data-p="'+info.p+'">'+FLL.goto+'</button>':'');}
+    var lg=document.getElementById("flLog");
+    if(lg){var d=document.createElement("div");d.className="agm ai";d.textContent=info.line;
+      lg.appendChild(d);lg.scrollTop=lg.scrollHeight;}
+    if(window.hvTrack) hvTrack("floor_pick",{who:k});
+  }
+  cv.addEventListener("click",function(e){var k=hit(e); if(k) pick(k);});
+  cv.addEventListener("mousemove",function(e){hover=hit(e);cv.style.cursor=hover?"pointer":"default";});
+  cv.addEventListener("mouseleave",function(){hover=null;});
+  function _flBot(){var e=document.getElementById("flLog"); if(e) e.scrollTop=e.scrollHeight;}
+  _flBot(); window.addEventListener("load",function(){setTimeout(_flBot,60);});
+  window.__flPick=pick;
+  window.__flState=function(){return "sel="+sel+" f="+f+" | "+P.map(function(p){return p.k+"("+Math.round(p.x)+","+Math.round(p.y)+","+p.mv+")";}).join(" ");};
+})();
+
 function go(i){
   hvTrack("page_view",{page:i});
   document.querySelectorAll(".panel").forEach(function(p,k){p.classList.toggle("on",k===i);});
