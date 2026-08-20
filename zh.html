@@ -999,7 +999,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
             <button onclick="hvTrack('ceo_probe',{g:'ticket'})" data-p="1">要客单</button>
             <button onclick="hvTrack('ceo_probe',{g:'cost'})" data-p="2">要省成本</button>
           </span></span>
-        <button class="btn" data-p="9">认识团队 →</button>
+        <button class="btn" id="goFloor">看工位 ↓</button>
       </div>
     </div>
 
@@ -2025,6 +2025,12 @@ function __initAgentProfile(){
 if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",__initAgentProfile);
 else __initAgentProfile();
 
+document.addEventListener("click",function(e){
+  if(!e.target.closest("#goFloor")) return;
+  var c=document.getElementById("floorCard"); if(!c) return;
+  window.scrollTo({top:c.getBoundingClientRect().top+window.scrollY-16,behavior:"smooth"});
+  hvTrack("goto_floor");
+});
 function relocFloor(i){
   var c=document.getElementById("floorCard"); if(!c) return;
   var h=document.getElementById(i===9?"floorSlot9":"floorSlot0");

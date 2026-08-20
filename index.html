@@ -1002,7 +1002,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
             <button onclick="hvTrack('ceo_probe',{g:'ticket'})" data-p="1">Bigger tickets</button>
             <button onclick="hvTrack('ceo_probe',{g:'cost'})" data-p="2">Cut costs</button>
           </span></span>
-        <button class="btn" data-p="9">Meet the team →</button>
+        <button class="btn" id="goFloor">See the floor ↓</button>
       </div>
     </div>
 
@@ -2028,6 +2028,12 @@ function __initAgentProfile(){
 if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",__initAgentProfile);
 else __initAgentProfile();
 
+document.addEventListener("click",function(e){
+  if(!e.target.closest("#goFloor")) return;
+  var c=document.getElementById("floorCard"); if(!c) return;
+  window.scrollTo({top:c.getBoundingClientRect().top+window.scrollY-16,behavior:"smooth"});
+  hvTrack("goto_floor");
+});
 function relocFloor(i){
   var c=document.getElementById("floorCard"); if(!c) return;
   var h=document.getElementById(i===9?"floorSlot9":"floorSlot0");
