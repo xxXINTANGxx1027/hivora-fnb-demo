@@ -399,6 +399,27 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .ceoq{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}
 .ceoq button{font-size:12px;font-weight:700;border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:99px;padding:6px 14px;transition:.15s}
 .ceoq button:hover{background:#fff;color:var(--ink)}
+/* ═══ v9.8 工作手册 ═══ */
+.agd{border:1px solid var(--line);border-radius:14px;background:var(--surface);margin-top:10px;overflow:hidden}
+.agd summary{display:flex;align-items:center;gap:11px;padding:13px 16px;cursor:pointer;list-style:none}
+.agd summary::-webkit-details-marker{display:none}
+.agd summary .av2{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:16px;color:#fff;flex-shrink:0}
+.agd summary b{font-size:13.5px;white-space:nowrap}
+.agd summary b em{font-style:normal;font-size:10.5px;color:var(--mut);font-weight:600;margin-left:6px}
+.agd summary>s{flex:1;font-size:11.5px;color:var(--mut);min-width:0}
+.agd summary .chev{color:var(--faint);font-style:normal;transition:.2s}
+.agd[open] summary .chev{transform:rotate(90deg)}
+.agd[open] summary{border-bottom:1px solid var(--line2)}
+.agd-b{padding:13px 16px 15px}
+.io{display:flex;align-items:center;gap:7px;flex-wrap:wrap;font-size:11.5px;margin-bottom:10px}
+.io .iol{font-size:10px;font-weight:800;color:var(--faint);letter-spacing:.06em;flex-shrink:0}
+.io .farr{font-size:12px}
+.agd-b ol{margin:0 0 11px 18px;font-size:12.3px;color:var(--ink2)}
+.agd-b ol li{padding:2.5px 0;line-height:1.5}
+.okrow{display:flex;gap:6px;flex-wrap:wrap}
+.okc{font-size:10.5px;font-weight:700;color:#15803D;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:7px;padding:3px 9px}
+.rdc{font-size:10.5px;font-weight:700;color:#B91C1C;background:#FEF2F2;border:1px solid #FECACA;border-radius:7px;padding:3px 9px}
+
 
 
 
@@ -770,6 +791,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
   <div class="verwrap">
     <div class="chlog" id="chlog" hidden>
       <h5>What’s new</h5>
+      <div><b>v9.8</b><span>Agent handbook &amp; hand-off matrix on AI Team</span></div>
       <div><b>v9.7</b><span>AI Team page · v2.8 roles · CEO check-in</span></div>
       <div><b>v9.6</b><span>Changelog panel · shareable build</span></div>
       <div><b>v9.5</b><span>Analytics: manual / POS-connected toggle</span></div>
@@ -779,7 +801,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
       <div><b>v9.0</b><span>Home &amp; Store details rebuilt to client ref</span></div>
       <div><b>v8.x</b><span>Create-by-chat studio · 3 distinct concepts</span></div>
     </div>
-    <button class="verbtn" id="verBtn"><i></i>v9.7 · What’s new</button>
+    <button class="verbtn" id="verBtn"><i></i>v9.8 · What’s new</button>
   </div>
 </aside>
 <main class="main">
@@ -1493,6 +1515,58 @@ td b.pr2{font-variant-numeric:tabular-nums}
         </div>
         <div class="ghost" style="margin-top:14px"><span style="font-size:17px">💰</span><span><b>Accountant · Phase 2</b> — costs, reconciliation, tax prep. Joins once Operations data settles.</span></div>
       </div>
+    </div>
+
+    <div class="shead" style="margin-top:24px"><b>How each agent works</b><s style="margin-left:10px;font-size:12px;color:var(--mut)">upstream → downstream · steps · done &amp; red lines — every hand-off routes through the CEO</s></div>
+<details class="agd" open>
+      <summary><span class="av2" style="background:#0F172A">🧭</span><b>CEO<em>总管</em></b><s>The only one who talks to you · dispatch + QA + approval relay + business coach</s><i class="chev">›</i></summary>
+      <div class="agd-b">
+        <div class="io"><span class="iol">IN</span><span class="stc">Your replies &amp; files</span> <span class="stc">Deliverables from all 4</span> <span class="stc">Ops nightly numbers</span><span class="farr">→</span><span class="iol">OUT</span><span class="stc">8:00 brief + ≤3 calls → you</span> <span class="stc">Work orders → specialists</span></div>
+        <ol><li>Read your message → decide: approval / question / lost / chat</li><li>Lost? Probe: traffic, ticket or cost → budget limits → hard dates</li><li>Send Operations for numbers → give you ≤3 options, each with figures</li><li>You decide → dispatch: one agent, one deliverable, acceptance criteria attached</li><li>QA every deliverable: output ≠ input · numbers sourced · red lines checked → report back</li></ol>
+        <div class="okrow"><span class="okc">✅ You get something decidable</span> <span class="okc">✅ Done never re-dispatched · retry ≤3</span> <span class="rdc">🚫 Never decides for you</span> <span class="rdc">🚫 Never publishes directly</span></div>
+      </div>
+    </details><details class="agd">
+      <summary><span class="av2" style="background:#2563EB">📥</span><b>Operations<em>运营</em></b><s>Single source of truth · one agent, two pipelines</s><i class="chev">›</i></summary>
+      <div class="agd-b">
+        <div class="io"><span class="iol">IN</span><span class="stc">Sales files (any format) / POS</span> <span class="stc">Your weekly 3-item stock note</span><span class="farr">→</span><span class="iol">OUT</span><span class="stc">Numbers → CEO brief</span> <span class="stc">Intel → Marketing</span> <span class="stc">Stock levels → Chef</span></div>
+        <ol><li>Pipeline A — intake: receive file → clean → report “625 rows · 0 errors” → standard store</li><li>Pipeline B — analysis: quadrant (FC≤35% · volume>median, hard-coded) · lunch/dinner · week-over-week</li><li>Reconcile weekly stock note → update ledger → below threshold → alert CEO</li></ol>
+        <div class="okrow"><span class="okc">✅ Every figure has a source</span> <span class="rdc">🚫 Never invents numbers</span> <span class="rdc">🚫 Business data stays inside</span></div>
+      </div>
+    </details><details class="agd">
+      <summary><span class="av2" style="background:#B4451F">📣</span><b>Marketing<em>营销</em></b><s>Ideas tied to numbers · calendar · opt-in outreach · AiToEarn is its tool</s><i class="chev">›</i></summary>
+      <div class="agd-b">
+        <div class="io"><span class="iol">IN</span><span class="stc">Ops intel (dips · feedback · hits)</span> <span class="stc">Your campaign approval</span><span class="farr">→</span><span class="iol">OUT</span><span class="stc">Campaign proposals → CEO → you</span> <span class="stc">Briefs → Designer (via CEO)</span> <span class="stc">Approved sends → customers</span> <span class="stc">Publish jobs → AiToEarn</span></div>
+        <ol><li>Get intel → pitch an idea, always pinned to a number</li><li>You approve once per campaign: content + audience + time window</li><li>Brief Designer → assets back → slot the calendar (print jobs 1 month ahead)</li><li>AiToEarn distributes: FB/IG/WA official APIs · XHS prepped, posted manually</li><li>Results flow back to Operations → next brief</li></ol>
+        <div class="okrow"><span class="okc">✅ Every send has an approval record</span> <span class="rdc">🚫 No approval, no send</span> <span class="rdc">🚫 Opt-in only · STOP is final</span> <span class="rdc">🚫 Engage never enabled</span></div>
+      </div>
+    </details><details class="agd">
+      <summary><span class="av2" style="background:#334155">🖨️</span><b>Designer<em>设计师</em></b><s>Posters, menus, every size — clean &amp; classy, always on Brand Kit</s><i class="chev">›</i></summary>
+      <div class="agd-b">
+        <div class="io"><span class="iol">IN</span><span class="stc">Brief (via CEO)</span> <span class="stc">Your food photos (you → CEO → Designer)</span> <span class="stc">Brand Kit</span><span class="farr">→</span><span class="iol">OUT</span><span class="stc">3 concepts → your pick</span> <span class="stc">Full size pack + 3 languages → CEO QA</span></div>
+        <ol><li>Brief + photos in → 3 directions out: photo-led / price-led / copy-led</li><li>You pick one → full pack: IG/FB/XHS/A4 print + 中/EN/BM</li><li>Every piece passes the Gate: price from menu · Halal mark · QR template · dietary rules</li><li>Gate fails → auto-redo ≤3 → still failing → CEO</li></ol>
+        <div class="okrow"><span class="okc">✅ Whole pack passes the Gate</span> <span class="rdc">🚫 Never invents prices or dishes</span> <span class="rdc">🚫 No beef assets for Indian/vegetarian targeting</span></div>
+      </div>
+    </details><details class="agd">
+      <summary><span class="av2" style="background:#3F7D4E">👨‍🍳</span><b>Chef Assistant<em>主厨助手</em></b><s>New-dish R&amp;D from what the kitchen has · suggests, never commands</s><i class="chev">›</i></summary>
+      <div class="agd-b">
+        <div class="io"><span class="iol">IN</span><span class="stc">Today’s ingredients (you)</span> <span class="stc">Stock ledger (Ops)</span> <span class="stc">Dietary rules · weather · review content</span><span class="farr">→</span><span class="iol">OUT</span><span class="stc">Dish cards → you &amp; the cook</span> <span class="stc">Approved dish → Designer (via CEO)</span></div>
+        <ol><li>Ingredients in → check ledger → filter: FC≤30% · all-diet options first · Halal always</li><li>Serve 2–3 cards: name / cost / price / margin / prep time / 3 steps / why-this</li><li>Rain swaps in warm drinks · heat swaps in coolers · reviews tune the spice</li><li>You nod → menu card &amp; poster via Designer</li></ol>
+        <div class="okrow"><span class="okc">✅ Every card: cost + reason attached</span> <span class="rdc">🚫 Your recipes never enter the AI</span> <span class="rdc">🚫 Never suggests against Halal/dietary rules</span></div>
+      </div>
+    </details>
+    <div class="card mt">
+      <div class="chd"><i data-i="grid"></i><b>Who gives what to whom</b><s>rows give, columns receive · all via CEO</s></div>
+      <div style="overflow-x:auto"><table>
+        <thead><tr><th>from \ to</th><th>CEO</th><th>Operations</th><th>Marketing</th><th>Designer</th><th>Chef</th><th>You</th></tr></thead>
+        <tbody>
+          <tr><td><b>You</b></td><td>decisions · files · photos</td><td>—</td><td>—</td><td>—</td><td>—</td><td></td></tr>
+          <tr><td><b>CEO</b></td><td></td><td>work orders</td><td>work orders</td><td>orders + briefs/photos</td><td>work orders</td><td>brief · options · finished work</td></tr>
+          <tr><td><b>Operations</b></td><td>numbers · alerts</td><td></td><td>intel: dips/feedback/hits</td><td>—</td><td>intel: stock levels</td><td>—</td></tr>
+          <tr><td><b>Marketing</b></td><td>proposals · briefs</td><td>results data</td><td></td><td>brief (via CEO)</td><td>—</td><td>approved sends</td></tr>
+          <tr><td><b>Designer</b></td><td>assets for QA</td><td>—</td><td>finished assets (via CEO)</td><td></td><td>—</td><td>—</td></tr>
+          <tr><td><b>Chef</b></td><td>dish cards</td><td>—</td><td>—</td><td>hand-off after your nod</td><td></td><td>suggestions (via CEO)</td></tr>
+        </tbody>
+      </table></div>
     </div>
   </section>
 

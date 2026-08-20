@@ -399,6 +399,27 @@ td b.pr2{font-variant-numeric:tabular-nums}
 .ceoq{display:flex;gap:8px;flex-wrap:wrap;margin-top:9px}
 .ceoq button{font-size:12px;font-weight:700;border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:99px;padding:6px 14px;transition:.15s}
 .ceoq button:hover{background:#fff;color:var(--ink)}
+/* ═══ v9.8 工作手册 ═══ */
+.agd{border:1px solid var(--line);border-radius:14px;background:var(--surface);margin-top:10px;overflow:hidden}
+.agd summary{display:flex;align-items:center;gap:11px;padding:13px 16px;cursor:pointer;list-style:none}
+.agd summary::-webkit-details-marker{display:none}
+.agd summary .av2{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;font-size:16px;color:#fff;flex-shrink:0}
+.agd summary b{font-size:13.5px;white-space:nowrap}
+.agd summary b em{font-style:normal;font-size:10.5px;color:var(--mut);font-weight:600;margin-left:6px}
+.agd summary>s{flex:1;font-size:11.5px;color:var(--mut);min-width:0}
+.agd summary .chev{color:var(--faint);font-style:normal;transition:.2s}
+.agd[open] summary .chev{transform:rotate(90deg)}
+.agd[open] summary{border-bottom:1px solid var(--line2)}
+.agd-b{padding:13px 16px 15px}
+.io{display:flex;align-items:center;gap:7px;flex-wrap:wrap;font-size:11.5px;margin-bottom:10px}
+.io .iol{font-size:10px;font-weight:800;color:var(--faint);letter-spacing:.06em;flex-shrink:0}
+.io .farr{font-size:12px}
+.agd-b ol{margin:0 0 11px 18px;font-size:12.3px;color:var(--ink2)}
+.agd-b ol li{padding:2.5px 0;line-height:1.5}
+.okrow{display:flex;gap:6px;flex-wrap:wrap}
+.okc{font-size:10.5px;font-weight:700;color:#15803D;background:#F0FDF4;border:1px solid #BBF7D0;border-radius:7px;padding:3px 9px}
+.rdc{font-size:10.5px;font-weight:700;color:#B91C1C;background:#FEF2F2;border:1px solid #FECACA;border-radius:7px;padding:3px 9px}
+
 
 
 
@@ -767,6 +788,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
   <div class="verwrap">
     <div class="chlog" id="chlog" hidden>
       <h5>更新日志</h5>
+      <div><b>v9.8</b><span>AI 团队页加工作手册与关系表</span></div>
       <div><b>v9.7</b><span>AI 团队页 · v2.8 角色对齐 · CEO 问诊</span></div>
       <div><b>v9.6</b><span>更新日志入口 · 可外发版本</span></div>
       <div><b>v9.5</b><span>销售分析：手动 / POS 直连切换</span></div>
@@ -776,7 +798,7 @@ td b.pr2{font-variant-numeric:tabular-nums}
       <div><b>v9.0</b><span>总览与店面资料照 client 参考重做</span></div>
       <div><b>v8.x</b><span>对话式创建工作台 · 三方案差异化</span></div>
     </div>
-    <button class="verbtn" id="verBtn"><i></i>v9.7 · 更新日志</button>
+    <button class="verbtn" id="verBtn"><i></i>v9.8 · 更新日志</button>
   </div>
 </aside>
 <main class="main">
@@ -1490,6 +1512,58 @@ td b.pr2{font-variant-numeric:tabular-nums}
         </div>
         <div class="ghost" style="margin-top:14px"><span style="font-size:17px">💰</span><span><b>Accountant · Phase 2</b> —— 成本、对账、报税准备。等运营数据跑顺就入职。</span></div>
       </div>
+    </div>
+
+    <div class="shead" style="margin-top:24px"><b>每个人的工作手册</b><s style="margin-left:10px;font-size:12px;color:var(--mut)">上游 → 下游 · 工作步骤 · 完成标准与红线 —— 所有交接经 CEO 中转</s></div>
+<details class="agd" open>
+      <summary><span class="av2" style="background:#0F172A">🧭</span><b>CEO<em>总管</em></b><s>唯一跟你对话的人 · 调度 + 验收 + 审批中转 + 经营教练</s><i class="chev">›</i></summary>
+      <div class="agd-b">
+        <div class="io"><span class="iol">IN</span><span class="stc">你的回复与文件</span> <span class="stc">四个专员的交付</span> <span class="stc">运营夜间数据</span><span class="farr">→</span><span class="iol">OUT</span><span class="stc">8:00 早报 + ≤3 件拍板 → 你</span> <span class="stc">派工单 → 各专员</span></div>
+        <ol><li>收你的消息 → 判断：拍板 / 提问 / 迷茫 / 闲聊</li><li>迷茫就问诊：要客流、客单还是省成本 → 预算限制 → 硬节点</li><li>派运营取数 → 给你 ≤3 个选项，每个都带数字</li><li>你拍板 → 派工：单一 agent · 单一交付物 · 附验收标准</li><li>验收每份交付：产出≠原料 · 数字有出处 · 红线逐条过 → 回报你</li></ol>
+        <div class="okrow"><span class="okc">✅ 你收到能直接拍板的东西</span> <span class="okc">✅ done 不重派 · 重试 ≤3</span> <span class="rdc">🚫 永不代你拍板</span> <span class="rdc">🚫 永不直接对外发布</span></div>
+      </div>
+    </details><details class="agd">
+      <summary><span class="av2" style="background:#2563EB">📥</span><b>Operations<em>运营</em></b><s>全团队唯一数据出处 · 一个 agent 两条流水线</s><i class="chev">›</i></summary>
+      <div class="agd-b">
+        <div class="io"><span class="iol">IN</span><span class="stc">销售表（任意格式）/ POS</span> <span class="stc">你每周 3 样食材盘点</span><span class="farr">→</span><span class="iol">OUT</span><span class="stc">数字 → CEO 早报</span> <span class="stc">情报 → 营销</span> <span class="stc">食材余量 → 主厨</span></div>
+        <ol><li>流水线A 接入：收文件 → 清洗 → 报告「625 行 · 0 错误」→ 入标准库</li><li>流水线B 分析：四象限（FC≤35% · 销量>中位数，代码写死）· 午晚市 · 周对比</li><li>每周合并盘点 → 更新台账 → 低于阈值 → 报 CEO 预警</li></ol>
+        <div class="okrow"><span class="okc">✅ 每个数字有出处</span> <span class="rdc">🚫 不编数（算不出就说）</span> <span class="rdc">🚫 经营数据不外传</span></div>
+      </div>
+    </details><details class="agd">
+      <summary><span class="av2" style="background:#B4451F">📣</span><b>Marketing<em>营销</em></b><s>idea 挂数字 · 日历 · opt-in 触达 · AiToEarn 是它的工具</s><i class="chev">›</i></summary>
+      <div class="agd-b">
+        <div class="io"><span class="iol">IN</span><span class="stc">运营情报（低谷·反馈·爆款）</span> <span class="stc">你的 campaign 审批</span><span class="farr">→</span><span class="iol">OUT</span><span class="stc">campaign 提案 → CEO → 你</span> <span class="stc">brief → 设计师（经CEO）</span> <span class="stc">批准后触达 → 客人</span> <span class="stc">发布任务 → AiToEarn</span></div>
+        <ol><li>收情报出 idea —— 必须挂一个数字</li><li>你按 campaign 批一次：内容 + 名单范围 + 时间窗</li><li>brief 给设计师 → 物料回来排日历（印刷提前 1 个月）</li><li>AiToEarn 分发：FB/IG/WA 官方 API · XHS 备好人工发</li><li>数据回流运营 → 进下一次提案</li></ol>
+        <div class="okrow"><span class="okc">✅ 每条触达有审批记录</span> <span class="rdc">🚫 无审批不发一条</span> <span class="rdc">🚫 只发 opt-in · STOP 即永久</span> <span class="rdc">🚫 Engage 永不开启</span></div>
+      </div>
+    </details><details class="agd">
+      <summary><span class="av2" style="background:#334155">🖨️</span><b>Designer<em>设计师</em></b><s>海报、菜单、全尺寸 —— clean &amp; classy，永远 follow Brand Kit</s><i class="chev">›</i></summary>
+      <div class="agd-b">
+        <div class="io"><span class="iol">IN</span><span class="stc">brief（经CEO）</span> <span class="stc">你上传的食物照（你→CEO→设计师）</span> <span class="stc">Brand Kit</span><span class="farr">→</span><span class="iol">OUT</span><span class="stc">3 方向 → 你选</span> <span class="stc">全尺寸包 + 3 语言 → CEO 验收</span></div>
+        <ol><li>brief + 原图进 → 出 3 方向：图为主 / 价格为主 / 文案为主</li><li>你选定 → 全尺寸：IG/FB/XHS/A4 印刷 + 中/EN/BM</li><li>每张过 Gate：价格来自菜单 · Halal 标 · QR 模板 · 族群规则</li><li>Gate 不过 → 自动重做 ≤3 次 → 仍不过 → 报 CEO</li></ol>
+        <div class="okrow"><span class="okc">✅ 整包过 Gate</span> <span class="rdc">🚫 不虚构价格/菜品</span> <span class="rdc">🚫 牛肉物料不投印度裔/素食</span></div>
+      </div>
+    </details><details class="agd">
+      <summary><span class="av2" style="background:#3F7D4E">👨‍🍳</span><b>Chef Assistant<em>主厨助手</em></b><s>按后厨现有的东西研发新菜 · 给建议不下命令</s><i class="chev">›</i></summary>
+      <div class="agd-b">
+        <div class="io"><span class="iol">IN</span><span class="stc">当天食材（你说的）</span> <span class="stc">库存台账（运营）</span> <span class="stc">族群规则 · 天气 · 评论内容</span><span class="farr">→</span><span class="iol">OUT</span><span class="stc">新菜卡 → 你和厨师</span> <span class="stc">你点头的菜 → 设计师（经CEO）</span></div>
+        <ol><li>收食材 → 查台账余量 → 过约束：FC≤30% · 全族群可吃优先 · Halal 必须</li><li>出 2–3 张卡：菜名 / 成本 / 售价 / 毛利 / 备餐时长 / 3 步做法 / 为什么推它</li><li>下雨自动换暖饮 · 天热换冰饮 · 评论求少辣就默认微辣</li><li>你点头 → 菜单卡和海报交设计师接力</li></ol>
+        <div class="okrow"><span class="okc">✅ 每张卡齐成本 + 理由</span> <span class="rdc">🚫 你的配方永不进 AI</span> <span class="rdc">🚫 不建议违反 Halal/族群规则的菜</span></div>
+      </div>
+    </details>
+    <div class="card mt">
+      <div class="chd"><i data-i="grid"></i><b>谁给谁什么</b><s>行=给 · 列=收 · 全部经 CEO 中转</s></div>
+      <div style="overflow-x:auto"><table>
+        <thead><tr><th>从 \ 到</th><th>CEO</th><th>运营</th><th>营销</th><th>设计师</th><th>主厨</th><th>你</th></tr></thead>
+        <tbody>
+          <tr><td><b>你</b></td><td>拍板 · 文件 · 照片</td><td>—</td><td>—</td><td>—</td><td>—</td><td></td></tr>
+          <tr><td><b>CEO</b></td><td></td><td>派工单</td><td>派工单</td><td>派工 + 转 brief/原图</td><td>派工单</td><td>早报 · 选项 · 成品</td></tr>
+          <tr><td><b>运营</b></td><td>数字 · 预警</td><td></td><td>情报：低谷/反馈/爆款</td><td>—</td><td>情报：食材余量</td><td>—</td></tr>
+          <tr><td><b>营销</b></td><td>提案 · brief</td><td>回流数据</td><td></td><td>brief（经CEO）</td><td>—</td><td>批准后的触达</td></tr>
+          <tr><td><b>设计师</b></td><td>待验收物料</td><td>—</td><td>成品物料（经CEO）</td><td></td><td>—</td><td>—</td></tr>
+          <tr><td><b>主厨</b></td><td>新菜卡</td><td>—</td><td>—</td><td>你点头后接力</td><td></td><td>建议（经CEO）</td></tr>
+        </tbody>
+      </table></div>
     </div>
   </section>
 
