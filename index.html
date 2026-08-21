@@ -1003,6 +1003,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
 </svg><span><b>Hivora</b><s>Warisan Grill · Halal ✓</s></span></div>
   <nav>
     <button class="nv" data-p="0" aria-current="true"><i data-i="home"></i>Home</button>
+    <button class="nv" data-p="9"><i data-i="grid"></i>AI Team</button>
     <div class="ngrp">Workspace</div>
     <button class="nv" data-p="1"><i data-i="spark"></i>Design Studio<span class="bd">3</span></button>
     <button class="nv" data-p="2"><i data-i="chart"></i>Analytics</button>
@@ -1018,7 +1019,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
     <div class="chlog" id="chlog" hidden>
       <h5>What’s new</h5>
       <div><b>v9.9</b><span>Agent floor on Home · live desks + team chat</span></div>
-      <div><b>v13.1</b><span>AI Team merged into the bottom of Home — no separate page</span></div>
+      <div><b>v13.2</b><span>AI Team stays a page — its button moved to the top of the rail</span></div>
       <div><b>v13.0</b><span>Home rebuilt for density — one screen answers a boss</span></div>
       <div><b>v12.1</b><span>Reference layout kept, original blue palette restored</span></div>
       <div><b>v11.0</b><span>Less text, more icons &amp; photos across the dashboard</span></div>
@@ -1036,7 +1037,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
       <div><b>v9.0</b><span>Home &amp; Store details rebuilt to client ref</span></div>
       <div><b>v8.x</b><span>Create-by-chat studio · 3 distinct concepts</span></div>
     </div>
-    <button class="verbtn" id="verBtn"><i></i>v13.1 · What’s new</button>
+    <button class="verbtn" id="verBtn"><i></i>v13.2 · What’s new</button>
   </div>
 </aside>
 <main class="main">
@@ -1166,7 +1167,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
 
     <div id="floorSlot0"></div>
     <div class="card mt" id="floorCard">
-      <div class="chd"><i data-i="users"></i><b>Agent floor</b><s>Live · what everyone is doing right now</s><span class="sp"></span><button class="btn sm" id="goTeam">Meet the team ↓</button></div>
+      <div class="chd"><i data-i="users"></i><b>Agent floor</b><s>Live · what everyone is doing right now</s><span class="sp"></span><button class="btn sm" data-p="9">Meet the team →</button></div>
       <div class="flbar">
         <div class="achips" id="aChips"></div>
         <button class="btn sm" id="btnEditAgent"><i data-i="gear" style="width:14px;height:14px;display:inline-grid;place-items:center;vertical-align:-2px;margin-right:5px"></i>Edit agent</button>
@@ -1192,48 +1193,6 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
         </div>
       </div>
     </div>
-
-    <div class="shead" style="margin-top:22px"><b>Your AI company · v2.8</b><s style="margin-left:10px;font-size:12px;color:var(--mut)">Five of them, one boss — you. Everything routes through the CEO.</s></div>
-
-    
-    
-    <div class="flnote"><i class="alico" data-i="hand" style="color:var(--blue)"></i> <b>Click a chip or anyone on the floor</b> — full profile opens: what they do step by step, what they cannot touch, and their tool whitelist.</div>
-
-
-    <div class="grid2">
-      <div class="card">
-        <div class="chd"><i data-i="activity"></i><b>How work flows</b><s>Specialists never talk to each other directly</s></div>
-        <div class="fline"><span class="fb dk"><i data-i="shield"></i>You</span><span class="farr">⇄</span><span class="fb dk"><i data-i="gauge"></i>CEO</span><span class="farr">→</span><span class="fb"><i data-i="chart"></i>Operations</span><span class="fb"><i data-i="share"></i>Marketing</span><span class="fb"><i data-i="printer"></i>Designer</span><span class="fb"><i data-i="bowl"></i>Chef</span></div>
-        <div class="fline"><span class="fnote">intel</span><span class="fb"><i data-i="chart"></i>Operations</span><span class="farr">⇢</span><span class="fb"><i data-i="share"></i>Marketing</span><span class="farr">⇢</span><span class="fb"><i data-i="bowl"></i>Chef</span><span class="fnote">sales dips · feedback · ingredient levels</span></div>
-        <div class="fline"><span class="fnote">tools</span><span class="fb"><i data-i="share"></i>Marketing</span><span class="farr">→</span><span class="fb tl"><i data-i="link"></i>AiToEarn · Create + Publish · Engage never on</span></div>
-        <div class="cnote">Every real-world action — publish, blast, print, price change — stops at your desk first.</div>
-      </div>
-      <div>
-        <div class="card">
-          <div class="chd"><i data-i="gear"></i><b>House rules</b><s>Written into every agent</s></div>
-          <div class="fchips"><span class="stc">Approval before anything goes out ✓</span><span class="stc">Opt-in list only · STOP is final ✓</span><span class="stc">Dietary rules per audience ✓</span><span class="stc">Your recipes never fed to AI ✓</span></div>
-        </div>
-        <div class="ghost" style="margin-top:14px"><i class="itile nt" data-i="coins"></i><span><b>Accountant · Phase 2</b> — costs, reconciliation, tax prep. Joins once Operations data settles.</span></div>
-      </div>
-    </div>
-
-    <details class="agd" style="margin-top:14px">
-      <summary><span class="av2" style="background:#64748B"><i data-i="grid"></i></span><b>Full hand-off matrix — who gives what to whom</b><s></s><i class="chev">›</i></summary>
-      <div class="agd-b">
-      <div style="overflow-x:auto"><table>
-        <thead><tr><th>from \ to</th><th>CEO</th><th>Operations</th><th>Marketing</th><th>Designer</th><th>Chef</th><th>You</th></tr></thead>
-        <tbody>
-          <tr><td><b>You</b></td><td>decisions · files · photos</td><td>—</td><td>—</td><td>—</td><td>—</td><td></td></tr>
-          <tr><td><b>CEO</b></td><td></td><td>work orders</td><td>work orders</td><td>orders + briefs/photos</td><td>work orders</td><td>brief · options · finished work</td></tr>
-          <tr><td><b>Operations</b></td><td>numbers · alerts</td><td></td><td>intel: dips/feedback/hits</td><td>—</td><td>intel: stock levels</td><td>—</td></tr>
-          <tr><td><b>Marketing</b></td><td>proposals · briefs</td><td>results data</td><td></td><td>brief (via CEO)</td><td>—</td><td>approved sends</td></tr>
-          <tr><td><b>Designer</b></td><td>assets for QA</td><td>—</td><td>finished assets (via CEO)</td><td></td><td>—</td><td>—</td></tr>
-          <tr><td><b>Chef</b></td><td>dish cards</td><td>—</td><td>—</td><td>hand-off after your nod</td><td></td><td>suggestions (via CEO)</td></tr>
-        </tbody>
-      </table></div>
-</div>
-    </details>
-  
   </section>
 
   <!-- ═══════════ P1 营销生成 ═══════════ -->
@@ -1802,7 +1761,55 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
       </div>
     </div>
   </section>
-  
+  <section class="panel" id="p9">
+    <div style="margin-bottom:16px"><div class="eyebrow">Your AI company · v2.8</div>
+      <h2>Five people. One boss — you.</h2>
+      <p class="sub">Everything routes through the CEO. Nothing goes out without your approval.</p></div>
+
+    <div class="ceohero">
+      <span class="ca">C</span>
+      <span><b>CEO — your daily brief &amp; decisions</b><s>Morning brief at 8:00 · 1–3 calls a day · asks the right questions when you’re not sure</s></span>
+      <button class="btn" data-p="0">See today’s brief →</button>
+    </div>
+
+    <div id="floorSlot9"></div>
+    <div class="flnote"><i class="alico" data-i="hand" style="color:var(--blue)"></i> <b>Click a chip or anyone on the floor</b> — full profile opens: what they do step by step, what they cannot touch, and their tool whitelist.</div>
+
+
+    <div class="grid2">
+      <div class="card">
+        <div class="chd"><i data-i="activity"></i><b>How work flows</b><s>Specialists never talk to each other directly</s></div>
+        <div class="fline"><span class="fb dk"><i data-i="shield"></i>You</span><span class="farr">⇄</span><span class="fb dk"><i data-i="gauge"></i>CEO</span><span class="farr">→</span><span class="fb"><i data-i="chart"></i>Operations</span><span class="fb"><i data-i="share"></i>Marketing</span><span class="fb"><i data-i="printer"></i>Designer</span><span class="fb"><i data-i="bowl"></i>Chef</span></div>
+        <div class="fline"><span class="fnote">intel</span><span class="fb"><i data-i="chart"></i>Operations</span><span class="farr">⇢</span><span class="fb"><i data-i="share"></i>Marketing</span><span class="farr">⇢</span><span class="fb"><i data-i="bowl"></i>Chef</span><span class="fnote">sales dips · feedback · ingredient levels</span></div>
+        <div class="fline"><span class="fnote">tools</span><span class="fb"><i data-i="share"></i>Marketing</span><span class="farr">→</span><span class="fb tl"><i data-i="link"></i>AiToEarn · Create + Publish · Engage never on</span></div>
+        <div class="cnote">Every real-world action — publish, blast, print, price change — stops at your desk first.</div>
+      </div>
+      <div>
+        <div class="card">
+          <div class="chd"><i data-i="gear"></i><b>House rules</b><s>Written into every agent</s></div>
+          <div class="fchips"><span class="stc">Approval before anything goes out ✓</span><span class="stc">Opt-in list only · STOP is final ✓</span><span class="stc">Dietary rules per audience ✓</span><span class="stc">Your recipes never fed to AI ✓</span></div>
+        </div>
+        <div class="ghost" style="margin-top:14px"><i class="itile nt" data-i="coins"></i><span><b>Accountant · Phase 2</b> — costs, reconciliation, tax prep. Joins once Operations data settles.</span></div>
+      </div>
+    </div>
+
+    <details class="agd" style="margin-top:14px">
+      <summary><span class="av2" style="background:#64748B"><i data-i="grid"></i></span><b>Full hand-off matrix — who gives what to whom</b><s></s><i class="chev">›</i></summary>
+      <div class="agd-b">
+      <div style="overflow-x:auto"><table>
+        <thead><tr><th>from \ to</th><th>CEO</th><th>Operations</th><th>Marketing</th><th>Designer</th><th>Chef</th><th>You</th></tr></thead>
+        <tbody>
+          <tr><td><b>You</b></td><td>decisions · files · photos</td><td>—</td><td>—</td><td>—</td><td>—</td><td></td></tr>
+          <tr><td><b>CEO</b></td><td></td><td>work orders</td><td>work orders</td><td>orders + briefs/photos</td><td>work orders</td><td>brief · options · finished work</td></tr>
+          <tr><td><b>Operations</b></td><td>numbers · alerts</td><td></td><td>intel: dips/feedback/hits</td><td>—</td><td>intel: stock levels</td><td>—</td></tr>
+          <tr><td><b>Marketing</b></td><td>proposals · briefs</td><td>results data</td><td></td><td>brief (via CEO)</td><td>—</td><td>approved sends</td></tr>
+          <tr><td><b>Designer</b></td><td>assets for QA</td><td>—</td><td>finished assets (via CEO)</td><td></td><td>—</td><td>—</td></tr>
+          <tr><td><b>Chef</b></td><td>dish cards</td><td>—</td><td>—</td><td>hand-off after your nod</td><td></td><td>suggestions (via CEO)</td></tr>
+        </tbody>
+      </table></div>
+</div>
+    </details>
+  </section>
 
 </main>
 </div>
@@ -1868,7 +1875,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
   document.querySelectorAll("[data-i]").forEach(function(el){ el.innerHTML=I[el.getAttribute("data-i")]||""; });
 })();
 /* ═══ nav ═══ */
-var TITLES=["Home","Design Studio","Analytics","Menu & Food","Customers","Recipe Lab","Store details","Social Hub","Loyalty"];
+var TITLES=["Home","Design Studio","Analytics","Menu & Food","Customers","Recipe Lab","Store details","Social Hub","Loyalty","AI Team"];
 window.hvTrack=function(ev,props){try{var a=JSON.parse(localStorage.getItem("hv_events")||"[]");
   a.push({e:ev,p:props||{},t:Date.now()});if(a.length>500)a=a.slice(-500);
   localStorage.setItem("hv_events",JSON.stringify(a));}catch(_){}
@@ -2186,16 +2193,15 @@ document.addEventListener("click",function(e){
   window.scrollTo({top:c.getBoundingClientRect().top+window.scrollY-16,behavior:"smooth"});
   hvTrack("goto_floor");
 });
-document.addEventListener("click",function(e){
-  if(!e.target.closest("#goTeam")) return;
-  var s=[].slice.call(document.querySelectorAll("#p0 .shead")).pop(); if(!s) return;
-  window.scrollTo({top:s.getBoundingClientRect().top+window.scrollY-16,behavior:"smooth"});
-  hvTrack("goto_team");
-});
-function relocFloor(){var e=document.getElementById("flLog"); if(e) e.scrollTop=e.scrollHeight;}
+function relocFloor(i){
+  var c=document.getElementById("floorCard"); if(!c) return;
+  var h=document.getElementById(i===9?"floorSlot9":"floorSlot0");
+  if(h&&c.parentNode!==h) h.appendChild(c);
+  var e=document.getElementById("flLog"); if(e) e.scrollTop=e.scrollHeight;
+}
 function go(i){
   hvTrack("page_view",{page:i});
-  relocFloor();
+  relocFloor(i);
   document.querySelectorAll(".panel").forEach(function(p,k){p.classList.toggle("on",k===i);});
   document.querySelectorAll(".side .nv").forEach(function(n){n.setAttribute("aria-current",n.getAttribute("data-p")==String(i));});
   document.getElementById("ptitle").textContent=TITLES[i];
