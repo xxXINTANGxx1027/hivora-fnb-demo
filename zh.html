@@ -1008,7 +1008,6 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
     <button class="nv" data-p="8"><i data-i="star"></i>会员 · Loyalty</button>
     <button class="nv" data-p="5"><i data-i="bulb"></i>新菜灵感</button>
     <button class="nv" data-p="7"><i data-i="share"></i>社媒中心</button>
-    <button class="nv" data-p="9"><i data-i="grid"></i>AI 团队</button>
     <div class="ngrp">配置</div>
     <button class="nv" data-p="6"><i data-i="gear"></i>店面资料</button>
   </nav>
@@ -1016,6 +1015,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
     <div class="chlog" id="chlog" hidden>
       <h5>更新日志</h5>
       <div><b>v9.9</b><span>总览加 Agent Floor · 工位实况 + 团队聊天</span></div>
+      <div><b>v13.1</b><span>AI 团队并入总览底部 —— 不再单独一页</span></div>
       <div><b>v13.0</b><span>首页按信息密度重排 —— 一屏answer老板三个问题</span></div>
       <div><b>v12.1</b><span>保留参考的排版结构 · 配色换回原来的蓝白</span></div>
       <div><b>v11.0</b><span>全站减字 —— 换成图标与图片</span></div>
@@ -1033,7 +1033,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
       <div><b>v9.0</b><span>总览与店面资料照 client 参考重做</span></div>
       <div><b>v8.x</b><span>对话式创建工作台 · 三方案差异化</span></div>
     </div>
-    <button class="verbtn" id="verBtn"><i></i>v13.0 · 更新日志</button>
+    <button class="verbtn" id="verBtn"><i></i>v13.1 · 更新日志</button>
   </div>
 </aside>
 <main class="main">
@@ -1163,7 +1163,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
 
     <div id="floorSlot0"></div>
     <div class="card mt" id="floorCard">
-      <div class="chd"><i data-i="users"></i><b>Agent Floor</b><s>实时 · 每个人此刻在干嘛</s><span class="sp"></span><button class="btn sm" data-p="9">认识团队 →</button></div>
+      <div class="chd"><i data-i="users"></i><b>Agent Floor</b><s>实时 · 每个人此刻在干嘛</s><span class="sp"></span><button class="btn sm" id="goTeam">认识团队 ↓</button></div>
       <div class="flbar">
         <div class="achips" id="aChips"></div>
         <button class="btn sm" id="btnEditAgent"><i data-i="gear" style="width:14px;height:14px;display:inline-grid;place-items:center;vertical-align:-2px;margin-right:5px"></i>编辑 agent</button>
@@ -1189,6 +1189,48 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
         </div>
       </div>
     </div>
+
+    <div class="shead" style="margin-top:22px"><b>你的 AI 公司 · v2.8</b><s style="margin-left:10px;font-size:12px;color:var(--mut)">五个人，一个老板 —— 你。所有事都经 CEO 中转。</s></div>
+
+    
+    
+    <div class="flnote"><i class="alico" data-i="hand" style="color:var(--blue)"></i> <b>点 chips 或点工位上的小人</b> —— 打开完整档案：工作步骤、不能碰什么、工具白名单。</div>
+
+
+    <div class="grid2">
+      <div class="card">
+        <div class="chd"><i data-i="activity"></i><b>活是怎么流转的</b><s>专员之间从不直连</s></div>
+        <div class="fline"><span class="fb dk"><i data-i="shield"></i>你</span><span class="farr">⇄</span><span class="fb dk"><i data-i="gauge"></i>CEO</span><span class="farr">→</span><span class="fb"><i data-i="chart"></i>运营</span><span class="fb"><i data-i="share"></i>营销</span><span class="fb"><i data-i="printer"></i>设计师</span><span class="fb"><i data-i="bowl"></i>主厨</span></div>
+        <div class="fline"><span class="fnote">情报</span><span class="fb"><i data-i="chart"></i>运营</span><span class="farr">⇢</span><span class="fb"><i data-i="share"></i>营销</span><span class="farr">⇢</span><span class="fb"><i data-i="bowl"></i>主厨</span><span class="fnote">低谷 · 反馈 · 食材余量</span></div>
+        <div class="fline"><span class="fnote">工具</span><span class="fb"><i data-i="share"></i>营销</span><span class="farr">→</span><span class="fb tl"><i data-i="link"></i>AiToEarn · Create + Publish · Engage 永不开启</span></div>
+        <div class="cnote">所有真实动作 —— 发布、群发、印刷、改价 —— 都要先到你桌上。</div>
+      </div>
+      <div>
+        <div class="card">
+          <div class="chd"><i data-i="gear"></i><b>家规</b><s>写进每个 agent 的红线</s></div>
+          <div class="fchips"><span class="stc">先审批后出门 ✓</span><span class="stc">只发 opt-in · STOP 即永久 ✓</span><span class="stc">族群饮食规则 ✓</span><span class="stc">老板配方不喂 AI ✓</span></div>
+        </div>
+        <div class="ghost" style="margin-top:14px"><i class="itile nt" data-i="coins"></i><span><b>Accountant · Phase 2</b> —— 成本、对账、报税准备。等运营数据跑顺就入职。</span></div>
+      </div>
+    </div>
+
+    <details class="agd" style="margin-top:14px">
+      <summary><span class="av2" style="background:#64748B"><i data-i="grid"></i></span><b>展开完整交接矩阵 —— 谁给谁什么</b><s></s><i class="chev">›</i></summary>
+      <div class="agd-b">
+      <div style="overflow-x:auto"><table>
+        <thead><tr><th>从 \ 到</th><th>CEO</th><th>运营</th><th>营销</th><th>设计师</th><th>主厨</th><th>你</th></tr></thead>
+        <tbody>
+          <tr><td><b>你</b></td><td>拍板 · 文件 · 照片</td><td>—</td><td>—</td><td>—</td><td>—</td><td></td></tr>
+          <tr><td><b>CEO</b></td><td></td><td>派工单</td><td>派工单</td><td>派工 + 转 brief/原图</td><td>派工单</td><td>早报 · 选项 · 成品</td></tr>
+          <tr><td><b>运营</b></td><td>数字 · 预警</td><td></td><td>情报：低谷/反馈/爆款</td><td>—</td><td>情报：食材余量</td><td>—</td></tr>
+          <tr><td><b>营销</b></td><td>提案 · brief</td><td>回流数据</td><td></td><td>brief（经CEO）</td><td>—</td><td>批准后的触达</td></tr>
+          <tr><td><b>设计师</b></td><td>待验收物料</td><td>—</td><td>成品物料（经CEO）</td><td></td><td>—</td><td>—</td></tr>
+          <tr><td><b>主厨</b></td><td>新菜卡</td><td>—</td><td>—</td><td>你点头后接力</td><td></td><td>建议（经CEO）</td></tr>
+        </tbody>
+      </table></div>
+</div>
+    </details>
+  
   </section>
 
   <!-- ═══════════ P1 营销生成 ═══════════ -->
@@ -1757,55 +1799,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
       </div>
     </div>
   </section>
-  <section class="panel" id="p9">
-    <div style="margin-bottom:16px"><div class="eyebrow">你的 AI 公司 · v2.8</div>
-      <h2>五个人，一个老板 —— 你</h2>
-      <p class="sub">所有事都经 CEO 中转；你不点头，什么都不会发出去。</p></div>
-
-    <div class="ceohero">
-      <span class="ca">C</span>
-      <span><b>CEO —— 每天的早报和拍板</b><s>8:00 早报 · 每天只让你拍 1–3 件事 · 你迷茫时它先问对问题</s></span>
-      <button class="btn" data-p="0">看今天的早报 →</button>
-    </div>
-
-    <div id="floorSlot9"></div>
-    <div class="flnote"><i class="alico" data-i="hand" style="color:var(--blue)"></i> <b>点 chips 或点工位上的小人</b> —— 打开完整档案：工作步骤、不能碰什么、工具白名单。</div>
-
-
-    <div class="grid2">
-      <div class="card">
-        <div class="chd"><i data-i="activity"></i><b>活是怎么流转的</b><s>专员之间从不直连</s></div>
-        <div class="fline"><span class="fb dk"><i data-i="shield"></i>你</span><span class="farr">⇄</span><span class="fb dk"><i data-i="gauge"></i>CEO</span><span class="farr">→</span><span class="fb"><i data-i="chart"></i>运营</span><span class="fb"><i data-i="share"></i>营销</span><span class="fb"><i data-i="printer"></i>设计师</span><span class="fb"><i data-i="bowl"></i>主厨</span></div>
-        <div class="fline"><span class="fnote">情报</span><span class="fb"><i data-i="chart"></i>运营</span><span class="farr">⇢</span><span class="fb"><i data-i="share"></i>营销</span><span class="farr">⇢</span><span class="fb"><i data-i="bowl"></i>主厨</span><span class="fnote">低谷 · 反馈 · 食材余量</span></div>
-        <div class="fline"><span class="fnote">工具</span><span class="fb"><i data-i="share"></i>营销</span><span class="farr">→</span><span class="fb tl"><i data-i="link"></i>AiToEarn · Create + Publish · Engage 永不开启</span></div>
-        <div class="cnote">所有真实动作 —— 发布、群发、印刷、改价 —— 都要先到你桌上。</div>
-      </div>
-      <div>
-        <div class="card">
-          <div class="chd"><i data-i="gear"></i><b>家规</b><s>写进每个 agent 的红线</s></div>
-          <div class="fchips"><span class="stc">先审批后出门 ✓</span><span class="stc">只发 opt-in · STOP 即永久 ✓</span><span class="stc">族群饮食规则 ✓</span><span class="stc">老板配方不喂 AI ✓</span></div>
-        </div>
-        <div class="ghost" style="margin-top:14px"><i class="itile nt" data-i="coins"></i><span><b>Accountant · Phase 2</b> —— 成本、对账、报税准备。等运营数据跑顺就入职。</span></div>
-      </div>
-    </div>
-
-    <details class="agd" style="margin-top:14px">
-      <summary><span class="av2" style="background:#64748B"><i data-i="grid"></i></span><b>展开完整交接矩阵 —— 谁给谁什么</b><s></s><i class="chev">›</i></summary>
-      <div class="agd-b">
-      <div style="overflow-x:auto"><table>
-        <thead><tr><th>从 \ 到</th><th>CEO</th><th>运营</th><th>营销</th><th>设计师</th><th>主厨</th><th>你</th></tr></thead>
-        <tbody>
-          <tr><td><b>你</b></td><td>拍板 · 文件 · 照片</td><td>—</td><td>—</td><td>—</td><td>—</td><td></td></tr>
-          <tr><td><b>CEO</b></td><td></td><td>派工单</td><td>派工单</td><td>派工 + 转 brief/原图</td><td>派工单</td><td>早报 · 选项 · 成品</td></tr>
-          <tr><td><b>运营</b></td><td>数字 · 预警</td><td></td><td>情报：低谷/反馈/爆款</td><td>—</td><td>情报：食材余量</td><td>—</td></tr>
-          <tr><td><b>营销</b></td><td>提案 · brief</td><td>回流数据</td><td></td><td>brief（经CEO）</td><td>—</td><td>批准后的触达</td></tr>
-          <tr><td><b>设计师</b></td><td>待验收物料</td><td>—</td><td>成品物料（经CEO）</td><td></td><td>—</td><td>—</td></tr>
-          <tr><td><b>主厨</b></td><td>新菜卡</td><td>—</td><td>—</td><td>你点头后接力</td><td></td><td>建议（经CEO）</td></tr>
-        </tbody>
-      </table></div>
-</div>
-    </details>
-  </section>
+  
 
 </main>
 </div>
@@ -1871,7 +1865,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
   document.querySelectorAll("[data-i]").forEach(function(el){ el.innerHTML=I[el.getAttribute("data-i")]||""; });
 })();
 /* ═══ nav ═══ */
-var TITLES=["总览","宣传设计","销售分析","菜品与菜单","客户","新菜灵感","店面资料","社媒中心","会员 · Loyalty","AI 团队"];
+var TITLES=["总览","宣传设计","销售分析","菜品与菜单","客户","新菜灵感","店面资料","社媒中心","会员 · Loyalty"];
 window.hvTrack=function(ev,props){try{var a=JSON.parse(localStorage.getItem("hv_events")||"[]");
   a.push({e:ev,p:props||{},t:Date.now()});if(a.length>500)a=a.slice(-500);
   localStorage.setItem("hv_events",JSON.stringify(a));}catch(_){}
@@ -2189,15 +2183,16 @@ document.addEventListener("click",function(e){
   window.scrollTo({top:c.getBoundingClientRect().top+window.scrollY-16,behavior:"smooth"});
   hvTrack("goto_floor");
 });
-function relocFloor(i){
-  var c=document.getElementById("floorCard"); if(!c) return;
-  var h=document.getElementById(i===9?"floorSlot9":"floorSlot0");
-  if(h&&c.parentNode!==h) h.appendChild(c);
-  var e=document.getElementById("flLog"); if(e) e.scrollTop=e.scrollHeight;
-}
+document.addEventListener("click",function(e){
+  if(!e.target.closest("#goTeam")) return;
+  var s=[].slice.call(document.querySelectorAll("#p0 .shead")).pop(); if(!s) return;
+  window.scrollTo({top:s.getBoundingClientRect().top+window.scrollY-16,behavior:"smooth"});
+  hvTrack("goto_team");
+});
+function relocFloor(){var e=document.getElementById("flLog"); if(e) e.scrollTop=e.scrollHeight;}
 function go(i){
   hvTrack("page_view",{page:i});
-  relocFloor(i);
+  relocFloor();
   document.querySelectorAll(".panel").forEach(function(p,k){p.classList.toggle("on",k===i);});
   document.querySelectorAll(".side .nv").forEach(function(n){n.setAttribute("aria-current",n.getAttribute("data-p")==String(i));});
   document.getElementById("ptitle").textContent=TITLES[i];
