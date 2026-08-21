@@ -1019,6 +1019,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
     <div class="chlog" id="chlog" hidden>
       <h5>What’s new</h5>
       <div><b>v9.9</b><span>Agent floor on Home · live desks + team chat</span></div>
+      <div><b>v13.3</b><span>Floor lives on the AI Team page only — Home is short again</span></div>
       <div><b>v13.2</b><span>AI Team stays a page — its button moved to the top of the rail</span></div>
       <div><b>v13.0</b><span>Home rebuilt for density — one screen answers a boss</span></div>
       <div><b>v12.1</b><span>Reference layout kept, original blue palette restored</span></div>
@@ -1037,7 +1038,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
       <div><b>v9.0</b><span>Home &amp; Store details rebuilt to client ref</span></div>
       <div><b>v8.x</b><span>Create-by-chat studio · 3 distinct concepts</span></div>
     </div>
-    <button class="verbtn" id="verBtn"><i></i>v13.2 · What’s new</button>
+    <button class="verbtn" id="verBtn"><i></i>v13.3 · What’s new</button>
   </div>
 </aside>
 <main class="main">
@@ -1116,7 +1117,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
             <button onclick="hvTrack('ceo_probe',{g:'ticket'})" data-p="1">Bigger tickets</button>
             <button onclick="hvTrack('ceo_probe',{g:'cost'})" data-p="2">Cut costs</button>
           </span></span>
-        <button class="btn" id="goFloor">See the floor ↓</button>
+        <button class="btn" data-p="9">Meet the team →</button>
       </div>
     </div>
 
@@ -1165,34 +1166,7 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
     </aside>
     </div>
 
-    <div id="floorSlot0"></div>
-    <div class="card mt" id="floorCard">
-      <div class="chd"><i data-i="users"></i><b>Agent floor</b><s>Live · what everyone is doing right now</s><span class="sp"></span><button class="btn sm" data-p="9">Meet the team →</button></div>
-      <div class="flbar">
-        <div class="achips" id="aChips"></div>
-        <button class="btn sm" id="btnEditAgent"><i data-i="gear" style="width:14px;height:14px;display:inline-grid;place-items:center;vertical-align:-2px;margin-right:5px"></i>Edit agent</button>
-      </div>
-      <div class="flwrap">
-        <div class="pxbox">
-          <div class="pxscroll"><canvas id="floorCv" aria-label="Pixel office: your AI team at their desks"></canvas></div>
-          <div class="pxhint"><i data-i="hand" style="width:14px;height:14px;display:inline-grid;place-items:center;color:var(--blue)"></i> <b>Click anyone</b> to see what they are on right now · busy agents stay at their desk, idle ones wander</div>
-        </div>
-        <div class="flchat">
-          <div class="flhd"><span class="cav">C</span>Team chat<span class="sp"></span><span class="tag gn">History kept</span></div>
-          <div class="flsel" id="flSel"><b>CEO</b><span>Waiting on your call · 2 items today</span></div>
-          <div id="flLog">
-            <span class="fldate">Yesterday 18:32</span>
-            <div class="agm me">Push the satay on Wednesday, price to 12.90</div>
-            <div class="agm ai">Done — Wednesday satay promo queued at RM 12.90, margin 54% ✓. Poster ships after your OK.</div>
-            <span class="fldate">Today 08:00</span>
-            <div class="agm ai">Morning. Yesterday RM 2,140 (+6.4%). Two calls today: ① Lunch Flash poster — publish? ② Merdeka schedule — lock it?</div>
-            <div class="agm me">1 2</div>
-            <div class="agm ai">Both locked ✓ Designer is on it — I’ll ping you when the pack is ready for sign-off.</div>
-          </div>
-          <form class="bc-in" id="flForm"><input id="flIn" placeholder="Tell the CEO… (“price to 32”, “use the satay”)" autocomplete="off"><button type="submit">Send</button></form>
-        </div>
-      </div>
-    </div>
+    
   </section>
 
   <!-- ═══════════ P1 营销生成 ═══════════ -->
@@ -1772,7 +1746,33 @@ dialog.amodal::backdrop{background:rgba(15,23,42,.45)}
       <button class="btn" data-p="0">See today’s brief →</button>
     </div>
 
-    <div id="floorSlot9"></div>
+    <div class="card mt" id="floorCard">
+      <div class="chd"><i data-i="users"></i><b>Agent floor</b><s>Live · what everyone is doing right now</s><span class="sp"></span><button class="btn sm" data-p="9">Meet the team →</button></div>
+      <div class="flbar">
+        <div class="achips" id="aChips"></div>
+        <button class="btn sm" id="btnEditAgent"><i data-i="gear" style="width:14px;height:14px;display:inline-grid;place-items:center;vertical-align:-2px;margin-right:5px"></i>Edit agent</button>
+      </div>
+      <div class="flwrap">
+        <div class="pxbox">
+          <div class="pxscroll"><canvas id="floorCv" aria-label="Pixel office: your AI team at their desks"></canvas></div>
+          <div class="pxhint"><i data-i="hand" style="width:14px;height:14px;display:inline-grid;place-items:center;color:var(--blue)"></i> <b>Click anyone</b> to see what they are on right now · busy agents stay at their desk, idle ones wander</div>
+        </div>
+        <div class="flchat">
+          <div class="flhd"><span class="cav">C</span>Team chat<span class="sp"></span><span class="tag gn">History kept</span></div>
+          <div class="flsel" id="flSel"><b>CEO</b><span>Waiting on your call · 2 items today</span></div>
+          <div id="flLog">
+            <span class="fldate">Yesterday 18:32</span>
+            <div class="agm me">Push the satay on Wednesday, price to 12.90</div>
+            <div class="agm ai">Done — Wednesday satay promo queued at RM 12.90, margin 54% ✓. Poster ships after your OK.</div>
+            <span class="fldate">Today 08:00</span>
+            <div class="agm ai">Morning. Yesterday RM 2,140 (+6.4%). Two calls today: ① Lunch Flash poster — publish? ② Merdeka schedule — lock it?</div>
+            <div class="agm me">1 2</div>
+            <div class="agm ai">Both locked ✓ Designer is on it — I’ll ping you when the pack is ready for sign-off.</div>
+          </div>
+          <form class="bc-in" id="flForm"><input id="flIn" placeholder="Tell the CEO… (“price to 32”, “use the satay”)" autocomplete="off"><button type="submit">Send</button></form>
+        </div>
+      </div>
+    </div>
     <div class="flnote"><i class="alico" data-i="hand" style="color:var(--blue)"></i> <b>Click a chip or anyone on the floor</b> — full profile opens: what they do step by step, what they cannot touch, and their tool whitelist.</div>
 
 
@@ -2193,15 +2193,10 @@ document.addEventListener("click",function(e){
   window.scrollTo({top:c.getBoundingClientRect().top+window.scrollY-16,behavior:"smooth"});
   hvTrack("goto_floor");
 });
-function relocFloor(i){
-  var c=document.getElementById("floorCard"); if(!c) return;
-  var h=document.getElementById(i===9?"floorSlot9":"floorSlot0");
-  if(h&&c.parentNode!==h) h.appendChild(c);
-  var e=document.getElementById("flLog"); if(e) e.scrollTop=e.scrollHeight;
-}
+function relocFloor(){var e=document.getElementById("flLog"); if(e) e.scrollTop=e.scrollHeight;}
 function go(i){
   hvTrack("page_view",{page:i});
-  relocFloor(i);
+  relocFloor();
   document.querySelectorAll(".panel").forEach(function(p,k){p.classList.toggle("on",k===i);});
   document.querySelectorAll(".side .nv").forEach(function(n){n.setAttribute("aria-current",n.getAttribute("data-p")==String(i));});
   document.getElementById("ptitle").textContent=TITLES[i];
